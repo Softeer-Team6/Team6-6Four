@@ -1,9 +1,10 @@
 ---
-name: Issue Request
-about: 이슈 템플릿
+name: main feature create template
+about: main feature 이슈 생성 템플릿
 title: "[Domain] 태그 : 이슈제목"
 labels: ''
 assignees: ''
+
 ---
 
 ## 💁‍♂️ Feature 정의

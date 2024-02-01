@@ -1,9 +1,10 @@
 ---
-name: Issue Request
-about: fix 이슈 템플릿
+name: fix create template
+about: fix 이슈 생성 템플릿
 title: "[직무][Domain] 태그: 이슈제목"
 labels: ''
 assignees: ''
+
 ---
 
 ## 🐜 어떤 버그인가요?

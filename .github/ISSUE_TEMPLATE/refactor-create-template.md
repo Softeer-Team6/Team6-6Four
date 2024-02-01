@@ -1,6 +1,6 @@
 ---
-name: Refactor 생성 템플릿
-about: 해당 템플릿을 사용하여 refactor 를 생성해주세요.
+name: refactor create template
+about: refactor 이슈 생성 템플릿
 title: ''
 labels: ''
 assignees: ''

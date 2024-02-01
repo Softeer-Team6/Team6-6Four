@@ -1,6 +1,6 @@
 ---
-name: Sub Feature 생성 템플릿
-about: 해당 템플릿을 사용하여 서브 feature 를 생성해주세요.
+name: "\bsub feature create template"
+about: sub feature 이슈 생성 템플릿
 title: ''
 labels: ''
 assignees: ''
