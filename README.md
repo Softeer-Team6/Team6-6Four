@@ -11,9 +11,9 @@
 <br>
 
 > **참고 자료**  
-> * [디자인 🎨](https://github.com/softeerbootcamp-3rd/Team6-6Four)
-> * [기획 📝](https://github.com/softeerbootcamp-3rd/Team6-6Four)
-> * [그라운드 룰 🚩](https://github.com/softeerbootcamp-3rd/Team6-6Four)
+> * [디자인 🎨](https://www.figma.com/file/oFf3iFzY8G3QBokW6ISa1c/design?type=design&node-id=211%3A3671&mode=design&t=RH6UMUEEc9uiwixq-1)
+> * [기획 📝](https://fabulous-peach-01a.notion.site/404985747ce44eb682a848510b1f73e5?pvs=4)
+> * [그라운드 룰 🚩]([https://github.com/softeerbootcamp-3rd/Team6-6Four](https://fabulous-peach-01a.notion.site/f67fab4fc6c941c09f6a6926cb28da84?pvs=4))
 > * [컨벤션 📐](https://github.com/softeerbootcamp-3rd/Team6-6Four)
 > * [코드 컨벤션 🚜](https://github.com/softeerbootcamp-3rd/Team6-6Four)
 <br>
