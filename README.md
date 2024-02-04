@@ -15,7 +15,7 @@
 > * [디자인 🎨](https://www.figma.com/file/oFf3iFzY8G3QBokW6ISa1c/design?type=design&node-id=211%3A3671&mode=design&t=RH6UMUEEc9uiwixq-1)
 > * [기획 📝](https://fabulous-peach-01a.notion.site/404985747ce44eb682a848510b1f73e5?pvs=4)
 > * [그라운드 룰 📍](https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki/GroundRule)
-> * [협업 전략 📐](https://fabulous-peach-01a.notion.site/ee5faacb4e4049c1993e9cf7801b0cb0?pvs=4)
+> * [협업 전략 📐](https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki/Collaboration-strategy-%F0%9F%93%90)
 > * [코드 컨벤션 🚜](https://github.com/softeerbootcamp-3rd/Team6-6Four)
 <br>
 
