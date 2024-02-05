@@ -1,7 +1,7 @@
 ---
 name: main feature create template
 about: main feature 이슈 생성 템플릿
-title: "[Domain] 태그 : 이슈제목"
+title: "[Domain] Feat : 이슈제목"
 labels: ''
 assignees: ''
 

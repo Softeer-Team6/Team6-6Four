@@ -1,18 +1,10 @@
 ---
 name: "\bsub feature create template"
 about: sub feature 이슈 생성 템플릿
-title: ''
+title: "[직무][Domain] \bFeat : 이슈제목"
 labels: ''
 assignees: ''
 
----
-
----
-name: Issue Request
-about: 이슈 템플릿
-title: "[직무][Domain] 태그: 이슈제목"
-labels: ''
-assignees: ''
 ---
 
 ## 💁‍♂️ 어떤 기능인가요?

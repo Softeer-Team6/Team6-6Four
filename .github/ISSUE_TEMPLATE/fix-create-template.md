@@ -1,7 +1,7 @@
 ---
 name: fix create template
 about: fix 이슈 생성 템플릿
-title: "[직무][Domain] 태그: 이슈제목"
+title: "[직무][Domain] Fix : 이슈제목"
 labels: ''
 assignees: ''
 

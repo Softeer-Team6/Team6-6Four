@@ -1,18 +1,10 @@
 ---
 name: refactor create template
 about: refactor 이슈 생성 템플릿
-title: ''
+title: "[직무][Domain] Refactor : 이슈제목"
 labels: ''
 assignees: ''
 
----
-
----
-name: Issue Request
-about: 이슈 템플릿
-title: "[직무][Domain] 태그: 이슈제목"
-labels: ''
-assignees: ''
 ---
 
 ## ⚙️ 개선해야 되는 코드 혹은 기능에 대해서 적어주세요
