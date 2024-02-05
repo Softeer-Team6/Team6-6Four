@@ -11,7 +11,10 @@
 > 개인 소유 전기차 충전기 공유를 통해 전기차 충천 인프라 확대에 기여 및 수익 창출 서비스
 <br>
 
-> **참고 자료**  
+<img width="850" alt="image" src="https://github.com/softeerbootcamp-3rd/Team6-6Four/assets/102938120/16716160-4f41-4ec9-9897-f7a317ad7f43">
+
+
+## 📑 참고 자료  
 > * [디자인 🎨](https://www.figma.com/file/oFf3iFzY8G3QBokW6ISa1c/design?type=design&node-id=211%3A3671&mode=design&t=RH6UMUEEc9uiwixq-1)
 > * [기획 📝](https://fabulous-peach-01a.notion.site/404985747ce44eb682a848510b1f73e5?pvs=4)
 > * [그라운드 룰 📍](https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki/GroundRule)
