@@ -35,6 +35,9 @@ public class Carbob extends BaseEntity {
     @Column(nullable = false)
     private String nickname;
 
+    @Column(name = "qr_image_url")
+    private String qrImageUrl;
+
     @Embedded
     private CarbobInfo info;
 
@@ -60,5 +63,9 @@ public class Carbob extends BaseEntity {
         this.info = info;
         this.location = location;
         this.spec = spec;
+    }
+
+    public void setCarbobQrImageUrl(String qrImageUrl) {
+        this.qrImageUrl = qrImageUrl;
     }
 }
