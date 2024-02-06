@@ -14,6 +14,8 @@ public enum ErrorCode {
     INVALID_METHOD_ARGUMENT(400, "잘못된 인자입니다."),
     NULL_VALUE_ERROR(400, "Null 값이 올 수 없습니다."),
     INVALID_REQUEST(400, "request 정보를 읽을 수 없습니다."),
+    ENUM_NOT_FOUND(400, "존재하지 않는 ENUM 값입니다."),
+
 
     // 404
     USER_NOT_FOUND(404, "존재하지 않는 계정입니다."),
