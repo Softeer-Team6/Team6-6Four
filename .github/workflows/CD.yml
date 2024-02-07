@@ -36,7 +36,7 @@ jobs:
         run: ls -lR
       
       - name: Build with Gradle
-        run: ./BE/gradlew build
+        run: ./gradlew build
         working-directory: ./BE/
 
       - name: Make zip file
