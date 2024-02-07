@@ -3,7 +3,11 @@
     <style name="Base.Theme.CarBap" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowBackground">@color/gray_000</item>
+        <item name="colorPrimary">@color/main_400</item>
+        <item name="android:statusBarColor">@color/main_300</item>
     </style>
 
     <style name="Theme.CarBap" parent="Base.Theme.CarBap" />
+
 </resources>

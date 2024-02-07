@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
+
+    <ImageButton
+        android:id="@+id/btn_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="@string/menu_description"
+        android:padding="0dp"
+        android:src="@drawable/icon_menu"
+        app:layout_constraintBottom_toBottomOf="@id/searchbar_layout"
+        app:layout_constraintEnd_toStartOf="@id/searchbar_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/searchbar_layout" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchbar_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="14dp"
+        android:hint="@string/searchbar_hint"
+        android:textColorHint="@color/gray_300"
+        android:touchscreenBlocksFocus="true"
+        app:boxCornerRadiusBottomEnd="@dimen/radius_normal"
+        app:boxCornerRadiusBottomStart="@dimen/radius_normal"
+        app:boxCornerRadiusTopEnd="@dimen/radius_normal"
+        app:boxCornerRadiusTopStart="@dimen/radius_normal"
+        app:boxStrokeColor="@color/searchbar_stroke_color"
+        app:boxStrokeWidth="@dimen/searchbar_stroke_width"
+        app:endIconDrawable="@drawable/icon_search"
+        app:endIconMode="custom"
+        app:endIconTint="@color/gray_300"
+        app:hintTextColor="@color/gray_300"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_menu"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_search_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:textColor="@color/gray_500" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.naver.maps.map.MapView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchbar_layout" />
+
+    <Button
+        android:id="@+id/btn_show_charger_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_btn_show_charger_list"
+        android:elevation="0dp"
+        android:paddingHorizontal="18dp"
+        android:paddingVertical="10dp"
+        android:text="@string/btn_show_charger_list"
+        android:textColor="@color/main_400"
+        android:textStyle="bold"
+        app:backgroundTint="@color/gray_000"
+        app:layout_constraintBottom_toBottomOf="@id/btn_camera"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_camera" />
+
+    <Button
+        android:id="@+id/btn_current_location"
+        style="?attr/materialIconButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="14dp"
+        android:backgroundTint="@color/gray_000"
+        android:contentDescription="@string/current_location_description"
+        app:icon="@drawable/icon_current_location"
+        app:iconTint="@color/gray_300"
+        app:layout_constraintBottom_toBottomOf="@id/btn_show_charger_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btn_show_charger_list" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="27dp"
+        android:contentDescription="@string/camera_description"
+        app:backgroundTint="@color/main_400"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/icon_camera"
+        app:tint="@color/gray_100" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

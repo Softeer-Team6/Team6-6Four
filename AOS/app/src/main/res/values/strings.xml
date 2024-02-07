@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CarBap</string>
+    <string name="searchbar_hint">주소를 입력해주세요</string>
+    <string name="menu_description">메뉴 버튼</string>
+    <string name="camera_description">카메라 버튼</string>
+    <string name="btn_show_charger_list">내 위치 근처 충전소</string>
+    <string name="current_location_description">현재 위치 버튼</string>
 </resources>
