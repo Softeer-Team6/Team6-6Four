@@ -23,11 +23,12 @@ public class CarbobController {
         (
             @RequestParam MyCarbobSortType sortType,
             @RequestParam(required = false) Long lastCarbobId,
+            @RequestParam(required = false) Long lastReservationCount,
             @PageableDefault(size = 6) Pageable pageable
         )
     {
         // TODO : UserContextHold 에서 userId 가져와야함
         Long userId = 1L;
-        return carbobSearchService.findMyCarbobList(userId, sortType, lastCarbobId, pageable);
+        return carbobSearchService.findMyCarbobList(userId, sortType, lastCarbobId, lastReservationCount, pageable);
     }
 }
