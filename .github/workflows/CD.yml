@@ -34,6 +34,7 @@ jobs:
       
       - name: Build with Gradle
         run: ./BE/gradlew build
+        working-directory: ./BE/
 
       - name: Make zip file
         run: zip -r ./$GITHUB_SHA.zip .
