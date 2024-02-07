@@ -24,13 +24,16 @@ jobs:
       
       - name: Copy Test
         env:
-          OCCUPY_TEST: ${{ secrets.OCCUPY_TEST }}
-          OCCUPY_TEST_DIR: src/main/resources
-          OCCUPY_TEST_DIR_FILE_NAME: application.yml
-        run: echo $OCCUPY_TEST | base64 --decode > $OCCUPY_TEST_DIR/$OCCUPY_TEST_DIR_FILE_NAME
+          OCCUPY_YML: ${{ secrets.OCCUPY_YML }}
+          OCCUPY_YML_DIR: ./BE/src/main/resources
+          OCCUPY_YML_DIR_FILE_NAME: application.yml
+        run: echo $OCCUPY_YML > $OCCUPY_YML_DIR/$OCCUPY_YML_DIR_FILE_NAME
       
       - name: Grant execute permission for gradlew
         run: chmod +x ./BE/gradlew
+      
+      - name: Print current working directory
+        run: ls -lR
       
       - name: Build with Gradle
         run: ./gradlew build
@@ -63,5 +66,5 @@ jobs:
           --deployment-config-name CodeDeployDefault.AllAtOnce \
           --deployment-group-name cicd-6four \
           --file-exists-behavior OVERWRITE \
-          --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=6four/$GITHUB_SHA.zip \
+          --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$PROJECT_NAME/$GITHUB_SHA.zip \
           --region ap-northeast-2 \
