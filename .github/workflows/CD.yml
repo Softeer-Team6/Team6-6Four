@@ -27,7 +27,7 @@ jobs:
           OCCUPY_YML: ${{ secrets.OCCUPY_YML }}
           OCCUPY_YML_DIR: ./BE/src/main/resources
           OCCUPY_YML_DIR_FILE_NAME: application.yml
-        run: echo $OCCUPY_YML > $OCCUPY_YML_DIR/$OCCUPY_YML_DIR_FILE_NAME
+        run: echo $OCCUPY_YML | base64 --decode > $OCCUPY_YML_DIR/$OCCUPY_YML_DIR_FILE_NAME
       
       - name: Grant execute permission for gradlew
         run: chmod +x ./BE/gradlew
