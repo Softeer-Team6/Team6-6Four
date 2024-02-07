@@ -33,7 +33,7 @@ jobs:
         run: chmod +x ./BE/gradlew
       
       - name: Print current working directory
-        run: pwd
+        run: ls -l
       
       - name: Build with Gradle
         run: ./BE/gradlew build
