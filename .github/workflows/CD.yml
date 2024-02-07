@@ -24,10 +24,10 @@ jobs:
       
       - name: Copy Test
         env:
-          OCCUPY_TEST: ${{ secrets.OCCUPY_TEST }}
-          OCCUPY_TEST_DIR: ./BE/src/main/resources
-          OCCUPY_TEST_DIR_FILE_NAME: application.yml
-        run: echo $OCCUPY_TEST > $OCCUPY_TEST_DIR/$OCCUPY_TEST_DIR_FILE_NAME
+          OCCUPY_YML: ${{ secrets.OCCUPY_YML }}
+          OCCUPY_YML_DIR: ./BE/src/main/resources
+          OCCUPY_YML_DIR_FILE_NAME: application.yml
+        run: echo $OCCUPY_YML > $OCCUPY_YML_DIR/$OCCUPY_YML_DIR_FILE_NAME
       
       - name: Grant execute permission for gradlew
         run: chmod +x ./BE/gradlew
@@ -49,7 +49,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          # aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Copy script
         run: cp ./scripts/*.sh ./deploy
