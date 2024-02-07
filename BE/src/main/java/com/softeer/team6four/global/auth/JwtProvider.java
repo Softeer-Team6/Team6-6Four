@@ -2,6 +2,7 @@ package com.softeer.team6four.global.auth;
 
 import com.softeer.team6four.global.auth.exception.ExpiredTokenException;
 import com.softeer.team6four.global.auth.exception.InvalidTokenException;
+import com.softeer.team6four.global.auth.exception.JwtException;
 import com.softeer.team6four.global.response.ErrorCode;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import static com.softeer.team6four.global.auth.AuthConst.*;
@@ -97,6 +99,40 @@ public class JwtProvider {
             throw new ExpiredTokenException(ErrorCode.EXPIRED_TOKEN);
 
         }
+    }
+
+    public String extractUserId(String token) {
+        String userId;
+        try {
+            userId = Jwts.parserBuilder()
+                    .setSigningKey(getSecretKey())
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody()
+                    .getSubject();
+        } catch (Exception e){
+            throw new JwtException(ErrorCode.INVALID_TOKEN);
+        }
+        return userId;
+    }
+
+    public String reIssue(String refreshToken){
+        Long userId = validateRefreshToken(refreshToken);
+        return generateAccessToken(userId);
+    }
+
+    public Long validateRefreshToken(String refreshToken) {
+        validateToken(refreshToken);
+        final Long userId = Long.parseLong(extractUserId(refreshToken));
+        final String storedRefreshToken = getRefreshToken(userId.toString());
+        if(!Objects.equals(refreshToken, storedRefreshToken)){
+            throw new InvalidTokenException(ErrorCode.INVALID_TOKEN);
+        }
+        return userId;
+    }
+
+    private String getRefreshToken(String userId) {
+        return String.valueOf(redisTemplate.opsForValue().get(userId));
     }
 
 }
