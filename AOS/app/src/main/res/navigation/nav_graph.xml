@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.softeer.team6four.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_myChargerFragment"
+            app:destination="@id/myChargerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_myPointFragment"
+            app:destination="@id/myPointFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_myReservationFragment"
+            app:destination="@id/myReservationFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_registerChargerFragment"
+            app:destination="@id/registerChargerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myChargerFragment"
+        android:name="com.softeer.team6four.MyChargerFragment"
+        android:label="MyChargerFragment"
+        tools:layout="@layout/fragment_my_charger" />
+    <fragment
+        android:id="@+id/myPointFragment"
+        android:name="com.softeer.team6four.MyPointFragment"
+        android:label="MyPointFragment"
+        tools:layout="@layout/fragment_my_point" />
+    <fragment
+        android:id="@+id/myReservationFragment"
+        android:name="com.softeer.team6four.MyReservationFragment"
+        android:label="MyReservationFragment"
+        tools:layout="@layout/fragment_my_reservation"/>
+    <fragment
+        android:id="@+id/registerChargerFragment"
+        android:name="com.softeer.team6four.RegisterChargerFragment"
+        android:label="RegisterChargerFragment"
+        tools:layout="@layout/fragment_register_charger"/>
+
+</navigation>
