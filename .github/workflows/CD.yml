@@ -30,12 +30,10 @@ jobs:
         run: echo $OCCUPY_TEST | base64 --decode > $OCCUPY_TEST_DIR/$OCCUPY_TEST_DIR_FILE_NAME
       
       - name: Grant execute permission for gradlew
-        working-directory: ./BE
-        run: chmod +x ./gradlew
+        run: chmod +x ./BE/gradlew
       
       - name: Build with Gradle
-        working-directory: ./BE
-        run: ./gradlew build
+        run: ./BE/gradlew build
 
       - name: Make zip file
         run: zip -r ./$GITHUB_SHA.zip .
