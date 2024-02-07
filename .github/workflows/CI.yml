@@ -25,13 +25,14 @@ jobs:
           java-version: '17'
           distribution: 'zulu'
 
-      - name: Check current working directory
-        run: pwd
-
-
       - name: Grant execute permission for gradlew
         run: chmod +x ./BE/gradlew
       
       - name: Build with Gradle
-        run: ./BE/gradlew build
+        run: ./gradlew build
+        working-directory: ./BE/
+
+      - name: Check current working directory
+        run: pwd
+
       
