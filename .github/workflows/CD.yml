@@ -31,9 +31,11 @@ jobs:
       
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
+        working-directory: ./BE/src
 
       - name: Build with Gradle
         run: ./gradlew build
+        working-directory: ./BE/src
 
       - name: Make zip file
         run: zip -r ./$GITHUB_SHA.zip .
