@@ -5,4 +5,13 @@
     <string name="camera_description">카메라 버튼</string>
     <string name="btn_show_charger_list">내 위치 근처 충전소</string>
     <string name="current_location_description">현재 위치 버튼</string>
+    <string name="my_point">포인트 내역 확인</string>
+    <string name="register_charger">카밥 등록</string>
+    <string name="my_reservation">예약 내역 확인</string>
+    <string name="my_charger">내 카밥 확인</string>
+    <string name="softeer_nickname">소프티어님</string>
+    <string name="account_description">계정 아이콘</string>
+    <string name="logout">로그아웃</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
