@@ -1,8 +1,11 @@
 package com.softeer.team6four.global.auth;
 
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
+import com.softeer.team6four.global.auth.exception.ExpiredTokenException;
+import com.softeer.team6four.global.auth.exception.InvalidTokenException;
+import com.softeer.team6four.global.response.ErrorCode;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -79,6 +82,21 @@ public class JwtProvider {
     public String generateRefreshToken(Long userId) {
         final Date now = new Date();
         return buildRefreshToken(userId, now);
+    }
+
+    public void validateToken(String token) {
+        JwtParser jwtParser = Jwts.parserBuilder()
+                .setSigningKey(getSecretKey())
+                .build();
+        try {
+            jwtParser.parse(token);
+        } catch (MalformedJwtException | SignatureException | IllegalArgumentException e){
+            log.error("Invalid Token : {}", e.getMessage());
+            throw new InvalidTokenException(ErrorCode.INVALID_TOKEN);
+        } catch (ExpiredJwtException e){
+            throw new ExpiredTokenException(ErrorCode.EXPIRED_TOKEN);
+
+        }
     }
 
 }
