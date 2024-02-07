@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "52333430634",
+    "project_id": "carbap-a4f32",
+    "storage_bucket": "carbap-a4f32.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52333430634:android:8433c65bfd666db4568713",
+        "android_client_info": {
+          "package_name": "com.softeer.team6four"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDlHAmPyAL9j61ygsn5PnBqZssI0Im8Yw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
