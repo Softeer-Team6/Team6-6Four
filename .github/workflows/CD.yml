@@ -32,6 +32,9 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x ./BE/gradlew
       
+      - name: Print current working directory
+        run: pwd
+      
       - name: Build with Gradle
         run: ./BE/gradlew build
         working-directory: ./BE/
