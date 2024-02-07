@@ -25,7 +25,7 @@ jobs:
       - name: Copy Test
         env:
           OCCUPY_TEST: ${{ secrets.OCCUPY_TEST }}
-          OCCUPY_TEST_DIR: src/main/resources
+          OCCUPY_TEST_DIR: ./BE/src/main/resources
           OCCUPY_TEST_DIR_FILE_NAME: application.yml
         run: echo $OCCUPY_TEST | base64 --decode > $OCCUPY_TEST_DIR/$OCCUPY_TEST_DIR_FILE_NAME
       
