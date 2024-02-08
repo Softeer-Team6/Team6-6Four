@@ -6,8 +6,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:openDrawer="start">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -61,6 +60,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.naver.maps.map.MapView
+                android:id="@+id/map_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="12dp"
@@ -71,20 +71,20 @@
 
             <Button
                 android:id="@+id/btn_show_charger_list"
+                style="@style/ThemeOverlay.Material3.Button.ElevatedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/background_btn_show_charger_list"
-                android:elevation="0dp"
-                android:paddingHorizontal="18dp"
-                android:paddingVertical="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="6dp"
                 android:text="@string/btn_show_charger_list"
                 android:textColor="@color/main_400"
+                android:textSize="12sp"
                 android:textStyle="bold"
                 app:backgroundTint="@color/gray_000"
-                app:layout_constraintBottom_toBottomOf="@id/btn_camera"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/btn_camera" />
+                app:layout_constraintTop_toTopOf="@id/map_view" />
 
             <Button
                 android:id="@+id/btn_current_location"
@@ -96,9 +96,9 @@
                 android:contentDescription="@string/current_location_description"
                 app:icon="@drawable/icon_current_location"
                 app:iconTint="@color/gray_300"
-                app:layout_constraintBottom_toBottomOf="@id/btn_show_charger_list"
+                app:layout_constraintBottom_toBottomOf="@id/btn_camera"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/btn_show_charger_list" />
+                app:layout_constraintTop_toTopOf="@id/btn_camera" />
 
 
             <Button

@@ -1,10 +1,10 @@
 package com.softeer.team6four
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.softeer.team6four.databinding.FragmentHomeBinding
 
@@ -33,6 +33,10 @@ class HomeFragment : Fragment() {
                 true
             }
         }
+
+        val bottomSheet = BottomSheetFragment()
+        binding.btnShowChargerList.setOnClickListener { bottomSheet.show(parentFragmentManager, "BottomSheet") }
+
         return binding.root
     }
 

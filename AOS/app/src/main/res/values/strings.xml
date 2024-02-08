@@ -12,6 +12,13 @@
     <string name="softeer_nickname">소프티어님</string>
     <string name="account_description">계정 아이콘</string>
     <string name="logout">로그아웃</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nearby_chargers">내 위치 근처 충전소</string>
+    <string name="order_by_price">저렴한 순</string>
+    <string name="order_by_speed">속도 순</string>
+    <string name="charger_title_example">주차하기 좋아요!</string>
+    <string name="charger_location_example">울산광역시 북구 염포동 394-4</string>
+    <string name="charger_price_example">220원/kwh</string>
+    <string name="charger_charge_speed_example">충전속도 7kwh</string>
+    <string name="charger_location_description">카밥 위치 아이콘</string>
+    <string name="charger_speed_description">카밥 충전속도</string>
 </resources>

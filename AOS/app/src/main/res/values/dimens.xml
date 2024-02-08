@@ -2,4 +2,5 @@
 <resources>
     <dimen name="radius_normal">8dp</dimen>
     <dimen name="searchbar_stroke_width">2dp</dimen>
+    <dimen name="btn_show_charger_list_radius">100dp</dimen>
 </resources>
