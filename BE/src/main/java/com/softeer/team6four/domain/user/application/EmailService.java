@@ -19,7 +19,7 @@ public class EmailService {
         EmailCheck emailCheck = new EmailCheck(emailExists);
 
         if (emailExists) {
-            return ResponseDto.map(HttpStatus.CONFLICT.value(), "중복된 이메일입니다.", emailCheck);
+            return ResponseDto.map(HttpStatus.OK.value(), "중복된 이메일입니다.", emailCheck);
         } else {
             return ResponseDto.map(HttpStatus.OK.value(), "사용 가능한 이메일입니다.", emailCheck);
         }
