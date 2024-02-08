@@ -26,7 +26,7 @@ public class ReservationSearchService {
         return calculateSelfUseTime(reservation);
     }
 
-    public List<Long> getUsedReservationIdList(Long carbobId) {
+    public List<Long> getUsedReservationIdListByCarbobId(Long carbobId) {
         return reservationRepository.findAllByCarbob_CarbobIdAndStateType(carbobId, StateType.USED)
             .stream()
             .map(Reservation::getReservationId)
