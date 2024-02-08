@@ -1,9 +1,7 @@
 package com.softeer.team6four.domain.user.application;
 
-import com.softeer.team6four.domain.user.application.exception.EmailDuplicateException;
 import com.softeer.team6four.domain.user.application.response.EmailCheck;
 import com.softeer.team6four.domain.user.domain.UserRepository;
-import com.softeer.team6four.global.response.ErrorCode;
 import com.softeer.team6four.global.response.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,9 +19,9 @@ public class EmailService {
         EmailCheck emailCheck = new EmailCheck(emailExists);
 
         if (emailExists) {
-            throw new EmailDuplicateException(ErrorCode.EMAIL_DUPLICATE);
+            return ResponseDto.map(HttpStatus.CONFLICT.value(), "중복된 이메일입니다.", emailCheck);
+        } else {
+            return ResponseDto.map(HttpStatus.OK.value(), "사용 가능한 이메일입니다.", emailCheck);
         }
-        return ResponseDto.map(HttpStatus.OK.value(),"DB에 없는 이메일이므로 사용가능한 이메일입니다", emailCheck);
     }
-
 }
