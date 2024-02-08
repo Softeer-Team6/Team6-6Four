@@ -1,6 +1,7 @@
 package com.softeer.team6four.global.exception;
 
 import com.softeer.team6four.domain.user.application.exception.UserException;
+import com.softeer.team6four.domain.carbob.application.exception.CarbobException;
 import com.softeer.team6four.global.response.ErrorCode;
 import com.softeer.team6four.global.response.ErrorResponseDto;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,13 @@ public class GlobalExceptionHandler {
         log.warn("UserException : {}", e.getMessage());
         return ErrorResponseDto.map(e.getErrorCode());
     }
+
+    @ExceptionHandler(CarbobException.class)
+    public ErrorResponseDto handleCarbobException(CarbobException e) {
+        log.warn("CarbobException : {}", e.getMessage());
+        return ErrorResponseDto.map(e.getErrorCode());
+    }
+
     @ExceptionHandler(BusinessException.class)
     public ErrorResponseDto handleBusinessException(BusinessException e) {
         log.warn("BusinessException : {}", e.getMessage());
