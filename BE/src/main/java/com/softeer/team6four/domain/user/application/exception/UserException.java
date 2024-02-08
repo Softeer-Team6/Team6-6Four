@@ -6,3 +6,4 @@ import com.softeer.team6four.global.response.ErrorCode;
 public class UserException extends BusinessException {
     public UserException(ErrorCode errorCode) {super(errorCode);}
 }
+
