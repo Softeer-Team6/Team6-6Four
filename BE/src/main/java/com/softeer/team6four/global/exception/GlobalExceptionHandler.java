@@ -1,5 +1,6 @@
 package com.softeer.team6four.global.exception;
 
+import com.softeer.team6four.domain.user.application.exception.UserException;
 import com.softeer.team6four.global.response.ErrorCode;
 import com.softeer.team6four.global.response.ErrorResponseDto;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +12,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     // 추가한 커스텀 예외 처리를 정의하면 Handler 를 추가 작성
-
+    @ExceptionHandler(UserException.class)
+    public ErrorResponseDto handleUserException(UserException e) {
+        log.warn("UserException : {}", e.getMessage());
+        return ErrorResponseDto.map(e.getErrorCode());
+    }
     @ExceptionHandler(BusinessException.class)
     public ErrorResponseDto handleBusinessException(BusinessException e) {
         log.warn("BusinessException : {}", e.getMessage());
