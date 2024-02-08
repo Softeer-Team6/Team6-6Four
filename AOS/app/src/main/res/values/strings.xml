@@ -12,6 +12,7 @@
     <string name="softeer_nickname">소프티어님</string>
     <string name="account_description">계정 아이콘</string>
     <string name="logout">로그아웃</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nearby_chargers">내 위치 근처 충전소</string>
+    <string name="order_by_price">저렴한 순</string>
+    <string name="order_by_speed">속도 순</string>
 </resources>

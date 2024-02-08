@@ -6,8 +6,24 @@
         <item name="android:windowBackground">@color/gray_000</item>
         <item name="colorPrimary">@color/main_400</item>
         <item name="android:statusBarColor">@color/main_300</item>
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogStyle</item>
+        <item name="chipStyle">@style/Widget.App.Chip</item>
     </style>
 
     <style name="Theme.CarBap" parent="Base.Theme.CarBap" />
 
+    <style name="BottomSheetStyle" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="android:backgroundTint">@color/gray_000</item>
+    </style>
+
+    <style name="BottomSheetDialogStyle" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
+    <style name="Widget.App.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="checkedIconVisible">false</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="chipBackgroundColor">@color/chip_background_color</item>
+        <item name="chipStrokeWidth">0dp</item>
+    </style>
 </resources>
