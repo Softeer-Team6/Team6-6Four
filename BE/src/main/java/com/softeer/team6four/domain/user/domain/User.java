@@ -56,8 +56,7 @@ public class User extends BaseEntity {
     private List<Reservation> reservations;
 
     @Builder
-    public User(Long userId, String email, String password, String nickname) {
-        this.userId = userId;
+    public User(String email, String password, String nickname) {
         this.email = email;
         this.password = password;
         this.nickname = nickname;
