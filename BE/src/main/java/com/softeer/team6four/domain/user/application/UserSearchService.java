@@ -13,7 +13,7 @@ public class UserSearchService {
 
     private final UserRepository userRepository;
 
-    public User of(Long userId){
+    public User findUserByUserId(Long userId){
         return userRepository.findById(userId)
                 .orElseThrow(() -> new UserException(ErrorCode.USER_NOT_FOUND));
     }

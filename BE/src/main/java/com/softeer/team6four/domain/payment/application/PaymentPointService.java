@@ -40,12 +40,12 @@ public class PaymentPointService {
 
     public ResponseDto<ChargePoint> registMyPoint(Long userId, ChargeRequest chargeRequest){
 
-        User user = userSearchService.of(userId);
+        User user = userSearchService.findUserByUserId(userId);
 
         Integer inputPoint = chargeRequest.getChargePoint();
 
 
-        if (inputPoint < 0) {
+        if (inputPoint <= 0) {
             throw new InvalidChargePointException(ErrorCode.INVALID_CHARGE_NEGATIVE);
         }
 
