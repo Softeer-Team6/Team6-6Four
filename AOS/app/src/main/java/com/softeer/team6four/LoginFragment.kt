@@ -26,6 +26,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             btnLogin.setOnClickListener { findNavController().navigate(R.id.action_loginFragment_to_homeFragment) }
+            tvSignup.setOnClickListener { findNavController().navigate(R.id.action_loginFragment_to_signUpFragment) }
         }
     }
 }
