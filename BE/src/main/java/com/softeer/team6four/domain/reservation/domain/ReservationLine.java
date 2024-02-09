@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ReservationLine {
 
-    @Column(name = "reservation_time")
+    @Column(name = "reservation_time", nullable = false)
     private LocalDateTime reservationTime;
 
     @Builder
