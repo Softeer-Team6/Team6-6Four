@@ -16,6 +16,8 @@ public enum ErrorCode {
     INVALID_REQUEST(400, "request 정보를 읽을 수 없습니다."),
     ENUM_NOT_FOUND(400, "존재하지 않는 ENUM 값입니다."),
     EMAIL_DUPLICATE(400, "이미 존재하는 이메일입니다."),
+    INVALID_RESERVATION_TIME_LINES(400, "예약 불가능한 시간입니다."),
+
     INVALID_CHARGE_NEGATIVE(400, "양수만 입력 가능합니다"),
 
     // 401
@@ -28,7 +30,6 @@ public enum ErrorCode {
 
     // 405
     METHOD_NOT_ALLOWED(405, "대상 리소스가 이 메서드를 지원하지 않습니다."),
-
     ;
 
     private final int errorCode;
