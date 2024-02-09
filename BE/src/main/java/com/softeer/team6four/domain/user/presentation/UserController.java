@@ -4,7 +4,7 @@ package com.softeer.team6four.domain.user.presentation;
 import com.softeer.team6four.domain.user.application.EmailService;
 import com.softeer.team6four.domain.user.application.UserJoinService;
 import com.softeer.team6four.domain.user.application.response.EmailCheck;
-import com.softeer.team6four.domain.user.application.response.SignUpRequest;
+import com.softeer.team6four.domain.user.application.request.SignUpRequest;
 import com.softeer.team6four.global.response.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
