@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class PaymentController {
     private final PaymentPointService paymentPointService;
 
-    @GetMapping(value = "/total-point")
+    @GetMapping(value = "/total/point")
     public ResponseDto<TotalPoint> getMyPointTotal() {
         // TODO : UserContextHold 에서 userId 가져와야함
         Long userId = 1L;
