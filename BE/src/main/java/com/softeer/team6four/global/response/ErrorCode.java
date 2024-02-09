@@ -17,11 +17,17 @@ public enum ErrorCode {
     ENUM_NOT_FOUND(400, "존재하지 않는 ENUM 값입니다."),
     EMAIL_DUPLICATE(400, "이미 존재하는 이메일입니다."),
 
+    // 401
+    NOT_CARBOB_OWNER(401, "카밥의 주인이 아닙니다."),
+
     // 404
     USER_NOT_FOUND(404, "존재하지 않는 계정입니다."),
+    CARBOB_NOT_FOUND(404, "존재하지 않는 카밥입니다."),
+    RESERVATION_NOT_FOUND(404, "존재하지 않는 예약입니다."),
 
     // 405
     METHOD_NOT_ALLOWED(405, "대상 리소스가 이 메서드를 지원하지 않습니다."),
+
     ;
 
     private final int errorCode;

@@ -1,6 +1,7 @@
 package com.softeer.team6four.domain.carbob.presentation;
 
 import com.softeer.team6four.domain.carbob.application.CarbobSearchService;
+import com.softeer.team6four.domain.carbob.application.response.MyCarbobDetailInfo;
 import com.softeer.team6four.domain.carbob.application.response.MyCarbobSummary;
 import com.softeer.team6four.global.response.ResponseDto;
 import com.softeer.team6four.global.response.SliceResponse;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,5 +32,12 @@ public class CarbobController {
         // TODO : UserContextHold 에서 userId 가져와야함
         Long userId = 1L;
         return carbobSearchService.findMyCarbobList(userId, sortType, lastCarbobId, lastReservationCount, pageable);
+    }
+
+    @GetMapping(value = "/detail/{carbobId}")
+    public ResponseDto<MyCarbobDetailInfo> getMyCarbobDetail(@PathVariable Long carbobId) {
+        // TODO : UserContextHold 에서 userId 가져와야함
+        Long userId = 1L;
+        return carbobSearchService.findMyCarbobDetailInfo(userId, carbobId);
     }
 }
