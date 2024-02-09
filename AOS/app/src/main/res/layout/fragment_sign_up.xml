@@ -24,13 +24,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/signup_frag_container"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_marginTop="41dp"
             app:layout_constraintBottom_toTopOf="@id/btn_signup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_app_icon" />
+            app:layout_constraintTop_toBottomOf="@id/iv_app_icon"
+            app:navGraph= "@navigation/signup_graph"/>
 
         <Button
             android:id="@+id/btn_signup"
