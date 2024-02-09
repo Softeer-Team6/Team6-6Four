@@ -74,7 +74,7 @@ public class ReservationRepositoryImpl extends QuerydslRepositorySupport {
         if (reservationId == null) {
             return null;
         }
-        return carbob.carbobId.lt(reservationId);
+        return reservation.reservationId.lt(reservationId);
     }
 
     private BooleanExpression eqStateType(ReservationStateSortType sortType) {
