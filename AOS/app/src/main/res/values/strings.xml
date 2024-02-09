@@ -24,7 +24,9 @@
     <string name="app_icon_description">카밥 아이콘</string>
     <string name="email">이메일</string>
     <string name="password">패스워드</string>
+    <string name="confirm_password">패스워드 확인</string>
     <string name="login">로그인</string>
     <string name="signup">회원가입</string>
     <string name="next">다음</string>
+    <string name="email_duplicate_confirm">이메일 중복 확인</string>
 </resources>
