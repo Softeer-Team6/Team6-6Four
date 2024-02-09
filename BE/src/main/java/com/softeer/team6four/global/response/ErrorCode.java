@@ -16,6 +16,7 @@ public enum ErrorCode {
     INVALID_REQUEST(400, "request 정보를 읽을 수 없습니다."),
     ENUM_NOT_FOUND(400, "존재하지 않는 ENUM 값입니다."),
     EMAIL_DUPLICATE(400, "이미 존재하는 이메일입니다."),
+    INVALID_CHARGE_NEGATIVE(400, "양수만 입력 가능합니다"),
 
     // 401
     NOT_CARBOB_OWNER(401, "카밥의 주인이 아닙니다."),
