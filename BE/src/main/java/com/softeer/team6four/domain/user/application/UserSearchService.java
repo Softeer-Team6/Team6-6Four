@@ -17,11 +17,4 @@ public class UserSearchService {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new UserException(ErrorCode.USER_NOT_FOUND));
     }
-
-    public String findUserNicknameByUserId(Long userId){
-        User user = userRepository.findById(userId)
-                        .orElseThrow(() -> new UserException(ErrorCode.USER_NOT_FOUND));
-        return user.getNickname();
-    }
-
 }
