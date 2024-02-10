@@ -21,7 +21,7 @@ public class UserController {
         return emailService.findEmail(email);
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/auth/signup")
     public void signup(@RequestBody SignUpRequest signupRequest) {userJoinService.signup(signupRequest);}
 }
 
