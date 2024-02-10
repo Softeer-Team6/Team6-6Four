@@ -18,9 +18,5 @@
         android:id="@+id/registerNicknameFragment"
         android:name="com.softeer.team6four.RegisterNicknameFragment"
         android:label="RegisterNicknameFragment"
-        tools:layout="@layout/fragment_register_nickname">
-        <action
-            android:id="@+id/action_registerNicknameFragment_to_registerEmailPasswordFragment"
-            app:destination="@id/registerEmailPasswordFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_register_nickname"/>
 </navigation>
