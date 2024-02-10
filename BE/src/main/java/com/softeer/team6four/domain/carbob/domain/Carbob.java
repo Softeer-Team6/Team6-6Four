@@ -58,11 +58,20 @@ public class Carbob extends BaseEntity {
     private List<Reservation> reservations;
 
     @Builder
-    public Carbob(String nickname, CarbobInfo info, CarbobLocation location, CarbobSpec spec) {
+    public Carbob
+        (
+            String nickname, CarbobInfo info, CarbobLocation location, CarbobSpec spec,
+            CarbobImage carbobImage, User host, List<Reservation> reservations
+        )
+    {
         this.nickname = nickname;
+        this.qrImageUrl = "qrImageUrl";
         this.info = info;
         this.location = location;
         this.spec = spec;
+        this.carbobImage = carbobImage;
+        this.host = host;
+        this.reservations = reservations;
     }
 
     public void setCarbobQrImageUrl(String qrImageUrl) {
