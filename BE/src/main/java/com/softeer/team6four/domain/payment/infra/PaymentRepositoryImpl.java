@@ -44,7 +44,6 @@ public class PaymentRepositoryImpl extends QuerydslRepositorySupport {
 
                 )
                 .from(payment)
-                .leftJoin(payment.user, user)
                 .where(
                         payment.user.userId.eq(userId),
                         ltPaymentId(lastPaymentId)
