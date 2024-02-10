@@ -26,7 +26,7 @@ public class PaymentController {
     }
 
     @GetMapping(value = "/my/point")
-    public ResponseDto<SliceResponse<MyPointSummary>> getMyReservationApplicationList
+    public ResponseDto<SliceResponse<MyPointSummary>> getMyPointList
             (
                     @RequestParam(required = false) Long lastPaymentId,
                     @PageableDefault(size = 6) Pageable pageable
