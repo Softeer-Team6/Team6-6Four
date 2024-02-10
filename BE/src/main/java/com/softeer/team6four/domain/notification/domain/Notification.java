@@ -27,7 +27,7 @@ public class Notification extends BaseEntity {
     @Column(name = "notification_id")
     private Long notificationId;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 200, nullable = false)
     private String message;
 
     @ManyToOne(fetch = FetchType.LAZY)
