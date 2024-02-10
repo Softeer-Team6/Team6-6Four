@@ -1,4 +1,4 @@
-package com.softeer.team6four
+package com.softeer.team6four.ui.signup
 
 import android.os.Bundle
 import android.view.LayoutInflater
