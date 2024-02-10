@@ -8,6 +8,7 @@ import com.softeer.team6four.domain.reservation.application.request.ReservationA
 import com.softeer.team6four.domain.reservation.domain.Reservation;
 import com.softeer.team6four.domain.reservation.domain.ReservationLine;
 import com.softeer.team6four.domain.reservation.domain.ReservationRepository;
+import com.softeer.team6four.domain.reservation.infra.ReservationCreatedEvent;
 import com.softeer.team6four.domain.reservation.infra.ReservationRepositoryImpl;
 import com.softeer.team6four.domain.user.application.exception.UserException;
 import com.softeer.team6four.domain.user.domain.User;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class ReservationCreateService {
+    private final ApplicationEventPublisher eventPublisher;
 
     private final UserRepository userRepository;
     private final CarbobRepository carbobRepository;
@@ -46,14 +49,13 @@ public class ReservationCreateService {
         List<ReservationLine> newReservationLines = makeReservationLines(reservationApply);
 
         boolean isDuplicatedTimeLines = reservationRepositoryImpl.existsByCarbobIdAndReservationLines(reservationApply.getCarbobId(), newReservationLines);
-
         if(isDuplicatedTimeLines) {
             throw new InvalidReservationTimeLinesException(ErrorCode.INVALID_RESERVATION_TIME_LINES);
         }
 
         Reservation savedReservation = reservationRepository.save(ReservationMapper.mapToReservationEntity(carbob, user, newReservationLines));
 
-        // TODO : 예약 신청 알림
+        eventPublisher.publishEvent(new ReservationCreatedEvent(user, carbob));
 
         return savedReservation.getReservationId();
     }
