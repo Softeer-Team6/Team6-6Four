@@ -17,24 +17,6 @@ public class MyPointSummary {
     private final @NotNull Integer amount;
     private final @NotNull LocalDateTime createdDate;
     private final @NotNull PayType paymentType;
-    private @NotNull String pointTitle;
-    private final Long targetId;
-
-    public MyPointSummary
-            (
-                    Long paymentId, Integer amount, LocalDateTime createdDate,
-                    PayType paymentType, Long targetId
-            )
-    {
-        this.paymentId = paymentId;
-        this.amount = amount;
-        this.createdDate = createdDate;
-        this.paymentType = paymentType;
-        this.targetId = targetId;
-    }
-
-    public void setPointTitleByPaymentType(String title){
-        this.pointTitle = title;
-    }
-
+    private final @NotNull Long targetId;
+    private final @NotNull String pointTitle;
 }
