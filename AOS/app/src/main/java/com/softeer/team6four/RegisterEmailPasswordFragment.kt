@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.softeer.team6four.databinding.FragmentRegisterEmailPasswordBinding
 
 class RegisterEmailPasswordFragment : Fragment() {
@@ -20,6 +21,10 @@ class RegisterEmailPasswordFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.btnNext.setOnClickListener { findNavController().navigate(R.id.action_registerEmailPasswordFragment_to_registerNicknameFragment) }
+    }
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
