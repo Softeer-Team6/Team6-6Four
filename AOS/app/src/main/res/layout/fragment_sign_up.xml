@@ -25,28 +25,15 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/signup_frag_container"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_marginTop="41dp"
-            app:layout_constraintBottom_toTopOf="@id/btn_signup"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_app_icon"
-            app:navGraph= "@navigation/signup_graph"/>
-
-        <Button
-            android:id="@+id/btn_signup"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:layout_marginTop="7dp"
-            android:paddingVertical="20dp"
-            android:text="@string/next"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
+            app:navGraph="@navigation/signup_graph" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

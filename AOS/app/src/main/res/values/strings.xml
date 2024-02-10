@@ -31,4 +31,5 @@
     <string name="nickname">닉네임</string>
     <string name="email_duplicate_confirm">이메일 중복 확인</string>
     <string name="nickname_duplicate_confirm">닉네임 중복 확인</string>
+    <string name="complete_signup">완료</string>
 </resources>
