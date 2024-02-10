@@ -32,4 +32,6 @@
     <string name="email_duplicate_confirm">이메일 중복 확인</string>
     <string name="nickname_duplicate_confirm">닉네임 중복 확인</string>
     <string name="complete_signup">완료</string>
+    <string name="arrow_back_description">뒤로 가기 버튼</string>
+    <string name="cancel_icon_description">취소 버성</string>
 </resources>
