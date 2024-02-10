@@ -50,25 +50,6 @@ public class PaymentPointService {
     {
 
         Slice<MyPointSummary> myPointSummaryList = paymentRepositoryImpl.findMyPointSummaryList(userId, lastPaymentId, pageable);
-
-        for (MyPointSummary myPointSummary : myPointSummaryList.getContent()) {
-
-            switch(myPointSummary.getPaymentType())
-            {
-                case CHARGE:
-                    myPointSummary.setPointTitleByPaymentType("충전");
-                    break;
-                case INCOME:
-                    String guestNickName = userSearchService.findUserNicknameByUserId(myPointSummary.getTargetId());
-                    myPointSummary.setPointTitleByPaymentType(guestNickName);
-                    break;
-                case USE:
-                    //변경필요
-                    myPointSummary.setPointTitleByPaymentType("지출");
-                    break;
-            }
-        }
-
         return ResponseDto.map(HttpStatus.OK.value(), "내포인트 조회에 성공했습니다.", SliceResponse.of(myPointSummaryList));
     }
 
