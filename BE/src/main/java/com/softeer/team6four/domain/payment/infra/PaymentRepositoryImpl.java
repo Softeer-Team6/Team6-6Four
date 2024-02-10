@@ -1,11 +1,12 @@
 package com.softeer.team6four.domain.payment.infra;
 
 import static com.softeer.team6four.domain.payment.domain.QPayment.payment;
-import static com.softeer.team6four.domain.user.domain.QUser.user;
+import static com.softeer.team6four.domain.reservation.domain.QReservation.reservation;
 
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Expressions;
+import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.softeer.team6four.domain.payment.application.response.MyPointSummary;
@@ -37,11 +38,18 @@ public class PaymentRepositoryImpl extends QuerydslRepositorySupport {
                             payment.createdDate,
                             payment.payType,
                             Expressions.cases()
-                                    .when(payment.payType.eq(PayType.INCOME)).then(payment.targetId) // targetId를 통해 user닉네임을 가져온다
-                                    .otherwise(0L) // 기본값으로 0을 반환
-                                    .as("targetId")
-                            )
-
+                                    .when(payment.payType.eq(PayType.CHARGE)).then(0L) // CHARGE일 땐, 예약정보 0
+                                    .otherwise(payment.targetId) // INCOME, USE일땐 예약ID
+                                    .as("targetId"),
+                            Expressions.cases()
+                                    .when(payment.targetId.eq(0L)).then("충전") // CHARGE인 경우 "충전" 문자열 선택
+                                    .otherwise(
+                                            JPAExpressions.select(reservation.carbob.nickname)
+                                                    .from(reservation)
+                                                    .where(reservation.reservationId.eq(payment.targetId))
+                                                    .limit(1)
+                                    )
+                        )
                 )
                 .from(payment)
                 .where(
