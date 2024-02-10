@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 public class WhitePathsConst {
 
     public static final String[] WHITE_PATHS = {
-            "/", "/v1/user/**"
+            "/", "/v1/user/auth/**"
     };
 }
