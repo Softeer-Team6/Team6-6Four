@@ -9,7 +9,11 @@
         android:id="@+id/registerOnboardingFragment"
         android:name="com.softeer.team6four.ui.mypage.register.RegisterOnboardingFragment"
         android:label="RegisterOnboardingFragment"
-        tools:layout="@layout/fragment_register_onboarding"/>
+        tools:layout="@layout/fragment_register_onboarding">
+        <action
+            android:id="@+id/action_registerOnboardingFragment_to_conditionCheckFragment"
+            app:destination="@id/conditionCheckFragment" />
+    </fragment>
     <fragment
         android:id="@+id/conditionCheckFragment"
         android:name="com.softeer.team6four.ui.mypage.register.ConditionCheckFragment"
