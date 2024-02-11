@@ -34,4 +34,14 @@
     <string name="complete_signup">완료</string>
     <string name="arrow_back_description">뒤로 가기 버튼</string>
     <string name="cancel_icon_description">취소 버성</string>
+    <string name="register_charger_onboarding_title">내 카밥을 다른 사람에게\n유로로 공유할 수 있어요!</string>
+    <string name="register_charger_onboarding_body">카밥은 개인(비공용) 전기차 충전기를 의미해요</string>
+    <string name="register_charger_onboarding_img">카밥 충전 온보딩 이미지</string>
+    <string name="register_charger_step_one">1번 단계</string>
+    <string name="register_charger_step_two">2번 단계</string>
+    <string name="register_charger_step_three">3번 단계</string>
+    <string name="register_charger_step_one_description">내 카밥이 공유\n가능한지 확인해요</string>
+    <string name="register_charger_step_two_description">내 카밥 정보를\n입력해요</string>
+    <string name="register_charger_step_three_description">고정 사용 시간을\n입력해요</string>
+    <string name="btn_register_charger_onboarding">카밥 공유하러 가기</string>
 </resources>
