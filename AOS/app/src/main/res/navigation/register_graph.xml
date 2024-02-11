@@ -18,5 +18,14 @@
         android:id="@+id/conditionCheckFragment"
         android:name="com.softeer.team6four.ui.mypage.register.ConditionCheckFragment"
         android:label="ConditionCheckFragment"
-        tools:layout="@layout/fragment_condition_check"/>
+        tools:layout="@layout/fragment_condition_check">
+        <action
+            android:id="@+id/action_conditionCheckFragment_to_registerLocationFragment"
+            app:destination="@id/registerLocationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerLocationFragment"
+        android:name="com.softeer.team6four.ui.mypage.register.RegisterLocationFragment"
+        android:label="RegisterLocationFragment"
+        tools:layout="@layout/fragment_register_location" />
 </navigation>
