@@ -55,4 +55,27 @@
     <string name="register_location_searchbar_hint">지번, 도로명, 건물명으로 검색</string>
     <string name="set_current_location">현재 위치로 설정</string>
     <string name="check_charger_location">위치 확인</string>
+    <string name="register_detail_title">내 카밥 정보를\n입력해주세요</string>
+    <string name="post_title">대여 글 제목</string>
+    <string name="post_title_hint">입력해 주세요 (30자 이내)</string>
+    <string name="charger_location_type">충전 장소</string>
+    <string name="house">단독 주택</string>
+    <string name="villa">빌라</string>
+    <string name="apartment">아파트</string>
+    <string name="location_etc">기타</string>
+    <string name="charger_adapter_type">충전기 타입</string>
+    <string name="slow_speed">완속</string>
+    <string name="adater_ac">AC 3상</string>
+    <string name="destination">데스티네이션</string>
+    <string name="adapter_etc">기타</string>
+    <string name="charger_speed">충전 속도</string>
+    <string name="speed_3kwh">3kWh</string>
+    <string name="speed_5kwh">5kWh</string>
+    <string name="speed_7kwh">7kWh</string>
+    <string name="speed_11kwh">11kWh</string>
+    <string name="charger_install_type">설치 형태</string>
+    <string name="outside">실외</string>
+    <string name="inside">실내</string>
+    <string name="canopy">캐노피</string>
+    <string name="charger_install_type_etc">기타</string>
 </resources>

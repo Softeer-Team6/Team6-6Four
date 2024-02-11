@@ -25,5 +25,7 @@
         <item name="android:textColor">@color/chip_text_color</item>
         <item name="chipBackgroundColor">@color/chip_background_color</item>
         <item name="chipStrokeWidth">0dp</item>
+        <item name="chipEndPadding">8dp</item>
+        <item name="chipStartPadding">8dp</item>
     </style>
 </resources>
