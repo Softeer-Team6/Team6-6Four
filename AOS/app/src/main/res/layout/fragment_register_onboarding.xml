@@ -12,6 +12,20 @@
         android:layout_height="match_parent"
         tools:context=".ui.mypage.register.RegisterOnboardingFragment">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="14dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="14dp" />
+
         <TextView
             android:id="@+id/tv_register_charger_onboarding_title"
             android:layout_width="wrap_content"
@@ -41,24 +55,22 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/register_charger_onboarding_img"
             android:src="@drawable/register_charger_onboarding_img"
-            app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintBottom_toTopOf="@id/step_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <View
             android:id="@+id/step_line"
             android:layout_width="0dp"
             android:layout_height="5dp"
-            android:layout_marginStart="14dp"
             android:layout_marginTop="52dp"
-            android:layout_marginEnd="14dp"
             android:background="@drawable/background_step_line"
             android:backgroundTint="@color/main_200"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
             app:layout_constraintTop_toBottomOf="@id/iv_register_charger_onboarding" />
 
         <ImageView
@@ -134,15 +146,14 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginEnd="14dp"
-            android:layout_marginBottom="55dp"
+            android:layout_marginBottom="14dp"
             android:background="@drawable/background_normal_radius_btn"
-            android:paddingVertical="8dp"
+            android:paddingVertical="16dp"
             android:text="@string/btn_register_charger_onboarding"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
