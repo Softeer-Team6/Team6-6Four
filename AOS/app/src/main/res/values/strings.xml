@@ -51,4 +51,6 @@
     <string name="error_icon">조건 불만족 아이콘</string>
     <string name="first_condition_hint">외부인이 주차가 가능해야 등록이 가능해요</string>
     <string name="condition_check_second">보유한 충전기가 개인(비개방형) 소유의\n전기차 충전기인가요?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
