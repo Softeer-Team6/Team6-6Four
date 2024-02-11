@@ -5,6 +5,8 @@ import com.softeer.team6four.domain.user.application.EmailService;
 import com.softeer.team6four.domain.user.application.UserJoinService;
 import com.softeer.team6four.domain.user.application.response.EmailCheck;
 import com.softeer.team6four.domain.user.application.request.SignUpRequest;
+import com.softeer.team6four.domain.user.application.request.SignInRequest;
+import com.softeer.team6four.domain.user.application.response.SignInJwtResponse;
 import com.softeer.team6four.global.response.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -23,5 +25,11 @@ public class UserController {
 
     @PostMapping("/auth/signup")
     public void signup(@RequestBody SignUpRequest signupRequest) {userJoinService.signup(signupRequest);}
+
+    @PostMapping("/auth/signin")
+    public ResponseDto<SignInJwtResponse> login(@RequestBody SignInRequest signinRequest) {
+        return userJoinService.signin(signinRequest);
+    }
+
 }
 
