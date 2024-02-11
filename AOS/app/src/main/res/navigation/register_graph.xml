@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/register_graph"
+    app:startDestination="@id/registerOnboardingFragment">
+
+    <fragment
+        android:id="@+id/registerOnboardingFragment"
+        android:name="com.softeer.team6four.ui.mypage.register.RegisterOnboardingFragment"
+        android:label="RegisterOnboardingFragment"
+        tools:layout="@layout/fragment_register_onboarding"/>
+</navigation>
