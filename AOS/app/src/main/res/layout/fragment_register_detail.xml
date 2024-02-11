@@ -105,7 +105,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="@id/start_guide_line"
-            app:layout_constraintTop_toBottomOf="@id/tv_charger_location_type">
+            app:layout_constraintTop_toBottomOf="@id/tv_charger_location_type"
+            app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_house"
@@ -154,7 +155,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="@id/start_guide_line"
-            app:layout_constraintTop_toBottomOf="@id/tv_charger_adapter_type">
+            app:layout_constraintTop_toBottomOf="@id/tv_charger_adapter_type"
+            app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_slow_speed"
@@ -203,7 +205,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="@id/start_guide_line"
-            app:layout_constraintTop_toBottomOf="@id/tv_charger_speed">
+            app:layout_constraintTop_toBottomOf="@id/tv_charger_speed"
+            app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_speed_3kwh"
@@ -252,7 +255,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="@id/start_guide_line"
-            app:layout_constraintTop_toBottomOf="@id/tv_charger_install_type">
+            app:layout_constraintTop_toBottomOf="@id/tv_charger_install_type"
+            app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_outside"
