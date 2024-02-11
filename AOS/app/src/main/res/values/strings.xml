@@ -44,4 +44,11 @@
     <string name="register_charger_step_two_description">내 카밥 정보를\n입력해요</string>
     <string name="register_charger_step_three_description">고정 사용 시간을\n입력해요</string>
     <string name="btn_register_charger_onboarding">카밥 공유하러 가기</string>
+    <string name="register_condition_check_title">내 카밥이 공유 조건을\n만족하는지 확인해주세요</string>
+    <string name="condition_check_first">외부인이 주차 가능한 곳인가요?</string>
+    <string name="first_condition_no">아니요</string>
+    <string name="first_condition_yes">네</string>
+    <string name="error_icon">조건 불만족 아이콘</string>
+    <string name="first_condition_hint">외부인이 주차가 가능해야 등록이 가능해요</string>
+    <string name="condition_check_second">보유한 충전기가 개인(비개방형) 소유의\n전기차 충전기인가요?</string>
 </resources>

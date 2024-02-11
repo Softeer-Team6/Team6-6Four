@@ -10,4 +10,9 @@
         android:name="com.softeer.team6four.ui.mypage.register.RegisterOnboardingFragment"
         android:label="RegisterOnboardingFragment"
         tools:layout="@layout/fragment_register_onboarding"/>
+    <fragment
+        android:id="@+id/conditionCheckFragment"
+        android:name="com.softeer.team6four.ui.mypage.register.ConditionCheckFragment"
+        android:label="ConditionCheckFragment"
+        tools:layout="@layout/fragment_condition_check"/>
 </navigation>
