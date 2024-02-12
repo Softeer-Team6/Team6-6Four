@@ -29,4 +29,9 @@
         <item name="chipStartPadding">8dp</item>
         <item name="chipMinTouchTargetSize">0dp</item>
     </style>
+
+    <style name="roundedImageViewStyle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
 </resources>

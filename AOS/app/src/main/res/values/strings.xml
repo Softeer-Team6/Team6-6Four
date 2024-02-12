@@ -84,6 +84,12 @@
     <string name="won">원</string>
     <string name="input_price_hint">입력하기</string>
     <string name="percent_hour">시간 당</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="register_description_title">카밥 빌리미를 위해\n더 자세한 정보를 입력해요</string>
+    <string name="register_description_body">모두에게 공개되는 정보가 아닌,\n빌리미가 결제 이후에 확인하는 정보예요</string>
+    <string name="register_description_subbody">카드 키 위치, 카드 전달 방법, 당부 메세지 등을 남겨\n빌리미에게 정보를 전달해요</string>
+    <string name="required">필수</string>
+    <string name="register_description_subtitle">내 카밥 이용 방법 작성</string>
+    <string name="description_input_hint">입력하세요 (500자 이내)</string>
+    <string name="charger_image_upload">충전소 사진 업로드</string>
+    <string name="optional">선택</string>
 </resources>
