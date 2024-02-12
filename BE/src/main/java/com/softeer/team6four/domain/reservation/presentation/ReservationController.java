@@ -4,6 +4,8 @@ import com.softeer.team6four.domain.reservation.application.ReservationCreateSer
 import com.softeer.team6four.domain.reservation.application.ReservationSearchService;
 import com.softeer.team6four.domain.reservation.application.request.ReservationApply;
 import com.softeer.team6four.domain.reservation.application.response.ReservationInfo;
+import com.softeer.team6four.global.annotation.Auth;
+import com.softeer.team6four.global.filter.UserContextHolder;
 import com.softeer.team6four.global.response.ResponseDto;
 import com.softeer.team6four.global.response.SliceResponse;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,7 @@ public class ReservationController {
     private final ReservationSearchService reservationSearchService;
     private final ReservationCreateService reservationCreateService;
 
+    @Auth
     @GetMapping("/application/list")
     public ResponseDto<SliceResponse<ReservationInfo>> getMyReservationApplicationList
         (
@@ -33,19 +36,18 @@ public class ReservationController {
             @PageableDefault(size = 8) Pageable pageable
         )
     {
-        // TODO : UserContextHold 에서 userId 가져오기
-        Long userId = 3L;
+        Long userId = UserContextHolder.get();
         return reservationSearchService.getMyReservationApplicationList(userId, sortType, lastReservationId, pageable);
     }
 
+    @Auth
     @PostMapping("/apply")
     public ResponseDto<Void> applyReservation
         (
             @RequestBody ReservationApply reservationApply
         )
     {
-        // TODO : UserContextHold 에서 userId 가져오기
-        Long userId = 2L;
+        Long userId = UserContextHolder.get();
         reservationCreateService.makeReservationToCarbobV1(userId, reservationApply);
         return ResponseDto.map(HttpStatus.OK.value(), "예약 신청이 완료되었습니다.", null);
     }
