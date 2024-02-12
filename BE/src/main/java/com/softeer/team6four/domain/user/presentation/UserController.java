@@ -21,12 +21,12 @@ public class UserController {
     private final NicknameService nicknameService;
     private final UserJoinService userJoinService;
 
-    @GetMapping(value = "/email/check")
+    @GetMapping(value = "/auth/email/check")
     public ResponseDto<EmailCheck> checkEmail(@RequestParam String email) {
         return emailService.findEmail(email);
     }
 
-    @GetMapping(value = "/nickname/check")
+    @GetMapping(value = "/auth/nickname/check")
     public ResponseDto<NicknameCheck> checkNickname(@RequestParam String nickname) {
         return nicknameService.findNickname(nickname);
     }
