@@ -34,7 +34,7 @@ public class ReservationCreateService {
     private final ReservationRepository reservationRepository;
     private final ReservationRepositoryImpl reservationRepositoryImpl;
 
-    @DistributedLock(key = "'carbobReservation:' + #reservationApply.getCarbobId()")
+    @DistributedLock(key = "'carbobReservation:' + #reservationApply.getCarbobId() + ':' + #reservationApply.getApplyDate() ")
     public Long makeReservationToCarbobV1(Long userId, ReservationApply reservationApply) {
         if(isNotAvailableReservationTimeLines(reservationApply)) {
             throw new InvalidReservationTimeLinesException(ErrorCode.INVALID_RESERVATION_TIME_LINES);
