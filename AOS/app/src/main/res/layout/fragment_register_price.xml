@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -11,10 +12,182 @@
         android:layout_height="match_parent"
         tools:context=".ui.mypage.register.RegisterPriceFragment">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:progress="75"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toTopOf="parent"
+            app:trackColor="@color/gray_200"
+            app:trackCornerRadius="@dimen/progress_bar_radius"
+            app:trackThickness="5dp" />
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:id="@+id/tv_register_price_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/register_price_title"
+            android:textColor="@color/gray_700"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_price_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="102dp"
+            android:contentDescription="@string/price_icon_description"
+            android:src="@drawable/icon_price"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/tv_register_price_title" />
+
+        <TextView
+            android:id="@+id/tv_per_kwh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/percent_kwh"
+            android:textColor="@color/gray_700"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/per_kwh_input_layout"
+            app:layout_constraintEnd_toStartOf="@id/per_kwh_input_layout"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toTopOf="@id/per_kwh_input_layout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/per_kwh_input_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="124dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:hint="@string/input_price_hint"
+            android:textColorHint="@color/gray_300"
+            app:boxBackgroundColor="@color/gray_050"
+            app:boxCornerRadiusBottomEnd="@dimen/radius_normal"
+            app:boxCornerRadiusBottomStart="@dimen/radius_normal"
+            app:boxCornerRadiusTopEnd="@dimen/radius_normal"
+            app:boxCornerRadiusTopStart="@dimen/radius_normal"
+            app:boxStrokeWidth="0dp"
+            app:layout_constraintEnd_toStartOf="@id/per_kwh_won"
+            app:layout_constraintStart_toEndOf="@id/tv_per_kwh"
+            app:layout_constraintTop_toBottomOf="@+id/iv_price_icon">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_per_kwh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:paddingVertical="8dp"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/per_kwh_won"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/won"
+            android:textColor="@color/gray_700"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/per_kwh_input_layout"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toEndOf="@id/per_kwh_input_layout"
+            app:layout_constraintTop_toTopOf="@id/per_kwh_input_layout" />
+
+        <TextView
+            android:id="@+id/tv_per_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/percent_hour"
+            android:textColor="@color/gray_500"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/per_hour_input_layout"
+            app:layout_constraintEnd_toStartOf="@id/per_hour_input_layout"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toTopOf="@id/per_hour_input_layout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/per_hour_input_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="100dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:hint="@string/input_price_hint"
+            android:textColorHint="@color/gray_300"
+            app:boxBackgroundColor="@color/gray_050"
+            app:boxCornerRadiusBottomEnd="@dimen/radius_normal"
+            app:boxCornerRadiusBottomStart="@dimen/radius_normal"
+            app:boxCornerRadiusTopEnd="@dimen/radius_normal"
+            app:boxCornerRadiusTopStart="@dimen/radius_normal"
+            app:boxStrokeWidth="0dp"
+            app:layout_constraintEnd_toStartOf="@id/per_hour_won"
+            app:layout_constraintStart_toEndOf="@id/tv_per_hour"
+            app:layout_constraintTop_toBottomOf="@+id/per_kwh_input_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_per_hour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:paddingVertical="8dp"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/per_hour_won"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/won"
+            android:textColor="@color/gray_500"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/per_hour_input_layout"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toEndOf="@id/per_hour_input_layout"
+            app:layout_constraintTop_toTopOf="@id/per_hour_input_layout" />
+
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/background_normal_radius_btn"
+            android:paddingVertical="16sp"
+            android:text="@string/next"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

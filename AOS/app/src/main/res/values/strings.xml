@@ -78,4 +78,10 @@
     <string name="inside">실내</string>
     <string name="canopy">캐노피</string>
     <string name="charger_install_type_etc">기타</string>
+    <string name="register_price_title">충전 대여 요금을\n책정해주세요</string>
+    <string name="price_icon_description">가격 책정 아이콘</string>
+    <string name="percent_kwh">1kWh 당</string>
+    <string name="won">원</string>
+    <string name="input_price_hint">입력하기</string>
+    <string name="percent_hour">시간 당</string>
 </resources>
