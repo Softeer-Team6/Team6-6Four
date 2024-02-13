@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
     Optional<Reservation> findReservationByCarbob_CarbobIdAndStateType(Long carbobId, StateType stateType);
     List<Reservation> findAllByCarbob_CarbobIdAndStateType(Long carbobId, StateType stateType);
+    List<Reservation> findAllByCarbob_CarbobIdAndGuest_UserIdAndStateType(Long carbobId, Long userId, StateType stateType);
 }
