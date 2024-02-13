@@ -54,5 +54,14 @@
         android:id="@+id/registerDescriptionFragment"
         android:name="com.softeer.team6four.ui.mypage.register.RegisterDescriptionFragment"
         android:label="RegisterDescriptionFragment"
-        tools:layout="@layout/fragment_register_description"/>
+        tools:layout="@layout/fragment_register_description">
+        <action
+            android:id="@+id/action_registerDescriptionFragment_to_registerTimeFragment"
+            app:destination="@id/registerTimeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerTimeFragment"
+        android:name="com.softeer.team6four.ui.mypage.register.RegisterTimeFragment"
+        android:label="RegisterTimeFragment"
+        tools:layout="@layout/fragment_register_time"/>
 </navigation>

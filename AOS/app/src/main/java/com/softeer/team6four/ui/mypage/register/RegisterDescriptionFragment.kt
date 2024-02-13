@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.softeer.team6four.R
 import com.softeer.team6four.databinding.FragmentRegisterDescriptionBinding
-import com.softeer.team6four.databinding.FragmentRegisterDetailBinding
 
 class RegisterDescriptionFragment : Fragment() {
     private var _binding: FragmentRegisterDescriptionBinding? = null
@@ -20,6 +20,11 @@ class RegisterDescriptionFragment : Fragment() {
     ): View {
         _binding = FragmentRegisterDescriptionBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.btnNext.setOnClickListener { findNavController().navigate(R.id.action_registerDescriptionFragment_to_registerTimeFragment) }
     }
 
     override fun onDestroy() {
