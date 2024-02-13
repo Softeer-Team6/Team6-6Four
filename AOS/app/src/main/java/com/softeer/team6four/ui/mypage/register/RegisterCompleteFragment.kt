@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.softeer.team6four.R
 import com.softeer.team6four.databinding.FragmentRegisterCompleteBinding
 
-class RegisterCompleøteFragment : Fragment() {
+class RegisterCompleteFragment : Fragment() {
     private var _binding: FragmentRegisterCompleteBinding? = null
     private val binding
         get() = _binding!!
