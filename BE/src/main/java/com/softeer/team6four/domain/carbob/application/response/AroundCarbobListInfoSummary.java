@@ -13,6 +13,4 @@ public class AroundCarbobListInfoSummary {
     private final @NotNull Integer feePerHour;
     private final @NotNull Double latitude;
     private final @NotNull Double longitude;
-    private final @NotNull Double distance;
-
 }

@@ -42,8 +42,7 @@ public class AroundCarbobRepositoryImpl extends QuerydslRepositorySupport {
                                 carbob.carbobId,
                                 carbob.info.feePerHour,
                                 carbob.location.latitude,
-                                carbob.location.longitude,
-                                distance.as("distance")
+                                carbob.location.longitude
                         )
                 )
                 .from(carbob)
