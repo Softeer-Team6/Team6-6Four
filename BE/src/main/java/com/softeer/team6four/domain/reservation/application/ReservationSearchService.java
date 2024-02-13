@@ -1,5 +1,6 @@
 package com.softeer.team6four.domain.reservation.application;
 
+import com.softeer.team6four.domain.reservation.application.response.ReservationApplicationInfo;
 import com.softeer.team6four.domain.reservation.application.response.ReservationInfo;
 import com.softeer.team6four.domain.reservation.domain.Reservation;
 import com.softeer.team6four.domain.reservation.domain.ReservationLine;
@@ -38,6 +39,20 @@ public class ReservationSearchService {
         Slice<ReservationInfo> reservationInfoList = reservationRepositoryImpl.findReservationInfoList(userId, sortType, lastReservationId, pageable);
         reservationInfoList.forEach(ReservationInfo::convertReservationTimeToStr);
         return ResponseDto.map(HttpStatus.OK.value(), "예약 내역 조회에 성공했습니다.", SliceResponse.of(reservationInfoList));
+    }
+
+    public ResponseDto<SliceResponse<ReservationApplicationInfo>> getReservationList
+        (
+            Long carbobId,
+            Long lastReservationId,
+            Pageable pageable
+        )
+    {
+        Slice<ReservationApplicationInfo> reservationApplicationInfoList = reservationRepositoryImpl
+            .findReservationApplicationInfoList(carbobId, lastReservationId, pageable);
+        reservationApplicationInfoList.stream().forEach(ReservationApplicationInfo::convertReservationTimeToStr);
+
+        return ResponseDto.map(HttpStatus.OK.value(), "예약 신청 내역 조회에 성공했습니다.", SliceResponse.of(reservationApplicationInfoList));
     }
 
     public SelfUseTime getSelfUseTime(Long carbobId) {
