@@ -8,7 +8,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.softeer.team6four.R
 import com.softeer.team6four.databinding.FragmentUploadDialogBinding
 
-class UploadDialogFragment : DialogFragment() {
+class UploadDialogFragment(private val navigationCallback: () -> Unit) : DialogFragment() {
     private var _binding: FragmentUploadDialogBinding? = null
     private val binding
         get() = _binding!!
@@ -25,6 +25,12 @@ class UploadDialogFragment : DialogFragment() {
             .setBackgroundInsetTop(41)
             .setBackgroundInsetBottom(41)
         builder.setView(binding.root)
+
+        binding.btnUpload.setOnClickListener {
+            requireDialog().dismiss()
+            navigationCallback.invoke()
+        }
+        binding.btnCancel.setOnClickListener { requireDialog().dismiss() }
         return builder.create()
     }
 
