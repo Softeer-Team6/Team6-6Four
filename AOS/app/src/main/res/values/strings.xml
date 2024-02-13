@@ -101,4 +101,8 @@
     <string name="end_time">종료 시간</string>
     <string name="register_time_hint">선택해주세요</string>
     <string name="register_time_divider">-</string>
+    <string name="register_complete_title">성공적으로 \n업로드 되었어요!</string>
+    <string name="register_complete_body"><![CDATA[업로드 된 내 카밥은 처음 지도 화면> 메뉴버튼>\n내 충전기 확인하기에서 언제든지 수정할 수 있어요]]></string>
+    <string name="register_complete_icon_description">최종 등록 확인 아이콘</string>
+    <string name="back_to_home">처음 화면으로</string>
 </resources>
