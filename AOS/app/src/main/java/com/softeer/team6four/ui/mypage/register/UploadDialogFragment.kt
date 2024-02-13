@@ -38,4 +38,8 @@ class UploadDialogFragment(private val navigationCallback: () -> Unit) : DialogF
         super.onDestroy()
         _binding = null
     }
+
+    companion object {
+        const val TAG = "UploadDialogFragment"
+    }
 }

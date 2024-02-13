@@ -27,7 +27,7 @@ class RegisterTimeFragment : Fragment() {
         binding.btnNext.setOnClickListener {
             UploadDialogFragment() { findNavController().navigate(R.id.action_registerTimeFragment_to_registerCompleteFragment) }.show(
                 childFragmentManager,
-                "TAG"
+                UploadDialogFragment.TAG
             )
         }
     }
