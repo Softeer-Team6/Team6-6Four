@@ -1,6 +1,8 @@
 package com.softeer.team6four.domain.carbob.presentation;
 
+import com.softeer.team6four.domain.carbob.application.AroundCarbobSearchService;
 import com.softeer.team6four.domain.carbob.application.CarbobSearchService;
+import com.softeer.team6four.domain.carbob.application.response.AroundCarbobListInfoSummary;
 import com.softeer.team6four.domain.carbob.application.response.MyCarbobDetailInfo;
 import com.softeer.team6four.domain.carbob.application.response.MyCarbobSummary;
 import com.softeer.team6four.global.annotation.Auth;
@@ -16,11 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/v1/carbob")
 @RequiredArgsConstructor
 public class CarbobController {
     private final CarbobSearchService carbobSearchService;
+    private final AroundCarbobSearchService aroundCarbobSearchService;
 
     @Auth
     @GetMapping(value = "/my")
@@ -34,6 +39,16 @@ public class CarbobController {
     {
         Long userId = UserContextHolder.get();
         return carbobSearchService.findMyCarbobList(userId, sortType, lastCarbobId, lastReservationCount, pageable);
+    }
+    @Auth
+    @GetMapping(value = "/main")
+    public ResponseDto<List<AroundCarbobListInfoSummary>> getAroundCarbobInfoSummaryList
+            (
+                    @RequestParam(required = true) Double latitude,
+                    @RequestParam(required = true) Double longitude
+            )
+    {
+        return aroundCarbobSearchService.findAroundCarbobInfoSummaryList(latitude,longitude);
     }
 
     @Auth
