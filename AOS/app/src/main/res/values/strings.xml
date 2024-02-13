@@ -105,4 +105,15 @@
     <string name="register_complete_body"><![CDATA[업로드 된 내 카밥은 처음 지도 화면> 메뉴버튼>\n내 충전기 확인하기에서 언제든지 수정할 수 있어요]]></string>
     <string name="register_complete_icon_description">최종 등록 확인 아이콘</string>
     <string name="back_to_home">처음 화면으로</string>
+    <string name="upload_title">이대로 업로드 할까요?</string>
+    <string name="charger_location_title">카밥 위치</string>
+    <string name="charger_price">대여 가격</string>
+    <string name="charger_detail_title">카밥 상세 정보</string>
+    <string name="charger_type_title">카밥 타입</string>
+    <string name="charger_speed_title">카밥 속도</string>
+    <string name="charger_install_type_title">설치 형태</string>
+    <string name="charger_upload_image_title">소개 사진</string>
+    <string name="cancel">취소</string>
+    <string name="upload">업로드</string>
+    <string name="disabled_time_title">예약 불가능 시간</string>
 </resources>
