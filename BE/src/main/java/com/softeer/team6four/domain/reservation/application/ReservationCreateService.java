@@ -13,6 +13,7 @@ import com.softeer.team6four.domain.reservation.infra.ReservationRepositoryImpl;
 import com.softeer.team6four.domain.user.application.exception.UserException;
 import com.softeer.team6four.domain.user.domain.User;
 import com.softeer.team6four.domain.user.domain.UserRepository;
+import com.softeer.team6four.global.annotation.DistributedLock;
 import com.softeer.team6four.global.response.ErrorCode;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,7 +22,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
@@ -34,7 +34,7 @@ public class ReservationCreateService {
     private final ReservationRepository reservationRepository;
     private final ReservationRepositoryImpl reservationRepositoryImpl;
 
-    @Transactional
+    @DistributedLock(key = "'carbobReservation:' + #reservationApply.getCarbobId() + ':' + #reservationApply.getApplyDate() ")
     public Long makeReservationToCarbobV1(Long userId, ReservationApply reservationApply) {
         if(isNotAvailableReservationTimeLines(reservationApply)) {
             throw new InvalidReservationTimeLinesException(ErrorCode.INVALID_RESERVATION_TIME_LINES);

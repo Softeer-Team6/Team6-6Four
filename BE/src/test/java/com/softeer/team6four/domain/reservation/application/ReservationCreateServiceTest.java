@@ -33,6 +33,8 @@ class ReservationCreateServiceTest {
             LocalDateTime.of(2024,2,15,13, 0,0),
             LocalDateTime.of(2024,2,15,17,0,0));
 
+        long startTime = System.currentTimeMillis();
+
         int numberOfThreads = 10;
         ExecutorService executorService = Executors.newFixedThreadPool(numberOfThreads);
         CountDownLatch latch = new CountDownLatch(numberOfThreads);
@@ -52,6 +54,10 @@ class ReservationCreateServiceTest {
         }
 
         latch.await();
+
+        long endTime = System.currentTimeMillis();
+        long duration = (endTime - startTime);  // 나노초 단위
+         System.out.println("수행 시간: " + duration + " ms");
 
         // then
         long successfulReservations = futures.stream()
