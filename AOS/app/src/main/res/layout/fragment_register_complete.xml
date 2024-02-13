@@ -48,6 +48,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_register_location_title" />
 
         <ImageView
+            android:id="@+id/iv_register_complete_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="120dp"
