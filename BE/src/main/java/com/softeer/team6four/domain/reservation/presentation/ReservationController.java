@@ -3,6 +3,7 @@ package com.softeer.team6four.domain.reservation.presentation;
 import com.softeer.team6four.domain.reservation.application.ReservationCreateService;
 import com.softeer.team6four.domain.reservation.application.ReservationSearchService;
 import com.softeer.team6four.domain.reservation.application.request.ReservationApply;
+import com.softeer.team6four.domain.reservation.application.response.ReservationApplicationInfo;
 import com.softeer.team6four.domain.reservation.application.response.ReservationInfo;
 import com.softeer.team6four.global.annotation.Auth;
 import com.softeer.team6four.global.filter.UserContextHolder;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,5 +52,17 @@ public class ReservationController {
         Long userId = UserContextHolder.get();
         reservationCreateService.makeReservationToCarbobV1(userId, reservationApply);
         return ResponseDto.map(HttpStatus.OK.value(), "예약 신청이 완료되었습니다.", null);
+    }
+
+    @Auth
+    @GetMapping("/list/{carbobId}")
+    public ResponseDto<SliceResponse<ReservationApplicationInfo>> getReservationList
+        (
+            @PathVariable Long carbobId,
+            @RequestParam(required = false) Long lastReservationId,
+            @PageableDefault(size = 8) Pageable pageable
+        )
+    {
+        return reservationSearchService.getReservationList(carbobId, lastReservationId, pageable);
     }
 }
