@@ -8,7 +8,7 @@
     <string name="my_point">포인트 내역 확인</string>
     <string name="register_charger">카밥 등록</string>
     <string name="my_reservation">예약 내역 확인</string>
-    <string name="my_charger">내 카밥 확인</string>
+    <string name="my_charger_list">내 카밥 리스트</string>
     <string name="softeer_nickname">소프티어님</string>
     <string name="account_description">계정 아이콘</string>
     <string name="logout">로그아웃</string>
