@@ -85,7 +85,7 @@ public class ReservationController {
                     @RequestBody ReservationCheck reservationCheck
             )
     {
-        Long userId = UserContextHolder.get();
-        return reservationConverterService.converterReservationState(userId, reservationId, reservationCheck);
+        Long hostUserId = UserContextHolder.get();
+        return reservationConverterService.converterReservationState(hostUserId, reservationId, reservationCheck);
     }
 }

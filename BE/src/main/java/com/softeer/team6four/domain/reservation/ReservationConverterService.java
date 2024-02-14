@@ -7,6 +7,7 @@ import com.softeer.team6four.domain.reservation.application.request.ReservationC
 import com.softeer.team6four.domain.reservation.application.response.ReservationCheckInfo;
 import com.softeer.team6four.domain.reservation.domain.Reservation;
 import com.softeer.team6four.domain.reservation.domain.ReservationRepository;
+import com.softeer.team6four.domain.reservation.infra.ReservationCheckEvent;
 import com.softeer.team6four.domain.reservation.infra.ReservationCreatedEvent;
 import com.softeer.team6four.domain.user.application.exception.UserException;
 import com.softeer.team6four.domain.user.domain.User;
@@ -30,22 +31,25 @@ public class ReservationConverterService {
 
     @Transactional
     public ResponseDto<ReservationCheckInfo> converterReservationState
-            (Long userId, Long reservationId, ReservationCheck reservationCheck)
+            (Long hostUserId, Long reservationId, ReservationCheck reservationCheck)
     {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserException(ErrorCode.USER_NOT_FOUND));
-
         Reservation reservation = reservationRepository.findById(reservationId)
                 .orElseThrow(() -> new ReservationNotFoundException(ErrorCode.RESERVATION_NOT_FOUND));
 
-        Carbob carbob = reservation.getCarbob();
-
         reservation.updateStateType(reservationCheck.getStateType());
 
-        eventPublisher.publishEvent(new ReservationCreatedEvent(user, carbob));
+        User host = userRepository.findById(hostUserId)
+                .orElseThrow(() -> new UserException(ErrorCode.USER_NOT_FOUND));
+        User guest = reservation.getGuest();
+        Carbob carbob = reservation.getCarbob();
 
-        return ResponseDto.map(HttpStatus.OK.value(),"선택한 예약 승인/거절이 되었습니다",
-                ReservationCheckInfo.builder().stateType(reservation.getStateType()).build());
+        ReservationCheckInfo reservationCheckInfo =  ReservationCheckInfo.builder()
+                                                    .stateType(reservation.getStateType())
+                                                    .build();
+
+        eventPublisher.publishEvent(new ReservationCheckEvent(host, guest, carbob,reservationCheckInfo.getStateType()));
+
+        return ResponseDto.map(HttpStatus.OK.value(),"선택한 예약 승인/거절이 되었습니다", reservationCheckInfo);
     }
 }
 
