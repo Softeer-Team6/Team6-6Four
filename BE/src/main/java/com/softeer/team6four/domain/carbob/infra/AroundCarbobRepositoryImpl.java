@@ -221,7 +221,7 @@ public class AroundCarbobRepositoryImpl extends QuerydslRepositorySupport {
                 .desc();
     }
     /**
-     * 제목 - feePerHour를 가공하는 메더ㅡ
+     * 제목 - feePerHour를 가공하는 메서드
      * 설명 - AOS에서 표시해야하는 형태는 "100원/kwh"이므로 가공해서 전달
      * @param - NumberPath<Integer> feePerHourPath : DB에 저장되어 있는 int 값
      * @return - String으로 feePerHour+'원/kwh'로 반환
