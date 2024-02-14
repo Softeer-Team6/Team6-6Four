@@ -50,11 +50,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_post_title"
+            android:id="@+id/tv_charger_nickname_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="@string/post_title"
+            android:text="@string/charger_nickname_title"
             android:textColor="@color/gray_600"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -62,11 +62,11 @@
             app:layout_constraintTop_toBottomOf="@id/tv_register_detail_title" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/title_layout"
+            android:id="@+id/nickname_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="@string/post_title_hint"
+            android:hint="@string/charger_nickname_hint"
             android:textColorHint="@color/gray_300"
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusBottomStart="8dp"
@@ -75,10 +75,10 @@
             app:boxStrokeColor="@color/searchbar_stroke_color"
             app:layout_constraintEnd_toEndOf="@id/end_guide_line"
             app:layout_constraintStart_toStartOf="@id/start_guide_line"
-            app:layout_constraintTop_toBottomOf="@id/tv_post_title">
+            app:layout_constraintTop_toBottomOf="@id/tv_charger_nickname_title">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_email"
+                android:id="@+id/et_nickname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -97,7 +97,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/start_guide_line"
-            app:layout_constraintTop_toBottomOf="@id/title_layout" />
+            app:layout_constraintTop_toBottomOf="@id/nickname_layout" />
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chip_group_charger_location_type"
