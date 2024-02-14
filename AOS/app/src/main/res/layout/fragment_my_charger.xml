@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -12,5 +13,80 @@
         tools:context=".ui.mypage.charger.MyChargerFragment">
 
 
+        <ImageButton
+            android:id="@+id/ib_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:backgroundTint="@color/gray_000"
+            android:contentDescription="@string/arrow_back_description"
+            android:src="@drawable/icon_arrow_back"
+            android:padding="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_my_charger_nickname"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_nickname"/>
+
+        <TextView
+            android:id="@+id/tv_my_charger_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/gray_700"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/ib_back"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="붕붕이 카밥1" />
+
+        <ImageView
+            android:id="@+id/iv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/icon_more"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/more_icon_description" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_tap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            app:chipSpacingHorizontal="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ib_back"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_confirm_reservation"
+                style="@style/Base.Theme.CarBap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/confirm_reservation"
+                android:textSize="18sp"
+                app:chipCornerRadius="100dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_detail_description"
+                style="@style/Base.Theme.CarBap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/detail_description"
+                android:textSize="18sp"
+                app:chipCornerRadius="100dp" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/my_charger_frag_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chip_group_tap" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

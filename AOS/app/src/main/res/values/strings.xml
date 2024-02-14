@@ -118,4 +118,8 @@
     <string name="charger_nickname_title">카밥 닉네임</string>
     <string name="current_filter">등록순</string>
     <string name="filter_icon_description">필터 아이콘</string>
+    <string name="confirm_reservation">예약 확인</string>
+    <string name="detail_description">상세 설명</string>
+    <string name="charger_image_description">등록한 충전소 사진</string>
+    <string name="more_icon_description">더보기 아이콘</string>
 </resources>
