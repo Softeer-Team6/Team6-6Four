@@ -2,11 +2,13 @@ package com.softeer.team6four.domain.reservation;
 
 import com.softeer.team6four.domain.carbob.domain.Carbob;
 import com.softeer.team6four.domain.reservation.application.ReservationMapper;
+import com.softeer.team6four.domain.reservation.application.exception.ReservationCheckStateTypeException;
 import com.softeer.team6four.domain.reservation.application.exception.ReservationNotFoundException;
 import com.softeer.team6four.domain.reservation.application.request.ReservationCheck;
 import com.softeer.team6four.domain.reservation.application.response.ReservationCheckInfo;
 import com.softeer.team6four.domain.reservation.domain.Reservation;
 import com.softeer.team6four.domain.reservation.domain.ReservationRepository;
+import com.softeer.team6four.domain.reservation.domain.StateType;
 import com.softeer.team6four.domain.reservation.infra.ReservationCheckEvent;
 import com.softeer.team6four.domain.reservation.infra.ReservationCreatedEvent;
 import com.softeer.team6four.domain.user.application.exception.UserException;
@@ -35,6 +37,10 @@ public class ReservationConverterService {
     {
         Reservation reservation = reservationRepository.findById(reservationId)
                 .orElseThrow(() -> new ReservationNotFoundException(ErrorCode.RESERVATION_NOT_FOUND));
+
+        if (!reservation.getStateType().equals(StateType.WAIT)) {
+            throw new ReservationCheckStateTypeException(ErrorCode.INVALID_RESERVATION_CHECK_STATE);
+        }
 
         reservation.updateStateType(reservationCheck.getStateType());
 

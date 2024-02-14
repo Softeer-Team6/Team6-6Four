@@ -52,6 +52,6 @@ public class NotificationEventListener {
         // Notification 생성 로직
         notificationCreateService.createNotification(guest, message.toString());
         // FCM 전송 로직
-        fcmSendService.sendFcmNotification(guest, "예약 요청", message.toString());
+        fcmSendService.sendFcmNotification(guest, "예약 확인", message.toString());
     }
 }
