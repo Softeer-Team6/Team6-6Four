@@ -25,9 +25,9 @@
     </fragment>
     <fragment
         android:id="@+id/myChargerFragment"
-        android:name="com.softeer.team6four.ui.mypage.charger.MyChargerFragment"
+        android:name="com.softeer.team6four.ui.mypage.charger.MyChargerListFragment"
         android:label="MyChargerFragment"
-        tools:layout="@layout/fragment_my_charger" />
+        tools:layout="@layout/fragment_my_charger_list" />
     <fragment
         android:id="@+id/myPointFragment"
         android:name="com.softeer.team6four.ui.mypage.point.MyPointFragment"
