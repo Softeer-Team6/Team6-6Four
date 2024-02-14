@@ -1,11 +1,11 @@
 package com.softeer.team6four.ui.mypage.register
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.softeer.team6four.R
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.softeer.team6four.databinding.FragmentRegisterCompleteBinding
 
 class RegisterCompleteFragment : Fragment() {
@@ -19,6 +19,13 @@ class RegisterCompleteFragment : Fragment() {
     ): View {
         _binding = FragmentRegisterCompleteBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.btnNext.setOnClickListener {
+            requireParentFragment().requireParentFragment().findNavController().popBackStack()
+        }
     }
 
     override fun onDestroy() {
