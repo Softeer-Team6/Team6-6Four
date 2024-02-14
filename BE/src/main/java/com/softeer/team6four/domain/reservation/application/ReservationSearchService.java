@@ -1,5 +1,6 @@
 package com.softeer.team6four.domain.reservation.application;
 
+import com.softeer.team6four.domain.reservation.application.response.QrVerification;
 import com.softeer.team6four.domain.reservation.application.response.ReservationApplicationInfo;
 import com.softeer.team6four.domain.reservation.application.response.ReservationInfo;
 import com.softeer.team6four.domain.reservation.domain.Reservation;
@@ -10,21 +11,26 @@ import com.softeer.team6four.domain.reservation.infra.ReservationRepositoryImpl;
 import com.softeer.team6four.domain.reservation.presentation.ReservationStateSortType;
 import com.softeer.team6four.global.response.ResponseDto;
 import com.softeer.team6four.global.response.SliceResponse;
+import com.softeer.team6four.global.util.CipherUtils;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class ReservationSearchService {
+    private final CipherUtils cipherUtils;
     private final ReservationRepository reservationRepository;
     private final ReservationRepositoryImpl reservationRepositoryImpl;
 
@@ -53,6 +59,43 @@ public class ReservationSearchService {
         reservationApplicationInfoList.stream().forEach(ReservationApplicationInfo::convertReservationTimeToStr);
 
         return ResponseDto.map(HttpStatus.OK.value(), "예약 신청 내역 조회에 성공했습니다.", SliceResponse.of(reservationApplicationInfoList));
+    }
+
+    public ResponseDto<QrVerification> verifyReservationByCipher(Long userId, String cipher)
+    {
+        LocalDateTime now = LocalDateTime.now();
+        Long decryptedCarbobId = Long.parseLong(cipherUtils.decrypt(cipher).split(":")[1]);
+
+        Optional<Reservation> optionalReservation = reservationRepository
+            .findAllByCarbob_CarbobIdAndGuest_UserIdAndStateType(decryptedCarbobId, userId, StateType.APPROVE)
+            .stream()
+            .filter(reservation -> {
+                // 에약한 시간에 왔는지 체크
+                LocalDateTime minTime = reservation.getReservationLines().stream()
+                    .map(ReservationLine::getReservationTime)
+                    .min(LocalDateTime::compareTo)
+                    .orElse(LocalDateTime.MAX);
+
+                LocalDateTime maxTimePlus1Hour = reservation.getReservationLines().stream()
+                    .map(ReservationLine::getReservationTime)
+                    .max(LocalDateTime::compareTo)
+                    .orElse(LocalDateTime.MIN).plusHours(1);
+
+                return now.isAfter(minTime) && now.isBefore(maxTimePlus1Hour);
+            })
+            .findFirst();
+
+        if (optionalReservation.isPresent()) {
+            return ResponseDto.map(
+                HttpStatus.OK.value(),
+                "QR 코드 검증에 성공했습니다.",
+                QrVerification.builder().reservationId(optionalReservation.get().getReservationId()).isVerified(true).build());
+        } else {
+            return ResponseDto.map(
+                HttpStatus.OK.value(),
+                "유효한 예약이 없습니다.",
+                QrVerification.builder().reservationId(0L).isVerified(false).build());
+        }
     }
 
     public SelfUseTime getSelfUseTime(Long carbobId) {
