@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.softeer.team6four.databinding.FragmentRegisterChargerBinding
 
 
@@ -21,6 +22,15 @@ class RegisterChargerFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.ibBack.setOnClickListener {
+            childFragmentManager.popBackStack()
+        }
+        binding.ibCancel.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
