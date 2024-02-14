@@ -1,5 +1,6 @@
 package com.softeer.team6four.domain.reservation.presentation;
 
+import com.softeer.team6four.domain.reservation.ReservationConverterService;
 import com.softeer.team6four.domain.reservation.application.ReservationCreateService;
 import com.softeer.team6four.domain.reservation.application.ReservationSearchService;
 import com.softeer.team6four.domain.reservation.application.request.ReservationApply;
@@ -27,6 +28,7 @@ public class ReservationController {
     private final CipherUtils cipherUtils;
     private final ReservationSearchService reservationSearchService;
     private final ReservationCreateService reservationCreateService;
+    private final ReservationConverterService reservationConverterService;
 
     @Auth
     @GetMapping("/application/list")
