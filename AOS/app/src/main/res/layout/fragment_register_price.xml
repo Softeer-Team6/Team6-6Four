@@ -80,7 +80,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
-            app:hintEnabled="false"
             android:textColorHint="@color/gray_300"
             app:boxBackgroundColor="@color/gray_050"
             app:boxCornerRadiusBottomEnd="@dimen/radius_normal"
@@ -89,6 +88,7 @@
             app:boxCornerRadiusTopStart="@dimen/radius_normal"
             app:boxStrokeWidth="0dp"
             app:hintAnimationEnabled="false"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toStartOf="@id/per_kwh_won"
             app:layout_constraintStart_toEndOf="@id/tv_per_kwh"
             app:layout_constraintTop_toBottomOf="@+id/iv_price_icon">
@@ -97,13 +97,13 @@
                 android:id="@+id/et_per_kwh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:hint="@string/input_price_hint"
+                android:inputType="number"
                 android:maxLines="1"
                 android:paddingVertical="8dp"
-                android:textColor="@color/main_400"
-                android:hint="@string/input_price_hint"
-                android:textSize="24sp"
-                android:inputType="number"
                 android:textAlignment="center"
+                android:textColor="@color/main_400"
+                android:textSize="24sp"
                 android:textStyle="bold" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -141,8 +141,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
-            app:hintEnabled="false"
-            app:hintAnimationEnabled="false"
             android:textColorHint="@color/gray_300"
             app:boxBackgroundColor="@color/gray_050"
             app:boxCornerRadiusBottomEnd="@dimen/radius_normal"
@@ -150,6 +148,8 @@
             app:boxCornerRadiusTopEnd="@dimen/radius_normal"
             app:boxCornerRadiusTopStart="@dimen/radius_normal"
             app:boxStrokeWidth="0dp"
+            app:hintAnimationEnabled="false"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toStartOf="@id/per_hour_won"
             app:layout_constraintStart_toEndOf="@id/tv_per_hour"
             app:layout_constraintTop_toBottomOf="@+id/per_kwh_input_layout">
@@ -158,13 +158,14 @@
                 android:id="@+id/et_per_hour"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="@string/input_price_hint"
+                android:inputType="number"
                 android:maxLines="1"
                 android:paddingVertical="8dp"
-                android:textColor="@color/main_400"
-                android:hint="@string/input_price_hint"
-                android:textSize="18sp"
-                android:inputType="number"
                 android:textAlignment="center"
+                android:textColor="@color/main_400"
+                android:textSize="18sp"
                 android:textStyle="bold" />
         </com.google.android.material.textfield.TextInputLayout>
 
