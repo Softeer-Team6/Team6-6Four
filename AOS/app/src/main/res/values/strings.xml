@@ -116,4 +116,6 @@
     <string name="upload">업로드</string>
     <string name="disabled_time_title">예약 불가능 시간</string>
     <string name="charger_nickname_title">카밥 닉네임</string>
+    <string name="current_filter">등록순</string>
+    <string name="filter_icon_description">필터 아이콘</string>
 </resources>
