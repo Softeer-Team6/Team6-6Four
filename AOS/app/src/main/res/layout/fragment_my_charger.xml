@@ -20,11 +20,11 @@
             android:layout_marginStart="16dp"
             android:backgroundTint="@color/gray_000"
             android:contentDescription="@string/arrow_back_description"
-            android:src="@drawable/icon_arrow_back"
             android:padding="0dp"
+            android:src="@drawable/icon_arrow_back"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_nickname"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_my_charger_nickname"
-            app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_nickname"/>
+            app:layout_constraintTop_toTopOf="@id/tv_my_charger_nickname" />
 
         <TextView
             android:id="@+id/tv_my_charger_nickname"
@@ -45,10 +45,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="20dp"
+            android:contentDescription="@string/more_icon_description"
             android:src="@drawable/icon_more"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/more_icon_description" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chip_group_tap"
@@ -56,6 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            app:checkedChip="@id/chip_confirm_reservation"
             app:chipSpacingHorizontal="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ib_back"
@@ -82,11 +83,14 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/my_charger_frag_container"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:defaultNavHost="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/chip_group_tap" />
+            app:layout_constraintTop_toBottomOf="@id/chip_group_tap"
+            app:navGraph="@navigation/my_charger_graph" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
