@@ -3,8 +3,10 @@ package com.softeer.team6four.domain.reservation.presentation;
 import com.softeer.team6four.domain.reservation.application.ReservationCreateService;
 import com.softeer.team6four.domain.reservation.application.ReservationSearchService;
 import com.softeer.team6four.domain.reservation.application.request.ReservationApply;
+import com.softeer.team6four.domain.reservation.application.request.ReservationCheck;
 import com.softeer.team6four.domain.reservation.application.response.QrVerification;
 import com.softeer.team6four.domain.reservation.application.response.ReservationApplicationInfo;
+import com.softeer.team6four.domain.reservation.application.response.ReservationCheckInfo;
 import com.softeer.team6four.domain.reservation.application.response.ReservationInfo;
 import com.softeer.team6four.global.annotation.Auth;
 import com.softeer.team6four.global.filter.UserContextHolder;
@@ -15,14 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/reservation")
@@ -80,5 +75,15 @@ public class ReservationController {
         Long userId = UserContextHolder.get();
         return reservationSearchService.verifyReservationByCipher(userId, cipher);
     }
-
+    @Auth
+    @PatchMapping("/check/{reservationId}")
+    public ResponseDto<ReservationCheckInfo> checkReservation
+            (
+                    @PathVariable Long reservationId,
+                    @RequestBody ReservationCheck reservationCheck
+            )
+    {
+        Long userId = UserContextHolder.get();
+        return reservationConverterService.converterReservationState(reservationId, reservationCheck);
+    }
 }
