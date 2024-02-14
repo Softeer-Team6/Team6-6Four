@@ -14,7 +14,7 @@ public class AroundCarbobListInfo {
     private final @NotNull Long carbobId;
     private final @NotNull String nickname;
     private final @NotNull String address;
-    private final @NotNull Integer feePerHour;
-    private final @NotNull SpeedType speedType;
+    private final @NotNull String feePerHour;
+    private final @NotNull String speedType;
 }
 
