@@ -60,4 +60,9 @@ public class Reservation extends BaseEntity {
         this.guest = guest;
         this.reservationLines = reservationLines;
     }
+
+    public void changeStateType(StateType stateType) {
+        this.stateType = stateType;
+    }
+
 }
