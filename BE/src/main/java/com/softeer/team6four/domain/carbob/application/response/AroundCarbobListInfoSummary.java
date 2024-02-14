@@ -10,7 +10,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class AroundCarbobListInfoSummary {
     private final @NotNull Long carbobId;
-    private final @NotNull Integer feePerHour;
+    private final @NotNull String feePerHour;
     private final @NotNull Double latitude;
     private final @NotNull Double longitude;
 }

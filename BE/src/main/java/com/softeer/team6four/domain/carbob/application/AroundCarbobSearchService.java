@@ -2,6 +2,7 @@ package com.softeer.team6four.domain.carbob.application;
 
 import com.softeer.team6four.domain.carbob.application.response.AroundCarbobListInfo;
 import com.softeer.team6four.domain.carbob.application.response.AroundCarbobListInfoSummary;
+import com.softeer.team6four.domain.carbob.application.response.SpecificDetailCarbobInfo;
 import com.softeer.team6four.domain.carbob.infra.AroundCarbobRepositoryImpl;
 import com.softeer.team6four.domain.carbob.presentation.CarbobListStateSortType;
 import com.softeer.team6four.global.response.ListResponse;
@@ -31,6 +32,13 @@ public class AroundCarbobSearchService {
     {
         List<AroundCarbobListInfo> aroundCarbobList =  aroundCarbobRepositoryImpl.findAroundCarbobByMyPosition(latitude,longitude,sortType);
         return ResponseDto.map(HttpStatus.OK.value(), "반경 5KM 카밥 리스트(footer용)가 반환되었습니다", ListResponse.of(aroundCarbobList));
+    }
+
+    public ResponseDto<SpecificDetailCarbobInfo> findSpecificCarbobDetailInfo
+            (Double latitude, Double longitude, Long carbobId)
+    {
+        SpecificDetailCarbobInfo specificCarbob = aroundCarbobRepositoryImpl.findSpecificCarbobDetailByCarbobId(latitude,longitude,carbobId);
+        return ResponseDto.map(HttpStatus.OK.value(), "선택한 카밥 정보입니다", specificCarbob);
     }
 
 }
