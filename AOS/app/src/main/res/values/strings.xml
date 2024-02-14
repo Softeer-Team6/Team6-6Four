@@ -123,4 +123,10 @@
     <string name="charger_image_description">등록한 충전소 사진</string>
     <string name="more_icon_description">더보기 아이콘</string>
     <string name="calendar_icon_description">캘린더 아이콘</string>
+    <string name="qr_code_description">QR코드</string>
+    <string name="price_per_hour_title">시간당 대여 가격</string>
+    <string name="my_charger_detail_title">카밥 상세 정보</string>
+    <string name="my_charger_speed_title">카밥 속도</string>
+    <string name="use_description_title">이용 방법</string>
+    <string name="total_income">총 소득</string>
 </resources>
