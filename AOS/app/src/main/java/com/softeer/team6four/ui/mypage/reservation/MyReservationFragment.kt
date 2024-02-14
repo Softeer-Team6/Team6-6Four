@@ -1,4 +1,4 @@
-package com.softeer.team6four
+package com.softeer.team6four.ui.mypage.reservation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

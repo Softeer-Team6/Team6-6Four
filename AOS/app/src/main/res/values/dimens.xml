@@ -3,4 +3,8 @@
     <dimen name="radius_normal">8dp</dimen>
     <dimen name="searchbar_stroke_width">2dp</dimen>
     <dimen name="btn_show_charger_list_radius">100dp</dimen>
+    <dimen name="step_line_radius">7dp</dimen>
+    <dimen name="progress_bar_radius">7dp</dimen>
+    <dimen name="register_location_searchbar_radius">12dp</dimen>
+    <dimen name= "upload_dialog_radius">12dp</dimen>
 </resources>

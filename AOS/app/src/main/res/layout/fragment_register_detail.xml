@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.mypage.register.RegisterDetailFragment">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:progress="50"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toTopOf="parent"
+            app:trackColor="@color/gray_200"
+            app:trackCornerRadius="@dimen/progress_bar_radius"
+            app:trackThickness="5dp" />
+
+        <TextView
+            android:id="@+id/tv_register_detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/register_detail_title"
+            android:textColor="@color/gray_700"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_charger_nickname_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/charger_nickname_title"
+            android:textColor="@color/gray_600"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/tv_register_detail_title" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nickname_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="@string/charger_nickname_hint"
+            android:textColorHint="@color/gray_300"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxStrokeColor="@color/searchbar_stroke_color"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/tv_charger_nickname_title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="15dp"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_charger_location_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/charger_location_type"
+            android:textColor="@color/gray_600"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/nickname_layout" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_charger_location_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/tv_charger_location_type"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_house"
+                style="@style/Base.Theme.CarBap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/house" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_villa"
+                style="@style/Base.Theme.CarBap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/villa" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_apartment"
+                style="@style/Base.Theme.CarBap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/apartment" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_location_etc"
+                style="@style/Base.Theme.CarBap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/location_etc" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/tv_charger_adapter_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/charger_adapter_type"
+            android:textColor="@color/gray_600"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/chip_group_charger_location_type" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_charger_adapter_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/tv_charger_adapter_type"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_slow_speed"
+                style="@style/Base.Theme.CarBap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/slow_speed" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_adapter_ac"
+                style="@style/Base.Theme.CarBap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/adater_ac" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_destination"
+                style="@style/Base.Theme.CarBap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/destination" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_adapter_etc"
+                style="@style/Base.Theme.CarBap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/adapter_etc" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/tv_charger_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/charger_speed"
+            android:textColor="@color/gray_600"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/chip_group_charger_adapter_type" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_charger_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/tv_charger_speed"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_speed_3kwh"
+                style="@style/Base.Theme.CarBap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/speed_3kwh" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_speed_5kWh"
+                style="@style/Base.Theme.CarBap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/speed_5kwh" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_speed_7kwh"
+                style="@style/Base.Theme.CarBap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/speed_7kwh" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_speed_11kwh"
+                style="@style/Base.Theme.CarBap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/speed_11kwh" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/tv_charger_install_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/charger_install_type"
+            android:textColor="@color/gray_600"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/chip_group_charger_speed" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_charger_install_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/tv_charger_install_type"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_outside"
+                style="@style/Base.Theme.CarBap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/outside" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_inside"
+                style="@style/Base.Theme.CarBap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/inside" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/canopy"
+                style="@style/Base.Theme.CarBap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/canopy" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_charger_install_type_etc"
+                style="@style/Base.Theme.CarBap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/charger_install_type_etc" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/background_normal_radius_btn"
+            android:paddingVertical="16dp"
+            android:text="@string/next"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.softeer.team6four.HomeFragment"
+        android:name="com.softeer.team6four.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
@@ -25,27 +25,27 @@
     </fragment>
     <fragment
         android:id="@+id/myChargerFragment"
-        android:name="com.softeer.team6four.MyChargerFragment"
+        android:name="com.softeer.team6four.ui.mypage.charger.MyChargerFragment"
         android:label="MyChargerFragment"
         tools:layout="@layout/fragment_my_charger" />
     <fragment
         android:id="@+id/myPointFragment"
-        android:name="com.softeer.team6four.MyPointFragment"
+        android:name="com.softeer.team6four.ui.mypage.point.MyPointFragment"
         android:label="MyPointFragment"
         tools:layout="@layout/fragment_my_point" />
     <fragment
         android:id="@+id/myReservationFragment"
-        android:name="com.softeer.team6four.MyReservationFragment"
+        android:name="com.softeer.team6four.ui.mypage.reservation.MyReservationFragment"
         android:label="MyReservationFragment"
         tools:layout="@layout/fragment_my_reservation"/>
     <fragment
         android:id="@+id/registerChargerFragment"
-        android:name="com.softeer.team6four.RegisterChargerFragment"
+        android:name="com.softeer.team6four.ui.mypage.register.RegisterChargerFragment"
         android:label="RegisterChargerFragment"
         tools:layout="@layout/fragment_register_charger"/>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.softeer.team6four.LoginFragment"
+        android:name="com.softeer.team6four.ui.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.softeer.team6four.SignUpFragment"
+        android:name="com.softeer.team6four.ui.signup.SignUpFragment"
         android:label="SignUpFragment"
         tools:layout="@layout/fragment_sign_up">
         <action

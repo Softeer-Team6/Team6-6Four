@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.mypage.register.ConditionCheckFragment">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toTopOf="parent"
+            app:trackColor="@color/gray_100"
+            app:trackCornerRadius="@dimen/progress_bar_radius"
+            app:trackThickness="5dp" />
+
+        <TextView
+            android:id="@+id/tv_register_condition_check_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/register_condition_check_title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_condition_check_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="105dp"
+            android:text="@string/condition_check_first"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/tv_register_condition_check_title" />
+
+
+        <Button
+            android:id="@+id/btn_first_condition_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/background_normal_radius_btn"
+            android:paddingVertical="8dp"
+            android:text="@string/first_condition_no"
+            app:layout_constraintEnd_toStartOf="@id/btn_first_condition_yes"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/tv_condition_check_first" />
+
+        <Button
+            android:id="@+id/btn_first_condition_yes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/background_normal_radius_btn"
+            android:paddingVertical="8dp"
+            android:text="@string/first_condition_yes"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/btn_first_condition_no"
+            app:layout_constraintTop_toBottomOf="@id/tv_condition_check_first" />
+
+        <ImageView
+            android:id="@+id/iv_first_error_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/error_icon"
+            android:src="@drawable/icon_wrong_input"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/btn_first_condition_no" />
+
+        <TextView
+            android:id="@+id/tv_first_error_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/first_condition_hint"
+            android:textColor="@color/error"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/iv_first_error_icon"
+            app:layout_constraintStart_toEndOf="@id/iv_first_error_icon"
+            app:layout_constraintTop_toTopOf="@id/iv_first_error_icon" />
+
+        <TextView
+            android:id="@+id/tv_condition_check_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:text="@string/condition_check_second"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/iv_first_error_icon" />
+
+
+        <Button
+            android:id="@+id/btn_second_condition_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/background_normal_radius_btn"
+            android:paddingVertical="8dp"
+            android:text="@string/first_condition_no"
+            app:layout_constraintEnd_toStartOf="@id/btn_second_condition_yes"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/tv_condition_check_second" />
+
+        <Button
+            android:id="@+id/btn_second_condition_yes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/background_normal_radius_btn"
+            android:paddingVertical="8dp"
+            android:text="@string/first_condition_yes"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/btn_second_condition_no"
+            app:layout_constraintTop_toBottomOf="@id/tv_condition_check_second" />
+
+        <ImageView
+            android:id="@+id/iv_second_error_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/error_icon"
+            android:src="@drawable/icon_wrong_input"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/btn_second_condition_no" />
+
+        <TextView
+            android:id="@+id/tv_second_error_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/first_condition_hint"
+            android:textColor="@color/error"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/iv_second_error_icon"
+            app:layout_constraintStart_toEndOf="@id/iv_second_error_icon"
+            app:layout_constraintTop_toTopOf="@id/iv_second_error_icon" />
+
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/background_normal_radius_btn"
+            android:paddingVertical="16dp"
+            android:text="@string/next"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

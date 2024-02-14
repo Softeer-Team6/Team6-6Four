@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/register_graph"
+    app:startDestination="@id/registerOnboardingFragment">
+
+    <fragment
+        android:id="@+id/registerOnboardingFragment"
+        android:name="com.softeer.team6four.ui.mypage.register.RegisterOnboardingFragment"
+        android:label="RegisterOnboardingFragment"
+        tools:layout="@layout/fragment_register_onboarding">
+        <action
+            android:id="@+id/action_registerOnboardingFragment_to_conditionCheckFragment"
+            app:destination="@id/conditionCheckFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/conditionCheckFragment"
+        android:name="com.softeer.team6four.ui.mypage.register.ConditionCheckFragment"
+        android:label="ConditionCheckFragment"
+        tools:layout="@layout/fragment_condition_check">
+        <action
+            android:id="@+id/action_conditionCheckFragment_to_registerLocationFragment"
+            app:destination="@id/registerLocationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerLocationFragment"
+        android:name="com.softeer.team6four.ui.mypage.register.RegisterLocationFragment"
+        android:label="RegisterLocationFragment"
+        tools:layout="@layout/fragment_register_location" >
+        <action
+            android:id="@+id/action_registerLocationFragment_to_registerDetailFragment"
+            app:destination="@id/registerDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerDetailFragment"
+        android:name="com.softeer.team6four.ui.mypage.register.RegisterDetailFragment"
+        android:label="RegisterDetailFragment"
+        tools:layout="@layout/fragment_register_detail">
+        <action
+            android:id="@+id/action_registerDetailFragment_to_registerPriceFragment"
+            app:destination="@id/registerPriceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerPriceFragment"
+        android:name="com.softeer.team6four.ui.mypage.register.RegisterPriceFragment"
+        android:label="RegisterPriceFragment"
+        tools:layout="@layout/fragment_register_price">
+        <action
+            android:id="@+id/action_registerPriceFragment_to_registerDescriptionFragment"
+            app:destination="@id/registerDescriptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerDescriptionFragment"
+        android:name="com.softeer.team6four.ui.mypage.register.RegisterDescriptionFragment"
+        android:label="RegisterDescriptionFragment"
+        tools:layout="@layout/fragment_register_description">
+        <action
+            android:id="@+id/action_registerDescriptionFragment_to_registerTimeFragment"
+            app:destination="@id/registerTimeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerTimeFragment"
+        android:name="com.softeer.team6four.ui.mypage.register.RegisterTimeFragment"
+        android:label="RegisterTimeFragment"
+        tools:layout="@layout/fragment_register_time">
+        <action
+            android:id="@+id/action_registerTimeFragment_to_registerCompleteFragment"
+            app:destination="@id/registerCompleteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerCompleteFragment"
+        android:name="com.softeer.team6four.ui.mypage.register.RegisterCompleteFragment"
+        android:label="RegisterCompleteFragment"
+        tools:layout="@layout/fragment_register_complete"/>
+
+</navigation>
