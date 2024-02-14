@@ -86,6 +86,6 @@ public class ReservationController {
             )
     {
         Long userId = UserContextHolder.get();
-        return reservationConverterService.converterReservationState(reservationId, reservationCheck);
+        return reservationConverterService.converterReservationState(userId, reservationId, reservationCheck);
     }
 }
