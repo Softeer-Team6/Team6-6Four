@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        tools:context=".ui.mypage.charger.ApproveReservationDialogFragment">
+
+        <TextView
+            android:id="@+id/tv_confirm_reservation_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/confirm_reservation"
+            android:textColor="@color/gray_700"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_confirm_reservation_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/confirm_reservation_body"
+            android:textColor="@color/gray_700"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_confirm_reservation_title" />
+
+        <TextView
+            android:id="@+id/tv_reservation_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/reservation_date"
+            android:textColor="@color/gray_700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_confirm_reservation_body" />
+
+        <TextView
+            android:id="@+id/tv_reservation_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/reservation_time"
+            android:textColor="@color/gray_700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_reservation_date" />
+
+        <TextView
+            android:id="@+id/tv_reservation_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/reservation_price"
+            android:textColor="@color/main_400"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_reservation_time" />
+
+        <Button
+            android:id="@+id/btn_reject_reservation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/background_normal_radius_btn"
+            android:text="@string/reject_reservation"
+            android:textColor="@color/gray_600"
+            app:backgroundTint="@color/gray_050"
+            app:layout_constraintEnd_toStartOf="@id/btn_approve_reservation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_reservation_price"
+            android:layout_marginEnd="4dp"/>
+
+        <Button
+            android:id="@+id/btn_approve_reservation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/background_normal_radius_btn"
+            android:text="@string/approve_reservation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_reject_reservation"
+            app:layout_constraintTop_toBottomOf="@id/tv_reservation_price"
+            android:layout_marginStart="4dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

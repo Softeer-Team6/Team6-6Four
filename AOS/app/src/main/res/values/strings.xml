@@ -129,4 +129,10 @@
     <string name="my_charger_speed_title">카밥 속도</string>
     <string name="use_description_title">이용 방법</string>
     <string name="total_income">총 소득</string>
+    <string name="confirm_reservation_body">김현대님이 카밥 대여 요청을 보냈어요!</string>
+    <string name="reservation_date">대여 날짜 : 2024.02.12</string>
+    <string name="reservation_time">대여 시간 : 15:00 - 17:00</string>
+    <string name="reservation_price">대여 비용 : 3,400원</string>
+    <string name="reject_reservation">거절</string>
+    <string name="approve_reservation">승인</string>
 </resources>
