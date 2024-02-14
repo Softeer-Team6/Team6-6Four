@@ -15,6 +15,7 @@ import com.softeer.team6four.global.response.ErrorCode;
 import com.softeer.team6four.global.response.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class ReservationConverterService {
+    private final ApplicationEventPublisher eventPublisher;
     private final ReservationRepository reservationRepository;
     private final UserRepository userRepository;
 
@@ -36,10 +38,11 @@ public class ReservationConverterService {
         Reservation reservation = reservationRepository.findById(reservationId)
                 .orElseThrow(() -> new ReservationNotFoundException(ErrorCode.RESERVATION_NOT_FOUND));
 
-        reservation.updateStateType(reservationCheck.getStateType());
-
         Carbob carbob = reservation.getCarbob();
 
+        reservation.updateStateType(reservationCheck.getStateType());
+
+        eventPublisher.publishEvent(new ReservationCreatedEvent(user, carbob));
 
         return ResponseDto.map(HttpStatus.OK.value(),"선택한 예약 승인/거절이 되었습니다",
                 ReservationCheckInfo.builder().stateType(reservation.getStateType()).build());
