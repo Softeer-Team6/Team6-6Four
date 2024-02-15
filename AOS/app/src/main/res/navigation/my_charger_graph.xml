@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_my_charger_detail">
         <action
             android:id="@+id/action_myChargerDetailFragment_to_myChargerReservationFragment"
-            app:destination="@id/myChargerReservationFragment" />
+            app:destination="@id/myChargerReservationFragment"
+            app:popUpTo="@id/myChargerDetailFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/myChargerReservationFragment"
@@ -21,6 +23,8 @@
         tools:layout="@layout/fragment_my_charger_reservation">
         <action
             android:id="@+id/action_myChargerReservationFragment_to_myChargerDetailFragment"
-            app:destination="@id/myChargerDetailFragment" />
+            app:destination="@id/myChargerDetailFragment"
+            app:popUpTo="@id/myChargerReservationFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
