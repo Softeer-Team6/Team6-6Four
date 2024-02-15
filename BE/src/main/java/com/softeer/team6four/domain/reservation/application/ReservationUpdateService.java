@@ -59,7 +59,6 @@ public class ReservationUpdateService {
 
     public void updateCarbobUseResult(Reservation reservation) {
         reservation.changeStateType(StateType.USED);
-        reservationRepository.save(reservation);
 
         paymentRepository.save(Payment.builder()
             .amount(-reservation.getTotalFee())
