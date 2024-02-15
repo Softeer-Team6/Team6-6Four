@@ -64,4 +64,7 @@ public class Reservation extends BaseEntity {
     public void updateStateType(StateType stateType){
         this.stateType = stateType;
     }
+    public void changeStateType(StateType stateType) {
+        this.stateType = stateType;
+    }
 }

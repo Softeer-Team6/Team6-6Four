@@ -1,5 +1,11 @@
 package com.softeer.team6four.domain.carbob.presentation;
 
+import com.softeer.team6four.domain.carbob.application.CarbobRegistrationService;
+import com.softeer.team6four.domain.carbob.application.CarbobSearchService;
+import com.softeer.team6four.domain.carbob.application.request.CarbobRegistration;
+import com.softeer.team6four.domain.carbob.application.response.CarbobQr;
+import com.softeer.team6four.domain.carbob.application.response.MyCarbobDetailInfo;
+import com.softeer.team6four.domain.carbob.application.response.MyCarbobSummary;
 import com.google.firebase.database.annotations.NotNull;
 import com.softeer.team6four.domain.carbob.application.AroundCarbobSearchService;
 import com.softeer.team6four.domain.carbob.application.CarbobSearchService;
@@ -11,20 +17,19 @@ import com.softeer.team6four.global.response.ResponseDto;
 import com.softeer.team6four.global.response.SliceResponse;
 import com.softeer.team6four.domain.carbob.presentation.CarbobListStateSortType;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
-
+@Slf4j
 @RestController
 @RequestMapping(value = "/v1/carbob")
 @RequiredArgsConstructor
 public class CarbobController {
     private final CarbobSearchService carbobSearchService;
+    private final CarbobRegistrationService carbobRegistrationService;
     private final AroundCarbobSearchService aroundCarbobSearchService;
 
     @Auth
@@ -80,6 +85,17 @@ public class CarbobController {
     public ResponseDto<MyCarbobDetailInfo> getMyCarbobDetail(@PathVariable Long carbobId) {
         Long userId = UserContextHolder.get();
         return carbobSearchService.findMyCarbobDetailInfo(userId, carbobId);
+    }
+
+    @Auth
+    @PostMapping(value = "/registration")
+    public ResponseDto<CarbobQr> registerCarbob
+            (
+                    @RequestBody CarbobRegistration carbobRegistration
+            )
+    {
+        Long userId = UserContextHolder.get();
+        return carbobRegistrationService.registerCarbob(userId,carbobRegistration);
     }
 }
 

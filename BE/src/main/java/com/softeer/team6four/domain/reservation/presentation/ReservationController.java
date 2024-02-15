@@ -3,17 +3,21 @@ package com.softeer.team6four.domain.reservation.presentation;
 import com.softeer.team6four.domain.reservation.ReservationConverterService;
 import com.softeer.team6four.domain.reservation.application.ReservationCreateService;
 import com.softeer.team6four.domain.reservation.application.ReservationSearchService;
+import com.softeer.team6four.domain.reservation.application.ReservationUpdateService;
 import com.softeer.team6four.domain.reservation.application.request.ReservationApply;
 import com.softeer.team6four.domain.reservation.application.request.ReservationCheck;
 import com.softeer.team6four.domain.reservation.application.response.QrVerification;
 import com.softeer.team6four.domain.reservation.application.response.ReservationApplicationInfo;
 import com.softeer.team6four.domain.reservation.application.response.ReservationCheckInfo;
+import com.softeer.team6four.domain.reservation.application.request.ReservationFulfillRequest;
+import com.softeer.team6four.domain.reservation.application.response.QrVerification;
+import com.softeer.team6four.domain.reservation.application.response.ReservationApplicationInfo;
+import com.softeer.team6four.domain.reservation.application.response.ReservationFulfillResult;
 import com.softeer.team6four.domain.reservation.application.response.ReservationInfo;
 import com.softeer.team6four.global.annotation.Auth;
 import com.softeer.team6four.global.filter.UserContextHolder;
 import com.softeer.team6four.global.response.ResponseDto;
 import com.softeer.team6four.global.response.SliceResponse;
-import com.softeer.team6four.global.util.CipherUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -25,10 +29,10 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ReservationController {
 
-    private final CipherUtils cipherUtils;
     private final ReservationSearchService reservationSearchService;
     private final ReservationCreateService reservationCreateService;
     private final ReservationConverterService reservationConverterService;
+    private final ReservationUpdateService reservationUpdateService;
 
     @Auth
     @GetMapping("/application/list")
@@ -88,4 +92,16 @@ public class ReservationController {
         Long hostUserId = UserContextHolder.get();
         return reservationConverterService.converterReservationState(hostUserId, reservationId, reservationCheck);
     }
+
+    @Auth
+    @PostMapping("/fulfillment")
+    public ResponseDto<ReservationFulfillResult> fulfillReservation
+        (
+            @RequestBody ReservationFulfillRequest reservationFulfillRequest
+        )
+    {
+        Long userId = UserContextHolder.get();
+        return reservationUpdateService.fulfillReservationAndPay(userId, reservationFulfillRequest);
+    }
+
 }
