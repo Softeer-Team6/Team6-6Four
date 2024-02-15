@@ -116,4 +116,8 @@
     <string name="upload">업로드</string>
     <string name="disabled_time_title">예약 불가능 시간</string>
     <string name="charger_nickname_title">카밥 닉네임</string>
+    <string name="point_charge_description">포인트 충전</string>
+    <string name="point_charge_title">포인트 내역</string>
+    <string name="total_points">총 포인트</string>
+    <string name="empty_point_charge">포인트 내역이 없어요.</string>
 </resources>
