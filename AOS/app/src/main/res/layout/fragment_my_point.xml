@@ -35,8 +35,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/ib_back"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/ib_point_charge"
@@ -72,8 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="68dp"
             android:background="@drawable/background_step_line"
-            android:paddingStart="26dp"
-            android:paddingEnd="26dp"
+            android:paddingHorizontal="26dp"
             android:paddingVertical="20dp"
             android:text="@string/total_points"
             android:textColor="@android:color/black"
