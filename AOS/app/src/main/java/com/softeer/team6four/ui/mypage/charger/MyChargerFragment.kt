@@ -26,6 +26,12 @@ class MyChargerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setOnChipStateChanged()
+        setMoreButton()
+        setBackButton()
+    }
+
+    private fun setOnChipStateChanged() {
         binding.chipGroupTap.setOnCheckedStateChangeListener { _, checkedIds ->
             when (checkedIds[0]) {
                 R.id.chip_confirm_reservation -> {
@@ -42,13 +48,21 @@ class MyChargerFragment : Fragment() {
 
             }
         }
+    }
 
+    private fun setMoreButton() {
         binding.ivMore.setOnClickListener {
             if (binding.myChargerFragContainer.getFragment<NavHostFragment>().findNavController()
                     .currentDestination?.id == R.id.myChargerDetailFragment
             ) {
                 EditBottomSheetFragment().show(childFragmentManager, EditBottomSheetFragment.TAG)
             }
+        }
+    }
+
+    private fun setBackButton() {
+        binding.ibBack.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 
