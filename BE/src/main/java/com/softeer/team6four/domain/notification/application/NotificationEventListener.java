@@ -1,5 +1,6 @@
 package com.softeer.team6four.domain.notification.application;
 
+import com.softeer.team6four.domain.reservation.infra.ReservationCheckEvent;
 import com.softeer.team6four.domain.reservation.infra.ReservationCreatedEvent;
 import com.softeer.team6four.domain.user.domain.User;
 import lombok.RequiredArgsConstructor;
@@ -34,5 +35,23 @@ public class NotificationEventListener {
         notificationCreateService.createNotification(host, message.toString());
         // FCM 전송 로직
         fcmSendService.sendFcmNotification(host, "예약 요청", message.toString());
+    }
+
+    @Async
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+    public void handleReservationCheckEvent(ReservationCheckEvent event) {
+        User host = event.getHost();
+        User guest = event.getGuest();
+
+        StringBuilder message = new StringBuilder();
+        message.append(host.getNickname()).append(" 님이");
+        message.append("[ ").append(event.getCarbob().getNickname()).append(" ] 카밥에 요청하신 예약을 ");
+        message.append("\"").append(event.getStateType()).append("\"").append("하였습니다.");
+
+        // Notification 생성 로직
+        notificationCreateService.createNotification(guest, message.toString());
+        // FCM 전송 로직
+        fcmSendService.sendFcmNotification(guest, "예약 확인", message.toString());
     }
 }
