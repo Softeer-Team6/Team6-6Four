@@ -24,7 +24,10 @@ class EditBottomSheetFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             tvEdit.setOnClickListener { dismiss() }
-            tvDelete.setOnClickListener { dismiss() }
+            tvDelete.setOnClickListener {
+                DeleteDialogFragment().show(parentFragmentManager, DeleteDialogFragment.TAG)
+                dismiss()
+            }
             tvCancel.setOnClickListener { dismiss() }
         }
     }
