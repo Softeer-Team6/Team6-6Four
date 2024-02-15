@@ -42,6 +42,14 @@ class MyChargerFragment : Fragment() {
 
             }
         }
+
+        binding.ivMore.setOnClickListener {
+            if (binding.myChargerFragContainer.getFragment<NavHostFragment>().findNavController()
+                    .currentDestination?.id == R.id.myChargerDetailFragment
+            ) {
+                EditBottomSheetFragment().show(childFragmentManager, EditBottomSheetFragment.TAG)
+            }
+        }
     }
 
     override fun onDestroy() {
