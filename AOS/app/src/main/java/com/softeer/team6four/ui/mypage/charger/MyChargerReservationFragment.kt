@@ -20,6 +20,16 @@ class MyChargerReservationFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.root.setOnClickListener { //Test Code
+            ApproveReservationDialogFragment().show(
+                childFragmentManager,
+                ApproveReservationDialogFragment.TAG
+            )
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
