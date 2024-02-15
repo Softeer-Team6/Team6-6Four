@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_homeFragment_to_registerChargerFragment"
             app:destination="@id/registerChargerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_applyDetailFragment"
+            app:destination="@id/applyDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/myChargerListFragment"
@@ -73,5 +76,9 @@
         android:name="com.softeer.team6four.ui.mypage.charger.MyChargerFragment"
         android:label="MyChargerFragment"
         tools:layout="@layout/fragment_my_charger" />
+    <fragment
+        android:id="@+id/applyDetailFragment"
+        android:name="com.softeer.team6four.ui.apply.ApplyDetailFragment"
+        android:label="ApplyDetailFragment" />
 
 </navigation>
