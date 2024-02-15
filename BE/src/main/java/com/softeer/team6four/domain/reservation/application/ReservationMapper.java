@@ -34,4 +34,14 @@ public class ReservationMapper {
             .build();
     }
 
+    public static Reservation mapToSelfReservationEntity(Carbob carbob, User host, List<ReservationLine> newReservationLines) {
+        return Reservation.builder()
+                .totalFee(0)
+                .stateType(StateType.SELF)
+                .carbob(carbob)
+                .guest(host)
+                .reservationLines(newReservationLines)
+                .build();
+    }
+
 }
