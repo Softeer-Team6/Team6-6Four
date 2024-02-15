@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -11,12 +12,107 @@
         android:layout_height="match_parent"
         tools:context=".ui.mypage.reservation.MyReservationFragment">
 
-        <!-- TODO: Update blank fragment layout -->
+        <ImageButton
+            android:id="@+id/ib_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:contentDescription="@string/arrow_back_description"
+            android:padding="0dp"
+            android:src="@drawable/icon_arrow_back"
+            app:backgroundTint="@color/gray_000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="예약 내역 확인"
-            android:textAlignment="center"/>
+            android:id="@+id/tv_point_list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/reservation_list_check"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/ib_back"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/reservation_state_chip_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/ib_back"
+            app:layout_constraintStart_toStartOf="@+id/ib_back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:singleSelection="true"
+            app:selectionRequired="true"
+            app:checkedChip="@+id/btn_reservation_wait">
+
+            <com.google.android.material.chip.Chip
+                style="@style/Base.Theme.CarBap"
+                android:id="@+id/btn_reservation_wait"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reservation_wait"
+                android:checkable="true"
+                app:chipCornerRadius="100dp" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Base.Theme.CarBap"
+                android:id="@+id/btn_reservation_approve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reservation_approve"
+                android:checkable="true"
+                app:chipCornerRadius="100dp" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Base.Theme.CarBap"
+                android:id="@+id/btn_reservation_reject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reservation_reject"
+                android:checkable="true"
+                app:chipCornerRadius="100dp" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <ImageView
+            android:id="@+id/iv_empty_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="180dp"
+            android:visibility="gone"
+            android:src="@drawable/register_charger_onboarding_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reservation_state_chip_group" />
+
+        <TextView
+            android:id="@+id/tv_empty_point_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            android:text="@string/empty_reservation_list"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/iv_empty_state"
+            app:layout_constraintStart_toStartOf="@+id/iv_empty_state"
+            app:layout_constraintTop_toBottomOf="@+id/iv_empty_state" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reservation_state_chip_group"
+            tools:listitem="@layout/reservation_history_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
