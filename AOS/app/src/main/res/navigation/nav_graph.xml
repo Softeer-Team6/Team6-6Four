@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_myChargerFragment"
-            app:destination="@id/myChargerFragment" />
+            app:destination="@id/myChargerListFragment" />
         <action
             android:id="@+id/action_homeFragment_to_myPointFragment"
             app:destination="@id/myPointFragment" />
@@ -24,10 +24,14 @@
             app:destination="@id/registerChargerFragment" />
     </fragment>
     <fragment
-        android:id="@+id/myChargerFragment"
-        android:name="com.softeer.team6four.ui.mypage.charger.MyChargerFragment"
-        android:label="MyChargerFragment"
-        tools:layout="@layout/fragment_my_charger" />
+        android:id="@+id/myChargerListFragment"
+        android:name="com.softeer.team6four.ui.mypage.charger.MyChargerListFragment"
+        android:label="MyChargerListFragment"
+        tools:layout="@layout/fragment_my_charger_list">
+        <action
+            android:id="@+id/action_myChargerListFragment_to_myChargerFragment"
+            app:destination="@id/myChargerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/myPointFragment"
         android:name="com.softeer.team6four.ui.mypage.point.MyPointFragment"
@@ -37,12 +41,12 @@
         android:id="@+id/myReservationFragment"
         android:name="com.softeer.team6four.ui.mypage.reservation.MyReservationFragment"
         android:label="MyReservationFragment"
-        tools:layout="@layout/fragment_my_reservation"/>
+        tools:layout="@layout/fragment_my_reservation" />
     <fragment
         android:id="@+id/registerChargerFragment"
         android:name="com.softeer.team6four.ui.mypage.register.RegisterChargerFragment"
         android:label="RegisterChargerFragment"
-        tools:layout="@layout/fragment_register_charger"/>
+        tools:layout="@layout/fragment_register_charger" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.softeer.team6four.ui.login.LoginFragment"
@@ -64,5 +68,10 @@
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/myChargerFragment"
+        android:name="com.softeer.team6four.ui.mypage.charger.MyChargerFragment"
+        android:label="MyChargerFragment"
+        tools:layout="@layout/fragment_my_charger" />
 
 </navigation>

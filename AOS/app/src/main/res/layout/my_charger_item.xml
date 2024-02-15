@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="12dp">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+        <TextView
+            android:id="@+id/tv_my_charger_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="붕붕이 카밥1"
+            android:textColor="@color/gray_700"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_my_charger_location_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/charger_location_description"
+            android:src="@drawable/icon_charger_location"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_location"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toTopOf="@id/tv_my_charger_location" />
+
+        <TextView
+            android:id="@+id/tv_my_charger_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/charger_location_example"
+            android:textColor="@color/gray_600"
+            app:layout_constraintStart_toEndOf="@id/iv_my_charger_location_icon"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_charger_nickname" />
+
+        <ImageView
+            android:id="@+id/iv_my_charger_reservation_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/charger_location_description"
+            android:src="@drawable/icon_reservation"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_reservation"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toTopOf="@id/tv_my_charger_reservation" />
+
+        <TextView
+            android:id="@+id/tv_my_charger_reservation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="신규 예약 0건"
+            app:layout_constraintStart_toEndOf="@id/iv_my_charger_reservation_icon"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_charger_location" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_my_charger_image"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/charger_default_image"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_reservation"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintTop_toTopOf="@id/tv_my_charger_location"
+            app:shapeAppearance="@style/MyChargerImageStyle" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:dividerColor="@color/gray_100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_charger_reservation" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

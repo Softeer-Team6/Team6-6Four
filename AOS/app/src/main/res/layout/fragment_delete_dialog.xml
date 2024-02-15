@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="30dp"
+        android:paddingBottom="20dp"
+        tools:context=".ui.mypage.charger.DeleteDialogFragment">
+
+        <TextView
+            android:id="@+id/tv_delete_dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_dialog_title"
+            android:textColor="@color/gray_700"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_delete_dialog_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/delete_dialog_body"
+            android:textColor="@color/gray_600"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_delete_dialog_title" />
+
+        <Button
+            android:id="@+id/btn_delete_dialog_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/background_normal_radius_btn"
+            android:text="@string/cancel"
+            android:textColor="@color/gray_700"
+            app:backgroundTint="@color/gray_050"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_delete_dialog_delete"
+            app:layout_constraintTop_toBottomOf="@id/tv_delete_dialog_body" />
+
+        <Button
+            android:id="@+id/btn_delete_dialog_delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/background_normal_radius_btn"
+            android:text="@string/confirm_delete"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="4dp"
+            app:layout_constraintStart_toEndOf="@id/btn_delete_dialog_cancel"
+            app:layout_constraintTop_toBottomOf="@id/tv_delete_dialog_body" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

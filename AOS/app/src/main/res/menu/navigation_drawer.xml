@@ -12,8 +12,8 @@
             android:id="@+id/my_reservation_item"
             android:title="@string/my_reservation" />
         <item
-            android:id="@+id/my_charger_item"
-            android:title="@string/my_charger" />
+            android:id="@+id/my_charger_list_item"
+            android:title="@string/my_charger_list" />
     </group>
 
 </menu>

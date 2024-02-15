@@ -1,4 +1,4 @@
-package com.softeer.team6four.ui.mypage.register
+package com.softeer.team6four.ui.mypage.charger
 
 import android.app.Dialog
 import android.os.Bundle
@@ -6,15 +6,15 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.softeer.team6four.R
-import com.softeer.team6four.databinding.FragmentUploadDialogBinding
+import com.softeer.team6four.databinding.FragmentApproveReservationDialogBinding
 
-class UploadDialogFragment(private val navigationCallback: () -> Unit) : DialogFragment() {
-    private var _binding: FragmentUploadDialogBinding? = null
+class ApproveReservationDialogFragment : DialogFragment() {
+    private var _binding: FragmentApproveReservationDialogBinding? = null
     private val binding
         get() = _binding!!
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        _binding = FragmentUploadDialogBinding.inflate(layoutInflater)
+        _binding = FragmentApproveReservationDialogBinding.inflate(layoutInflater)
         val builder = MaterialAlertDialogBuilder(requireContext())
             .setBackground(
                 AppCompatResources.getDrawable(
@@ -24,11 +24,9 @@ class UploadDialogFragment(private val navigationCallback: () -> Unit) : DialogF
             )
         builder.setView(binding.root)
 
-        binding.btnUpload.setOnClickListener {
-            requireDialog().dismiss()
-            navigationCallback.invoke()
-        }
-        binding.btnCancel.setOnClickListener { requireDialog().dismiss() }
+        binding.btnRejectReservation.setOnClickListener { requireDialog().dismiss() }
+        binding.btnApproveReservation.setOnClickListener { requireDialog().dismiss() }
+
         return builder.create()
     }
 
@@ -38,6 +36,6 @@ class UploadDialogFragment(private val navigationCallback: () -> Unit) : DialogF
     }
 
     companion object {
-        const val TAG = "UploadDialogFragment"
+        const val TAG = "ApproveReservationDialogFragment"
     }
 }

@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
                 menuItem.setChecked(false)
                 drawerLayout.close()
                 when (menuItem.itemId) {
-                    R.id.my_charger_item -> findNavController().navigate(R.id.action_homeFragment_to_myChargerFragment)
+                    R.id.my_charger_list_item -> findNavController().navigate(R.id.action_homeFragment_to_myChargerFragment)
                     R.id.my_point_item -> findNavController().navigate(R.id.action_homeFragment_to_myPointFragment)
                     R.id.my_reservation_item -> findNavController().navigate(R.id.action_homeFragment_to_myReservationFragment)
                     R.id.register_charger_item -> findNavController().navigate(R.id.action_homeFragment_to_registerChargerFragment)
