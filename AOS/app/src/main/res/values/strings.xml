@@ -135,4 +135,8 @@
     <string name="reservation_price">대여 비용 : 3,400원</string>
     <string name="reject_reservation">거절</string>
     <string name="approve_reservation">승인</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edit">수정</string>
+    <string name="delete">삭제</string>
 </resources>
