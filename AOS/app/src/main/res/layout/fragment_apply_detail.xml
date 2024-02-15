@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -11,11 +12,270 @@
         android:layout_height="match_parent"
         tools:context=".ui.apply.ApplyDetailFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+        <ImageButton
+            android:id="@+id/ib_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/gray_000"
+            android:contentDescription="@string/arrow_back_description"
+            android:padding="0dp"
+            android:src="@drawable/icon_arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ib_back">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/start_guide_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="21dp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/end_guide_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="20dp" />
+
+                <ImageView
+                    android:id="@+id/iv_charger_default_image"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:contentDescription="@string/charger_image_description"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/charger_default_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_charger_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="붕붕이 카밥1"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/iv_charger_default_image" />
+
+
+                <TextView
+                    android:id="@+id/tv_distance_from_my_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="내 위치에서 700m"
+                    android:textColor="@color/gray_500"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_charger_nickname" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_location_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/charger_location_title"
+                    android:textColor="@color/gray_600"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_distance_from_my_location" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="58dp"
+                    android:text="@string/charger_location_example"
+                    android:textColor="@color/gray_600"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_location_title"
+                    app:layout_constraintStart_toEndOf="@id/tv_my_charger_location_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_charger_location_title" />
+
+                <TextView
+                    android:id="@+id/tv_price_per_hour_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/price_per_hour_title"
+                    android:textColor="@color/gray_600"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_charger_location_title" />
+
+                <TextView
+                    android:id="@+id/tv_price_per_hour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="1540원/kwh"
+                    android:textColor="@color/gray_600"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_charger_location"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_charger_location" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/my_charger_overall_divider"
+                    android:layout_width="0dp"
+                    android:layout_height="6dp"
+                    android:layout_marginTop="16dp"
+                    app:dividerColor="@color/gray_100"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_price_per_hour_title" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_detail_tile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/my_charger_detail_title"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/my_charger_overall_divider" />
+
+
+                <TextView
+                    android:id="@+id/tv_my_charger_type_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/charger_type_title"
+                    android:textColor="@color/gray_600"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_charger_detail_tile" />
+
+                <TextView
+                    android:id="@+id/tv_charger_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/slow_speed"
+                    android:textColor="@color/gray_600"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_type_title"
+                    app:layout_constraintStart_toEndOf="@id/tv_my_charger_type_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_charger_type_title" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_speed_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/charger_speed_title"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_charger_type_title" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_speed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/speed_7kwh"
+                    android:textColor="@color/gray_600"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_speed_title"
+                    app:layout_constraintStart_toEndOf="@id/tv_my_charger_speed_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_charger_speed_title" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_install_type_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/charger_install_type"
+                    android:textColor="@color/gray_600"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_charger_speed_title" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_install_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/outside"
+                    android:textColor="@color/gray_600"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_install_type_title"
+                    app:layout_constraintStart_toEndOf="@id/tv_my_charger_install_type_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_charger_install_type_title" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/my_charger_detail_divider"
+                    android:layout_width="0dp"
+                    android:layout_height="6dp"
+                    android:layout_marginTop="16dp"
+                    app:dividerColor="@color/gray_100"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_charger_install_type_title" />
+
+                <TextView
+                    android:id="@+id/tv_use_description_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/use_description_title"
+                    android:textColor="@color/gray_700"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/my_charger_detail_divider" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_use_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:cardBackgroundColor="@color/gray_000"
+                    app:cardCornerRadius="@dimen/radius_normal"
+                    app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_use_description_title"
+                    app:strokeColor="@color/gray_100">
+
+                    <TextView
+                        android:id="@+id/tv_use_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lines="5"
+                        android:maxLines="5"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="제네시스 안돼용~ 스타벅스에서 우회전하세요!" />
+                </com.google.android.material.card.MaterialCardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:paddingVertical="20dp"
+            android:text="@string/next"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
