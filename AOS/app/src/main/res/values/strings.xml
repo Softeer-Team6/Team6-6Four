@@ -144,4 +144,8 @@
     <string name="confirm_delete">확인</string>
     <string name="my_charger_detail_edit">수정 완료</string>
     <string name="icon_edit_description">수정 아이콘</string>
+    <string name="point_charge_description">포인트 충전</string>
+    <string name="point_charge_title">포인트 내역</string>
+    <string name="total_points">총 포인트</string>
+    <string name="empty_point_charge">포인트 내역이 없어요.</string>
 </resources>

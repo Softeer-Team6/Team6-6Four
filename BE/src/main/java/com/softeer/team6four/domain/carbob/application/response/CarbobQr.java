@@ -8,9 +8,6 @@ import lombok.Getter;
 @Getter
 @Builder
 @AllArgsConstructor
-public class AroundCarbobListInfoSummary {
-    private final @NotNull Long carbobId;
-    private final @NotNull String feePerHour;
-    private final @NotNull Double latitude;
-    private final @NotNull Double longitude;
+public class CarbobQr {
+    private final @NotNull String qrUrl;
 }
