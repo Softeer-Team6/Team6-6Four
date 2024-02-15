@@ -27,11 +27,12 @@ repositories {
 }
 
 dependencies {
+
+    //s3
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+
     // redisson
     implementation 'org.redisson:redisson-spring-boot-starter:3.18.0'
-
-    // AWS
-    implementation 'io.awspring.cloud:spring-cloud-aws-s3:3.0.2'
 
     // FCM
     implementation 'com.google.firebase:firebase-admin:9.1.1'
