@@ -1,4 +1,4 @@
-package com.softeer.team6four
+package com.softeer.team6four.ui.mypage.register
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.softeer.team6four.databinding.FragmentRegisterNicknameBinding
+import com.softeer.team6four.databinding.FragmentRegisterCompleteBinding
 
-class RegisterNicknameFragment : Fragment() {
-    private var _binding: FragmentRegisterNicknameBinding? = null
+class RegisterCompleteFragment : Fragment() {
+    private var _binding: FragmentRegisterCompleteBinding? = null
     private val binding
         get() = _binding!!
 
@@ -17,15 +17,19 @@ class RegisterNicknameFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRegisterNicknameBinding.inflate(inflater, container, false)
+        _binding = FragmentRegisterCompleteBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnCompleteSignup.setOnClickListener {
+        binding.btnNext.setOnClickListener {
             requireParentFragment().requireParentFragment().findNavController().popBackStack()
         }
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

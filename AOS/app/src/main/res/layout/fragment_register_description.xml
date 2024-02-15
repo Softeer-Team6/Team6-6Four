@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.mypage.register.RegisterDescriptionFragment">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:progress="100"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toTopOf="parent"
+            app:trackColor="@color/gray_200"
+            app:trackCornerRadius="@dimen/progress_bar_radius"
+            app:trackThickness="5dp" />
+
+        <TextView
+            android:id="@+id/tv_register_description_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/register_description_title"
+            android:textColor="@color/gray_700"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_register_description_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/register_description_body"
+            android:textColor="@color/gray_500"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/tv_register_description_title" />
+
+        <TextView
+            android:id="@+id/tv_register_description_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="@string/register_description_subtitle"
+            android:textColor="@color/gray_600"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/tv_register_description_body" />
+
+        <TextView
+            android:id="@+id/tv_description_required"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/required"
+            android:textColor="@color/main_400"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tv_register_description_subtitle"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintTop_toTopOf="@id/tv_register_description_subtitle" />
+
+        <TextView
+            android:id="@+id/tv_register_description_subbody"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/register_description_subbody"
+            android:textColor="@color/gray_500"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/tv_register_description_subtitle" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/description_input_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/gray_100"
+            android:inputType="text"
+            android:textColorHint="@color/gray_400"
+            app:boxBackgroundColor="@color/gray_050"
+            app:boxCornerRadiusBottomEnd="@dimen/radius_normal"
+            app:boxCornerRadiusBottomStart="@dimen/radius_normal"
+            app:boxCornerRadiusTopEnd="@dimen/radius_normal"
+            app:boxCornerRadiusTopStart="@dimen/radius_normal"
+            app:boxStrokeWidth="0dp"
+            app:hintAnimationEnabled="false"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/tv_register_description_subbody">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:hint="@string/description_input_hint"
+                android:lines="6" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_charger_image_upload_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/charger_image_upload"
+            android:textColor="@color/gray_600"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/description_input_layout" />
+
+        <TextView
+            android:id="@+id/tv_charger_image_upload_optional"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/optional"
+            android:textColor="@color/gray_400"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_charger_image_upload_title"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintTop_toTopOf="@id/tv_charger_image_upload_title" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_charger_image"
+            android:layout_width="98dp"
+            android:layout_height="92dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/gray_050"
+            android:scaleType="center"
+            android:src="@drawable/icon_plus"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/tv_charger_image_upload_title"
+            app:shapeAppearance="@style/roundedImageViewStyle" />
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/background_normal_radius_btn"
+            android:paddingVertical="16dp"
+            android:text="@string/next"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -17,7 +17,7 @@ public class ReservationTime {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        String date = startTime.format(DateTimeFormatter.ofPattern("MM-dd"));
+        String date = startTime.format(DateTimeFormatter.ofPattern("yy.MM.dd"));
         String hours = startTime.format(formatter) + " ~ " + endTime.plusMinutes(59).format(formatter);
         return date + " " + hours;
     }

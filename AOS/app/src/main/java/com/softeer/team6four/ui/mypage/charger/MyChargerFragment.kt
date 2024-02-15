@@ -1,14 +1,14 @@
-package com.softeer.team6four
+package com.softeer.team6four.ui.mypage.charger
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.softeer.team6four.databinding.FragmentMyPointBinding
+import com.softeer.team6four.databinding.FragmentMyChargerBinding
 
-class MyPointFragment : Fragment() {
-    private var _binding: FragmentMyPointBinding? = null
+class MyChargerFragment : Fragment() {
+    private var _binding : FragmentMyChargerBinding? = null
     private val binding
         get() = _binding!!
 
@@ -16,8 +16,7 @@ class MyPointFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-        _binding = FragmentMyPointBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentMyChargerBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
