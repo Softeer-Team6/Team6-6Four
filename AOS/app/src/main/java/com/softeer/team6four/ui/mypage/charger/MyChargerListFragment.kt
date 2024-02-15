@@ -24,9 +24,15 @@ class MyChargerListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setBackButton()
         //Test Code
         binding.tvMyChargerListTitle.setOnClickListener { findNavController().navigate(R.id.action_myChargerListFragment_to_myChargerFragment) }
     }
+
+    private fun setBackButton() {
+        binding.ibBack.setOnClickListener { findNavController().popBackStack() }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
