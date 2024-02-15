@@ -63,6 +63,19 @@
                     app:layout_constraintTop_toBottomOf="@id/iv_charger_default_image" />
 
                 <ImageView
+                    android:id="@+id/iv_edit_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/icon_edit_description"
+                    android:src="@drawable/icon_edit"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_charger_nickname"
+                    app:layout_constraintStart_toEndOf="@id/tv_charger_nickname"
+                    app:layout_constraintTop_toTopOf="@id/tv_charger_nickname"
+                    tools:visibility="visible" />
+
+                <ImageView
                     android:id="@+id/iv_qr_code_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -144,6 +157,18 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@id/start_guide_line"
                     app:layout_constraintTop_toBottomOf="@id/my_charger_overall_divider" />
+
+                <ImageView
+                    android:id="@+id/iv_edit_charger_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/icon_edit_description"
+                    android:src="@drawable/icon_edit"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_detail_tile"
+                    app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_charger_detail_tile"
+                    tools:visibility="visible" />
 
                 <TextView
                     android:id="@+id/tv_my_charger_type_title"
@@ -232,6 +257,18 @@
                     app:layout_constraintStart_toStartOf="@id/start_guide_line"
                     app:layout_constraintTop_toBottomOf="@id/my_charger_detail_divider" />
 
+                <ImageView
+                    android:id="@+id/iv_edit_use_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/icon_edit_description"
+                    android:src="@drawable/icon_edit"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_use_description_title"
+                    app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+                    app:layout_constraintTop_toTopOf="@id/tv_use_description_title"
+                    tools:visibility="visible" />
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cv_use_description"
                     android:layout_width="0dp"
@@ -275,6 +312,18 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@id/start_guide_line"
                     app:layout_constraintTop_toBottomOf="@id/my_charger_use_description_divider" />
+
+                <ImageView
+                    android:id="@+id/edit_reservation_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/icon_edit_description"
+                    android:src="@drawable/icon_edit"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_reservation_time_title"
+                    app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_charger_reservation_time_title"
+                    tools:visibility="visible" />
 
                 <TextView
                     android:id="@+id/tv_my_charger_start_time_title"
@@ -354,6 +403,21 @@
                     android:textColor="@color/gray_600"
                     app:layout_constraintStart_toStartOf="@id/start_guide_line"
                     app:layout_constraintTop_toBottomOf="@id/tv_my_charger_total_income_title" />
+
+                <Button
+                    android:id="@+id/btn_my_charger_detail_edit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:paddingVertical="20dp"
+                    android:text="@string/my_charger_detail_edit"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_charger_total_income"
+                    tools:visibility="visible" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
