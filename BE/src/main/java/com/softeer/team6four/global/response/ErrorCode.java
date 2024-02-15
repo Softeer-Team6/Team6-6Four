@@ -19,9 +19,12 @@ public enum ErrorCode {
     INVALID_RESERVATION_TIME_LINES(400, "예약 불가능한 시간입니다."),
 
     INVALID_CHARGE_NEGATIVE(400, "양수만 입력 가능합니다"),
+    INSUFFICIENT_POINTS(400, "포인트가 부족합니다."),
+    RESERVATION_CANNOT_USE_STATE(400, "예약 상태가 사용 불가능한 상태입니다."),
 
     // 401
     NOT_CARBOB_OWNER(401, "카밥의 주인이 아닙니다."),
+    NOT_RESERVATION_USER(401, "예약한 사용자가 아닙니다."),
 
     // 404
     USER_NOT_FOUND(404, "존재하지 않는 계정입니다."),
