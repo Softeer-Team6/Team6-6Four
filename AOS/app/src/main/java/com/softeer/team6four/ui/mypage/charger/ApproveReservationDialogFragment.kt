@@ -22,8 +22,6 @@ class ApproveReservationDialogFragment : DialogFragment() {
                     R.drawable.background_upload_dialog
                 )
             )
-            .setBackgroundInsetTop(41)
-            .setBackgroundInsetBottom(41)
         builder.setView(binding.root)
 
         binding.btnRejectReservation.setOnClickListener { requireDialog().dismiss() }
