@@ -34,7 +34,7 @@
             android:text="@string/reservation_list_check"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/ib_back"
+            app:layout_constraintStart_toEndOf="@id/ib_back"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.chip.ChipGroup
@@ -42,14 +42,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="56dp"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/ib_back"
-            app:layout_constraintStart_toStartOf="@+id/ib_back"
+            app:layout_constraintStart_toEndOf="@id/ib_back"
+            app:layout_constraintStart_toStartOf="@id/ib_back"
             app:layout_constraintTop_toTopOf="parent"
             app:singleSelection="true"
             app:selectionRequired="true"
-            app:checkedChip="@+id/btn_reservation_wait">
+            app:checkedChip="@id/btn_reservation_wait">
 
             <com.google.android.material.chip.Chip
                 style="@style/Base.Theme.CarBap"
@@ -88,7 +86,7 @@
             android:src="@drawable/register_charger_onboarding_img"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reservation_state_chip_group" />
+            app:layout_constraintTop_toBottomOf="@id/reservation_state_chip_group" />
 
         <TextView
             android:id="@+id/tv_empty_point_history"
@@ -100,9 +98,9 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="@+id/iv_empty_state"
-            app:layout_constraintStart_toStartOf="@+id/iv_empty_state"
-            app:layout_constraintTop_toBottomOf="@+id/iv_empty_state" />
+            app:layout_constraintEnd_toEndOf="@id/iv_empty_state"
+            app:layout_constraintStart_toStartOf="@id/iv_empty_state"
+            app:layout_constraintTop_toBottomOf="@id/iv_empty_state" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
@@ -111,7 +109,7 @@
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reservation_state_chip_group"
+            app:layout_constraintTop_toBottomOf="@id/reservation_state_chip_group"
             tools:listitem="@layout/reservation_history_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

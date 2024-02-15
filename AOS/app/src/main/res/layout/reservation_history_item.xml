@@ -86,7 +86,7 @@
             android:textColor="@color/gray_600"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@id/iv_calendar_icon"
-            app:layout_constraintTop_toBottomOf="@+id/tv_reservation_charger_nickname" />
+            app:layout_constraintTop_toBottomOf="@id/tv_reservation_charger_nickname" />
 
         <TextView
             android:id="@+id/tv_charger_location"
@@ -106,7 +106,7 @@
             android:layout_marginTop="4dp"
             android:src="@drawable/icon_calendar"
             app:layout_constraintStart_toStartOf="@id/tv_reservation_charger_nickname"
-            app:layout_constraintTop_toBottomOf="@+id/tv_reservation_charger_nickname" />
+            app:layout_constraintTop_toBottomOf="@id/tv_reservation_charger_nickname" />
 
         <ImageView
             android:id="@+id/iv_charger_icon"
@@ -124,7 +124,7 @@
             android:layout_marginTop="4dp"
             android:src="@drawable/charger_default_image"
             app:layout_constraintEnd_toStartOf="@id/end_guide_line"
-            app:layout_constraintTop_toBottomOf="@+id/tv_reservation_total_fee" />
+            app:layout_constraintTop_toBottomOf="@id/tv_reservation_total_fee" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
