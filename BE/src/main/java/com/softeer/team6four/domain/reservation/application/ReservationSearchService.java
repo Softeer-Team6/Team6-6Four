@@ -111,9 +111,11 @@ public class ReservationSearchService {
         if(date.equals("default")) localDate = LocalDate.now();
         else localDate = LocalDate.parse(date);
 
+        // startDateTime-CurrentDateT00:00
         LocalDateTime startDateTime = localDate.atStartOfDay();
-        LocalDateTime endDateTime = localDate.atTime(LocalTime.MAX);
-
+        // startDateTime-CurrentDateT23:59:59
+        LocalDateTime endDateTime = localDate.plusDays(1).atStartOfDay().minusSeconds(1);
+        // 불가능한 시간 확인
         List<LocalDateTime> checkDailyImpossibleTime = dailyReservationRepositoryImpl.
                 findDailyReservationStatus(carbobId, startDateTime, endDateTime);
 
