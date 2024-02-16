@@ -79,6 +79,17 @@
     <fragment
         android:id="@+id/applyDetailFragment"
         android:name="com.softeer.team6four.ui.apply.ApplyDetailFragment"
-        android:label="ApplyDetailFragment" />
+        android:label="ApplyDetailFragment"
+        tools:layout="@layout/fragment_apply_detail">
+        <action
+            android:id="@+id/action_applyDetailFragment_to_applyTimeFragment"
+            app:destination="@id/applyTimeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/applyTimeFragment"
+        android:name="com.softeer.team6four.ui.apply.ApplyTimeFragment"
+        android:label="ApplyTimeFragment"
+        tools:layout="@layout/fragment_apply_time"/>
+
 
 </navigation>
