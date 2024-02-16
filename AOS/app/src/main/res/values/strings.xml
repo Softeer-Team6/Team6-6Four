@@ -148,4 +148,9 @@
     <string name="point_charge_title">포인트 내역</string>
     <string name="total_points">총 포인트</string>
     <string name="empty_point_charge">포인트 내역이 없어요.</string>
+    <string name="reservation_list_check">예약내역 확인</string>
+    <string name="reservation_wait">대기</string>
+    <string name="reservation_approve">승인</string>
+    <string name="reservation_reject">거절</string>
+    <string name="empty_reservation_list">카밥 예약 내역이 없어요</string>
 </resources>
