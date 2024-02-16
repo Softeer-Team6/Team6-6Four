@@ -5,11 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.softeer.team6four.databinding.FragmentApplyDetailBinding
-
+import com.softeer.team6four.databinding.FragmentApplyTimeBinding
 
 class ApplyTimeFragment : Fragment() {
-    private var _binding: FragmentApplyDetailBinding? = null
+    private var _binding: FragmentApplyTimeBinding? = null
     private val binding
         get() = _binding!!
 
@@ -17,7 +16,7 @@ class ApplyTimeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentApplyDetailBinding.inflate(inflater, container, false)
+        _binding = FragmentApplyTimeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
