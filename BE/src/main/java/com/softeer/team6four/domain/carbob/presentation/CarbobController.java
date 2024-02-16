@@ -103,7 +103,7 @@ public class CarbobController {
     public ResponseDto<CarbobImgUrl> uploadCarbobImg
             (
                     @RequestPart MultipartFile image
-            ) throws Exception
+            )
     {
         return carbobImgUploadService.saveFile(image);
     }
