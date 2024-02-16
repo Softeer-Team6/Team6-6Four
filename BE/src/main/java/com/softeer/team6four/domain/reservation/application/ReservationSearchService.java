@@ -119,12 +119,15 @@ public class ReservationSearchService {
         List<LocalDateTime> checkDailyImpossibleTime = dailyReservationRepositoryImpl.
                 findDailyReservationStatus(carbobId, startDateTime, endDateTime);
 
-        DailyReservationInfo dailyReservationInfo = new DailyReservationInfo();
+
+        boolean[] unavailableTimes = new boolean[24];
 
         for (LocalDateTime reservationTime : checkDailyImpossibleTime) {
             int hour = reservationTime.getHour();
-            dailyReservationInfo.setUnavailableTime(hour, true);
+            unavailableTimes[hour] = true;
         }
+
+        DailyReservationInfo dailyReservationInfo = new DailyReservationInfo(unavailableTimes);
 
 
         return ResponseDto.map(HttpStatus.OK.value(), "선택한 일자의 카밥 예약 내역입니다", dailyReservationInfo);

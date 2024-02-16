@@ -7,8 +7,8 @@ import lombok.Getter;
 public class DailyReservationInfo {
     boolean[] dailyBookedTimeCheck = new boolean[24];
 
-    public void setUnavailableTime(int hour, boolean booked){
-        dailyBookedTimeCheck[hour] = booked;
+    public DailyReservationInfo(boolean[] dailyBookedTimeCheck){
+        this.dailyBookedTimeCheck = dailyBookedTimeCheck;
     }
 
 }
