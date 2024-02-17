@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.softeer.team6four.R
 import com.softeer.team6four.databinding.FragmentApplyCompleteBinding
 
 class ApplyCompleteFragment : Fragment() {
@@ -20,6 +22,10 @@ class ApplyCompleteFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.ibBack.setOnClickListener { findNavController().navigate(R.id.action_applyCompleteFragment_to_homeFragment) }
+    }
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

@@ -23,7 +23,10 @@ class ApplyDetailFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnNext.setOnClickListener { findNavController().navigate(R.id.action_applyDetailFragment_to_applyTimeFragment) }
+        with(binding) {
+            btnNext.setOnClickListener { findNavController().navigate(R.id.action_applyDetailFragment_to_applyTimeFragment) }
+            ibBack.setOnClickListener { findNavController().popBackStack() }
+        }
     }
 
     override fun onDestroy() {
