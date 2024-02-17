@@ -1,5 +1,6 @@
 package com.softeer.team6four.domain.reservation.application;
 
+import com.softeer.team6four.domain.reservation.application.response.DailyReservationInfo;
 import com.softeer.team6four.domain.reservation.application.response.QrVerification;
 import com.softeer.team6four.domain.reservation.application.response.ReservationApplicationInfo;
 import com.softeer.team6four.domain.reservation.application.response.ReservationInfo;
@@ -7,12 +8,16 @@ import com.softeer.team6four.domain.reservation.domain.Reservation;
 import com.softeer.team6four.domain.reservation.domain.ReservationLine;
 import com.softeer.team6four.domain.reservation.domain.ReservationRepository;
 import com.softeer.team6four.domain.reservation.domain.StateType;
+import com.softeer.team6four.domain.reservation.infra.DailyReservationRepositoryImpl;
 import com.softeer.team6four.domain.reservation.infra.ReservationRepositoryImpl;
 import com.softeer.team6four.domain.reservation.presentation.ReservationStateSortType;
 import com.softeer.team6four.global.response.ResponseDto;
 import com.softeer.team6four.global.response.SliceResponse;
 import com.softeer.team6four.global.util.CipherUtils;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -33,6 +38,7 @@ public class ReservationSearchService {
     private final CipherUtils cipherUtils;
     private final ReservationRepository reservationRepository;
     private final ReservationRepositoryImpl reservationRepositoryImpl;
+    private final DailyReservationRepositoryImpl dailyReservationRepositoryImpl;
 
     public ResponseDto<SliceResponse<ReservationInfo>> getMyReservationApplicationList
         (
@@ -96,6 +102,35 @@ public class ReservationSearchService {
                 "유효한 예약이 없습니다.",
                 QrVerification.builder().reservationId(0L).isVerified(false).build());
         }
+    }
+
+    public ResponseDto<DailyReservationInfo> getDailyReservationStatus(Long carbobId, String date){
+
+        LocalDate localDate;
+        // 날짜를 입력하지 않았다면 현재 날짜로 설정
+        if(date.equals("default")) localDate = LocalDate.now();
+        else localDate = LocalDate.parse(date);
+
+        // startDateTime-CurrentDateT00:00
+        LocalDateTime startDateTime = localDate.atStartOfDay();
+        // startDateTime-CurrentDateT23:59:59
+        LocalDateTime endDateTime = localDate.plusDays(1).atStartOfDay().minusSeconds(1);
+        // 불가능한 시간 확인
+        List<LocalDateTime> checkDailyImpossibleTime = dailyReservationRepositoryImpl.
+                findDailyReservationStatus(carbobId, startDateTime, endDateTime);
+
+
+        boolean[] unavailableTimes = new boolean[24];
+
+        for (LocalDateTime reservationTime : checkDailyImpossibleTime) {
+            int hour = reservationTime.getHour();
+            unavailableTimes[hour] = true;
+        }
+
+        DailyReservationInfo dailyReservationInfo = new DailyReservationInfo(unavailableTimes);
+
+
+        return ResponseDto.map(HttpStatus.OK.value(), "선택한 일자의 카밥 예약 내역입니다", dailyReservationInfo);
     }
 
     public SelfUseTime getSelfUseTime(Long carbobId) {

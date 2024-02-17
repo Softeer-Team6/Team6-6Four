@@ -13,11 +13,15 @@ public class SpecificDetailCarbobInfo {
     private final @NotNull Long carbobId;
     private final @NotNull String nickname;
     private final @NotNull String imageUrl;
-    private final @NotNull Double distance;
+    private @NotNull Double distance;
     private final @NotNull String address;
     private final @NotNull String feePerHour;
     private final @NotNull String chargerType;
     private final @NotNull String speedType;
     private final @NotNull String installType;
     private final @NotNull String description;
+
+    public void setRoundDistance(){
+        this.distance = Math.floor(distance * 10) / 10.0;
+    }
 }
