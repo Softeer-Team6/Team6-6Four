@@ -160,4 +160,9 @@
     <string name="apply_confirm_time_title">예약 시간</string>
     <string name="apply_confirm_back">뒤로 가기</string>
     <string name="apply_confirm_apply">신청</string>
+    <string name="reservation_list_check">예약내역 확인</string>
+    <string name="reservation_wait">대기</string>
+    <string name="reservation_approve">승인</string>
+    <string name="reservation_reject">거절</string>
+    <string name="empty_reservation_list">카밥 예약 내역이 없어요</string>
 </resources>
