@@ -153,4 +153,9 @@
     <string name="reservation_possible_icon_description">예약 가능 아이콘</string>
     <string name="reservation_impossible">예약 불가능</string>
     <string name="apply_time_body">예약 불가 시간대를 피해서 선택해 주세요!</string>
+    <string name="apply_complete_title">카밥 예약 신청이 완료되었어요\n예약 확정까지 기다려 주세요!</string>
+    <string name="apply_complete_image_description">신청 완료 이미지</string>
+    <string name="apply_complete_body">예약 확정 여부는 예약 내역에서 확인할 수 있어요</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
