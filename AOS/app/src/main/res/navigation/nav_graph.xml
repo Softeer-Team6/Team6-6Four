@@ -89,7 +89,22 @@
         android:id="@+id/applyTimeFragment"
         android:name="com.softeer.team6four.ui.apply.ApplyTimeFragment"
         android:label="ApplyTimeFragment"
-        tools:layout="@layout/fragment_apply_time"/>
+        tools:layout="@layout/fragment_apply_time">
+        <action
+            android:id="@+id/action_applyTimeFragment_to_applyCompleteFragment"
+            app:destination="@id/applyCompleteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/applyCompleteFragment"
+        android:name="com.softeer.team6four.ui.apply.ApplyCompleteFragment"
+        android:label="ApplyCompleteFragment"
+        tools:layout="@layout/fragment_apply_complete">
+        <action
+            android:id="@+id/action_applyCompleteFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
 
 
 </navigation>
