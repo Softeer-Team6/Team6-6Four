@@ -135,8 +135,6 @@
     <string name="reservation_price">대여 비용 : 3,400원</string>
     <string name="reject_reservation">거절</string>
     <string name="approve_reservation">승인</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="edit">수정</string>
     <string name="delete">삭제</string>
     <string name="delete_dialog_body">삭제할 경우 다시 되돌릴 수 없습니다.</string>
@@ -148,6 +146,20 @@
     <string name="point_charge_title">포인트 내역</string>
     <string name="total_points">총 포인트</string>
     <string name="empty_point_charge">포인트 내역이 없어요.</string>
+    <string name="apply_time_title">충전을 원하는 \n시간대를 선택해주세요</string>
+    <string name="previous_date_icon_description">이전 날짜 아이콘</string>
+    <string name="apply_reservation">예약 신청하기</string>
+    <string name="reservation_possible">예약 가능</string>
+    <string name="reservation_possible_icon_description">예약 가능 아이콘</string>
+    <string name="reservation_impossible">예약 불가능</string>
+    <string name="apply_time_body">예약 불가 시간대를 피해서 선택해 주세요!</string>
+    <string name="apply_complete_title">카밥 예약 신청이 완료되었어요\n예약 확정까지 기다려 주세요!</string>
+    <string name="apply_complete_image_description">신청 완료 이미지</string>
+    <string name="apply_complete_body">예약 확정 여부는 예약 내역에서 확인할 수 있어요</string>
+    <string name="apply_confirm_title">카밥 주인에게 \n예약 신청을 보낼까요?</string>
+    <string name="apply_confirm_time_title">예약 시간</string>
+    <string name="apply_confirm_back">뒤로 가기</string>
+    <string name="apply_confirm_apply">신청</string>
     <string name="reservation_list_check">예약내역 확인</string>
     <string name="reservation_wait">대기</string>
     <string name="reservation_approve">승인</string>

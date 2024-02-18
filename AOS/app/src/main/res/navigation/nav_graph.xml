@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_homeFragment_to_registerChargerFragment"
             app:destination="@id/registerChargerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_applyDetailFragment"
+            app:destination="@id/applyDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/myChargerListFragment"
@@ -73,5 +76,35 @@
         android:name="com.softeer.team6four.ui.mypage.charger.MyChargerFragment"
         android:label="MyChargerFragment"
         tools:layout="@layout/fragment_my_charger" />
+    <fragment
+        android:id="@+id/applyDetailFragment"
+        android:name="com.softeer.team6four.ui.apply.ApplyDetailFragment"
+        android:label="ApplyDetailFragment"
+        tools:layout="@layout/fragment_apply_detail">
+        <action
+            android:id="@+id/action_applyDetailFragment_to_applyTimeFragment"
+            app:destination="@id/applyTimeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/applyTimeFragment"
+        android:name="com.softeer.team6four.ui.apply.ApplyTimeFragment"
+        android:label="ApplyTimeFragment"
+        tools:layout="@layout/fragment_apply_time">
+        <action
+            android:id="@+id/action_applyTimeFragment_to_applyCompleteFragment"
+            app:destination="@id/applyCompleteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/applyCompleteFragment"
+        android:name="com.softeer.team6four.ui.apply.ApplyCompleteFragment"
+        android:label="ApplyCompleteFragment"
+        tools:layout="@layout/fragment_apply_complete">
+        <action
+            android:id="@+id/action_applyCompleteFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
 
 </navigation>
