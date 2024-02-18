@@ -11,18 +11,18 @@ import java.time.format.DateTimeFormatter;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CarbobRegistration  {
-    private String description;
-    private String carbobNickname;
-    private String feePer1kwh;
-    private String address;
-    private Double latitude;
-    private Double longitude;
-    private String locationType;
-    private String chargeType;
-    private String speedType;
-    private String installType;
-    private LocalDateTime startDateTime;
-    private LocalDateTime endDateTime;
+    private @NotNull String description;
+    private @NotNull String carbobNickname;
+    private @NotNull String feePer1kwh;
+    private @NotNull String address;
+    private @NotNull Double latitude;
+    private @NotNull Double longitude;
+    private @NotNull String locationType;
+    private @NotNull String chargeType;
+    private @NotNull String speedType;
+    private @NotNull String installType;
+    private @NotNull LocalDateTime startDateTime;
+    private @NotNull LocalDateTime endDateTime;
 
     public String getApplyDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy.MM.dd");
