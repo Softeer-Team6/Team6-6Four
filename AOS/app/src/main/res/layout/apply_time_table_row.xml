@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/time_table_row_item_first"
+            android:layout_width="36dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/background_apply_time_table_item_possible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/time_table_row_item_second"
+            android:layout_width="36dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/background_apply_time_table_item_possible"
+            app:layout_constraintStart_toEndOf="@id/time_table_row_item_first"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/time_table_row_item_third"
+            android:layout_width="36dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/background_apply_time_table_item_possible"
+            app:layout_constraintStart_toEndOf="@id/time_table_row_item_second"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/time_table_row_item_fourth"
+            android:layout_width="36dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/background_apply_time_table_item_possible"
+            app:layout_constraintStart_toEndOf="@id/time_table_row_item_third"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/time_table_row_item_fifth"
+            android:layout_width="36dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/background_apply_time_table_item_possible"
+            app:layout_constraintStart_toEndOf="@id/time_table_row_item_fourth"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/time_table_row_item_sixth"
+            android:layout_width="36dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="4dp"
+            android:background="@drawable/background_apply_time_table_item_possible"
+            app:layout_constraintStart_toEndOf="@id/time_table_row_item_fifth"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_time_table_text_first"
+            android:layout_width="22dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="11dp"
+            android:text="0"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/time_table_row_item_first" />
+
+        <TextView
+            android:id="@+id/tv_time_table_text_second"
+            android:layout_width="22dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="11dp"
+            android:text="1"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="17dp"
+            app:layout_constraintStart_toEndOf="@id/tv_time_table_text_first"
+            app:layout_constraintTop_toBottomOf="@id/time_table_row_item_first" />
+
+        <TextView
+            android:id="@+id/tv_time_table_text_third"
+            android:layout_width="22dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="11dp"
+            android:text="2"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="17dp"
+            app:layout_constraintStart_toEndOf="@id/tv_time_table_text_second"
+            app:layout_constraintTop_toBottomOf="@id/time_table_row_item_first" />
+
+        <TextView
+            android:id="@+id/tv_time_table_text_fourth"
+            android:layout_width="22dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="11dp"
+            android:text="3"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="17dp"
+            app:layout_constraintStart_toEndOf="@id/tv_time_table_text_third"
+            app:layout_constraintTop_toBottomOf="@id/time_table_row_item_first" />
+
+        <TextView
+            android:id="@+id/tv_time_table_text_fifth"
+            android:layout_width="22dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="11dp"
+            android:text="4"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="17dp"
+            app:layout_constraintStart_toEndOf="@id/tv_time_table_text_fourth"
+            app:layout_constraintTop_toBottomOf="@id/time_table_row_item_first" />
+
+        <TextView
+            android:id="@+id/tv_time_table_text_sixth"
+            android:layout_width="22dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="11dp"
+            android:text="5"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="17dp"
+            app:layout_constraintStart_toEndOf="@id/tv_time_table_text_fifth"
+            app:layout_constraintTop_toBottomOf="@id/time_table_row_item_first" />
+
+        <TextView
+            android:id="@+id/tv_time_table_text_seventh"
+            android:layout_width="22dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="11dp"
+            android:text="6"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="17dp"
+            app:layout_constraintStart_toEndOf="@id/tv_time_table_text_sixth"
+            app:layout_constraintTop_toBottomOf="@id/time_table_row_item_first" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

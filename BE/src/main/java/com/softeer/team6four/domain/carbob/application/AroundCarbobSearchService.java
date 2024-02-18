@@ -38,6 +38,9 @@ public class AroundCarbobSearchService {
             (Double latitude, Double longitude, Long carbobId)
     {
         SpecificDetailCarbobInfo specificCarbob = aroundCarbobRepositoryImpl.findSpecificCarbobDetailByCarbobId(latitude,longitude,carbobId);
+
+        specificCarbob.setRoundDistance();
+
         return ResponseDto.map(HttpStatus.OK.value(), "선택한 카밥 정보입니다", specificCarbob);
     }
 
