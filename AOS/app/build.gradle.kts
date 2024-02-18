@@ -42,6 +42,7 @@ android {
 }
 
 dependencies {
+    implementation("com.google.android.gms:play-services-location:21.1.0")
     implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
     implementation("com.naver.maps:map-sdk:3.17.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
