@@ -18,6 +18,8 @@ public enum ErrorCode {
     EMAIL_DUPLICATE(400, "이미 존재하는 이메일입니다."),
     INVALID_RESERVATION_TIME_LINES(400, "예약 불가능한 시간입니다."),
     INVALID_RESERVATION_CHECK_STATE(400, "대기 상태만 예약 확인이 가능합니다"),
+    CARBOB_REGISTRATION_FAILED(400,"카밥 등록에 실패했습니다."),
+    CARBOB_QR_FAILED(400,"QR 코드 생성 또는 S3 업로드 중 오류가 발생했습니다."),
 
     INVALID_CHARGE_NEGATIVE(400, "양수만 입력 가능합니다"),
     INSUFFICIENT_POINTS(400, "포인트가 부족합니다."),
