@@ -4,7 +4,7 @@ import com.softeer.team6four.global.exception.BusinessException;
 import com.softeer.team6four.global.response.ErrorCode;
 
 public class ReservationException extends BusinessException {
-    public ReservationException(ErrorCode errorCode) {
-        super(errorCode);
-    }
+	public ReservationException(ErrorCode errorCode) {
+		super(errorCode);
+	}
 }

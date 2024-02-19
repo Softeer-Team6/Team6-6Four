@@ -8,5 +8,5 @@ import lombok.Getter;
 @Builder
 @AllArgsConstructor
 public class TotalPoint {
-    private final Integer totalPoint;
+	private final Integer totalPoint;
 }

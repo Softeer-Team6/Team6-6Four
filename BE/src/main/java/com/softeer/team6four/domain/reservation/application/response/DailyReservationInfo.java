@@ -1,14 +1,13 @@
 package com.softeer.team6four.domain.reservation.application.response;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 public class DailyReservationInfo {
-    boolean[] dailyBookedTimeCheck = new boolean[24];
+	boolean[] dailyBookedTimeCheck = new boolean[24];
 
-    public DailyReservationInfo(boolean[] dailyBookedTimeCheck){
-        this.dailyBookedTimeCheck = dailyBookedTimeCheck;
-    }
+	public DailyReservationInfo(boolean[] dailyBookedTimeCheck) {
+		this.dailyBookedTimeCheck = dailyBookedTimeCheck;
+	}
 
 }

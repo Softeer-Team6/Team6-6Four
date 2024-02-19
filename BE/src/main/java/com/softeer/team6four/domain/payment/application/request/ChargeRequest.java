@@ -6,6 +6,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class ChargeRequest {
-    private Integer chargePoint;
+	private Integer chargePoint;
 }
 

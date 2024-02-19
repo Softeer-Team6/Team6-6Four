@@ -12,20 +12,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CarbobInfo {
 
-    @Column(nullable = false)
-    private String description;
+	@Column(nullable = false)
+	private String description;
 
-    @Column(name = "fee_per_hour", nullable = false)
-    private Integer feePerHour;
+	@Column(name = "fee_per_hour", nullable = false)
+	private Integer feePerHour;
 
-    @Builder
-    public CarbobInfo(String description, SpeedType speedType, Integer fee) {
-        this.description = description;
-        this.feePerHour = calculateFee(speedType, fee);
-    }
+	@Builder
+	public CarbobInfo(String description, SpeedType speedType, Integer fee) {
+		this.description = description;
+		this.feePerHour = calculateFee(speedType, fee);
+	}
 
-    private Integer calculateFee(SpeedType speedType, Integer fee) {
-        return Integer.parseInt(speedType.getValue()) * fee;
-    }
+	private Integer calculateFee(SpeedType speedType, Integer fee) {
+		return Integer.parseInt(speedType.getValue()) * fee;
+	}
 
 }

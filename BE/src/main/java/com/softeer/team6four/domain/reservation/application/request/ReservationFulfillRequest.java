@@ -7,5 +7,5 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ReservationFulfillRequest {
-    private Long reservationId;
+	private Long reservationId;
 }

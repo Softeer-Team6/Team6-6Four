@@ -2,6 +2,7 @@ package com.softeer.team6four.domain.notification.domain;
 
 import com.softeer.team6four.domain.user.domain.User;
 import com.softeer.team6four.global.infrastructure.database.BaseEntity;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -21,22 +22,22 @@ import lombok.NoArgsConstructor;
 @Table(name = "fcm_token")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class FcmToken extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "fcm_token_id")
-    private Long fcmTokenId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "fcm_token_id")
+	private Long fcmTokenId;
 
-    @Column(name = "fcm_token", unique = true, nullable = false)
-    private String fcmToken;
+	@Column(name = "fcm_token", unique = true, nullable = false)
+	private String fcmToken;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", nullable = false)
+	private User user;
 
-    @Builder
-    public FcmToken(String fcmToken, User user) {
-        this.fcmToken = fcmToken;
-        this.user = user;
-    }
+	@Builder
+	public FcmToken(String fcmToken, User user) {
+		this.fcmToken = fcmToken;
+		this.user = user;
+	}
 
 }
