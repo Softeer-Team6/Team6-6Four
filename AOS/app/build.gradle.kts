@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -5,6 +8,10 @@ plugins {
     id("kotlinx-serialization")
     id("com.google.dagger.hilt.android")
     id("com.google.gms.google-services")
+}
+
+val properties = Properties().apply {
+    load(FileInputStream(rootProject.file("local.properties")))
 }
 
 android {
@@ -19,11 +26,25 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "CLIENT_ID", "\"${properties["CLIENT_ID"]}\"")
+        buildConfigField(
+            "String",
+            "CLIENT_SECRET",
+            "\"${properties["CLIENT_SECRET"]}\""
+        )
     }
 
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+            manifestPlaceholders["CLIENT_ID"] = properties["CLIENT_ID"] as String
+            manifestPlaceholders["CLIENT_SECRET"] = properties["CLIENT_SECRET"] as String
+        }
         release {
             isMinifyEnabled = false
+            manifestPlaceholders["CLIENT_ID"] = properties["CLIENT_ID"] as String
+            manifestPlaceholders["CLIENT_SECRET"] = properties["CLIENT_SECRET"] as String
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -31,6 +52,7 @@ android {
         }
     }
     buildFeatures {
+        buildConfig = true
         dataBinding = true
     }
     compileOptions {
