@@ -17,9 +17,8 @@ import com.softeer.team6four.domain.reservation.domain.ReservationLine;
 import com.softeer.team6four.domain.reservation.domain.ReservationRepository;
 import com.softeer.team6four.domain.reservation.infra.ReservationCreatedEvent;
 import com.softeer.team6four.domain.reservation.infra.ReservationRepositoryImpl;
-import com.softeer.team6four.domain.user.application.exception.UserException;
+import com.softeer.team6four.domain.user.application.UserSearchService;
 import com.softeer.team6four.domain.user.domain.User;
-import com.softeer.team6four.domain.user.domain.UserRepository;
 import com.softeer.team6four.global.annotation.DistributedLock;
 import com.softeer.team6four.global.response.ErrorCode;
 
@@ -32,10 +31,10 @@ import lombok.extern.slf4j.Slf4j;
 public class ReservationCreateService {
 	private final ApplicationEventPublisher eventPublisher;
 
-	private final UserRepository userRepository;
 	private final CarbobRepository carbobRepository;
 	private final ReservationRepository reservationRepository;
 	private final ReservationRepositoryImpl reservationRepositoryImpl;
+	private final UserSearchService userSearchService;
 
 	@DistributedLock(key = "'carbobReservation:' + #reservationApply.getCarbobId() + ':' + #reservationApply.getApplyDate() ")
 	public Long makeReservationToCarbobV1(Long userId, ReservationApply reservationApply) {
@@ -43,8 +42,7 @@ public class ReservationCreateService {
 			throw new InvalidReservationTimeLinesException(ErrorCode.INVALID_RESERVATION_TIME_LINES);
 		}
 
-		User user = userRepository.findById(userId)
-			.orElseThrow(() -> new UserException(ErrorCode.USER_NOT_FOUND));
+		User user = userSearchService.findUserByUserId(userId);
 
 		Carbob carbob = carbobRepository.findById(reservationApply.getCarbobId())
 			.orElseThrow(() -> new CarbobNotFoundException(ErrorCode.CARBOB_NOT_FOUND));
