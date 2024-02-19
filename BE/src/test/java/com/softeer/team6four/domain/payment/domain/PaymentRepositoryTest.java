@@ -60,36 +60,32 @@ class PaymentRepositoryTest {
 	@DisplayName("UserId로 payment 조회")
 	void findByUser_UserId() {
 		//given
-		//Payment 객체들을 저장할 리스트 생성
-		List<Payment> paymentList = new ArrayList<>();
-
-		Payment payment1 = Payment.builder()
-			.amount(1000)
-			.payType(PayType.CHARGE)
-			.targetId(0L)
-			.user(user)
-			.build();
-		paymentList.add(payment1);
-		paymentRepository.save(payment1);
-
-		Payment payment2 = Payment.builder()
-			.amount(2000)
-			.payType(PayType.CHARGE)
-			.targetId(1L)
-			.user(user)
-			.build();
-		paymentList.add(payment2);
-		paymentRepository.save(payment2);
+		List<Payment> expectedPayments = createMockPayments();
 
 		//when
 		List<Payment> savedPayment = paymentRepository.findByUser_UserId(user.getUserId());
 
 		//then
-		assertEquals(savedPayment, paymentList);
-		assertEquals(savedPayment.size(), paymentList.size());
+		assertEquals(savedPayment, expectedPayments);
+		assertEquals(savedPayment.size(), expectedPayments.size());
 	}
 
 	@Test
 	void findPaymentsByPayTypeAndTargetIdIn() {
+	}
+
+	private List<Payment> createMockPayments() {
+		// 가상의 Payment 객체 리스트 생성
+		List<Payment> payments = new ArrayList<>();
+		Payment payment1 = Payment.builder().amount(1000).payType(PayType.CHARGE).targetId(0L).user(user)
+			.build();
+		payments.add(payment1);
+		paymentRepository.save(payment1);
+
+		Payment payment2 = Payment.builder().amount(2000).payType(PayType.CHARGE).targetId(1L).user(user)
+			.build();
+		payments.add(payment2);
+		paymentRepository.save(payment2);
+		return payments;
 	}
 }
