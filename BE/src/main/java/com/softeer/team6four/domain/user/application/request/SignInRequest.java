@@ -9,4 +9,14 @@ import lombok.NoArgsConstructor;
 public class SignInRequest {
 	private String email;
 	private String password;
+
+	private SignInRequest(String email, String password) {
+		this.email = email;
+		this.password = password;
+	}
+
+	public static SignInRequest create(String email, String password) {
+		return new SignInRequest(email, password);
+	}
 }
+
