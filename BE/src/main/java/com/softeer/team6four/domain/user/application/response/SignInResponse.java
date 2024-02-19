@@ -4,12 +4,14 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class SignInJwtResponse {
+public class SignInResponse {
+	private final String nickname;
 	private final String accessToken;
 	private final String refreshToken;
 
 	@Builder
-	public SignInJwtResponse(String accessToken, String refreshToken) {
+	public SignInResponse(String nickname,String accessToken, String refreshToken) {
+		this.nickname = nickname;
 		this.accessToken = accessToken;
 		this.refreshToken = refreshToken;
 	}
