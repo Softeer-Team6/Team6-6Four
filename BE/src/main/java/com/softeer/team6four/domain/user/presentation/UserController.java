@@ -30,15 +30,16 @@ public class UserController {
 		NicknameCheck nicknameCheck = userJoinService.findNickname(nickname);
 		return ResponseDto.map(HttpStatus.OK.value(),"사용 가능한 닉네임 입니다.", nicknameCheck);
 	}
-
 	@PostMapping("/auth/signup")
-	public void signup(@RequestBody SignUpRequest signupRequest) {
+	public ResponseDto<Void> signup(@RequestBody SignUpRequest signupRequest) {
 		userJoinService.signup(signupRequest);
+		return ResponseDto.map(HttpStatus.OK.value(), "회원가입에 성공했습니다.", null);
 	}
 
 	@PostMapping("/auth/signin")
 	public ResponseDto<SignInResponse> login(@RequestBody SignInRequest signinRequest) {
-		return userJoinService.signin(signinRequest);
+		SignInResponse signInResponse = userJoinService.signin(signinRequest);
+		return ResponseDto.map(HttpStatus.OK.value(), "로그인에 성공했습니다.", signInResponse);
 	}
 
 }
