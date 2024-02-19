@@ -21,7 +21,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-
 @Slf4j
 @RestController
 @RequestMapping(value = "/v1/carbob")
@@ -61,7 +60,7 @@ public class CarbobController {
             (
                     @RequestParam @NotNull Double latitude,
                     @RequestParam @NotNull Double longitude,
-                    @RequestParam(required = false, defaultValue = "SPEED") CarbobListStateSortType sortType
+                    @RequestParam(required = false, defaultValue = "SPEED") String sortType
             )
     {
         return aroundCarbobSearchService.findAroundCarbobInfoList(latitude,longitude,sortType);
@@ -97,7 +96,6 @@ public class CarbobController {
         Long userId = UserContextHolder.get();
         return carbobRegistrationService.registerCarbob(userId, carbobRegistration);
     }
-
     @Auth
     @PostMapping(value = "/image")
     public ResponseDto<CarbobImgUrl> uploadCarbobImg
@@ -111,6 +109,5 @@ public class CarbobController {
                 .build();
         return ResponseDto.map(HttpStatus.OK.value(), "S3에 이미지 등록 후 링크 반환이 성공했습니다.", carbobImgUrl);
     }
-
 }
 

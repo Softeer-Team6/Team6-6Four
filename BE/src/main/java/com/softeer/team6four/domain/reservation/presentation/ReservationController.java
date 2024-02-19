@@ -6,14 +6,8 @@ import com.softeer.team6four.domain.reservation.application.ReservationSearchSer
 import com.softeer.team6four.domain.reservation.application.ReservationUpdateService;
 import com.softeer.team6four.domain.reservation.application.request.ReservationApply;
 import com.softeer.team6four.domain.reservation.application.request.ReservationCheck;
-import com.softeer.team6four.domain.reservation.application.response.QrVerification;
-import com.softeer.team6four.domain.reservation.application.response.ReservationApplicationInfo;
-import com.softeer.team6four.domain.reservation.application.response.ReservationCheckInfo;
+import com.softeer.team6four.domain.reservation.application.response.*;
 import com.softeer.team6four.domain.reservation.application.request.ReservationFulfillRequest;
-import com.softeer.team6four.domain.reservation.application.response.QrVerification;
-import com.softeer.team6four.domain.reservation.application.response.ReservationApplicationInfo;
-import com.softeer.team6four.domain.reservation.application.response.ReservationFulfillResult;
-import com.softeer.team6four.domain.reservation.application.response.ReservationInfo;
 import com.softeer.team6four.global.annotation.Auth;
 import com.softeer.team6four.global.filter.UserContextHolder;
 import com.softeer.team6four.global.response.ResponseDto;
@@ -92,6 +86,18 @@ public class ReservationController {
         Long hostUserId = UserContextHolder.get();
         return reservationConverterService.converterReservationState(hostUserId, reservationId, reservationCheck);
     }
+
+    @Auth
+    @GetMapping("/{carbobId}/daily")
+    public ResponseDto<DailyReservationInfo> getdailyResrvationStatus
+            (
+                    @PathVariable Long carbobId,
+                    @RequestParam(name = "date", defaultValue = "default") String date
+            )
+    {
+        return reservationSearchService.getDailyReservationStatus(carbobId,date);
+    }
+
 
     @Auth
     @PostMapping("/fulfillment")
