@@ -14,9 +14,8 @@ import com.softeer.team6four.domain.reservation.domain.Reservation;
 import com.softeer.team6four.domain.reservation.domain.ReservationRepository;
 import com.softeer.team6four.domain.reservation.domain.StateType;
 import com.softeer.team6four.domain.reservation.infra.ReservationCheckEvent;
-import com.softeer.team6four.domain.user.application.exception.UserException;
+import com.softeer.team6four.domain.user.application.UserSearchService;
 import com.softeer.team6four.domain.user.domain.User;
-import com.softeer.team6four.domain.user.domain.UserRepository;
 import com.softeer.team6four.global.response.ErrorCode;
 import com.softeer.team6four.global.response.ResponseDto;
 
@@ -29,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ReservationConverterService {
 	private final ApplicationEventPublisher eventPublisher;
 	private final ReservationRepository reservationRepository;
-	private final UserRepository userRepository;
+	private final UserSearchService userSearchService;
 
 	@Transactional
 	public ResponseDto<ReservationCheckInfo> converterReservationState
@@ -43,8 +42,7 @@ public class ReservationConverterService {
 
 		reservation.updateStateType(reservationCheck.getStateType());
 
-		User host = userRepository.findById(hostUserId)
-			.orElseThrow(() -> new UserException(ErrorCode.USER_NOT_FOUND));
+		User host = userSearchService.findUserByUserId(hostUserId);
 		User guest = reservation.getGuest();
 		Carbob carbob = reservation.getCarbob();
 
