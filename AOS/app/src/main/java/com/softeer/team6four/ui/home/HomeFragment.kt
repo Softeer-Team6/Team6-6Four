@@ -27,9 +27,10 @@ import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import com.softeer.team6four.R
 import com.softeer.team6four.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment(), OnMapReadyCallback {
     private lateinit var requestLauncher: ActivityResultLauncher<Array<String>>
     private lateinit var locationSource: FusedLocationSource

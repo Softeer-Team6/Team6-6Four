@@ -19,7 +19,7 @@ interface GeoCodeService {
         @Query("count") count: Int
     ): Response<GeoCodeResult>
 
-    companion object { //Todo: 분리할 예정
+    companion object {
         private const val BASE_URL = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/"
 
         fun create(): GeoCodeService {

@@ -5,8 +5,11 @@ import com.softeer.team6four.BuildConfig
 import com.softeer.team6four.api.GeoCodeService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class GeoCodeRepository(private val geoCodeService: GeoCodeService) {
+@Singleton
+class GeoCodeRepository @Inject constructor(private val geoCodeService: GeoCodeService) {
     suspend fun getCoordinateResult(address: String): Flow<LatLng> {
         val result = geoCodeService.coordinateResult(
             clientId = BuildConfig.CLIENT_ID,
