@@ -2,6 +2,7 @@ package com.softeer.team6four.domain.user.application;
 
 import com.softeer.team6four.domain.user.application.exception.UserException;
 import com.softeer.team6four.domain.user.application.response.EmailCheck;
+import com.softeer.team6four.domain.user.application.response.NicknameCheck;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +34,17 @@ public class UserJoinService {
 				throw new UserException(ErrorCode.EMAIL_DUPLICATE);
 			}
 			return new EmailCheck(emailExists);
+	}
+
+	@Transactional(readOnly = true)
+	public NicknameCheck findNickname(String nickname) {
+		boolean nicknameExists = userRepository.existsByNickname(nickname);
+		NicknameCheck nicknameCheck = new NicknameCheck(nicknameExists);
+
+		if (nicknameExists) {
+			throw new UserException(ErrorCode.NICKNAME_DUPLICATE);
+		}
+		return new NicknameCheck(nicknameExists);
 	}
 
 
