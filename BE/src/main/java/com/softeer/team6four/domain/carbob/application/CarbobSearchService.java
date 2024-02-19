@@ -68,7 +68,7 @@ public class CarbobSearchService {
 		return carbobImageRepository.findCarbobImageByCarbob_CarbobId(carbobId)
 			.orElseGet(() ->
 				CarbobImage.builder()
-					.imageUrl("DEFAULT_IMAGE_URL")
+					.imageUrl("https://project-s3-bucket-1.s3.ap-northeast-2.amazonaws.com/carbob.png")
 					.build())
 			.getImageUrl();
 	}
