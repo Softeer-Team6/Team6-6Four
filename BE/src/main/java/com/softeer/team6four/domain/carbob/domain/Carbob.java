@@ -29,56 +29,56 @@ import lombok.NoArgsConstructor;
 @Table(name = "carbob")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Carbob extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "carbob_id")
-    private Long carbobId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "carbob_id")
+	private Long carbobId;
 
-    @Column(nullable = false)
-    private String nickname;
+	@Column(nullable = false)
+	private String nickname;
 
-    @Column(name = "qr_image_url")
-    private String qrImageUrl;
+	@Column(name = "qr_image_url")
+	private String qrImageUrl;
 
-    @Embedded
-    private CarbobInfo info;
+	@Embedded
+	private CarbobInfo info;
 
-    @Embedded
-    private CarbobLocation location;
+	@Embedded
+	private CarbobLocation location;
 
-    @Embedded
-    private CarbobSpec spec;
+	@Embedded
+	private CarbobSpec spec;
 
-    @OneToOne(mappedBy = "carbob", fetch = FetchType.LAZY)
-    private CarbobImage carbobImage;
+	@OneToOne(mappedBy = "carbob", fetch = FetchType.LAZY)
+	private CarbobImage carbobImage;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "host_id", nullable = false)
-    private User host;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "host_id", nullable = false)
+	private User host;
 
-    @OneToMany(mappedBy = "carbob", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<Reservation> reservations;
+	@OneToMany(mappedBy = "carbob", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private List<Reservation> reservations;
 
-    @Builder
-    public Carbob
-            (
-                    String nickname, String qrImageUrl, CarbobInfo info, CarbobLocation location, CarbobSpec spec,
-                    CarbobImage carbobImage, User host
-            )
-    {
-        this.nickname = nickname;
-        this.qrImageUrl = qrImageUrl; // QR 이미지 URL 추가
-        this.info = info;
-        this.location = location;
-        this.spec = spec;
-        this.carbobImage = carbobImage;
-        this.host = host;
-    }
+	@Builder
+	public Carbob
+		(
+			String nickname, String qrImageUrl, CarbobInfo info, CarbobLocation location, CarbobSpec spec,
+			CarbobImage carbobImage, User host
+		) {
+		this.nickname = nickname;
+		this.qrImageUrl = qrImageUrl; // QR 이미지 URL 추가
+		this.info = info;
+		this.location = location;
+		this.spec = spec;
+		this.carbobImage = carbobImage;
+		this.host = host;
+	}
 
-    public void setCarbobQrImageUrl(String qrImageUrl) {
-        this.qrImageUrl = qrImageUrl;
-    }
-    public String getCarbobQrImageUrl() {
-        return this.qrImageUrl;
-    }
+	public void setCarbobQrImageUrl(String qrImageUrl) {
+		this.qrImageUrl = qrImageUrl;
+	}
+
+	public String getCarbobQrImageUrl() {
+		return this.qrImageUrl;
+	}
 }

@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class WhitePathsConst {
 
-    public static final String[] WHITE_PATHS = {
-            "/", "/v1/user/auth/**"
-    };
+	public static final String[] WHITE_PATHS = {
+		"/", "/v1/user/auth/**"
+	};
 }

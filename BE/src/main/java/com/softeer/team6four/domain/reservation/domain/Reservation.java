@@ -29,44 +29,46 @@ import lombok.NoArgsConstructor;
 @Table(name = "reservation")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Reservation extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "reservation_id")
-    private Long reservationId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "reservation_id")
+	private Long reservationId;
 
-    @Column(name = "total_fee", nullable = false)
-    private Integer totalFee;
+	@Column(name = "total_fee", nullable = false)
+	private Integer totalFee;
 
-    @Convert(converter = StateTypeConverter.class)
-    @Column(name = "state_type", nullable = false)
-    private StateType stateType;
+	@Convert(converter = StateTypeConverter.class)
+	@Column(name = "state_type", nullable = false)
+	private StateType stateType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "carbob_id", nullable = false)
-    private Carbob carbob;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "carbob_id", nullable = false)
+	private Carbob carbob;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "guest_id", nullable = false)
-    private User guest;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "guest_id", nullable = false)
+	private User guest;
 
-    @ElementCollection(fetch = FetchType.LAZY)
-    @CollectionTable(name = "reservation_line", joinColumns = @JoinColumn(name = "reservation_id"))
-    @OrderColumn(name = "line_idx")
-    private List<ReservationLine> reservationLines;
+	@ElementCollection(fetch = FetchType.LAZY)
+	@CollectionTable(name = "reservation_line", joinColumns = @JoinColumn(name = "reservation_id"))
+	@OrderColumn(name = "line_idx")
+	private List<ReservationLine> reservationLines;
 
-    @Builder
-    public Reservation(Integer totalFee, StateType stateType, Carbob carbob, User guest, List<ReservationLine> reservationLines) {
-        this.totalFee = totalFee;
-        this.stateType = stateType;
-        this.carbob = carbob;
-        this.guest = guest;
-        this.reservationLines = reservationLines;
-    }
+	@Builder
+	public Reservation(Integer totalFee, StateType stateType, Carbob carbob, User guest,
+		List<ReservationLine> reservationLines) {
+		this.totalFee = totalFee;
+		this.stateType = stateType;
+		this.carbob = carbob;
+		this.guest = guest;
+		this.reservationLines = reservationLines;
+	}
 
-    public void updateStateType(StateType stateType){
-        this.stateType = stateType;
-    }
-    public void changeStateType(StateType stateType) {
-        this.stateType = stateType;
-    }
+	public void updateStateType(StateType stateType) {
+		this.stateType = stateType;
+	}
+
+	public void changeStateType(StateType stateType) {
+		this.stateType = stateType;
+	}
 }

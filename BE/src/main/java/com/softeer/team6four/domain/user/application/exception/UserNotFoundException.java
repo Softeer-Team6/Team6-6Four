@@ -4,7 +4,7 @@ import com.softeer.team6four.global.response.ErrorCode;
 
 public class UserNotFoundException extends UserException {
 
-    public UserNotFoundException(ErrorCode errorCode) {
-        super(errorCode);
-    }
+	public UserNotFoundException(ErrorCode errorCode) {
+		super(errorCode);
+	}
 }

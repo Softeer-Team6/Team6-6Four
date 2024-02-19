@@ -16,12 +16,12 @@ import lombok.Getter;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity {
 
-    @CreatedDate
-    @Column(updatable = false, nullable = false)
-    private LocalDateTime createdDate;
+	@CreatedDate
+	@Column(updatable = false, nullable = false)
+	private LocalDateTime createdDate;
 
-    @LastModifiedDate
-    @Column(nullable = false)
-    private LocalDateTime modifiedDate;
+	@LastModifiedDate
+	@Column(nullable = false)
+	private LocalDateTime modifiedDate;
 
 }
