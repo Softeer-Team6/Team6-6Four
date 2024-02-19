@@ -16,6 +16,7 @@ public enum ErrorCode {
 	INVALID_REQUEST(400, "request 정보를 읽을 수 없습니다."),
 	ENUM_NOT_FOUND(400, "존재하지 않는 ENUM 값입니다."),
 	EMAIL_DUPLICATE(400, "이미 존재하는 이메일입니다."),
+	NICKNAME_DUPLICATE(400, "이미 존재하는 닉네임입니다."),
 	INVALID_RESERVATION_TIME_LINES(400, "예약 불가능한 시간입니다."),
 	INVALID_RESERVATION_CHECK_STATE(400, "대기 상태만 예약 확인이 가능합니다"),
 	CARBOB_REGISTRATION_FAILED(400, "카밥 등록에 실패했습니다."),
