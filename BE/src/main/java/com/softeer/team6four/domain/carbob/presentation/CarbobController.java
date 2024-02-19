@@ -1,13 +1,11 @@
 package com.softeer.team6four.domain.carbob.presentation;
 
-import com.softeer.team6four.domain.carbob.application.CarbobRegistrationService;
-import com.softeer.team6four.domain.carbob.application.CarbobSearchService;
+import com.softeer.team6four.domain.carbob.application.*;
 import com.softeer.team6four.domain.carbob.application.request.CarbobRegistration;
 import com.softeer.team6four.domain.carbob.application.response.CarbobQr;
 import com.softeer.team6four.domain.carbob.application.response.MyCarbobDetailInfo;
 import com.softeer.team6four.domain.carbob.application.response.MyCarbobSummary;
 import com.google.firebase.database.annotations.NotNull;
-import com.softeer.team6four.domain.carbob.application.AroundCarbobSearchService;
 import com.softeer.team6four.domain.carbob.application.CarbobSearchService;
 import com.softeer.team6four.domain.carbob.application.response.*;
 import com.softeer.team6four.global.annotation.Auth;
@@ -21,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Slf4j
 @RestController
@@ -30,6 +29,7 @@ public class CarbobController {
     private final CarbobSearchService carbobSearchService;
     private final CarbobRegistrationService carbobRegistrationService;
     private final AroundCarbobSearchService aroundCarbobSearchService;
+    private final CarbobImgUploadService carbobImgUploadService;
 
     @Auth
     @GetMapping(value = "/my")
@@ -95,6 +95,15 @@ public class CarbobController {
     {
         Long userId = UserContextHolder.get();
         return carbobRegistrationService.registerCarbob(userId,carbobRegistration);
+    }
+    @Auth
+    @PostMapping(value = "/image")
+    public ResponseDto<CarbobImgUrl> uploadCarbobImg
+            (
+                    @RequestPart MultipartFile image
+            )
+    {
+        return carbobImgUploadService.saveFile(image);
     }
 }
 
