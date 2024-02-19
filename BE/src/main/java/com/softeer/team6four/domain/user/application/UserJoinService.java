@@ -1,5 +1,7 @@
 package com.softeer.team6four.domain.user.application;
 
+import com.softeer.team6four.domain.user.application.exception.UserException;
+import com.softeer.team6four.domain.user.application.response.EmailCheck;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +23,18 @@ import lombok.RequiredArgsConstructor;
 public class UserJoinService {
 	private final JwtProvider jwtProvider;
 	private final UserRepository userRepository;
+
+	@Transactional(readOnly = true)
+	public EmailCheck findEmail(String email) {
+			boolean emailExists = userRepository.existsByEmail(email);
+			EmailCheck emailCheck = new EmailCheck(emailExists);
+
+			if (emailExists) {
+				throw new UserException(ErrorCode.EMAIL_DUPLICATE);
+			}
+			return new EmailCheck(emailExists);
+	}
+
 
 	@Transactional
 	public void signup(SignUpRequest signupRequest) {
