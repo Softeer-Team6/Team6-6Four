@@ -1,8 +1,11 @@
 package com.softeer.team6four.domain.reservation.domain;
 
+import java.util.List;
+
 import com.softeer.team6four.domain.carbob.domain.Carbob;
 import com.softeer.team6four.domain.user.domain.User;
 import com.softeer.team6four.global.infrastructure.database.BaseEntity;
+
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -16,7 +19,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OrderColumn;
 import jakarta.persistence.Table;
-import java.util.List;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -40,11 +42,11 @@ public class Reservation extends BaseEntity {
     private StateType stateType;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "carbob_id")
+    @JoinColumn(name = "carbob_id", nullable = false)
     private Carbob carbob;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "guest_id")
+    @JoinColumn(name = "guest_id", nullable = false)
     private User guest;
 
     @ElementCollection(fetch = FetchType.LAZY)

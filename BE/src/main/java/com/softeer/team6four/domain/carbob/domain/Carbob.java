@@ -1,8 +1,11 @@
 package com.softeer.team6four.domain.carbob.domain;
 
+import java.util.List;
+
 import com.softeer.team6four.domain.reservation.domain.Reservation;
 import com.softeer.team6four.domain.user.domain.User;
 import com.softeer.team6four.global.infrastructure.database.BaseEntity;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -16,7 +19,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import java.util.List;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -51,7 +53,7 @@ public class Carbob extends BaseEntity {
     private CarbobImage carbobImage;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "host_id")
+    @JoinColumn(name = "host_id", nullable = false)
     private User host;
 
     @OneToMany(mappedBy = "carbob", cascade = CascadeType.REMOVE, orphanRemoval = true)
