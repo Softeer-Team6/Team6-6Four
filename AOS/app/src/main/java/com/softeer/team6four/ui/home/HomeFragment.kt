@@ -1,16 +1,22 @@
 package com.softeer.team6four.ui.home
 
 import android.Manifest
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraAnimation
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.LocationTrackingMode
@@ -21,12 +27,18 @@ import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import com.softeer.team6four.R
 import com.softeer.team6four.databinding.FragmentHomeBinding
+import kotlinx.coroutines.launch
 
 
 class HomeFragment : Fragment(), OnMapReadyCallback {
     private lateinit var requestLauncher: ActivityResultLauncher<Array<String>>
     private lateinit var locationSource: FusedLocationSource
     private lateinit var naverMap: NaverMap
+    private val inputMethodManager by lazy {
+        requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+    }
+    private val homeViewModel: HomeViewModel by viewModels()
+
     private var _binding: FragmentHomeBinding? = null
     private val binding
         get() = _binding!!
@@ -71,10 +83,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                     "BottomSheet"
                 )
             }
+            setSearchAction()
             mapView.getMapAsync(this@HomeFragment)
         }
-
-
     }
 
     override fun onDestroy() {
@@ -86,24 +97,21 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         this.naverMap = naverMap
         with(naverMap) {
             locationSource = this@HomeFragment.locationSource
-            locationTrackingMode = LocationTrackingMode.NoFollow
-
-            val searchMarker = Marker().apply {
-                icon = OverlayImage.fromResource(R.drawable.icon_search_marker)
-            }
-            (locationSource as FusedLocationSource).activate { location ->
-                location?.let {
-                    searchMarker.position = LatLng(location.latitude, location.longitude)
-                    searchMarker.map = this@HomeFragment.naverMap
+            locationTrackingMode = LocationTrackingMode.Follow
+            viewLifecycleOwner.lifecycleScope.launch {
+                val searchMarker = Marker().apply {
+                    icon = OverlayImage.fromResource(R.drawable.icon_search_marker)
+                    position = locationOverlay.position
+                    map = naverMap
                 }
-            }
 
-            binding.btnCurrentLocation.setOnClickListener {
-                naverMap.moveCamera(
-                    CameraUpdate.scrollTo(locationOverlay.position).animate(CameraAnimation.Linear)
-                )
-                searchMarker.position = locationOverlay.position
-            }
+                binding.btnCurrentLocation.setOnClickListener {
+                    naverMap.moveCamera(
+                        CameraUpdate.scrollTo(locationOverlay.position)
+                            .animate(CameraAnimation.Linear)
+                    )
+                    searchMarker.position = locationOverlay.position
+                }
 
             this.setOnMapClickListener { _, latLng ->
                 searchMarker.position = latLng
@@ -124,6 +132,30 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             }
     }
 
+    private fun setSearchAction() {
+        with(binding) {
+            etSearchLocation.setOnKeyListener { _, keyCode, event ->
+                when {
+                    event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER -> {
+                        homeViewModel.getCoordinate(binding.etSearchLocation.text.toString())
+                        inputMethodManager.hideSoftInputFromWindow(
+                            binding.etSearchLocation.windowToken,
+                            0
+                        )
+                        binding.etSearchLocation.clearFocus()
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+            searchbarLayout.setEndIconOnClickListener {
+                inputMethodManager.hideSoftInputFromWindow(binding.etSearchLocation.windowToken, 0)
+                binding.etSearchLocation.clearFocus()
+                homeViewModel.getCoordinate(binding.etSearchLocation.text.toString())
+            }
+        }
+    }
 
     companion object {
         private const val LOCATION_REQUEST_CODE = 1000
