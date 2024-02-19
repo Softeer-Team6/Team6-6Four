@@ -17,10 +17,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 @Slf4j
 @RestController
@@ -61,7 +60,7 @@ public class CarbobController {
             (
                     @RequestParam @NotNull Double latitude,
                     @RequestParam @NotNull Double longitude,
-                    @RequestParam(required = false, defaultValue = "SPEED") CarbobListStateSortType sortType
+                    @RequestParam(required = false, defaultValue = "SPEED") String sortType
             )
     {
         return aroundCarbobSearchService.findAroundCarbobInfoList(latitude,longitude,sortType);
@@ -97,7 +96,6 @@ public class CarbobController {
         Long userId = UserContextHolder.get();
         return carbobRegistrationService.registerCarbob(userId,carbobRegistration);
     }
-
     @Auth
     @PostMapping(value = "/image")
     public ResponseDto<CarbobImgUrl> uploadCarbobImg
@@ -107,6 +105,5 @@ public class CarbobController {
     {
         return carbobImgUploadService.saveFile(image);
     }
-
 }
 
