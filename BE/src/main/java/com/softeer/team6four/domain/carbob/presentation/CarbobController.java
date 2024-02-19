@@ -15,7 +15,6 @@ import com.softeer.team6four.global.filter.UserContextHolder;
 import com.softeer.team6four.global.response.ListResponse;
 import com.softeer.team6four.global.response.ResponseDto;
 import com.softeer.team6four.global.response.SliceResponse;
-import com.softeer.team6four.domain.carbob.presentation.CarbobListStateSortType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
@@ -61,7 +60,7 @@ public class CarbobController {
             (
                     @RequestParam @NotNull Double latitude,
                     @RequestParam @NotNull Double longitude,
-                    @RequestParam(required = false, defaultValue = "SPEED") CarbobListStateSortType sortType
+                    @RequestParam(required = false, defaultValue = "SPEED") String sortType
             )
     {
         return aroundCarbobSearchService.findAroundCarbobInfoList(latitude,longitude,sortType);
