@@ -48,7 +48,9 @@ public class PaymentController {
 			@PageableDefault(size = 6) Pageable pageable
 		) {
 		Long userId = UserContextHolder.get();
-		return paymentPointService.getMypointSummaryList(userId, lastPaymentId, pageable);
+		SliceResponse<MyPointSummary> myPointSummaryList = paymentPointService.getMyPointSummaryList(userId, lastPaymentId, pageable);
+
+		return ResponseDto.map(HttpStatus.OK.value(), "내포인트 조회에 성공했습니다.", myPointSummaryList);
 	}
 
 	@Auth

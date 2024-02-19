@@ -1,7 +1,5 @@
 package com.softeer.team6four.domain.payment.application;
 
-import java.util.List;
-
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
@@ -16,7 +14,6 @@ import com.softeer.team6four.domain.payment.domain.PayType;
 import com.softeer.team6four.domain.payment.domain.Payment;
 import com.softeer.team6four.domain.payment.domain.PaymentRepository;
 import com.softeer.team6four.domain.payment.infra.PaymentRepositoryImpl;
-import com.softeer.team6four.domain.reservation.application.ReservationSearchService;
 import com.softeer.team6four.domain.user.application.UserSearchService;
 import com.softeer.team6four.domain.user.domain.User;
 import com.softeer.team6four.global.response.ErrorCode;
@@ -41,12 +38,12 @@ public class PaymentPointService {
 			.build();
 	}
 
-	public ResponseDto<SliceResponse<MyPointSummary>> getMypointSummaryList
+	public SliceResponse<MyPointSummary> getMyPointSummaryList
 		(Long userId, Long lastPaymentId, Pageable pageable) {
 
 		Slice<MyPointSummary> myPointSummaryList = paymentRepositoryImpl.findMyPointSummaryList(userId, lastPaymentId,
 			pageable);
-		return ResponseDto.map(HttpStatus.OK.value(), "내포인트 조회에 성공했습니다.", SliceResponse.of(myPointSummaryList));
+		return SliceResponse.of(myPointSummaryList);
 	}
 
 	public ResponseDto<ChargePoint> registMyPoint(Long userId, ChargeRequest chargeRequest) {
