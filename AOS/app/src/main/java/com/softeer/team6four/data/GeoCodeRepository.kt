@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Singleton
 class GeoCodeRepository @Inject constructor(private val geoCodeService: GeoCodeService) {
-    suspend fun getCoordinateResult(address: String): Flow<LatLng> {
+    suspend fun getCoordinateResult(address: String): Flow<Result<LatLng>> {
         val result = geoCodeService.coordinateResult(
             clientId = BuildConfig.CLIENT_ID,
             clientSecret = BuildConfig.CLIENT_SECRET,
@@ -19,18 +19,12 @@ class GeoCodeRepository @Inject constructor(private val geoCodeService: GeoCodeS
         )
         return flow {
             if (result.isSuccessful) {
-                result.body()?.let { geoCodeResult ->
-                    geoCodeResult.addresses?.let { addresses ->
-                        if (addresses.isNotEmpty()) {
-                            emit(
-                                LatLng(
-                                    addresses[0].y.toDouble(),
-                                    addresses[0].x.toDouble()
-                                )
-                            )
-                        }
-                    }
-                }
+                result.body()?.addresses?.firstOrNull()?.let {address ->
+                    emit(Result.success(LatLng(address.y.toDouble(), address.x.toDouble())))
+                } ?: emit(Result.failure(Exception("No address found")))
+            }
+            else {
+                emit(Result.failure(Exception("API Call unsuccessful with response code : ${result.code()}")))
             }
         }
     }

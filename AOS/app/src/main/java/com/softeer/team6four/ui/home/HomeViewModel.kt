@@ -20,8 +20,10 @@ class HomeViewModel @Inject constructor(
 
     fun getCoordinate(address: String) {
         viewModelScope.launch {
-            geoCodeRepository.getCoordinateResult(address).collect { latLng ->
-                _searchCoordinate.update { latLng }
+            geoCodeRepository.getCoordinateResult(address).collect { latLngResult ->
+                latLngResult.onSuccess { latLng ->
+                    _searchCoordinate.update { latLng }
+                }
             }
         }
     }
