@@ -1,7 +1,10 @@
 package com.softeer.team6four.domain.payment.presentation;
 
+import java.awt.*;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,7 +34,10 @@ public class PaymentController {
 	@GetMapping(value = "/total/point")
 	public ResponseDto<TotalPoint> getMyPointTotal() {
 		Long userId = UserContextHolder.get();
-		return paymentPointService.calculateTotalPoint(userId);
+
+		TotalPoint point = paymentPointService.calculateTotalPoint(userId);
+
+		return ResponseDto.map(HttpStatus.OK.value(), "포인트 총액(충전+수입+지출)입니다", point);
 	}
 
 	@Auth

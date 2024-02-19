@@ -33,7 +33,7 @@ public class PaymentPointService {
 	private final PaymentRepositoryImpl paymentRepositoryImpl;
 	private final ReservationSearchService reservationSearchService;
 
-	public ResponseDto<TotalPoint> calculateTotalPoint(Long userId) {
+	public TotalPoint calculateTotalPoint(Long userId) {
 		List<Payment> payments = paymentRepository.findByUser_UserId(userId);
 
 		int totalPoint = 0;
@@ -41,11 +41,9 @@ public class PaymentPointService {
 			totalPoint += payment.getAmount();
 		}
 
-		TotalPoint point = TotalPoint.builder()
+		return TotalPoint.builder()
 			.totalPoint(totalPoint)
 			.build();
-
-		return ResponseDto.map(HttpStatus.OK.value(), "포인트 총액(충전+수입+지출)입니다", point);
 	}
 
 	public ResponseDto<SliceResponse<MyPointSummary>> getMypointSummaryList
