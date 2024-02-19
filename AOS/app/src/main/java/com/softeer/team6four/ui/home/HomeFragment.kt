@@ -17,11 +17,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraAnimation
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
+import com.naver.maps.map.overlay.LocationOverlay
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
@@ -100,27 +102,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             locationSource = this@HomeFragment.locationSource
             locationTrackingMode = LocationTrackingMode.Follow
             viewLifecycleOwner.lifecycleScope.launch {
-                val searchMarker = Marker().apply {
-                    icon = OverlayImage.fromResource(R.drawable.icon_search_marker)
-                    position = locationOverlay.position
-                    map = naverMap
-                }
-
-                binding.btnCurrentLocation.setOnClickListener {
-                    naverMap.moveCamera(
-                        CameraUpdate.scrollTo(locationOverlay.position)
-                            .animate(CameraAnimation.Linear)
-                    )
-                    searchMarker.position = locationOverlay.position
-                }
-
-                this@with.setOnMapClickListener { _, latLng ->
-                    searchMarker.position = latLng
-                    naverMap.moveCamera(
-                        CameraUpdate.scrollTo(latLng)
-                            .animate(CameraAnimation.Linear)
-                    )
-                }
+                val searchMarker = createSearchMarker(locationOverlay.position)
+                setBtnCurrentLocation(this@with, searchMarker, locationOverlay)
+                setMapOnClickListener(this@with, searchMarker)
 
                 viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                     homeViewModel.searchCoordinate.collect { latLng ->
@@ -134,6 +118,38 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                     }
                 }
             }
+        }
+    }
+
+    private fun setMapOnClickListener(naverMap: NaverMap, searchMarker: Marker) {
+        naverMap.setOnMapClickListener { _, latLng ->
+            searchMarker.position = latLng
+            naverMap.moveCamera(
+                CameraUpdate.scrollTo(latLng)
+                    .animate(CameraAnimation.Linear)
+            )
+        }
+    }
+
+    private fun createSearchMarker(latLng: LatLng): Marker {
+        return Marker().apply {
+            icon = OverlayImage.fromResource(R.drawable.icon_search_marker)
+            position = latLng
+            map = naverMap
+        }
+    }
+
+    private fun setBtnCurrentLocation(
+        naverMap: NaverMap,
+        searchMarker: Marker,
+        locationOverlay: LocationOverlay
+    ) {
+        binding.btnCurrentLocation.setOnClickListener {
+            naverMap.moveCamera(
+                CameraUpdate.scrollTo(locationOverlay.position)
+                    .animate(CameraAnimation.Linear)
+            )
+            searchMarker.position = locationOverlay.position
         }
     }
 
