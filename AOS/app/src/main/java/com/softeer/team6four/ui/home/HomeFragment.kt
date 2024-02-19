@@ -113,11 +113,27 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                     searchMarker.position = locationOverlay.position
                 }
 
-            this.setOnMapClickListener { _, latLng ->
-                searchMarker.position = latLng
+                this@with.setOnMapClickListener { _, latLng ->
+                    searchMarker.position = latLng
+                    naverMap.moveCamera(
+                        CameraUpdate.scrollTo(latLng)
+                            .animate(CameraAnimation.Linear)
+                    )
+                }
+
+                viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    homeViewModel.searchCoordinate.collect { latLng ->
+                        if (latLng.latitude != 0.toDouble() && latLng.longitude != 0.toDouble()) {
+                            naverMap.moveCamera(
+                                CameraUpdate.scrollTo(latLng)
+                                    .animate(CameraAnimation.Linear)
+                            )
+                            searchMarker.position = latLng
+                        }
+                    }
+                }
             }
         }
-
     }
 
     private fun setPermissionLauncher() {
