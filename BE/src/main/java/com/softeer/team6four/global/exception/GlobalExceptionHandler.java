@@ -1,5 +1,6 @@
 package com.softeer.team6four.global.exception;
 
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -17,6 +18,12 @@ import lombok.extern.slf4j.Slf4j;
 public class GlobalExceptionHandler {
 
 	// 추가한 커스텀 예외 처리를 정의하면 Handler 를 추가 작성
+	@ExceptionHandler(MissingServletRequestParameterException.class)
+	public ErrorResponseDto handleMissingParams(MissingServletRequestParameterException e) {
+		log.error("MissingServletRequestParameterException : {}", e.getMessage());
+		return ErrorResponseDto.map(ErrorCode.MISSING_REQUEST_PARAMETER);
+	}
+
 	@ExceptionHandler(ReservationException.class)
 	public ErrorResponseDto handleReservationException(ReservationException e) {
 		log.warn("ReservationException : {}", e.getMessage());
