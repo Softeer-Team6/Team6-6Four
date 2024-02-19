@@ -38,14 +38,16 @@ public class UserJoinService {
 		User user = userRepository.findUserByEmail(signInRequest.getEmail())
 			.orElseThrow(() -> new UserNotFoundException(ErrorCode.USER_NOT_FOUND));
 
+		String nickname = user.getNickname();
 		String accessToken = jwtProvider.generateAccessToken(user.getUserId());
 		String refreshToken = jwtProvider.generateRefreshToken(user.getUserId());
 
-		SignInResponse SignInResponse = SignInResponse.builder()
+		SignInResponse signInResponse = SignInResponse.builder()
+			.nickname(nickname)
 			.accessToken(accessToken)
 			.refreshToken(refreshToken)
 			.build();
-		return ResponseDto.map(HttpStatus.OK.value(), "로그인에 성공했습니다.", SignInResponse);
+		return ResponseDto.map(HttpStatus.OK.value(), "로그인에 성공했습니다.", signInResponse);
 
 	}
 
