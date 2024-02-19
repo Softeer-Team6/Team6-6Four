@@ -1,7 +1,7 @@
 package com.softeer.team6four.api
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.softeer.team6four.data.remote.dto.GeoCodeResult
+import com.softeer.team6four.data.remote.geo.dto.GeoCodeResult
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Response
