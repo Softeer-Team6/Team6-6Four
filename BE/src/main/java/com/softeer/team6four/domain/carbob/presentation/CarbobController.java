@@ -2,7 +2,6 @@ package com.softeer.team6four.domain.carbob.presentation;
 
 import com.softeer.team6four.domain.carbob.application.*;
 import com.softeer.team6four.domain.carbob.application.request.CarbobRegistration;
-import com.softeer.team6four.domain.carbob.application.response.CarbobQr;
 import com.softeer.team6four.domain.carbob.application.response.MyCarbobDetailInfo;
 import com.softeer.team6four.domain.carbob.application.response.MyCarbobSummary;
 import com.google.firebase.database.annotations.NotNull;
@@ -10,6 +9,7 @@ import com.softeer.team6four.domain.carbob.application.CarbobSearchService;
 import com.softeer.team6four.domain.carbob.application.response.*;
 import com.softeer.team6four.global.annotation.Auth;
 import com.softeer.team6four.global.filter.UserContextHolder;
+import com.softeer.team6four.global.infrastructure.s3.S3Service;
 import com.softeer.team6four.global.response.ListResponse;
 import com.softeer.team6four.global.response.ResponseDto;
 import com.softeer.team6four.global.response.SliceResponse;
@@ -29,7 +29,7 @@ public class CarbobController {
     private final CarbobSearchService carbobSearchService;
     private final CarbobRegistrationService carbobRegistrationService;
     private final AroundCarbobSearchService aroundCarbobSearchService;
-    private final CarbobImgUploadService carbobImgUploadService;
+    private final S3Service s3Service;
 
     @Auth
     @GetMapping(value = "/my")
@@ -88,13 +88,13 @@ public class CarbobController {
 
     @Auth
     @PostMapping(value = "/registration")
-    public ResponseDto<CarbobQr> registerCarbob
+    public ResponseDto<Void> registerCarbob
             (
                     @RequestBody CarbobRegistration carbobRegistration
             )
     {
         Long userId = UserContextHolder.get();
-        return carbobRegistrationService.registerCarbob(userId,carbobRegistration);
+        return carbobRegistrationService.registerCarbob(userId, carbobRegistration);
     }
     @Auth
     @PostMapping(value = "/image")
@@ -103,7 +103,11 @@ public class CarbobController {
                     @RequestPart MultipartFile image
             )
     {
-        return carbobImgUploadService.saveFile(image);
+        String imageUrl = s3Service.saveCarbobAndReturnImageUrl(image);
+        CarbobImgUrl carbobImgUrl = CarbobImgUrl.builder()
+                .imgUrl(imageUrl)
+                .build();
+        return ResponseDto.map(HttpStatus.OK.value(), "S3에 이미지 등록 후 링크 반환이 성공했습니다.", carbobImgUrl);
     }
 }
 

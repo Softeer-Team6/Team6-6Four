@@ -59,21 +59,24 @@ public class Carbob extends BaseEntity {
 
     @Builder
     public Carbob
-        (
-            String nickname, CarbobInfo info, CarbobLocation location, CarbobSpec spec,
-            CarbobImage carbobImage, User host
-        )
+            (
+                    String nickname, String qrImageUrl, CarbobInfo info, CarbobLocation location, CarbobSpec spec,
+                    CarbobImage carbobImage, User host
+            )
     {
         this.nickname = nickname;
-        this.qrImageUrl = "qrImageUrl";
+        this.qrImageUrl = qrImageUrl; // QR 이미지 URL 추가
         this.info = info;
         this.location = location;
         this.spec = spec;
-        this.carbobImage = null;
+        this.carbobImage = carbobImage;
         this.host = host;
     }
 
     public void setCarbobQrImageUrl(String qrImageUrl) {
         this.qrImageUrl = qrImageUrl;
+    }
+    public String getCarbobQrImageUrl() {
+        return this.qrImageUrl;
     }
 }
