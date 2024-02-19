@@ -31,15 +31,10 @@ public class PaymentPointService {
 	private final PaymentRepository paymentRepository;
 	private final UserSearchService userSearchService;
 	private final PaymentRepositoryImpl paymentRepositoryImpl;
-	private final ReservationSearchService reservationSearchService;
 
 	public TotalPoint calculateTotalPoint(Long userId) {
-		List<Payment> payments = paymentRepository.findByUser_UserId(userId);
 
-		int totalPoint = 0;
-		for (Payment payment : payments) {
-			totalPoint += payment.getAmount();
-		}
+		int totalPoint = paymentRepository.sumAmountByUserId(userId);
 
 		return TotalPoint.builder()
 			.totalPoint(totalPoint)

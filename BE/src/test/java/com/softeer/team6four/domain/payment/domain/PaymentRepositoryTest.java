@@ -58,7 +58,7 @@ class PaymentRepositoryTest {
 
 	@Test
 	@DisplayName("UserId로 payment 조회")
-	void findByUser_UserId() {
+	void UserId로_payment조화() {
 		//given
 		List<Payment> expectedPayments = createMockPayments();
 
@@ -71,9 +71,52 @@ class PaymentRepositoryTest {
 	}
 
 	@Test
+	@DisplayName("특정 유저의 포인트 총합 계산 - Payment에 해당 유저의 정보 있을 때")
+	void 특정_유저의_포인트총합게산() {
+		//given
+		int expectedAmount = createMockAmount();
+
+		//when
+		int actualAmount = paymentRepository.sumAmountByUserId(user.getUserId());
+
+		//then
+		assertEquals(expectedAmount, actualAmount);
+	}
+
+	@Test
+	@DisplayName("특정 유저의 포인트 총합 계산- Payment에 유저 정보가 없을 때")
+	void 특정_유저의_포인트총합게산_정보없을때() {
+		//given
+		int expectedAmount = 0;
+
+		//when
+		int actualAmount = paymentRepository.sumAmountByUserId(user.getUserId());
+
+		//then
+		assertEquals(expectedAmount, actualAmount);
+	}
+
+
+	@Test
 	void findPaymentsByPayTypeAndTargetIdIn() {
 	}
 
+
+	private int createMockAmount() {
+		// 가상의 Payment 객체 리스트 생성
+		int amount1 = 1000;
+		Payment payment1 = Payment.builder().amount(amount1).payType(PayType.CHARGE).targetId(0L).user(user)
+			.build();
+		paymentRepository.save(payment1);
+
+
+		int amount2 = 2000;
+		Payment payment2 = Payment.builder().amount(amount2).payType(PayType.CHARGE).targetId(1L).user(user)
+			.build();
+		paymentRepository.save(payment2);
+
+		return payment1.getAmount()+payment2.getAmount();
+	}
 	private List<Payment> createMockPayments() {
 		// 가상의 Payment 객체 리스트 생성
 		List<Payment> payments = new ArrayList<>();
