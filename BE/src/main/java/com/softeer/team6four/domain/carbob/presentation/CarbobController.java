@@ -54,7 +54,9 @@ public class CarbobController {
 			@PageableDefault(size = 6) Pageable pageable
 		) {
 		Long userId = UserContextHolder.get();
-		return carbobSearchService.findMyCarbobList(userId, sortType, lastCarbobId, lastReservationCount, pageable);
+		SliceResponse<MyCarbobSummary> myCarbobList = carbobSearchService.findMyCarbobList(userId, sortType,
+			lastCarbobId, lastReservationCount, pageable);
+		return ResponseDto.map(HttpStatus.OK.value(), "내 차밥 리스트 조회에 성공했습니다.", myCarbobList);
 	}
 
 	@Auth
@@ -93,7 +95,8 @@ public class CarbobController {
 	@GetMapping(value = "/detail/{carbobId}")
 	public ResponseDto<MyCarbobDetailInfo> getMyCarbobDetail(@PathVariable Long carbobId) {
 		Long userId = UserContextHolder.get();
-		return carbobSearchService.findMyCarbobDetailInfo(userId, carbobId);
+		MyCarbobDetailInfo myCarbobDetailInfo = carbobSearchService.findMyCarbobDetailInfo(userId, carbobId);
+		return ResponseDto.map(HttpStatus.OK.value(), "내 카밥 상세 조회에 성공했습니다.", myCarbobDetailInfo);
 	}
 
 	@Auth
