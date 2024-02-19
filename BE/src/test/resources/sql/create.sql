@@ -27,7 +27,7 @@ create table if not exists carbob
     nickname      varchar(255) not null,
     qr_image_url  varchar(255) null,
     speed_type    varchar(255) not null,
-    point         point        not null,
+    point         varchar(255) not null,
     foreign key (host_id) references carbob_user (user_id)
 );
 
@@ -101,5 +101,3 @@ create table if not exists reservation_line
     primary key (line_idx, reservation_id),
     foreign key (reservation_id) references reservation (reservation_id)
 );
-
-ALTER TABLE carbob ADD SPATIAL INDEX(point);
