@@ -24,7 +24,7 @@ public class UserController {
 	@GetMapping(value = "/auth/email/check")
 	public ResponseDto<EmailCheck> checkEmail(@RequestParam String email) {
 		EmailCheck emailCheck = userJoinService.findEmail(email);
-		return ResponseDto.map(HttpStatus.OK.value(), "사용 가능한 닉네임 입니다.", emailCheck);
+		return ResponseDto.map(HttpStatus.OK.value(), "사용 가능한 이메일 입니다.", emailCheck);
 	}
 
 	@GetMapping(value = "/auth/nickname/check")
