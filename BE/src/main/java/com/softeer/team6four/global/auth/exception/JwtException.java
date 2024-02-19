@@ -4,7 +4,7 @@ import com.softeer.team6four.global.exception.BusinessException;
 import com.softeer.team6four.global.response.ErrorCode;
 
 public class JwtException extends BusinessException {
-    public JwtException(ErrorCode errorCode) {
-        super(errorCode);
-    }
+	public JwtException(ErrorCode errorCode) {
+		super(errorCode);
+	}
 }

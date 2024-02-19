@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/my_page_group">
+        <item
+            android:id="@+id/my_point_item"
+            android:title="@string/my_point" />
+        <item
+            android:id="@+id/register_charger_item"
+            android:title="@string/register_charger" />
+        <item
+            android:id="@+id/my_reservation_item"
+            android:title="@string/my_reservation" />
+        <item
+            android:id="@+id/my_charger_list_item"
+            android:title="@string/my_charger_list" />
+    </group>
+
+</menu>

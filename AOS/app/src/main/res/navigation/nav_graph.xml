@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.softeer.team6four.ui.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_myChargerFragment"
+            app:destination="@id/myChargerListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_myPointFragment"
+            app:destination="@id/myPointFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_myReservationFragment"
+            app:destination="@id/myReservationFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_registerChargerFragment"
+            app:destination="@id/registerChargerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_applyDetailFragment"
+            app:destination="@id/applyDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myChargerListFragment"
+        android:name="com.softeer.team6four.ui.mypage.charger.MyChargerListFragment"
+        android:label="MyChargerListFragment"
+        tools:layout="@layout/fragment_my_charger_list">
+        <action
+            android:id="@+id/action_myChargerListFragment_to_myChargerFragment"
+            app:destination="@id/myChargerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myPointFragment"
+        android:name="com.softeer.team6four.ui.mypage.point.MyPointFragment"
+        android:label="MyPointFragment"
+        tools:layout="@layout/fragment_my_point" />
+    <fragment
+        android:id="@+id/myReservationFragment"
+        android:name="com.softeer.team6four.ui.mypage.reservation.MyReservationFragment"
+        android:label="MyReservationFragment"
+        tools:layout="@layout/fragment_my_reservation" />
+    <fragment
+        android:id="@+id/registerChargerFragment"
+        android:name="com.softeer.team6four.ui.mypage.register.RegisterChargerFragment"
+        android:label="RegisterChargerFragment"
+        tools:layout="@layout/fragment_register_charger" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.softeer.team6four.ui.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.softeer.team6four.ui.signup.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/fragment_sign_up">
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myChargerFragment"
+        android:name="com.softeer.team6four.ui.mypage.charger.MyChargerFragment"
+        android:label="MyChargerFragment"
+        tools:layout="@layout/fragment_my_charger" />
+    <fragment
+        android:id="@+id/applyDetailFragment"
+        android:name="com.softeer.team6four.ui.apply.ApplyDetailFragment"
+        android:label="ApplyDetailFragment"
+        tools:layout="@layout/fragment_apply_detail">
+        <action
+            android:id="@+id/action_applyDetailFragment_to_applyTimeFragment"
+            app:destination="@id/applyTimeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/applyTimeFragment"
+        android:name="com.softeer.team6four.ui.apply.ApplyTimeFragment"
+        android:label="ApplyTimeFragment"
+        tools:layout="@layout/fragment_apply_time">
+        <action
+            android:id="@+id/action_applyTimeFragment_to_applyCompleteFragment"
+            app:destination="@id/applyCompleteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/applyCompleteFragment"
+        android:name="com.softeer.team6four.ui.apply.ApplyCompleteFragment"
+        android:label="ApplyCompleteFragment"
+        tools:layout="@layout/fragment_apply_complete">
+        <action
+            android:id="@+id/action_applyCompleteFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+
+</navigation>

@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        tools:context=".ui.mypage.charger.MyChargerDetailFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="40dp">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/start_guide_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="21dp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/end_guide_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="20dp" />
+
+                <ImageView
+                    android:id="@+id/iv_charger_default_image"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:contentDescription="@string/charger_image_description"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/charger_default_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_charger_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="붕붕이 카밥1"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/iv_charger_default_image" />
+
+                <ImageView
+                    android:id="@+id/iv_edit_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/icon_edit_description"
+                    android:src="@drawable/icon_edit"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_charger_nickname"
+                    app:layout_constraintStart_toEndOf="@id/tv_charger_nickname"
+                    app:layout_constraintTop_toTopOf="@id/tv_charger_nickname"
+                    tools:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/iv_qr_code_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:contentDescription="@string/qr_code_description"
+                    android:src="@drawable/qr_code_image"
+                    app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/iv_charger_default_image" />
+
+                <TextView
+                    android:id="@+id/tv_distance_from_my_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="내 위치에서 700m"
+                    android:textColor="@color/gray_500"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_charger_nickname" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_location_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/charger_location_title"
+                    android:textColor="@color/gray_600"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_distance_from_my_location" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="58dp"
+                    android:text="@string/charger_location_example"
+                    android:textColor="@color/gray_600"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_location_title"
+                    app:layout_constraintStart_toEndOf="@id/tv_my_charger_location_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_charger_location_title" />
+
+                <TextView
+                    android:id="@+id/tv_price_per_hour_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/price_per_hour_title"
+                    android:textColor="@color/gray_600"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_charger_location_title" />
+
+                <TextView
+                    android:id="@+id/tv_price_per_hour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="1540원/kwh"
+                    android:textColor="@color/gray_600"
+                    app:layout_constraintStart_toStartOf="@id/tv_my_charger_location"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_charger_location" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/my_charger_overall_divider"
+                    android:layout_width="0dp"
+                    android:layout_height="6dp"
+                    android:layout_marginTop="16dp"
+                    app:dividerColor="@color/gray_100"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_price_per_hour_title" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_detail_tile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/my_charger_detail_title"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/my_charger_overall_divider" />
+
+                <ImageView
+                    android:id="@+id/iv_edit_charger_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/icon_edit_description"
+                    android:src="@drawable/icon_edit"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_detail_tile"
+                    app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_charger_detail_tile"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_type_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/charger_type_title"
+                    android:textColor="@color/gray_600"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_charger_detail_tile" />
+
+                <TextView
+                    android:id="@+id/tv_charger_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/slow_speed"
+                    android:textColor="@color/gray_600"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_type_title"
+                    app:layout_constraintStart_toEndOf="@id/tv_my_charger_type_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_charger_type_title" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_speed_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/charger_speed_title"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_charger_type_title" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_speed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/speed_7kwh"
+                    android:textColor="@color/gray_600"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_speed_title"
+                    app:layout_constraintStart_toEndOf="@id/tv_my_charger_speed_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_charger_speed_title" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_install_type_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/charger_install_type"
+                    android:textColor="@color/gray_600"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_charger_speed_title" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_install_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/outside"
+                    android:textColor="@color/gray_600"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_install_type_title"
+                    app:layout_constraintStart_toEndOf="@id/tv_my_charger_install_type_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_charger_install_type_title" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/my_charger_detail_divider"
+                    android:layout_width="0dp"
+                    android:layout_height="6dp"
+                    android:layout_marginTop="16dp"
+                    app:dividerColor="@color/gray_100"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_charger_install_type_title" />
+
+                <TextView
+                    android:id="@+id/tv_use_description_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/use_description_title"
+                    android:textColor="@color/gray_700"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/my_charger_detail_divider" />
+
+                <ImageView
+                    android:id="@+id/iv_edit_use_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/icon_edit_description"
+                    android:src="@drawable/icon_edit"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_use_description_title"
+                    app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+                    app:layout_constraintTop_toTopOf="@id/tv_use_description_title"
+                    tools:visibility="visible" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_use_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:cardBackgroundColor="@color/gray_000"
+                    app:cardCornerRadius="@dimen/radius_normal"
+                    app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_use_description_title"
+                    app:strokeColor="@color/gray_100">
+
+                    <TextView
+                        android:id="@+id/tv_use_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lines="5"
+                        android:maxLines="5"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="제네시스 안돼용~ 스타벅스에서 우회전하세요!" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/my_charger_use_description_divider"
+                    android:layout_width="0dp"
+                    android:layout_height="6dp"
+                    android:layout_marginTop="16dp"
+                    app:dividerColor="@color/gray_100"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cv_use_description" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_reservation_time_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/disabled_time_title"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/my_charger_use_description_divider" />
+
+                <ImageView
+                    android:id="@+id/edit_reservation_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/icon_edit_description"
+                    android:src="@drawable/icon_edit"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_reservation_time_title"
+                    app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_charger_reservation_time_title"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_start_time_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/start_time"
+                    android:textColor="@color/gray_600"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_charger_reservation_time_title" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_end_time_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/end_time"
+                    android:textColor="@color/gray_600"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_charger_start_time_title" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_start_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="11:00"
+                    android:textColor="@color/gray_500"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_start_time_title"
+                    app:layout_constraintStart_toEndOf="@id/tv_my_charger_start_time_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_charger_start_time_title" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_end_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="13:00"
+                    android:textColor="@color/gray_500"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_end_time_title"
+                    app:layout_constraintStart_toEndOf="@id/tv_my_charger_end_time_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_my_charger_end_time_title" />
+
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/my_charger_reservation_time_divider"
+                    android:layout_width="0dp"
+                    android:layout_height="6dp"
+                    android:layout_marginTop="16dp"
+                    app:dividerColor="@color/gray_100"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_charger_end_time_title" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_total_income_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/total_income"
+                    android:textColor="@color/gray_700"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/my_charger_reservation_time_divider" />
+
+                <TextView
+                    android:id="@+id/tv_my_charger_total_income"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="10,000원"
+                    android:textColor="@color/gray_600"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_charger_total_income_title" />
+
+                <Button
+                    android:id="@+id/btn_my_charger_detail_edit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:paddingVertical="20dp"
+                    android:text="@string/my_charger_detail_edit"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+                    app:layout_constraintStart_toStartOf="@id/start_guide_line"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_charger_total_income"
+                    tools:visibility="visible" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

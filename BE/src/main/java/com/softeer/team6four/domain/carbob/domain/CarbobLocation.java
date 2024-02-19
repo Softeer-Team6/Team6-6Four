@@ -1,5 +1,10 @@
 package com.softeer.team6four.domain.carbob.domain;
 
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.PrecisionModel;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
@@ -7,24 +12,24 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @Getter
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CarbobLocation {
-    @Column(nullable = false)
-    private String address;
+	@Column(nullable = false)
+	private String address;
 
-    @Column(nullable = false)
-    private Double latitude;
+	@Column(name = "point", nullable = false, columnDefinition = "Point NOT NULL SRID 4326")
+	private Point point;
 
-    @Column(nullable = false)
-    private Double longitude;
+	@Builder
+	public CarbobLocation(String address, Double latitude, Double longitude) {
+		this.address = address;
+		createPoint(latitude, longitude);
+	}
 
-    @Builder
-    public CarbobLocation(String address, Double latitude, Double longitude) {
-        this.address = address;
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
+	private void createPoint(double latitude, double longitude) {
+		GeometryFactory geometryFactory = new GeometryFactory(new PrecisionModel(), 4326);
+		this.point = geometryFactory.createPoint(new Coordinate(longitude, latitude));
+	}
 }

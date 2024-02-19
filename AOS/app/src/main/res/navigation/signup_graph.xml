@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signup_graph"
+    app:startDestination="@id/registerEmailPasswordFragment">
+    <fragment
+        android:id="@+id/registerEmailPasswordFragment"
+        android:name="com.softeer.team6four.ui.signup.RegisterEmailPasswordFragment"
+        android:label="RegisterEmailPasswordFragment"
+        tools:layout="@layout/fragment_register_email_password"
+        >
+        <action
+            android:id="@+id/action_registerEmailPasswordFragment_to_registerNicknameFragment"
+            app:destination="@id/registerNicknameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerNicknameFragment"
+        android:name="com.softeer.team6four.ui.signup.RegisterNicknameFragment"
+        android:label="RegisterNicknameFragment"
+        tools:layout="@layout/fragment_register_nickname"/>
+</navigation>
