@@ -1,6 +1,5 @@
 package com.softeer.team6four.data.remote.user.source
 
-import android.util.Log
 import com.softeer.team6four.api.UserService
 import com.softeer.team6four.data.Resource
 import com.softeer.team6four.data.remote.user.dto.EmailExistsResult
@@ -29,7 +28,6 @@ class UserDataSource @Inject constructor(private val userService: UserService) {
                 emit(Resource.Error(response.code(), "Failed to check email existence"))
             }
         } catch (e: Exception) {
-            Log.e("emailCheckError", e.message.toString())
             emit(Resource.Error(message = "Failed to check email existence"))
         }
     }
@@ -38,7 +36,7 @@ class UserDataSource @Inject constructor(private val userService: UserService) {
         emit(Resource.Loading())
         try {
             val response = userService.checkNickname(nickname)
-            if(response.isSuccessful) {
+            if (response.isSuccessful) {
                 val nicknameExistsResult = response.body()?.data
                 emit(
                     Resource.Success(
@@ -50,16 +48,15 @@ class UserDataSource @Inject constructor(private val userService: UserService) {
             }
 
         } catch (e: Exception) {
-            Log.e("nicknameCheckedError", e.message.toString())
             emit(Resource.Error(message = "Failed to check nickname existence"))
         }
     }
 
-    fun requestSignUp(signUpInfo: SignUpInfo) : Flow<Resource<Unit>> = flow {
+    fun requestSignUp(signUpInfo: SignUpInfo): Flow<Resource<Unit>> = flow {
         emit(Resource.Loading())
-        try{
+        try {
             val signupResponse = userService.requestSignUp(signUpInfo)
-            if(signupResponse.isSuccessful) {
+            if (signupResponse.isSuccessful) {
                 val signupResult = signupResponse.body()
                 emit(
                     Resource.Success(
@@ -69,8 +66,7 @@ class UserDataSource @Inject constructor(private val userService: UserService) {
             } else {
                 emit(Resource.Error(signupResponse.code(), "Failed to Sign Up"))
             }
-        } catch(e : Exception){
-            Log.e("SignUpError", e.message.toString())
+        } catch (e: Exception) {
             emit(Resource.Error(message = "Failed to Sign Up"))
         }
     }
