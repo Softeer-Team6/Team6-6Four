@@ -1,5 +1,6 @@
 package com.softeer.team6four.global.exception;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -11,6 +12,7 @@ import com.softeer.team6four.domain.user.application.exception.UserException;
 import com.softeer.team6four.global.response.ErrorCode;
 import com.softeer.team6four.global.response.ErrorResponseDto;
 
+import io.sentry.Sentry;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -19,45 +21,51 @@ public class GlobalExceptionHandler {
 
 	// 추가한 커스텀 예외 처리를 정의하면 Handler 를 추가 작성
 	@ExceptionHandler(MissingServletRequestParameterException.class)
-	public ErrorResponseDto handleMissingParams(MissingServletRequestParameterException e) {
+	public ResponseEntity<ErrorResponseDto>handleMissingParams(MissingServletRequestParameterException e) {
 		log.error("MissingServletRequestParameterException : {}", e.getMessage());
-		return ErrorResponseDto.map(ErrorCode.MISSING_REQUEST_PARAMETER);
+		Sentry.captureException(e);
+		return ResponseEntity.badRequest().body(ErrorResponseDto.map(ErrorCode.MISSING_REQUEST_PARAMETER));
 	}
 
 	@ExceptionHandler(ReservationException.class)
-	public ErrorResponseDto handleReservationException(ReservationException e) {
-		log.warn("ReservationException : {}", e.getMessage());
-		return ErrorResponseDto.map(e.getErrorCode());
+	public ResponseEntity<ErrorResponseDto>handleReservationException(ReservationException e) {
+		log.error("ReservationException : {}", e.getErrorCode().getMessage());
+		Sentry.captureException(e);
+		return ResponseEntity.badRequest().body(ErrorResponseDto.map(e.getErrorCode()));
 	}
 
 	@ExceptionHandler(PaymentException.class)
-	public ErrorResponseDto handlePaymentException(PaymentException e) {
-		log.warn("PaymentException : {}", e.getMessage());
-		return ErrorResponseDto.map(e.getErrorCode());
+	public ResponseEntity<ErrorResponseDto>handlePaymentException(PaymentException e) {
+		log.error("PaymentException : {}", e.getErrorCode().getMessage());
+		Sentry.captureException(e);
+		return ResponseEntity.badRequest().body(ErrorResponseDto.map(e.getErrorCode()));
 	}
 
 	@ExceptionHandler(UserException.class)
-	public ErrorResponseDto handleUserException(UserException e) {
-		log.warn("UserException : {}", e.getMessage());
-		return ErrorResponseDto.map(e.getErrorCode());
+	public ResponseEntity<ErrorResponseDto> handleUserException(UserException e) {
+		log.error("UserException : {}", e.getErrorCode().getMessage());
+		Sentry.captureException(e);
+		return ResponseEntity.badRequest().body(ErrorResponseDto.map(e.getErrorCode()));
 	}
 
 	@ExceptionHandler(CarbobException.class)
-	public ErrorResponseDto handleCarbobException(CarbobException e) {
-		log.warn("CarbobException : {}", e.getMessage());
-		return ErrorResponseDto.map(e.getErrorCode());
+	public ResponseEntity<ErrorResponseDto>handleCarbobException(CarbobException e) {
+		log.error("CarbobException : {}", e.getErrorCode().getMessage());
+		Sentry.captureException(e);
+		return ResponseEntity.badRequest().body(ErrorResponseDto.map(e.getErrorCode()));
 	}
 
 	@ExceptionHandler(BusinessException.class)
-	public ErrorResponseDto handleBusinessException(BusinessException e) {
-		log.warn("BusinessException : {}", e.getMessage());
-		return ErrorResponseDto.map(e.getErrorCode());
+	public ResponseEntity<ErrorResponseDto>handleBusinessException(BusinessException e) {
+		log.error("BusinessException : {}", e.getErrorCode().getMessage());
+		Sentry.captureException(e);
+		return ResponseEntity.badRequest().body(ErrorResponseDto.map(e.getErrorCode()));
 	}
 
 	@ExceptionHandler(Exception.class)
-	protected ErrorResponseDto handleException(Exception e) {
+	protected ResponseEntity<ErrorResponseDto>handleException(Exception e) {
 		log.error("Exception : {}", e.getMessage());
-		log.error("Exception : {}", e.getClass());
-		return ErrorResponseDto.map(ErrorCode.INTERNAL_SERVER_ERROR);
+		Sentry.captureException(e);
+		return ResponseEntity.badRequest().body(ErrorResponseDto.map(ErrorCode.INTERNAL_SERVER_ERROR));
 	}
 }
