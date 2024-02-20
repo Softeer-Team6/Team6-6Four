@@ -86,4 +86,9 @@ class ReservationSearchServiceTest {
 
 		verify(reservationRepository, times(1)).findReservationByCarbob_CarbobIdAndStateType(carbobId, StateType.SELF);
 	}
+
+	@Test
+	void getDailyReservationStatus() {
+	}
+
 }

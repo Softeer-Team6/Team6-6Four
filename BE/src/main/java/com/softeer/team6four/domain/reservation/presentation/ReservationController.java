@@ -23,7 +23,6 @@ import com.softeer.team6four.domain.reservation.application.request.ReservationF
 import com.softeer.team6four.domain.reservation.application.response.DailyReservationInfo;
 import com.softeer.team6four.domain.reservation.application.response.QrVerification;
 import com.softeer.team6four.domain.reservation.application.response.ReservationApplicationInfo;
-import com.softeer.team6four.domain.reservation.application.response.ReservationCheckInfo;
 import com.softeer.team6four.domain.reservation.application.response.ReservationFulfillResult;
 import com.softeer.team6four.domain.reservation.application.response.ReservationInfo;
 import com.softeer.team6four.global.annotation.Auth;
@@ -89,13 +88,15 @@ public class ReservationController {
 
 	@Auth
 	@PatchMapping("/check/{reservationId}")
-	public ResponseDto<ReservationCheckInfo> checkReservation
+	public ResponseDto<Void> checkReservation
 		(
 			@PathVariable Long reservationId,
 			@RequestBody ReservationCheck reservationCheck
 		) {
 		Long hostUserId = UserContextHolder.get();
-		return reservationConverterService.converterReservationState(hostUserId, reservationId, reservationCheck);
+
+		reservationConverterService.converterReservationState(hostUserId, reservationId, reservationCheck);
+		return ResponseDto.map(HttpStatus.OK.value(), "선택한 예약 승인/거절이 되었습니다", null);
 	}
 
 	@Auth
