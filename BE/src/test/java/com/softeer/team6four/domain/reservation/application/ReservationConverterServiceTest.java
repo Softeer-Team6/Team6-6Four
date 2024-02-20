@@ -39,7 +39,8 @@ class ReservationConverterServiceTest {
 		//Given
 		Long hostUserId = 123L;
 		Long reservationId = 456L;
-		ReservationCheck reservationCheck = ReservationCheck.builder().stateType(StateType.APPROVE).build();
+		ReservationCheck reservationCheck = new ReservationCheck();
+		reservationCheck.setStateType(StateType.APPROVE);
 		Reservation reservation = Reservation.builder().stateType(StateType.WAIT).build();
 		when(reservationRepository.findById(reservationId)).thenReturn(java.util.Optional.of(reservation));
 
@@ -57,7 +58,8 @@ class ReservationConverterServiceTest {
 		//Given
 		Long hostUserId = 123L;
 		Long reservationId = 456L;
-		ReservationCheck reservationCheck = ReservationCheck.builder().stateType(StateType.REJECT).build();
+		ReservationCheck reservationCheck = new ReservationCheck();
+		reservationCheck.setStateType(StateType.REJECT);
 		Reservation reservation = Reservation.builder().stateType(StateType.WAIT).build();
 		when(reservationRepository.findById(reservationId)).thenReturn(java.util.Optional.of(reservation));
 
@@ -75,7 +77,8 @@ class ReservationConverterServiceTest {
 		// Given
 		Long hostUserId = 123L;
 		Long reservationId = 456L;
-		ReservationCheck reservationCheck = ReservationCheck.builder().stateType(StateType.REJECT).build();
+		ReservationCheck reservationCheck = new ReservationCheck();
+		reservationCheck.setStateType(StateType.REJECT);
 		when(reservationRepository.findById(reservationId)).thenReturn(java.util.Optional.empty());
 
 		// When, Then
@@ -91,7 +94,8 @@ class ReservationConverterServiceTest {
 		//Given
 		Long hostUserId = 123L;
 		Long reservationId = 456L;
-		ReservationCheck reservationCheck = ReservationCheck.builder().stateType(StateType.REJECT).build();
+		ReservationCheck reservationCheck = new ReservationCheck();
+		reservationCheck.setStateType(StateType.REJECT);
 		Reservation reservation = Reservation.builder().stateType(StateType.SELF).build();
 		when(reservationRepository.findById(reservationId)).thenReturn(java.util.Optional.of(reservation));
 
