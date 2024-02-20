@@ -73,6 +73,7 @@ dependencies {
     implementation("io.coil-kt:coil:2.5.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
     implementation("com.google.dagger:hilt-android:2.48")
