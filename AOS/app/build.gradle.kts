@@ -66,6 +66,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
     implementation("com.google.android.gms:play-services-location:21.1.0")
     implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
     implementation("com.naver.maps:map-sdk:3.17.0")
