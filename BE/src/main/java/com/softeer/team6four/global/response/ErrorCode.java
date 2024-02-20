@@ -26,6 +26,7 @@ public enum ErrorCode {
 	INVALID_CHARGE_NEGATIVE(400, "양수만 입력 가능합니다"),
 	INSUFFICIENT_POINTS(400, "포인트가 부족합니다."),
 	RESERVATION_CANNOT_USE_STATE(400, "예약 상태가 사용 불가능한 상태입니다."),
+	MISSING_REQUEST_PARAMETER(400, "필수 요청 파라미터가 누락되었습니다."),
 
 	// 401
 	NOT_CARBOB_OWNER(401, "카밥의 주인이 아닙니다."),

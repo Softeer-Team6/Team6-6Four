@@ -1,23 +1,16 @@
-# 스프링 및 데이터베이스 설정
 spring:
+  main:
+    allow-bean-definition-overriding: true
   config:
     activate:
       on-profile: test
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MYSQL
-    username: sa
-    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/6four_test?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: 99879987
   jpa:
-    database: h2
+    open-in-view: false
     hibernate:
       ddl-auto: none
     show-sql: true
-    defer-datasource-initialization: true
-  h2:
-    console:
-      enabled: true
-  sql:
-    init:
-      mode: always
-      schema-locations: classpath:sql/create.sql
