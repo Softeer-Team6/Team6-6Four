@@ -39,7 +39,7 @@ interface UserService {
     ): Resource<LoginDto>
 
     companion object {
-        private const val BASE_URL = "${BuildConfig.BASE_URL}/v1/user"
+        private const val BASE_URL = "${BuildConfig.BASE_URL}/v1/user/"
 
         fun create(): UserService {
             return Retrofit.Builder()
