@@ -5,6 +5,7 @@ import com.softeer.team6four.data.remote.user.dto.SignUpInfo
 import com.softeer.team6four.data.remote.user.model.EmailCheckModel
 import com.softeer.team6four.data.remote.user.model.NicknameCheckModel
 import com.softeer.team6four.data.remote.user.model.UserInfoModel
+import com.softeer.team6four.data.remote.user.model.UserLoginModel
 import com.softeer.team6four.data.remote.user.source.UserDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -60,6 +61,30 @@ class UserRepository @Inject constructor(private val userDataSource: UserDataSou
             nickname = userInfoModel.nickname
         )
         return userDataSource.requestSignUp(singUpInfo)
+    }
+
+    fun requestLogin(nickname: String, password: String): Flow<Resource<UserLoginModel>> {
+        return userDataSource.requestLogin(nickname, password).map { resource ->
+            when (resource) {
+                is Resource.Success -> {
+                    val result = resource.data
+                    val userLoginModel = UserLoginModel(
+                        //nickname = result.nickname,
+                        accessToken = result.accessToken,
+                        refreshToken = result.refreshToken
+                    )
+                    Resource.Success(userLoginModel)
+                }
+
+                is Resource.Error -> {
+                    Resource.Error(code = resource.code, message = resource.message)
+                }
+
+                else -> {
+                    Resource.Loading()
+                }
+            }
+        }
     }
 
 }
