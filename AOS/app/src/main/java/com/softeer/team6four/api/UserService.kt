@@ -4,6 +4,7 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import com.softeer.team6four.BuildConfig
 import com.softeer.team6four.data.remote.user.dto.EmailCheckDto
 import com.softeer.team6four.data.remote.user.dto.LoginDto
+import com.softeer.team6four.data.remote.user.dto.LoginInfo
 import com.softeer.team6four.data.remote.user.dto.NicknameCheckDto
 import com.softeer.team6four.data.remote.user.dto.SignUpInfo
 import kotlinx.serialization.json.Json
@@ -11,7 +12,6 @@ import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.http.Body
-import retrofit2.http.Field
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -34,8 +34,7 @@ interface UserService {
 
     @POST("auth/signin")
     suspend fun requestLogin(
-        @Field("email") email: String,
-        @Field("password") password: String
+        @Body loginInfo: LoginInfo
     ): Response<LoginDto>
 
     companion object {
