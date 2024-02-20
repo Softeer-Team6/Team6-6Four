@@ -104,9 +104,11 @@ public class ReservationController {
 	public ResponseDto<DailyReservationInfo> getdailyResrvationStatus
 		(
 			@PathVariable Long carbobId,
-			@RequestParam(name = "date", defaultValue = "default") String date
+			@RequestParam(name = "date",required = false) String date
 		) {
-		return reservationSearchService.getDailyReservationStatus(carbobId, date);
+		DailyReservationInfo dailyReservationInfo = reservationSearchService.getDailyReservationStatus(carbobId, date);
+
+		return ResponseDto.map(HttpStatus.OK.value(), "선택한 일자의 카밥 예약 내역입니다", dailyReservationInfo);
 	}
 
 	@Auth
