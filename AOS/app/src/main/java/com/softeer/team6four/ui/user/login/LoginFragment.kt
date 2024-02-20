@@ -1,4 +1,4 @@
-package com.softeer.team6four.ui.login
+package com.softeer.team6four.ui.user.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
