@@ -110,7 +110,7 @@ class UserJoinServiceTest {
 		when(userRepository.save(any())).thenReturn(savedUser);
 
 		// When
-		User result = userJoinService.signup(signUpRequest);
+		Void result = userJoinService.signup(signUpRequest);
 
 		// Then
 		assertNotNull(result);
