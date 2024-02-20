@@ -1,4 +1,4 @@
-package com.softeer.team6four.data.remote.dto
+package com.softeer.team6four.data.remote.geo.dto
 
 import kotlinx.serialization.Serializable
 

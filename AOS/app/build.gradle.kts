@@ -33,6 +33,7 @@ android {
             "CLIENT_SECRET",
             "\"${properties["CLIENT_SECRET"]}\""
         )
+        buildConfigField("String", "BASE_URL", "\"${properties["BASE_URL"]}\"")
     }
 
     buildTypes {
