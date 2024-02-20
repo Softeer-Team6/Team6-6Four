@@ -5,6 +5,7 @@ import com.softeer.team6four.BuildConfig
 import com.softeer.team6four.data.Resource
 import com.softeer.team6four.data.remote.charger.dto.BottomSheetChargerListDto
 import com.softeer.team6four.data.remote.charger.dto.ChargerDetailDto
+import com.softeer.team6four.data.remote.charger.dto.ChargerRegistrationInfo
 import com.softeer.team6four.data.remote.charger.dto.MapChargerListDto
 import com.softeer.team6four.data.remote.charger.dto.MyChargerDetailDto
 import com.softeer.team6four.data.remote.charger.dto.MyChargerListDto
@@ -13,6 +14,7 @@ import com.softeer.team6four.data.remote.charger.dto.UploadImageDto
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -48,18 +50,7 @@ interface ChargerService {
     @POST("registration")
     suspend fun registerCharger(
         @Header("Authorization") token : String,
-        @Field("carbobNickname") carbobNickname: String,
-        @Field("description") description: String,
-        @Field("feePerlkwh") feePer1kWh: Int,
-        @Field("address") address: String,
-        @Field("latitude") latitude: Double,
-        @Field("longitude") longitude: Double,
-        @Field("locationType") locationType: String,
-        @Field("chargeType") chargeType: String,
-        @Field("speedType") speedType: String,
-        @Field("installType") installType: String,
-        @Field("startTime") startTime: Int,
-        @Field("endTime") endTime: Int
+        @Body chargerRegistrationInfo: ChargerRegistrationInfo
     ): Resource<RegisterChargerDto>
 
     @POST("image")
@@ -73,7 +64,7 @@ interface ChargerService {
         @Header("Authorization") token : String,
         @Query("sortType") sortType: String,
         @Query("lastCarbobId") lastCarbobId: Int?,
-        @Query("lastReservationCount") lastReservationCount: Int
+        @Query("lastReservationCount") lastReservationCount: Int?
     ): Resource<MyChargerListDto>
 
     @GET("detail/{carbobId}")

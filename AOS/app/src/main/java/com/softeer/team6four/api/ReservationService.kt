@@ -27,19 +27,22 @@ interface ReservationService {
     suspend fun getDateReservationInfo(
         @Header("Authorization") token: String,
         @Path("carbobId") carbobId: Int,
-        @Path("date") date: String?
+        @Query("date") date: String?
     ): Resource<DateReservationInfoDto>
 
     @PATCH("check/{reservationId}")
     suspend fun updateReservationState(
         @Header("Authorization") token: String,
         @Path("reservationId") reservationId: Long,
-        @Header("stateType") stateType: String
+        @Field("stateType") stateType: String
     ): Resource<ReservationConfirmationDto>
 
     @POST("apply")
     suspend fun applyReservation(
         @Header("Authorization") token: String,
+        @Field("carbobId") carbobId: Long,
+        @Field("startDateTime") startDateTime : String,
+        @Field("endDateTime") endDateTime : String
     ): Resource<ReservationRequestDto>
 
     @GET("verification")

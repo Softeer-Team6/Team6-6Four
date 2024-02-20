@@ -9,6 +9,7 @@ import com.softeer.team6four.data.remote.payment.dto.TotalPointDto
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
+import retrofit2.http.Field
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -16,10 +17,10 @@ import retrofit2.http.Query
 
 interface PaymentService {
 
-    @POST("total/point")
+    @POST("charge")
     suspend fun requestChargePoint(
         @Header("Authorization") token: String,
-        @Header("chargePoint") chargePoint: Int
+        @Field("chargePoint") chargePoint: Int
     ): Resource<PointChargeDto>
 
     @GET("total/point")
@@ -30,7 +31,7 @@ interface PaymentService {
     @GET("my/point")
     suspend fun getPointHistory(
         @Header("Authorization") token: String,
-        @Query("paymentId") paymentId: Int
+        @Query("paymentId") paymentId: Long?
     ): Resource<PointHistoryDto>
 
     companion object {
