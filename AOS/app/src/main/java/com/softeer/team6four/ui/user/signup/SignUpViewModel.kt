@@ -44,6 +44,9 @@ class SignUpViewModel @Inject constructor(private val userRepository: UserReposi
     private val _nicknameErrorState: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val nicknameErrorState: StateFlow<Boolean> = _nicknameErrorState
 
+    private val _signUpState: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val signUpState: StateFlow<Boolean> = _signUpState
+
     fun updateEmail(text: Editable) {
         _email.value = text.toString()
         _emailCheckState.value = false
@@ -141,7 +144,10 @@ class SignUpViewModel @Inject constructor(private val userRepository: UserReposi
                     nickname = nickname.value
                 )
             ).collect { result ->
-                if(result is Resource.Error) {
+                if (result is Resource.Success) {
+                    _signUpState.value = true
+                }
+                else if (result is Resource.Error) {
                     Log.e("requestSignUp Result", result.message)
                 }
             }

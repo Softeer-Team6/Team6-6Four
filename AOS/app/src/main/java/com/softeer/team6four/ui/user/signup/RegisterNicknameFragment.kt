@@ -6,7 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.softeer.team6four.databinding.FragmentRegisterNicknameBinding
+import kotlinx.coroutines.launch
 
 class RegisterNicknameFragment : Fragment() {
     private var _binding: FragmentRegisterNicknameBinding? = null
@@ -27,10 +32,17 @@ class RegisterNicknameFragment : Fragment() {
         with(binding) {
             viewModel = signUpViewModel
             lifecycleOwner = viewLifecycleOwner
-//            btnCompleteSignup.setOnClickListener {
-//                requireParentFragment().requireParentFragment().findNavController().popBackStack()
-//            }
 
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    signUpViewModel.signUpState.collect { state ->
+                        if (state) {
+                            requireParentFragment().requireParentFragment().findNavController()
+                                .popBackStack()
+                        }
+                    }
+                }
+            }
         }
     }
 }
