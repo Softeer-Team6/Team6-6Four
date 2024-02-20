@@ -43,14 +43,15 @@ public class UserJoinService {
 	}
 
 	@Transactional
-	public User signup(SignUpRequest signupRequest) {
+	public Void signup(SignUpRequest signupRequest) {
 		try {
 			User newUser = User.builder()
 				.email(signupRequest.getEmail())
 				.password(signupRequest.getPassword())
 				.nickname(signupRequest.getNickname())
 				.build();
-			return userRepository.save(newUser);
+			userRepository.save(newUser);
+			return null;
 		} catch (Exception e) {
 			throw new UserException(ErrorCode.INTERNAL_SERVER_ERROR);
 		}
