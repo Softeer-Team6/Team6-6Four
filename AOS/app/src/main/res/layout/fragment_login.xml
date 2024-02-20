@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.softeer.team6four.ui.user.login.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -63,6 +66,7 @@
                 android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:afterTextChanged="@{s -> viewModel.updateEmail(s)}"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="15dp"
@@ -87,6 +91,7 @@
             app:errorEnabled="true"
             app:errorIconDrawable="@drawable/icon_wrong_input"
             app:errorTextColor="@color/error"
+            app:setLoginPasswordError="@{viewModel.loginFailState}"
             app:layout_constraintEnd_toEndOf="@id/end_guide_line"
             app:layout_constraintStart_toStartOf="@id/start_guide_line"
             app:layout_constraintTop_toBottomOf="@id/tv_password">
@@ -95,8 +100,10 @@
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:afterTextChanged="@{s -> viewModel.updatePassword(s)}"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="15dp"
+                android:inputType="textPassword"
                 android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,6 +112,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
+            android:onClick="@{() -> viewModel.requestLogin()}"
             android:paddingVertical="20dp"
             android:text="@string/login"
             android:textSize="16sp"
