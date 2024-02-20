@@ -13,6 +13,7 @@ import com.softeer.team6four.domain.common.RepositoryTest;
 @RepositoryTest
 import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -96,11 +97,9 @@ class PaymentRepositoryTest {
 		assertEquals(expectedAmount, actualAmount);
 	}
 
-
 	@Test
 	void findPaymentsByPayTypeAndTargetIdIn() {
 	}
-
 
 	private int createMockAmount() {
 		// 가상의 Payment 객체 리스트 생성
@@ -109,14 +108,14 @@ class PaymentRepositoryTest {
 			.build();
 		paymentRepository.save(payment1);
 
-
 		int amount2 = 2000;
 		Payment payment2 = Payment.builder().amount(amount2).payType(PayType.CHARGE).targetId(1L).user(user)
 			.build();
 		paymentRepository.save(payment2);
 
-		return payment1.getAmount()+payment2.getAmount();
+		return payment1.getAmount() + payment2.getAmount();
 	}
+
 	private List<Payment> createMockPayments() {
 		// 가상의 Payment 객체 리스트 생성
 		List<Payment> payments = new ArrayList<>();
