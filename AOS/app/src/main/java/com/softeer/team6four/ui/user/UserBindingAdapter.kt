@@ -32,8 +32,15 @@ fun setNicknameHelperText(textInputLayout: TextInputLayout, isSuccess: Boolean) 
     if (isSuccess) textInputLayout.helperText = "사용가능한 닉네임입니다."
     else textInputLayout.helperText = null
 }
+
 @BindingAdapter("app:setNicknameError")
 fun setNicknameError(textInputLayout: TextInputLayout, isError: Boolean) {
     if (isError) textInputLayout.error = "중복되는 닉네임입니다."
+    else textInputLayout.error = null
+}
+
+@BindingAdapter("app:setLoginPasswordError")
+fun setLoginPasswordError(textInputLayout: TextInputLayout, isError: Boolean) {
+    if (isError) textInputLayout.error = "비밀번호가 일치하지 않습니다."
     else textInputLayout.error = null
 }
