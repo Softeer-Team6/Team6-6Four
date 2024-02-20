@@ -11,13 +11,13 @@ public class SignUpRequest {
 	private String password;
 	private String nickname;
 
-	private SignUpRequest(String email, String password,String nickname) {
+	private SignUpRequest(String email, String password, String nickname) {
 		this.email = email;
 		this.password = password;
 		this.nickname = nickname;
 	}
 
 	public static SignUpRequest create(String email, String password, String nickname) {
-		return new SignUpRequest(email, password,nickname);
+		return new SignUpRequest(email, password, nickname);
 	}
 }

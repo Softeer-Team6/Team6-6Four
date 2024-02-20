@@ -1,20 +1,18 @@
 package com.softeer.team6four.domain.user.application;
 
 import com.softeer.team6four.domain.user.application.exception.UserException;
-import com.softeer.team6four.domain.user.application.response.EmailCheck;
-import com.softeer.team6four.domain.user.application.response.NicknameCheck;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.softeer.team6four.domain.user.application.request.SignInRequest;
 import com.softeer.team6four.domain.user.application.request.SignUpRequest;
+import com.softeer.team6four.domain.user.application.response.EmailCheck;
+import com.softeer.team6four.domain.user.application.response.NicknameCheck;
 import com.softeer.team6four.domain.user.application.response.SignInResponse;
 import com.softeer.team6four.domain.user.domain.User;
 import com.softeer.team6four.domain.user.domain.UserRepository;
 import com.softeer.team6four.global.auth.JwtProvider;
 import com.softeer.team6four.global.response.ErrorCode;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,13 +22,13 @@ public class UserJoinService {
 
 	@Transactional(readOnly = true)
 	public EmailCheck findEmail(String email) {
-			boolean emailExists = userRepository.existsByEmail(email);
-			EmailCheck emailCheck = new EmailCheck(emailExists);
+		boolean emailExists = userRepository.existsByEmail(email);
+		EmailCheck emailCheck = new EmailCheck(emailExists);
 
-			if (emailExists) {
-				throw new UserException(ErrorCode.EMAIL_DUPLICATE);
-			}
-			return new EmailCheck(emailExists);
+		if (emailExists) {
+			throw new UserException(ErrorCode.EMAIL_DUPLICATE);
+		}
+		return new EmailCheck(emailExists);
 	}
 
 	@Transactional(readOnly = true)
@@ -53,7 +51,7 @@ public class UserJoinService {
 				.nickname(signupRequest.getNickname())
 				.build();
 			return userRepository.save(newUser);
-		} catch (Exception e){
+		} catch (Exception e) {
 			throw new UserException(ErrorCode.INTERNAL_SERVER_ERROR);
 		}
 	}

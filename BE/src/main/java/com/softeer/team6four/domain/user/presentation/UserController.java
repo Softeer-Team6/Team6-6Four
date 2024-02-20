@@ -1,8 +1,5 @@
 package com.softeer.team6four.domain.user.presentation;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
 import com.softeer.team6four.domain.user.application.UserJoinService;
 import com.softeer.team6four.domain.user.application.request.SignInRequest;
 import com.softeer.team6four.domain.user.application.request.SignUpRequest;
@@ -10,8 +7,9 @@ import com.softeer.team6four.domain.user.application.response.EmailCheck;
 import com.softeer.team6four.domain.user.application.response.NicknameCheck;
 import com.softeer.team6four.domain.user.application.response.SignInResponse;
 import com.softeer.team6four.global.response.ResponseDto;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/v1/user")
@@ -28,8 +26,9 @@ public class UserController {
 	@GetMapping(value = "/auth/nickname/check")
 	public ResponseDto<NicknameCheck> checkNickname(@RequestParam String nickname) {
 		NicknameCheck nicknameCheck = userJoinService.findNickname(nickname);
-		return ResponseDto.map(HttpStatus.OK.value(),"사용 가능한 닉네임 입니다.", nicknameCheck);
+		return ResponseDto.map(HttpStatus.OK.value(), "사용 가능한 닉네임 입니다.", nicknameCheck);
 	}
+
 	@PostMapping("/auth/signup")
 	public ResponseDto<Void> signup(@RequestBody SignUpRequest signupRequest) {
 		userJoinService.signup(signupRequest);
