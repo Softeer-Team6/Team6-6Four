@@ -3,7 +3,7 @@ package com.softeer.team6four.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.naver.maps.geometry.LatLng
-import com.softeer.team6four.data.GeoCodeRepository
+import com.softeer.team6four.data.remote.geo.GeoCodeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
