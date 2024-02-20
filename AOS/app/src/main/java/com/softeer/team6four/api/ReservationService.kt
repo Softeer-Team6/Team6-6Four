@@ -1,6 +1,7 @@
 package com.softeer.team6four.api
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.softeer.team6four.BuildConfig
 import com.softeer.team6four.data.Resource
 import com.softeer.team6four.data.remote.reservation.dto.ChargerReservationListDto
 import com.softeer.team6four.data.remote.reservation.dto.DateReservationInfoDto
@@ -67,7 +68,7 @@ interface ReservationService {
     ): Resource<ChargerReservationListDto>
 
     companion object {
-        private const val BASE_URL = "http://13.125.3.169:8080/v1/reservation/"
+        private const val BASE_URL = "${BuildConfig.BASE_URL}/v1/reservation/"
 
         fun create(): ReservationService {
             return Retrofit.Builder()

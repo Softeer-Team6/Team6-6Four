@@ -1,6 +1,7 @@
 package com.softeer.team6four.api
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.softeer.team6four.BuildConfig
 import com.softeer.team6four.data.Resource
 import com.softeer.team6four.data.remote.payment.dto.PointChargeDto
 import com.softeer.team6four.data.remote.payment.dto.PointHistoryDto
@@ -33,7 +34,7 @@ interface PaymentService {
     ): Resource<PointHistoryDto>
 
     companion object {
-        private const val BASE_URL = "http://13.125.3.169:8080/v1/payment/"
+        private const val BASE_URL = "${BuildConfig.BASE_URL}/v1/payment/"
 
         fun create(): PaymentService {
             return Retrofit.Builder()
