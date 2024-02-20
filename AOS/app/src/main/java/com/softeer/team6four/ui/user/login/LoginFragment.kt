@@ -1,17 +1,24 @@
 package com.softeer.team6four.ui.user.login
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.softeer.team6four.R
 import com.softeer.team6four.databinding.FragmentLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
+    private val loginViewModel: LoginViewModel by viewModels()
     private val binding
         get() = _binding!!
 
@@ -26,7 +33,17 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
-            btnLogin.setOnClickListener { findNavController().navigate(R.id.action_loginFragment_to_homeFragment) }
+            viewModel = loginViewModel
+            lifecycleOwner = viewLifecycleOwner
+
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    loginViewModel.loginSuccessState.collect { result ->
+                        if (result) findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                    }
+                }
+            }
+
             tvSignup.setOnClickListener { findNavController().navigate(R.id.action_loginFragment_to_signUpFragment) }
         }
     }
