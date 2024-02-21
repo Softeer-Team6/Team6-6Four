@@ -27,6 +27,7 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
+        loginViewModel.updateLoginState()
         return binding.root
     }
 
@@ -38,12 +39,21 @@ class LoginFragment : Fragment() {
 
             viewLifecycleOwner.lifecycleScope.launch {
                 viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    loginViewModel.loginState.collect { isLogin ->
+                        if(isLogin) {
+                            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                        }
+                    }
+                }
+            }
+
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                     loginViewModel.loginSuccessState.collect { result ->
                         if (result) findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                     }
                 }
             }
-
             tvSignup.setOnClickListener { findNavController().navigate(R.id.action_loginFragment_to_signUpFragment) }
         }
     }
