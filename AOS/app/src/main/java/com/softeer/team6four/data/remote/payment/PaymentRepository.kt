@@ -2,6 +2,8 @@ package com.softeer.team6four.data.remote.payment
 
 import com.softeer.team6four.data.Resource
 import com.softeer.team6four.data.remote.payment.model.MyTotalPointModel
+import com.softeer.team6four.data.remote.payment.model.PointHistoryDetailModel
+import com.softeer.team6four.data.remote.payment.model.PointHistoryModel
 import com.softeer.team6four.data.remote.payment.source.PaymentDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -30,6 +32,47 @@ class PaymentRepository @Inject constructor(private val paymentDataSource: Payme
             }
 
         }
+    }
+
+    fun getPointHistory(accessToken: String, lastPaymentId: Long?) : Flow<Resource<PointHistoryModel>> {
+        return paymentDataSource.getPointHistory(accessToken, lastPaymentId).map { resource ->
+            when (resource) {
+                is Resource.Success -> {
+                    val pointHistory = resource.data
+                    val pointHistoryModel = PointHistoryModel(
+                        pointHistory.content.map {
+                            PointHistoryDetailModel(
+                                it.amount.toString() + " 원",
+                                it.createdDate.split("T")[0].replace("-", ".")
+                                    + " "
+                                    + it.createdDate.split("T")[1]
+                                        .split(".")[0]
+                                        .substring(0, 5),
+                                it.paymentId,
+                                it.paymentType,
+                                it.pointTitle,
+                                it.targetId
+                            )
+                        },
+                        pointHistory.hasNext,
+                        pointHistory.size
+                    )
+                    Resource.Success(pointHistoryModel)
+                }
+
+                is Resource.Error -> {
+                    Resource.Error(message = resource.message)
+                }
+
+                else -> {
+                    Resource.Loading()
+                }
+            }
+        }
+    }
+
+    fun chargePoint(accessToken: String, amount: Int) : Flow<Resource<Unit>> {
+        return paymentDataSource.chargePoint(accessToken, amount)
     }
 
 }
