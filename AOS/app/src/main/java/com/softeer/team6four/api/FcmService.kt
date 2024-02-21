@@ -15,7 +15,7 @@ interface FcmService {
     @POST("my/token")
     suspend fun postToken(
         @Header("Authorization") authorization: String,
-        @Body fcmToken: String
+        @Body fcmToken: TokenDto
     ): Response<FcmResponseDto>
 
 

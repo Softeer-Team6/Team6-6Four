@@ -11,7 +11,7 @@ class FcmDataSource @Inject constructor(private val fcmService: FcmService) {
         emit(Resource.Loading())
         val authorization = "Bearer $accessToken"
         try {
-            val response = fcmService.postToken(authorization, fcmToken)
+            val response = fcmService.postToken(authorization, TokenDto(fcmToken))
             if (response.isSuccessful) {
                 emit(Resource.Success(Unit))
             } else {
