@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
+
 import com.softeer.team6four.domain.common.RepositoryTest;
 import com.softeer.team6four.domain.payment.application.response.MyPointSummary;
 

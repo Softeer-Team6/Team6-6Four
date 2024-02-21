@@ -122,7 +122,8 @@ class ReservationSearchServiceTest {
 			assertTrue(dailyReservationInfo.getDailyBookedTimeCheck()[hour]);
 		}
 		// repository 메서드가 호출되었는지 확인
-		verify(dailyReservationRepositoryImpl, times(1)).findDailyReservationStatus(carbobId, startDateTime, endDateTime);
+		verify(dailyReservationRepositoryImpl, times(1)).findDailyReservationStatus(carbobId, startDateTime,
+			endDateTime);
 
 	}
 

@@ -111,7 +111,7 @@ public class ReservationSearchService {
 
 		LocalDate localDate;
 		// 날짜를 입력하지 않았다면 현재 날짜로 설정
-		if (date==null)
+		if (date == null)
 			localDate = LocalDate.now();
 		else
 			localDate = LocalDate.parse(date);

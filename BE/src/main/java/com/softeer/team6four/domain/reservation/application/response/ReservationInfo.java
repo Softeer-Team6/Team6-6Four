@@ -14,10 +14,10 @@ public class ReservationInfo {
 	private final @NotNull String carbobImageUrl;
 	private final @NotNull StateType stateType;
 	private final @NotNull ReservationTime reservationTime;
-	private @NotNull String reservationTimeStr;
 	private final @NotNull Integer totalFee;
 	private final @NotNull String carbobNickname;
 	private final @NotNull String address;
+	private @NotNull String reservationTimeStr;
 
 	public void convertReservationTimeToStr() {
 		this.reservationTimeStr = this.reservationTime.toString();

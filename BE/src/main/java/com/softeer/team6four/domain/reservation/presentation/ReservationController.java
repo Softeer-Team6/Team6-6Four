@@ -104,7 +104,7 @@ public class ReservationController {
 	public ResponseDto<DailyReservationInfo> getdailyResrvationStatus
 		(
 			@PathVariable Long carbobId,
-			@RequestParam(name = "date",required = false) String date
+			@RequestParam(name = "date", required = false) String date
 		) {
 		DailyReservationInfo dailyReservationInfo = reservationSearchService.getDailyReservationStatus(carbobId, date);
 

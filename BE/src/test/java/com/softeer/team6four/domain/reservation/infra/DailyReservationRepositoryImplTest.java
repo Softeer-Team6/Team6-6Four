@@ -20,7 +20,7 @@ class DailyReservationRepositoryImplTest {
 
 	@Test
 	@DisplayName("예약 불가능한 시간 조회")
-	void findDailyReservationStatus(){
+	void findDailyReservationStatus() {
 		//Given
 		Long carbobId = 2L;
 		String date = "2024-02-20";

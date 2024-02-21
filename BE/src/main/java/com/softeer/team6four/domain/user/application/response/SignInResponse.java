@@ -10,7 +10,7 @@ public class SignInResponse {
 	private final String refreshToken;
 
 	@Builder
-	public SignInResponse(String nickname,String accessToken, String refreshToken) {
+	public SignInResponse(String nickname, String accessToken, String refreshToken) {
 		this.nickname = nickname;
 		this.accessToken = accessToken;
 		this.refreshToken = refreshToken;

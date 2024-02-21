@@ -48,7 +48,8 @@ public class ReservationRepositoryImpl extends QuerydslRepositorySupport {
 				Projections.constructor(
 					ReservationInfo.class,
 					reservation.reservationId,
-					carbobImage.imageUrl.coalesce("https://project-s3-bucket-1.s3.ap-northeast-2.amazonaws.com/carbob.png"),
+					carbobImage.imageUrl.coalesce(
+						"https://project-s3-bucket-1.s3.ap-northeast-2.amazonaws.com/carbob.png"),
 					reservation.stateType,
 					Projections.constructor(
 						ReservationTime.class,

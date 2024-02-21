@@ -74,11 +74,11 @@ public class Carbob extends BaseEntity {
 		this.host = host;
 	}
 
-	public void setCarbobQrImageUrl(String qrImageUrl) {
-		this.qrImageUrl = qrImageUrl;
-	}
-
 	public String getCarbobQrImageUrl() {
 		return this.qrImageUrl;
+	}
+
+	public void setCarbobQrImageUrl(String qrImageUrl) {
+		this.qrImageUrl = qrImageUrl;
 	}
 }

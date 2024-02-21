@@ -31,15 +31,13 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 public class JwtProvider {
+	private final RedisTemplate<String, String> redisTemplate;
 	@Value("${jwt.secret}")
 	private String secret;
-
 	@Value("${jwt.accessTokenPeriod}")
 	private long accessTokenPeriod;
-
 	@Value("${jwt.refreshTokenPeriod}")
 	private long refreshTokenPeriod;
-	private final RedisTemplate<String, String> redisTemplate;
 
 	private Key getSecretKey() {
 		return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));

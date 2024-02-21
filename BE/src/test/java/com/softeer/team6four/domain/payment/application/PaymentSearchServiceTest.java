@@ -43,7 +43,8 @@ class PaymentSearchServiceTest {
 		);
 
 		when(reservationSearchService.getUsedReservationIdListByCarbobId(carbobId)).thenReturn(usedReservationIds);
-		when(paymentRepository.findPaymentsByPayTypeAndTargetIdIn(PayType.INCOME, usedReservationIds)).thenReturn(payments);
+		when(paymentRepository.findPaymentsByPayTypeAndTargetIdIn(PayType.INCOME, usedReservationIds)).thenReturn(
+			payments);
 
 		// when
 		Long totalIncome = paymentSearchService.getTotalIncomeByTargetId(carbobId);
