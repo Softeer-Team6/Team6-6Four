@@ -100,6 +100,11 @@ clean.doLast {
 sentry {
     includeSourceContext = true
 
+    org = "soongsil-university-wd"
     projectName = "6four"
     authToken = "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"
+}
+
+tasks.named('sentryCollectSourcesJava').configure {
+    mustRunAfter compileJava
 }
