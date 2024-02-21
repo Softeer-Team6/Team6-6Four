@@ -2,6 +2,7 @@ package com.softeer.team6four.di
 
 import com.softeer.team6four.api.FcmService
 import com.softeer.team6four.api.GeoCodeService
+import com.softeer.team6four.api.PaymentService
 import com.softeer.team6four.api.UserService
 import dagger.Module
 import dagger.Provides
@@ -24,5 +25,10 @@ object NetworkModule {
     @Provides
     fun provideFcmService() : FcmService {
         return FcmService.create()
+    }
+
+    @Provides
+    fun providePaymentService() : PaymentService {
+        return PaymentService.create()
     }
 }
