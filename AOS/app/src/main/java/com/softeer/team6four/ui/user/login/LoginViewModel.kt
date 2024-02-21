@@ -29,8 +29,11 @@ class LoginViewModel @Inject constructor(
     private val _loginSuccessState: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val loginSuccessState: StateFlow<Boolean> = _loginSuccessState
 
-    private val _loginFailState: MutableStateFlow<Boolean> = MutableStateFlow(false)
-    val loginFailState: StateFlow<Boolean> = _loginFailState
+    private val _loginEmailFailState: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val loginEmailFailState: StateFlow<Boolean> = _loginEmailFailState
+
+    private val _loginPasswordFailState: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val loginPasswordFailState: StateFlow<Boolean> = _loginPasswordFailState
 
     private var _loginState: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val loginState: StateFlow<Boolean> = _loginState
@@ -49,30 +52,35 @@ class LoginViewModel @Inject constructor(
                 when (userLoginModel) {
                     is Resource.Success -> {
                         _loginSuccessState.value = true
-                        _loginFailState.value = false
+                        _loginEmailFailState.value = false
+                        _loginPasswordFailState.value = false
+
                         with(userPreferencesRepository) {
-                            //updateNickname(userLoginModel.data.nickname)
+                            updateNickname(userLoginModel.data.nickname)
                             updateAccessToken(userLoginModel.data.accessToken)
                             updateRefreshToken(userLoginModel.data.refreshToken)
                         }
-
-                        Log.d("userLoginModel", userLoginModel.data.toString())
-
                     }
 
                     is Resource.Error -> {
                         Log.e("LogIn error", userLoginModel.message)
                         _loginSuccessState.value = false
-                        _loginFailState.value = true
+                        if (userLoginModel.code == 404) {
+                            _loginEmailFailState.value = true
+                            _loginPasswordFailState.value = false
+                        } else {
+                            _loginEmailFailState.value = false
+                            _loginPasswordFailState.value = true
+                        }
+
                     }
 
                     else -> {
                         _loginSuccessState.value = false
-                        _loginFailState.value = false
+                        _loginEmailFailState.value = false
+                        _loginPasswordFailState.value = false
                     }
-
                 }
-
             }
         }
     }
