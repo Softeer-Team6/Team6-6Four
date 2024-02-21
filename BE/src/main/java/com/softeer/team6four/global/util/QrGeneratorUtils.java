@@ -32,7 +32,7 @@ public class QrGeneratorUtils {
 			int height = 300;
 
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			
+
 			BitMatrix bitMatrix = new MultiFormatWriter().encode(encryptedCarbobId, BarcodeFormat.QR_CODE, width,
 				height);
 
