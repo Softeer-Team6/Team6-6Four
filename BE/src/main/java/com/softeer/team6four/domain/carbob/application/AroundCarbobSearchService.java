@@ -43,14 +43,14 @@ public class AroundCarbobSearchService {
 		return ListResponse.of(aroundCarbobList);
 	}
 
-	public ResponseDto<SpecificDetailCarbobInfo> findSpecificCarbobDetailInfo
+	public SpecificDetailCarbobInfo findSpecificCarbobDetailInfo
 		(Double latitude, Double longitude, Long carbobId) {
 		Point point = createPoint(latitude, longitude);
 
 		SpecificDetailCarbobInfo specificCarbob = aroundCarbobRepository.findSpecificCarbobDetailByCarbobId(point,
 			carbobId);
 
-		return ResponseDto.map(HttpStatus.OK.value(), "선택한 카밥 정보입니다", specificCarbob);
+		return specificCarbob;
 	}
 
 	public Point createPoint(Double latitude, Double longitude) {

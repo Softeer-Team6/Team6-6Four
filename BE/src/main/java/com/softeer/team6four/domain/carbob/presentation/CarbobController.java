@@ -96,7 +96,9 @@ public class CarbobController {
 			@RequestParam @NotNull Double latitude,
 			@RequestParam @NotNull Double longitude
 		) {
-		return aroundCarbobSearchService.findSpecificCarbobDetailInfo(latitude, longitude, carbobId);
+
+		SpecificDetailCarbobInfo specificCarbob = aroundCarbobSearchService.findSpecificCarbobDetailInfo(latitude, longitude, carbobId);
+		return ResponseDto.map(HttpStatus.OK.value(), "선택한 카밥 정보입니다", specificCarbob);
 	}
 
 	@Auth
