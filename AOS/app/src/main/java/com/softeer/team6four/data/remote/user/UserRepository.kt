@@ -69,7 +69,7 @@ class UserRepository @Inject constructor(private val userDataSource: UserDataSou
                 is Resource.Success -> {
                     val result = resource.data
                     val userLoginModel = UserLoginModel(
-                        //nickname = result.nickname,
+                        nickname = result.nickname,
                         accessToken = result.accessToken,
                         refreshToken = result.refreshToken
                     )
