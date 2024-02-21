@@ -100,7 +100,6 @@
             android:id="@+id/iv_empty_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="visible"
             android:src="@drawable/register_charger_onboarding_img"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -114,7 +113,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:visibility="visible"
             android:text="@string/empty_point_charge"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -124,10 +122,11 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_empty_state" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_point_history"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_total_points"
