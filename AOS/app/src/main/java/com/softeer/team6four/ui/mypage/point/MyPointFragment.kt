@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.softeer.team6four.databinding.FragmentMyPointBinding
+import com.softeer.team6four.ui.mypage.point.adapter.PointHistoryAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -31,6 +32,10 @@ class MyPointFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.ibPointCharge.setOnClickListener {
+            myPointViewModel.chargePoint()
+        }
+
         with(binding) {
             myPointViewModel.fetchMyTotalPoint()
             viewModel = myPointViewModel
@@ -43,6 +48,28 @@ class MyPointFragment : Fragment() {
                     }
                 }
             }
+
+            val adapter = PointHistoryAdapter()
+            binding.rvPointHistory.adapter = adapter
+
+            myPointViewModel.fetchPointHistory()
+
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    myPointViewModel.pointHistory.collect { pointHistoryList ->
+                        if (pointHistoryList.isEmpty()) {
+                            binding.rvPointHistory.visibility = View.GONE
+                            binding.ivEmptyState.visibility = View.VISIBLE
+                            binding.tvEmptyPointHistory.visibility = View.VISIBLE
+                        } else {
+                            adapter.setPointHistoryList(pointHistoryList)
+                            binding.rvPointHistory.visibility = View.VISIBLE
+                            binding.ivEmptyState.visibility = View.GONE
+                            binding.tvEmptyPointHistory.visibility = View.GONE
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -50,4 +77,5 @@ class MyPointFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
 }
