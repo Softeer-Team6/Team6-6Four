@@ -25,13 +25,13 @@ import lombok.RequiredArgsConstructor;
 public class AroundCarbobSearchService {
 	private final AroundCarbobRepository aroundCarbobRepository;
 
-	public ResponseDto<ListResponse<AroundCarbobListInfoSummary>> findAroundCarbobInfoSummaryList
+	public ListResponse<AroundCarbobListInfoSummary> findAroundCarbobInfoSummaryList
 		(Double latitude, Double longitude) {
 		Point point = createPoint(latitude, longitude);
 
 		List<AroundCarbobListInfoSummary> aroundCarbobList = aroundCarbobRepository.findAllWithInCircleAreaSummary(
 			point, 5000);
-		return ResponseDto.map(HttpStatus.OK.value(), "반경 5KM 카밥 리스트가 반환되었습니다", ListResponse.of(aroundCarbobList));
+		return ListResponse.of(aroundCarbobList);
 	}
 
 	public ResponseDto<ListResponse<AroundCarbobListInfo>> findAroundCarbobInfoList
