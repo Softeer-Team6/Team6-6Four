@@ -1,5 +1,7 @@
 package com.softeer.team6four.domain.carbob.presentation;
 
+import java.util.List;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -79,7 +81,11 @@ public class CarbobController {
 			@RequestParam @NotNull Double longitude,
 			@RequestParam(required = false, defaultValue = "SPEED") String sortType
 		) {
-		return aroundCarbobSearchService.findAroundCarbobInfoList(latitude, longitude, sortType);
+
+		ListResponse<AroundCarbobListInfo> aroundCarbobList = aroundCarbobSearchService.findAroundCarbobInfoList(latitude, longitude, sortType);
+
+		return ResponseDto.map(HttpStatus.OK.value(), "반경 5KM 카밥 리스트(footer용)가 반환되었습니다",
+			aroundCarbobList);
 	}
 
 	@Auth
