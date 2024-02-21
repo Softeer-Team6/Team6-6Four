@@ -70,7 +70,7 @@ class AroundCarbobRepositoryTest {
 	@Test
 	@DisplayName("5km 근방 카밥 조회(footer)- 가격 순 정렬(오름차순)")
 	void findAllWithInCircleArea_가격순_정렬() {
-		//Given
+		// Given
 		String sortType = "PRICE";
 		double centerLongitude = 126.9780;
 		double centerLatitude = 37.5665;
@@ -78,7 +78,7 @@ class AroundCarbobRepositoryTest {
 		Point point = geometryFactory.createPoint(new Coordinate(centerLongitude, centerLatitude));
 		int radius = 5000;
 
-		//When
+		// When
 		List<AroundCarbobListInfo> aroundCarbobList = aroundCarbobRepository.findAllWithInCircleArea(
 			point, radius, sortType);
 
@@ -94,7 +94,7 @@ class AroundCarbobRepositoryTest {
 	@Test
 	@DisplayName("5km 근방 카밥 조회(footer)- 거리 순 정렬(오름차순)")
 	void findAllWithInCircleArea_거리순_정렬() {
-		//Given
+		// Given
 		String sortType = "DISTANCE";
 		double centerLongitude = 126.9780;
 		double centerLatitude = 37.5665;
@@ -103,7 +103,7 @@ class AroundCarbobRepositoryTest {
 		int radius = 5000;
 		long expectedCarbobId = 149427L;
 
-		//When
+		// When
 		List<AroundCarbobListInfo> aroundCarbobList = aroundCarbobRepository.findAllWithInCircleArea(
 			point, radius, sortType);
 		AroundCarbobListInfo firstCarbob = aroundCarbobList.get(0);
@@ -111,13 +111,13 @@ class AroundCarbobRepositoryTest {
 
 		System.out.println(SortedFirstCarbobId);
 		// Then
-		assertEquals(expectedCarbobId,SortedFirstCarbobId);
+		assertEquals(expectedCarbobId, SortedFirstCarbobId);
 	}
 
 	@Test
 	@DisplayName("특정 카밥 상세 조회")
 	void findSpecificCarbobDetailByCarbobId() {
-		//Given
+		// Given
 		double centerLongitude = 126.9780;
 		double centerLatitude = 37.5665;
 		long carbobId = 149427L;
@@ -126,11 +126,11 @@ class AroundCarbobRepositoryTest {
 		int expectedSize = 212;
 		int radius = 5000;
 
-		//when
+		// When
 		SpecificDetailCarbobInfo specificDetailCarbobInfo = aroundCarbobRepository.findSpecificCarbobDetailByCarbobId(
 			point, carbobId);
 
-		//Then
+		// Then
 		assertNotNull(specificDetailCarbobInfo);
 		assertEquals(carbobId, specificDetailCarbobInfo.getCarbobId());
 	}
@@ -142,11 +142,8 @@ class AroundCarbobRepositoryTest {
 	}
 
 	private int extractFeePerHour(String feePerHour) {
-		// "원/kwh"가 포함된 부분의 인덱스 찾기
 		int indexOfWon = feePerHour.indexOf("원/kwh");
-		// "원/kwh" 이전까지의 문자열 추출
 		String feeNumber = feePerHour.substring(0, indexOfWon).trim();
-		// 추출된 숫자를 정수로 변환하여 반환
 		return Integer.parseInt(feeNumber);
 	}
 }
