@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 data class UserResult(
     val accessToken: String,
     val refreshToken: String,
-//    val nickname: String
+    val nickname: String
 )
