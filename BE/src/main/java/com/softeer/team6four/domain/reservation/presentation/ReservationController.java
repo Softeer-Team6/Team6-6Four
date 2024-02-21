@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.softeer.team6four.domain.reservation.ReservationConverterService;
+import com.softeer.team6four.domain.reservation.application.ReservationConverterService;
 import com.softeer.team6four.domain.reservation.application.ReservationCreateService;
 import com.softeer.team6four.domain.reservation.application.ReservationSearchService;
 import com.softeer.team6four.domain.reservation.application.ReservationUpdateService;
@@ -23,7 +23,6 @@ import com.softeer.team6four.domain.reservation.application.request.ReservationF
 import com.softeer.team6four.domain.reservation.application.response.DailyReservationInfo;
 import com.softeer.team6four.domain.reservation.application.response.QrVerification;
 import com.softeer.team6four.domain.reservation.application.response.ReservationApplicationInfo;
-import com.softeer.team6four.domain.reservation.application.response.ReservationCheckInfo;
 import com.softeer.team6four.domain.reservation.application.response.ReservationFulfillResult;
 import com.softeer.team6four.domain.reservation.application.response.ReservationInfo;
 import com.softeer.team6four.global.annotation.Auth;
@@ -89,13 +88,15 @@ public class ReservationController {
 
 	@Auth
 	@PatchMapping("/check/{reservationId}")
-	public ResponseDto<ReservationCheckInfo> checkReservation
+	public ResponseDto<Void> checkReservation
 		(
 			@PathVariable Long reservationId,
 			@RequestBody ReservationCheck reservationCheck
 		) {
 		Long hostUserId = UserContextHolder.get();
-		return reservationConverterService.converterReservationState(hostUserId, reservationId, reservationCheck);
+
+		reservationConverterService.converterReservationState(hostUserId, reservationId, reservationCheck);
+		return ResponseDto.map(HttpStatus.OK.value(), "선택한 예약 승인/거절이 되었습니다", null);
 	}
 
 	@Auth
@@ -103,9 +104,11 @@ public class ReservationController {
 	public ResponseDto<DailyReservationInfo> getdailyResrvationStatus
 		(
 			@PathVariable Long carbobId,
-			@RequestParam(name = "date", defaultValue = "default") String date
+			@RequestParam(name = "date", required = false) String date
 		) {
-		return reservationSearchService.getDailyReservationStatus(carbobId, date);
+		DailyReservationInfo dailyReservationInfo = reservationSearchService.getDailyReservationStatus(carbobId, date);
+
+		return ResponseDto.map(HttpStatus.OK.value(), "선택한 일자의 카밥 예약 내역입니다", dailyReservationInfo);
 	}
 
 	@Auth

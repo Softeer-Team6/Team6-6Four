@@ -24,10 +24,8 @@ import com.softeer.team6four.domain.reservation.application.ReservationMapper;
 import com.softeer.team6four.domain.reservation.domain.Reservation;
 import com.softeer.team6four.domain.reservation.domain.ReservationLine;
 import com.softeer.team6four.domain.reservation.domain.ReservationRepository;
-import com.softeer.team6four.domain.user.application.exception.UserException;
+import com.softeer.team6four.domain.user.application.UserSearchService;
 import com.softeer.team6four.domain.user.domain.User;
-import com.softeer.team6four.domain.user.domain.UserRepository;
-import com.softeer.team6four.global.response.ErrorCode;
 import com.softeer.team6four.global.response.ResponseDto;
 
 import lombok.RequiredArgsConstructor;
@@ -37,15 +35,14 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @RequiredArgsConstructor
 public class CarbobRegistrationService {
-	private final UserRepository userRepository;
 	private final CarbobRepository carbobRepository;
 	private final ReservationRepository reservationRepository;
 	private final ApplicationEventPublisher eventPublisher;
+	private final UserSearchService userSearchService;
 
 	@Transactional
 	public ResponseDto<Void> registerCarbob(Long userId, CarbobRegistration carbobRegistration) {
-		User host = userRepository.findById(userId)
-			.orElseThrow(() -> new UserException(ErrorCode.USER_NOT_FOUND));
+		User host = userSearchService.findUserByUserId(userId);
 
 		CarbobLocation location = CarbobLocation.builder()
 			.address(carbobRegistration.getAddress())

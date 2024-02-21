@@ -55,6 +55,7 @@
                     android:id="@+id/et_search_location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:imeOptions="actionSearch"
                     android:maxLines="1"
                     android:textColor="@color/gray_500" />
             </com.google.android.material.textfield.TextInputLayout>

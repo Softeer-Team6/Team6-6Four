@@ -2,7 +2,6 @@ package com.softeer.team6four.domain.carbob.application;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,8 +18,8 @@ import com.softeer.team6four.domain.carbob.presentation.MyCarbobSortType;
 import com.softeer.team6four.domain.payment.application.PaymentSearchService;
 import com.softeer.team6four.domain.reservation.application.ReservationSearchService;
 import com.softeer.team6four.domain.reservation.application.SelfUseTime;
+import com.softeer.team6four.global.exception.BusinessException;
 import com.softeer.team6four.global.response.ErrorCode;
-import com.softeer.team6four.global.response.ResponseDto;
 import com.softeer.team6four.global.response.SliceResponse;
 
 import lombok.RequiredArgsConstructor;
@@ -36,18 +35,20 @@ public class CarbobSearchService {
 
 	private final ReservationSearchService reservationSearchService;
 
-	public ResponseDto<SliceResponse<MyCarbobSummary>> findMyCarbobList
+	public SliceResponse<MyCarbobSummary> findMyCarbobList
 		(
 			Long userId, MyCarbobSortType sortType, Long lastCarbobId, Long lastReservationCount,
 			Pageable pageable
 		) {
+		if (userId == null || sortType == null) {
+			throw new BusinessException(ErrorCode.MISSING_REQUEST_PARAMETER);
+		}
 		Slice<MyCarbobSummary> myCarbobSummarySlice = carbobRepositoryImpl.findCarbobSummaryByUserId(
 			userId, sortType, lastCarbobId, lastReservationCount, pageable);
-		return ResponseDto.map(HttpStatus.OK.value(), "내 카밥 조회에 성공했습니다.",
-			SliceResponse.of(myCarbobSummarySlice));
+		return SliceResponse.of(myCarbobSummarySlice);
 	}
 
-	public ResponseDto<MyCarbobDetailInfo> findMyCarbobDetailInfo(Long userId, Long carbobId) {
+	public MyCarbobDetailInfo findMyCarbobDetailInfo(Long userId, Long carbobId) {
 		Carbob carbob = carbobRepository.findById(carbobId)
 			.orElseThrow(() -> new CarbobNotFoundException(ErrorCode.CARBOB_NOT_FOUND));
 
@@ -59,18 +60,15 @@ public class CarbobSearchService {
 		SelfUseTime selfUseTime = reservationSearchService.getSelfUseTime(carbobId);
 		Long totalIncomeByTargetId = paymentSearchService.getTotalIncomeByTargetId(carbobId);
 
-		MyCarbobDetailInfo myCarbobDetailInfo = CarbobMapper.mapMyCarbobDetailInfo(carbob, carbobImageUrl, selfUseTime,
+		return CarbobMapper.mapMyCarbobDetailInfo(carbob, carbobImageUrl, selfUseTime,
 			totalIncomeByTargetId);
-
-		return ResponseDto.map(HttpStatus.OK.value(), "내 카밥 상세 조회에 성공했습니다.", myCarbobDetailInfo);
 	}
 
 	private String getCarbobImageUrl(Long carbobId) {
 		return carbobImageRepository.findCarbobImageByCarbob_CarbobId(carbobId)
 			.orElseGet(() ->
 				CarbobImage.builder()
-					// TODO : DEFAULT_IMAGE_URL 설정 (S3 에 세팅 이후 작업)
-					.imageUrl("DEFAULT_IMAGE_URL")
+					.imageUrl("https://project-s3-bucket-1.s3.ap-northeast-2.amazonaws.com/carbob.png")
 					.build())
 			.getImageUrl();
 	}

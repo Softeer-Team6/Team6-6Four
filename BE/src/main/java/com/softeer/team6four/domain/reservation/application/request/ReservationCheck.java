@@ -7,5 +7,9 @@ import lombok.Getter;
 @Getter
 public class ReservationCheck {
 	private StateType stateType;
+
+	public void setStateType(StateType stateType) {
+		this.stateType = stateType;
+	}
 }
 
