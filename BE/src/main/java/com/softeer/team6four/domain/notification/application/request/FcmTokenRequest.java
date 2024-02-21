@@ -8,4 +8,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class FcmTokenRequest {
 	private String fcmToken;
+
+	private FcmTokenRequest(String fcmToken) {
+		this.fcmToken = fcmToken;
+	}
+
+	public static FcmTokenRequest of(String fcmToken) {
+		return new FcmTokenRequest(fcmToken);
+	}
 }
