@@ -98,6 +98,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             }
             setSearchAction()
             sendFcmToken()
+            setNickname()
             mapView.getMapAsync(this@HomeFragment)
         }
     }
@@ -210,6 +211,18 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             }
             val token = task.result
             homeViewModel.sendFcmToken(token)
+        }
+    }
+
+    private fun setNickname() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.nickname.collect { nickname ->
+                    HeaderNavigationDrawerBinding.bind(
+                        binding.navigationView.getHeaderView(0)
+                    ).tvNickname.text = getString(R.string.drawer_nickname, nickname)
+                }
+            }
         }
     }
 
