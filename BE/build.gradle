@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.2'
     id 'io.spring.dependency-management' version '1.1.4'
+    id "io.sentry.jvm.gradle" version "3.11.1"
 }
 
 compileJava.options.encoding = 'UTF-8'
@@ -30,6 +31,9 @@ repositories {
 }
 
 dependencies {
+    // sentry
+    implementation 'io.sentry:sentry-spring-boot-starter-jakarta:7.3.0'
+    implementation 'io.sentry:sentry-logback:7.3.0'
 
     //s3
     implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
@@ -91,4 +95,11 @@ tasks.withType(JavaCompile) {
 
 clean.doLast {
     file(querydslDir).deleteDir()
+}
+
+sentry {
+    includeSourceContext = true
+
+    projectName = "6four"
+    authToken = "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"
 }
