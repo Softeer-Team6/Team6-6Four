@@ -1,4 +1,4 @@
-package com.softeer.team6four.domain.notification.request;
+package com.softeer.team6four.domain.notification.application.request;
 
 import lombok.AccessLevel;
 import lombok.Getter;
