@@ -1,5 +1,6 @@
 package com.softeer.team6four.di
 
+import com.softeer.team6four.api.ChargerService
 import com.softeer.team6four.api.FcmService
 import com.softeer.team6four.api.GeoCodeService
 import com.softeer.team6four.api.UserService
@@ -12,17 +13,22 @@ import dagger.hilt.components.SingletonComponent
 @Module
 object NetworkModule {
     @Provides
-    fun provideGeoCodeService() : GeoCodeService {
+    fun provideGeoCodeService(): GeoCodeService {
         return GeoCodeService.create()
     }
 
     @Provides
-    fun provideUserService() : UserService {
+    fun provideUserService(): UserService {
         return UserService.create()
     }
 
     @Provides
-    fun provideFcmService() : FcmService {
+    fun provideFcmService(): FcmService {
         return FcmService.create()
+    }
+
+    @Provides
+    fun provideChargerService(): ChargerService {
+        return ChargerService.create()
     }
 }
