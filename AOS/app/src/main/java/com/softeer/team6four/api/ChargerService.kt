@@ -13,6 +13,7 @@ import com.softeer.team6four.data.remote.charger.dto.RegisterChargerDto
 import com.softeer.team6four.data.remote.charger.dto.UploadImageDto
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.http.Body
 import retrofit2.http.Field
@@ -30,14 +31,14 @@ interface ChargerService {
         @Path("carbobId") carbobId: Long,
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double
-    ): Resource<ChargerDetailDto>
+    ): Response<ChargerDetailDto>
 
     @GET("main")
     suspend fun getMapChargerListDto(
         @Header("Authorization") token : String,
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double
-    ): Resource<MapChargerListDto>
+    ): Response<MapChargerListDto>
 
     @GET("main/footer")
     suspend fun getBottomSheetChargerListDto(
@@ -45,19 +46,19 @@ interface ChargerService {
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
         @Query("sortType") sortType: String?
-    ): Resource<BottomSheetChargerListDto>
+    ): Response<BottomSheetChargerListDto>
 
     @POST("registration")
     suspend fun registerCharger(
         @Header("Authorization") token : String,
         @Body chargerRegistrationInfo: ChargerRegistrationInfo
-    ): Resource<RegisterChargerDto>
+    ): Response<RegisterChargerDto>
 
     @POST("image")
     suspend fun uploadImage(
         @Header("Authorization") token : String,
         @Field("image") image: Multipart
-    ): Resource<UploadImageDto>
+    ): Response<UploadImageDto>
 
     @GET("my")
     suspend fun getMyChargerList(
@@ -65,16 +66,16 @@ interface ChargerService {
         @Query("sortType") sortType: String,
         @Query("lastCarbobId") lastCarbobId: Int?,
         @Query("lastReservationCount") lastReservationCount: Int?
-    ): Resource<MyChargerListDto>
+    ): Response<MyChargerListDto>
 
     @GET("detail/{carbobId}")
     suspend fun getMyChargerDetail(
         @Header("Authorization") token : String,
         @Query("carbobId") carbobId: Int
-    ): Resource<MyChargerDetailDto>
+    ): Response<MyChargerDetailDto>
 
     companion object {
-        private const val BASE_URL = "${BuildConfig.BASE_URL}v1/carbob/"
+        private const val BASE_URL = "${BuildConfig.BASE_URL}/v1/carbob/"
 
         fun create(): ChargerService {
             return Retrofit.Builder()
