@@ -43,7 +43,8 @@ class AroundCarbobSearchServiceTest {
 			.thenReturn(mockList);
 
 		// When
-		ListResponse<AroundCarbobListInfoSummary> result = aroundCarbobSearchService.findAroundCarbobInfoSummaryList(latitude, longitude);
+		ListResponse<AroundCarbobListInfoSummary> result = aroundCarbobSearchService.findAroundCarbobInfoSummaryList(
+			latitude, longitude);
 
 		// Then
 		assertEquals(mockList.size(), result.getContent().size());
@@ -58,11 +59,12 @@ class AroundCarbobSearchServiceTest {
 		String sortType = "DISTANCE";
 		List<AroundCarbobListInfo> mockList = new ArrayList<>();
 
-		when(aroundCarbobRepository.findAllWithInCircleArea(createPoint(latitude, longitude), 5000,sortType))
+		when(aroundCarbobRepository.findAllWithInCircleArea(createPoint(latitude, longitude), 5000, sortType))
 			.thenReturn(mockList);
 
 		// When
-		ListResponse<AroundCarbobListInfo> result = aroundCarbobSearchService.findAroundCarbobInfoList(latitude, longitude,sortType);
+		ListResponse<AroundCarbobListInfo> result = aroundCarbobSearchService.findAroundCarbobInfoList(latitude,
+			longitude, sortType);
 
 		// Then
 		assertEquals(mockList.size(), result.getContent().size());
@@ -81,7 +83,8 @@ class AroundCarbobSearchServiceTest {
 			.thenReturn(mockData);
 
 		// When
-		SpecificDetailCarbobInfo result = aroundCarbobSearchService.findSpecificCarbobDetailInfo(latitude, longitude, carbobId);
+		SpecificDetailCarbobInfo result = aroundCarbobSearchService.findSpecificCarbobDetailInfo(latitude, longitude,
+			carbobId);
 
 		// Then
 		assertNull(result);
