@@ -1,7 +1,5 @@
 package com.softeer.team6four.domain.carbob.presentation;
 
-import java.util.List;
-
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -68,8 +66,8 @@ public class CarbobController {
 			@RequestParam @NotNull Double latitude,
 			@RequestParam @NotNull Double longitude
 		) {
-
-		ListResponse<AroundCarbobListInfoSummary>  aroundCarbobList = aroundCarbobSearchService.findAroundCarbobInfoSummaryList(latitude, longitude);
+		ListResponse<AroundCarbobListInfoSummary> aroundCarbobList = aroundCarbobSearchService.findAroundCarbobInfoSummaryList(
+			latitude, longitude);
 		return ResponseDto.map(HttpStatus.OK.value(), "반경 5KM 카밥 리스트가 반환되었습니다", aroundCarbobList);
 	}
 
@@ -81,9 +79,8 @@ public class CarbobController {
 			@RequestParam @NotNull Double longitude,
 			@RequestParam(required = false, defaultValue = "SPEED") String sortType
 		) {
-
-		ListResponse<AroundCarbobListInfo> aroundCarbobList = aroundCarbobSearchService.findAroundCarbobInfoList(latitude, longitude, sortType);
-
+		ListResponse<AroundCarbobListInfo> aroundCarbobList = aroundCarbobSearchService.findAroundCarbobInfoList(
+			latitude, longitude, sortType);
 		return ResponseDto.map(HttpStatus.OK.value(), "반경 5KM 카밥 리스트(footer용)가 반환되었습니다",
 			aroundCarbobList);
 	}
@@ -96,8 +93,8 @@ public class CarbobController {
 			@RequestParam @NotNull Double latitude,
 			@RequestParam @NotNull Double longitude
 		) {
-
-		SpecificDetailCarbobInfo specificCarbob = aroundCarbobSearchService.findSpecificCarbobDetailInfo(latitude, longitude, carbobId);
+		SpecificDetailCarbobInfo specificCarbob = aroundCarbobSearchService.findSpecificCarbobDetailInfo(latitude,
+			longitude, carbobId);
 		return ResponseDto.map(HttpStatus.OK.value(), "선택한 카밥 정보입니다", specificCarbob);
 	}
 

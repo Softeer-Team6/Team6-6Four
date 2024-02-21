@@ -6,7 +6,6 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.GeometryFactory;
 import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.geom.PrecisionModel;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +14,6 @@ import com.softeer.team6four.domain.carbob.application.response.AroundCarbobList
 import com.softeer.team6four.domain.carbob.application.response.SpecificDetailCarbobInfo;
 import com.softeer.team6four.domain.carbob.infra.AroundCarbobRepository;
 import com.softeer.team6four.global.response.ListResponse;
-import com.softeer.team6four.global.response.ResponseDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -49,7 +47,6 @@ public class AroundCarbobSearchService {
 
 		SpecificDetailCarbobInfo specificCarbob = aroundCarbobRepository.findSpecificCarbobDetailByCarbobId(point,
 			carbobId);
-
 		return specificCarbob;
 	}
 
