@@ -17,7 +17,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.softeer.team6four.domain.carbob.application.response.AroundCarbobListInfo;
 import com.softeer.team6four.domain.carbob.application.response.AroundCarbobListInfoSummary;
+import com.softeer.team6four.domain.carbob.application.response.SpecificDetailCarbobInfo;
 import com.softeer.team6four.domain.carbob.infra.AroundCarbobRepository;
 import com.softeer.team6four.global.response.ListResponse;
 
@@ -48,10 +50,26 @@ class AroundCarbobSearchServiceTest {
 	}
 
 	@Test
+	@DisplayName("주변 5KM 카밥 리스트 조회(footer)")
 	void findAroundCarbobInfoList() {
+		// Given
+		double latitude = 37.1234;
+		double longitude = 127.5678;
+		String sortType = "DISTANCE";
+		List<AroundCarbobListInfo> mockList = new ArrayList<>();
+
+		when(aroundCarbobRepository.findAllWithInCircleArea(createPoint(latitude, longitude), 5000,sortType))
+			.thenReturn(mockList);
+
+		// When
+		ListResponse<AroundCarbobListInfo> result = aroundCarbobSearchService.findAroundCarbobInfoList(latitude, longitude,sortType);
+
+		// Then
+		assertEquals(mockList.size(), result.getContent().size());
 	}
 
 	@Test
+	@DisplayName("특정 카밥 상세 조회")
 	void findSpecificCarbobDetailInfo() {
 	}
 
