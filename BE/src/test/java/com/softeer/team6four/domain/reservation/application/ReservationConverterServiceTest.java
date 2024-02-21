@@ -11,7 +11,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationEventPublisher;
 
-import com.softeer.team6four.domain.reservation.ReservationConverterService;
 import com.softeer.team6four.domain.reservation.application.exception.ReservationCheckStateTypeException;
 import com.softeer.team6four.domain.reservation.application.exception.ReservationNotFoundException;
 import com.softeer.team6four.domain.reservation.application.request.ReservationCheck;

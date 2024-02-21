@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.softeer.team6four.domain.reservation.ReservationConverterService;
+import com.softeer.team6four.domain.reservation.application.ReservationConverterService;
 import com.softeer.team6four.domain.reservation.application.ReservationCreateService;
 import com.softeer.team6four.domain.reservation.application.ReservationSearchService;
 import com.softeer.team6four.domain.reservation.application.ReservationUpdateService;

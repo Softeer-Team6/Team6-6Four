@@ -1,4 +1,4 @@
-package com.softeer.team6four.domain.reservation;
+package com.softeer.team6four.domain.reservation.application;
 
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
