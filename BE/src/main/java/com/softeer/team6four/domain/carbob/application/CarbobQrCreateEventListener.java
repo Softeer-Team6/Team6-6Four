@@ -28,7 +28,7 @@ public class CarbobQrCreateEventListener {
 	@Async
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	@TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
-	public void handleReservationCreatedEvent(CarbobQrCreateEvent event) {
+	public void handleQrCreatedEvent(CarbobQrCreateEvent event) {
 		Carbob newCarbob = event.getCarbob();
 
 		// carbob id 로 암호화
