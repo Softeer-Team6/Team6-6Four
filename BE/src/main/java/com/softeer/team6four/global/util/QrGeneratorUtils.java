@@ -1,17 +1,15 @@
 package com.softeer.team6four.global.util;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-
-import javax.imageio.ImageIO;
-
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 import com.softeer.team6four.global.exception.BusinessException;
 import com.softeer.team6four.global.response.ErrorCode;
-
 import lombok.extern.slf4j.Slf4j;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 
 /**
  * QR 코드를 생성하는 유틸리티 클래스입니다.
