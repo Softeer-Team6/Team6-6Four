@@ -34,14 +34,13 @@ public class AroundCarbobSearchService {
 		return ListResponse.of(aroundCarbobList);
 	}
 
-	public ResponseDto<ListResponse<AroundCarbobListInfo>> findAroundCarbobInfoList
+	public ListResponse<AroundCarbobListInfo> findAroundCarbobInfoList
 		(Double latitude, Double longitude, String sortType) {
 		Point point = createPoint(latitude, longitude);
 
 		List<AroundCarbobListInfo> aroundCarbobList = aroundCarbobRepository.findAllWithInCircleArea(point, 5000,
 			sortType);
-		return ResponseDto.map(HttpStatus.OK.value(), "반경 5KM 카밥 리스트(footer용)가 반환되었습니다",
-			ListResponse.of(aroundCarbobList));
+		return ListResponse.of(aroundCarbobList);
 	}
 
 	public ResponseDto<SpecificDetailCarbobInfo> findSpecificCarbobDetailInfo
