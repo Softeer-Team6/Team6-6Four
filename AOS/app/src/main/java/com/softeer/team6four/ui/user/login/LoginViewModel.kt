@@ -10,6 +10,7 @@ import com.softeer.team6four.data.remote.user.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -30,6 +31,10 @@ class LoginViewModel @Inject constructor(
 
     private val _loginFailState: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val loginFailState: StateFlow<Boolean> = _loginFailState
+
+    private var _loginState: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val loginState: StateFlow<Boolean> = _loginState
+
     fun updateEmail(text: Editable) {
         _email.value = text.toString()
     }
@@ -69,6 +74,14 @@ class LoginViewModel @Inject constructor(
                 }
 
             }
+        }
+    }
+
+    fun updateLoginState() {
+        viewModelScope.launch {
+            val accessToken = userPreferencesRepository.getAccessToken()
+            _loginState.value = accessToken.first().isNotEmpty()
+            Log.d("accessToken", accessToken.first())
         }
     }
 }
