@@ -66,7 +66,9 @@ public class CarbobController {
 			@RequestParam @NotNull Double latitude,
 			@RequestParam @NotNull Double longitude
 		) {
-		return aroundCarbobSearchService.findAroundCarbobInfoSummaryList(latitude, longitude);
+
+		ListResponse<AroundCarbobListInfoSummary>  aroundCarbobList = aroundCarbobSearchService.findAroundCarbobInfoSummaryList(latitude, longitude);
+		return ResponseDto.map(HttpStatus.OK.value(), "반경 5KM 카밥 리스트가 반환되었습니다", aroundCarbobList);
 	}
 
 	@Auth
