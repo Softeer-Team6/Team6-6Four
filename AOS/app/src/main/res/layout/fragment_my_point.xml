@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.softeer.team6four.ui.mypage.point.MyPointViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -86,7 +89,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:text="10,000"
             android:textSize="20sp"
             android:textColor="@android:color/black"
             android:textStyle="bold"
