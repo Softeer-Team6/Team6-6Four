@@ -107,11 +107,11 @@ public class ReservationSearchService {
 		}
 	}
 
-	public ResponseDto<DailyReservationInfo> getDailyReservationStatus(Long carbobId, String date) {
+	public DailyReservationInfo getDailyReservationStatus(Long carbobId, String date) {
 
 		LocalDate localDate;
 		// 날짜를 입력하지 않았다면 현재 날짜로 설정
-		if (date.equals("default"))
+		if (date == null)
 			localDate = LocalDate.now();
 		else
 			localDate = LocalDate.parse(date);
@@ -131,9 +131,7 @@ public class ReservationSearchService {
 			unavailableTimes[hour] = true;
 		}
 
-		DailyReservationInfo dailyReservationInfo = new DailyReservationInfo(unavailableTimes);
-
-		return ResponseDto.map(HttpStatus.OK.value(), "선택한 일자의 카밥 예약 내역입니다", dailyReservationInfo);
+		return new DailyReservationInfo(unavailableTimes);
 	}
 
 	public SelfUseTime getSelfUseTime(Long carbobId) {

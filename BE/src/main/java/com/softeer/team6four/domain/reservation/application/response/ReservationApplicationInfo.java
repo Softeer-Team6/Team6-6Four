@@ -12,11 +12,11 @@ public class ReservationApplicationInfo {
 	private final @NotNull Long reservationId;
 	private final @NotNull String carbobNickname;
 	private final @NotNull ReservationTime reservationTime;
-	private @NotNull String rentalDate;
-	private @NotNull String rentalTime;
 	private final @NotNull String address;
 	private final @NotNull String guestNickname;
 	private final @NotNull Integer totalFee;
+	private @NotNull String rentalDate;
+	private @NotNull String rentalTime;
 
 	public void convertReservationTimeToStr() {
 		String[] timeSplit = this.reservationTime.toString().split(" ");

@@ -40,6 +40,7 @@ class PaymentPointServiceTest {
 	@Mock
 	private UserSearchService userSearchService;
 	private User user;
+
 	@BeforeEach
 	void setUp() {
 		user = User.builder()
@@ -49,7 +50,6 @@ class PaymentPointServiceTest {
 			.build();
 		ReflectionTestUtils.setField(user, "userId", 1L);
 	}
-
 
 	@Test
 	@DisplayName("총 포인트 조회하기")
@@ -67,6 +67,7 @@ class PaymentPointServiceTest {
 		// then
 		assertEquals(expectedTotalPoint, totalPoint.getTotalPoint());
 	}
+
 	@Test
 	@DisplayName("포인트 내역 조회 - 처음 요청")
 	public void testGetMyPointSummaryList_처음요청() {
@@ -95,7 +96,8 @@ class PaymentPointServiceTest {
 		when(paymentRepositoryImpl.findMyPointSummaryList(eq(userId), eq(lastPaymentId), any(Pageable.class)))
 			.thenReturn(mockSlice);
 
-		SliceResponse<MyPointSummary> result = paymentPointService.getMyPointSummaryList(userId, lastPaymentId, pageable);
+		SliceResponse<MyPointSummary> result = paymentPointService.getMyPointSummaryList(userId, lastPaymentId,
+			pageable);
 
 		// 결과 확인
 		assertNotNull(result);
@@ -110,11 +112,12 @@ class PaymentPointServiceTest {
 		when(userSearchService.findUserByUserId(user.getUserId())).thenReturn(user);
 
 		//when
-		paymentPointService.registMyPoint(user.getUserId() ,chargeRequest);
+		paymentPointService.registMyPoint(user.getUserId(), chargeRequest);
 
 		// then
 		verify(paymentRepository).save(any(Payment.class));
 	}
+
 	@Test
 	@DisplayName("내 포인트 등록 - 비정상입력(음수)")
 	void 포인트_비정상_입력_테스트() {

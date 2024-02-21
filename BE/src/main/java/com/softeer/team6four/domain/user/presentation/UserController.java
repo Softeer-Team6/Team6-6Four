@@ -1,5 +1,13 @@
 package com.softeer.team6four.domain.user.presentation;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.softeer.team6four.domain.user.application.UserJoinService;
 import com.softeer.team6four.domain.user.application.request.SignInRequest;
 import com.softeer.team6four.domain.user.application.request.SignUpRequest;
@@ -7,9 +15,8 @@ import com.softeer.team6four.domain.user.application.response.EmailCheck;
 import com.softeer.team6four.domain.user.application.response.NicknameCheck;
 import com.softeer.team6four.domain.user.application.response.SignInResponse;
 import com.softeer.team6four.global.response.ResponseDto;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/v1/user")
