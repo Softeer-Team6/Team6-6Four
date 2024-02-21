@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.softeer.team6four.domain.carbob.infra.CarbobRepositoryImpl;
+import com.softeer.team6four.domain.payment.infra.PaymentRepositoryImpl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -24,5 +25,10 @@ public class TestQueryDslConfig {
 	@Bean
 	public CarbobRepositoryImpl carbobRepositoryImpl() {
 		return new CarbobRepositoryImpl(jpaQueryFactory());
+	}
+
+	@Bean
+	public PaymentRepositoryImpl paymentRepositoryImpl() {
+		return new PaymentRepositoryImpl(jpaQueryFactory());
 	}
 }
