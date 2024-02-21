@@ -60,7 +60,8 @@
             app:errorTextColor="@color/error"
             app:layout_constraintEnd_toEndOf="@id/end_guide_line"
             app:layout_constraintStart_toStartOf="@id/start_guide_line"
-            app:layout_constraintTop_toBottomOf="@id/tv_email">
+            app:layout_constraintTop_toBottomOf="@id/tv_email"
+            app:setLoginEmailError="@{viewModel.loginEmailFailState}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_email"
@@ -91,19 +92,19 @@
             app:errorEnabled="true"
             app:errorIconDrawable="@drawable/icon_wrong_input"
             app:errorTextColor="@color/error"
-            app:setLoginPasswordError="@{viewModel.loginFailState}"
             app:layout_constraintEnd_toEndOf="@id/end_guide_line"
             app:layout_constraintStart_toStartOf="@id/start_guide_line"
-            app:layout_constraintTop_toBottomOf="@id/tv_password">
+            app:layout_constraintTop_toBottomOf="@id/tv_password"
+            app:setLoginPasswordError="@{viewModel.loginPasswordFailState}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:afterTextChanged="@{s -> viewModel.updatePassword(s)}"
+                android:inputType="textPassword"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="15dp"
-                android:inputType="textPassword"
                 android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 

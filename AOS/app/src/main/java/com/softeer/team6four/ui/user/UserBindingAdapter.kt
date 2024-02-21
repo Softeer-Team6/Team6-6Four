@@ -39,8 +39,14 @@ fun setNicknameError(textInputLayout: TextInputLayout, isError: Boolean) {
     else textInputLayout.error = null
 }
 
+@BindingAdapter("app:setLoginEmailError")
+fun setLoginEmailError(textInputLayout: TextInputLayout, isError: Boolean) {
+    if (isError) textInputLayout.error = "존재하지 않는 계정입니다."
+    else textInputLayout.error = null
+}
+
 @BindingAdapter("app:setLoginPasswordError")
 fun setLoginPasswordError(textInputLayout: TextInputLayout, isError: Boolean) {
-    if (isError) textInputLayout.error = "비밀번호가 일치하지 않습니다."
+    if (isError) textInputLayout.error = "올바르지 않은 비밀번호입니다."
     else textInputLayout.error = null
 }
