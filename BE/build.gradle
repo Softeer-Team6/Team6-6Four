@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.2'
     id 'io.spring.dependency-management' version '1.1.4'
+    id "io.sentry.jvm.gradle" version "3.11.1"
 }
 
 compileJava.options.encoding = 'UTF-8'
@@ -94,4 +95,11 @@ tasks.withType(JavaCompile) {
 
 clean.doLast {
     file(querydslDir).deleteDir()
+}
+
+sentry {
+    includeSourceContext = true
+
+    projectName = "6four"
+    authToken = "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"
 }
