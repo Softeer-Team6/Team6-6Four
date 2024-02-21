@@ -71,6 +71,20 @@ class AroundCarbobSearchServiceTest {
 	@Test
 	@DisplayName("특정 카밥 상세 조회")
 	void findSpecificCarbobDetailInfo() {
+		// Given
+		double latitude = 37.1234;
+		double longitude = 127.5678;
+		Long carbobId = 123L;
+		SpecificDetailCarbobInfo mockData = null;
+
+		when(aroundCarbobRepository.findSpecificCarbobDetailByCarbobId(createPoint(latitude, longitude), carbobId))
+			.thenReturn(mockData);
+
+		// When
+		SpecificDetailCarbobInfo result = aroundCarbobSearchService.findSpecificCarbobDetailInfo(latitude, longitude, carbobId);
+
+		// Then
+		assertNull(result);
 	}
 
 	private Point createPoint(double latitude, double longitude) {
