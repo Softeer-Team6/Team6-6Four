@@ -6,7 +6,7 @@
     app:startDestination="@id/registerEmailPasswordFragment">
     <fragment
         android:id="@+id/registerEmailPasswordFragment"
-        android:name="com.softeer.team6four.ui.signup.RegisterEmailPasswordFragment"
+        android:name="com.softeer.team6four.ui.user.signup.RegisterEmailPasswordFragment"
         android:label="RegisterEmailPasswordFragment"
         tools:layout="@layout/fragment_register_email_password"
         >
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerNicknameFragment"
-        android:name="com.softeer.team6four.ui.signup.RegisterNicknameFragment"
+        android:name="com.softeer.team6four.ui.user.signup.RegisterNicknameFragment"
         android:label="RegisterNicknameFragment"
         tools:layout="@layout/fragment_register_nickname"/>
 </navigation>
