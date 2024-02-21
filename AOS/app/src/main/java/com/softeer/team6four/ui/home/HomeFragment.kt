@@ -31,6 +31,7 @@ import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import com.softeer.team6four.R
 import com.softeer.team6four.databinding.FragmentHomeBinding
+import com.softeer.team6four.databinding.HeaderNavigationDrawerBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -193,7 +194,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             etSearchLocation.setOnKeyListener { _, keyCode, event ->
                 when {
                     event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER -> {
-                        homeViewModel.getCoordinate(binding.etSearchLocation.text.toString())
+                        homeViewModel.getCoordinate()
                         inputMethodManager.hideSoftInputFromWindow(
                             binding.etSearchLocation.windowToken,
                             0
@@ -208,7 +209,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             searchbarLayout.setEndIconOnClickListener {
                 inputMethodManager.hideSoftInputFromWindow(binding.etSearchLocation.windowToken, 0)
                 binding.etSearchLocation.clearFocus()
-                homeViewModel.getCoordinate(binding.etSearchLocation.text.toString())
+                homeViewModel.getCoordinate()
             }
         }
     }
