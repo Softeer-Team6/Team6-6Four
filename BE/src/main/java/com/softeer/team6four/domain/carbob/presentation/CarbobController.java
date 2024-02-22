@@ -42,7 +42,7 @@ public class CarbobController {
 		Long userId = UserContextHolder.get();
 		SliceResponse<MyCarbobSummary> myCarbobList = carbobSearchService.findMyCarbobList(userId, sortType,
 			lastCarbobId, lastReservationCount, pageable);
-		return ResponseDto.map(HttpStatus.OK.value(), "내 차밥 리스트 조회에 성공했습니다.", myCarbobList);
+		return ResponseDto.map(HttpStatus.OK.value(), "내 카밥 리스트 조회에 성공했습니다.", myCarbobList);
 	}
 
 	@Auth

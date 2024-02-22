@@ -55,7 +55,6 @@ public class ReservationRepositoryImpl extends QuerydslRepositorySupport {
 						reservationLine.reservationTime.min().as("startTime"),
 						reservationLine.reservationTime.max().as("endTime")
 					),
-					carbob.nickname, // reservationTimeStr 을 위한 임시값
 					reservation.totalFee,
 					carbob.nickname.as("carbobNickname"),
 					carbob.location.address

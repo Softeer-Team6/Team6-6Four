@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.softeer.team6four.ui.home.HomeViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -34,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:text="23곳"
+            android:text="@{String.valueOf(viewModel.listSize) + '곳'}"
             android:textColor="@color/gray_400"
             app:layout_constraintBottom_toBottomOf="@id/nearby_chargers"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,6 +54,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="12dp"
             app:chipSpacingHorizontal="12dp"
+            app:checkedChip="@id/order_by_speed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/nearby_chargers"
             app:singleSelection="true">
@@ -56,7 +64,6 @@
                 style="@style/Base.Theme.CarBap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checkable="true"
                 android:text="@string/order_by_speed" />
 
             <com.google.android.material.chip.Chip
@@ -64,16 +71,20 @@
                 style="@style/Base.Theme.CarBap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checkable="true"
                 android:text="@string/order_by_price" />
         </com.google.android.material.chip.ChipGroup>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_bottom_sheet_charger_list"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
+            app:bottomSheetChargerlist="@{viewModel.bottomSheetChargerList}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/order_chip_group"
             tools:listitem="@layout/charger_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>

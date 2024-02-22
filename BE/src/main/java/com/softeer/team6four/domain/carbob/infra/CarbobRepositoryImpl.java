@@ -48,8 +48,7 @@ public class CarbobRepositoryImpl extends QuerydslRepositorySupport {
 					MyCarbobSummary.class,
 					carbob.carbobId,
 					carbob.nickname,
-					carbobImage.imageUrl.coalesce(
-						"https://project-s3-bucket-1.s3.ap-northeast-2.amazonaws.com/carbob.png"),
+					carbobImage.imageUrl,
 					reservationCount
 				))
 			.from(carbob)
