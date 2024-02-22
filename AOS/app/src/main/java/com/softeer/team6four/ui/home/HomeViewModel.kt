@@ -53,8 +53,24 @@ class HomeViewModel @Inject constructor(
         )
     val bottomSheetChargerList: StateFlow<List<BottomSheetChargerModel>> = _bottomSheetChargerList
 
-    private var _selectedChargerId: MutableStateFlow<Int> = MutableStateFlow(0)
-    val selectedChargerId: StateFlow<Int> = _selectedChargerId
+    private var _selectedChargerId: MutableStateFlow<Long> = MutableStateFlow(0)
+    val selectedChargerId: StateFlow<Long> = _selectedChargerId
+
+    private var _selectedCharger: MutableStateFlow<ChargerDetailModel> = MutableStateFlow(
+        ChargerDetailModel(
+            address = "",
+            chargerId = 0,
+            chargerType = "",
+            description = "",
+            distance = 0.0,
+            feePerHour = "",
+            imageUrl = "",
+            installType = "",
+            nickname = "",
+            speedType = ""
+        )
+    )
+    val selectedCharger: StateFlow<ChargerDetailModel> = _selectedCharger
 
     private var _currentInfoWindows: MutableStateFlow<List<InfoWindow>> = MutableStateFlow(
         emptyList()
@@ -162,5 +178,27 @@ class HomeViewModel @Inject constructor(
     fun updateSelectedCharger(id: Int) {
         _selectedChargerId.value = id
 
+    }
+
+    fun updateUserLatLng(latitude: Double, longitude: Double) {
+        _userLatLng.value = LatLng(latitude, longitude)
+    }
+
+    fun updateSelectedCharger() {
+        viewModelScope.launch {
+            val token = userPreferencesRepository.getAccessToken().first()
+            chargerRepository.fetchChargerDetail(
+                token,
+                selectedChargerId.value,
+                userLatLng.value.latitude,
+                userLatLng.value.longitude
+            ).collect { resource ->
+                if (resource is Resource.Success) {
+                    _selectedCharger.value = resource.data
+                } else if (resource is Resource.Error) {
+                    Log.e("selectedChargerError", resource.message)
+                }
+            }
+        }
     }
 }
