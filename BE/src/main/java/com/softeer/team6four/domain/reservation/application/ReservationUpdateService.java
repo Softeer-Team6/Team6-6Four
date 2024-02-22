@@ -37,7 +37,7 @@ public class ReservationUpdateService {
 	private final PaymentRepository paymentRepository;
 
 	@Transactional
-	public ResponseDto<ReservationFulfillResult> fulfillReservationAndPay(Long userId,
+	public ReservationFulfillResult fulfillReservationAndPay(Long userId,
 		ReservationFulfillRequest reservationFulfillRequest) {
 		Reservation reservation = reservationRepository.findReservationWithCarbobById(
 				reservationFulfillRequest.getReservationId())
@@ -59,7 +59,7 @@ public class ReservationUpdateService {
 
 		// TODO : 라즈베리파이 소켓 통신 연동 필요
 
-		return ResponseDto.map(HttpStatus.OK.value(), "카밥 사용이 시작됩니다.", reservationFulfillResult);
+		return reservationFulfillResult;
 	}
 
 	public void updateCarbobUseResult(Reservation reservation) {

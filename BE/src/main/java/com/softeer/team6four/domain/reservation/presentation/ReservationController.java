@@ -61,7 +61,8 @@ public class ReservationController {
 			@RequestBody ReservationFulfillRequest reservationFulfillRequest
 		) {
 		Long userId = UserContextHolder.get();
-		return reservationUpdateService.fulfillReservationAndPay(userId, reservationFulfillRequest);
+		ReservationFulfillResult reservationFulfillResult = reservationUpdateService.fulfillReservationAndPay(userId, reservationFulfillRequest);
+		return ResponseDto.map(HttpStatus.OK.value(), "카밥 사용이 시작됩니다.", reservationFulfillResult);
 	}
 
 
