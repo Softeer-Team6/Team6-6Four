@@ -10,6 +10,7 @@ import lombok.Getter;
 public class MyCarbobSummary {
 	private final @NotNull Long carbobId;
 	private final @NotNull String nickname;
+	private final @NotNull String address;
 	private final @NotNull String imageUrl;
 	private final @NotNull Long reservationCount;
 }

@@ -48,6 +48,7 @@ public class CarbobRepositoryImpl extends QuerydslRepositorySupport {
 					MyCarbobSummary.class,
 					carbob.carbobId,
 					carbob.nickname,
+					carbob.location.address,
 					carbobImage.imageUrl,
 					reservationCount
 				))
