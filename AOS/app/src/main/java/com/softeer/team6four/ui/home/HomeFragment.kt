@@ -105,6 +105,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         with(naverMap) {
             locationSource = this@HomeFragment.locationSource
             locationTrackingMode = LocationTrackingMode.Follow
+            addOnLocationChangeListener { location ->
+                homeViewModel.updateUserLatLng(location.latitude, location.longitude)
+            }
             viewLifecycleOwner.lifecycleScope.launch {
                 viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                     val searchMarker = createSearchMarker(locationOverlay.position)
@@ -192,8 +195,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                     return mapChargerModel.feePerHour
                 }
             }
-            setOnClickListener { overlay ->
-                homeViewModel.updateSelectedCharger((tag as Int))
+            setOnClickListener { _ ->
+                homeViewModel.updateSelectedCharger((tag as Long))
                 true
             }
         }
