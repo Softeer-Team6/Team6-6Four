@@ -1,13 +1,12 @@
 package com.softeer.team6four.domain.carbob.application.request;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import com.google.firebase.database.annotations.NotNull;
-
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -22,6 +21,7 @@ public class CarbobRegistration {
 	private @NotNull String chargeType;
 	private @NotNull String speedType;
 	private @NotNull String installType;
+	private @NotNull String carbobImgUrl;
 	private @NotNull LocalDateTime startDateTime;
 	private @NotNull LocalDateTime endDateTime;
 

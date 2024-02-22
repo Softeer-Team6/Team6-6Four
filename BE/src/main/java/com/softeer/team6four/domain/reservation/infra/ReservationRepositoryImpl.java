@@ -48,8 +48,7 @@ public class ReservationRepositoryImpl extends QuerydslRepositorySupport {
 				Projections.constructor(
 					ReservationInfo.class,
 					reservation.reservationId,
-					carbobImage.imageUrl.coalesce(
-						"https://project-s3-bucket-1.s3.ap-northeast-2.amazonaws.com/carbob.png"),
+					carbobImage.imageUrl,
 					reservation.stateType,
 					Projections.constructor(
 						ReservationTime.class,
@@ -121,8 +120,6 @@ public class ReservationRepositoryImpl extends QuerydslRepositorySupport {
 						reservationLine.reservationTime.min().as("startTime"),
 						reservationLine.reservationTime.max().as("endTime")
 					),
-					reservation.carbob.nickname.as("rentalDate"), // rentalDate 을 위한 임시값
-					reservation.carbob.nickname.as("rentalTime"), // rentalTime 을 위한 임시값
 					reservation.carbob.location.address,
 					reservation.guest.nickname.as("guestNickname"),
 					reservation.totalFee
@@ -171,17 +168,6 @@ public class ReservationRepositoryImpl extends QuerydslRepositorySupport {
 			return null;
 		}
 	}
-
-	//    private Slice<ReservationInfo> checkLastPage(Pageable pageable, List<ReservationInfo> results) {
-	//        boolean hasNext = false;
-	//
-	//        if (results.size() > pageable.getPageSize()) {
-	//            hasNext = true;
-	//            results.remove(pageable.getPageSize());
-	//        }
-	//
-	//        return new SliceImpl<>(results, pageable, hasNext);
-	//    }
 
 	private <T> Slice<T> checkLastPage(Pageable pageable, List<T> results) {
 		boolean hasNext = false;

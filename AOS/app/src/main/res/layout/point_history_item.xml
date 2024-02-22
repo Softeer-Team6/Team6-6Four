@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.softeer.team6four.ui.mypage.point.MyPointViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,7 +41,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="2024.02.15"
             android:textColor="@color/gray_500"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@id/start_guide_line"
@@ -49,7 +51,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="붕붕이밥2"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/tv_point_charge_date"
@@ -59,7 +60,6 @@
             android:id="@+id/tv_charger_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+ 5000원"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@id/end_guide_line"

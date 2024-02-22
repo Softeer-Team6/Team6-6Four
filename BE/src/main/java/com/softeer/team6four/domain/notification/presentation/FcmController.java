@@ -1,7 +1,7 @@
 package com.softeer.team6four.domain.notification.presentation;
 
 import com.softeer.team6four.domain.notification.application.FcmService;
-import com.softeer.team6four.domain.notification.request.FcmTokenRequest;
+import com.softeer.team6four.domain.notification.application.request.FcmTokenRequest;
 import com.softeer.team6four.global.annotation.Auth;
 import com.softeer.team6four.global.filter.UserContextHolder;
 import com.softeer.team6four.global.response.ResponseDto;
