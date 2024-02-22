@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="model"
+            type="com.softeer.team6four.data.remote.charger.model.BottomSheetChargerModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@string/charger_title_example"
+            android:text="@{model.nickname}"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/start_guide_line"
@@ -48,7 +50,7 @@
             android:id="@+id/tv_charger_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/charger_price_example"
+            android:text="@{model.feePerHour}"
             android:textColor="@color/main_400"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -70,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="@string/charger_location_example"
+            android:text="@{model.address}"
             app:layout_constraintBottom_toBottomOf="@id/iv_charger_location"
             app:layout_constraintStart_toEndOf="@id/iv_charger_location"
             app:layout_constraintTop_toTopOf="@id/iv_charger_location" />
@@ -89,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="@string/charger_charge_speed_example"
+            android:text="@{`충전속도 ` + model.speedType}"
             app:layout_constraintBottom_toBottomOf="@id/iv_charger_speed"
             app:layout_constraintStart_toEndOf="@id/iv_charger_speed"
             app:layout_constraintTop_toTopOf="@id/iv_charger_speed" />
