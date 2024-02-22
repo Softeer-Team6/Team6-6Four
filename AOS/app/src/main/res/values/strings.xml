@@ -166,4 +166,5 @@
     <string name="reservation_reject">거절</string>
     <string name="empty_reservation_list">카밥 예약 내역이 없어요</string>
     <string name="drawer_nickname">%1$s님</string>
+    <string name="apply_confirm_time">%1$s:00 - %2$s:00</string>
 </resources>
