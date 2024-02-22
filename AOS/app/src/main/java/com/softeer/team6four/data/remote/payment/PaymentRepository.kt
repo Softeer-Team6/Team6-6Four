@@ -7,6 +7,7 @@ import com.softeer.team6four.data.remote.payment.model.PointHistoryModel
 import com.softeer.team6four.data.remote.payment.source.PaymentDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import java.text.DecimalFormat
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -18,7 +19,7 @@ class PaymentRepository @Inject constructor(private val paymentDataSource: Payme
             when (resource) {
                 is Resource.Success -> {
                     val totalPoint = resource.data
-                    val myTotalPointModel = MyTotalPointModel(totalPoint.totalPoint)
+                    val myTotalPointModel = MyTotalPointModel(formatNumber(totalPoint.totalPoint) + "원")
                     Resource.Success(myTotalPointModel)
                 }
 
@@ -42,7 +43,9 @@ class PaymentRepository @Inject constructor(private val paymentDataSource: Payme
                     val pointHistoryModel = PointHistoryModel(
                         pointHistory.content.map {
                             PointHistoryDetailModel(
-                                it.amount.toString() + " 원",
+                                if (it.amount > 0) { "+" + formatNumber(it.amount) + " 원" }
+                                else {
+                                    formatNumber(it.amount) + " 원" },
                                 it.createdDate.split("T")[0].replace("-", ".")
                                     + " "
                                     + it.createdDate.split("T")[1]
@@ -69,6 +72,11 @@ class PaymentRepository @Inject constructor(private val paymentDataSource: Payme
                 }
             }
         }
+    }
+
+    private fun formatNumber(number: Int): String {
+        val formatter = DecimalFormat("#,###")
+        return formatter.format(number)
     }
 
     fun chargePoint(accessToken: String, amount: Int) : Flow<Resource<Unit>> {

@@ -20,8 +20,8 @@ class MyPointViewModel @Inject constructor(
     private val userPreferencesRepository: UserPreferencesRepository,
     private val paymentRepository: PaymentRepository
 ) : ViewModel() {
-    private val _myTotalPoint: MutableStateFlow<Int> = MutableStateFlow(0)
-    val myTotalPoint: StateFlow<Int> = _myTotalPoint
+    private val _myTotalPoint: MutableStateFlow<String> = MutableStateFlow("0")
+    val myTotalPoint: StateFlow<String> = _myTotalPoint
 
     private val _pointHistory: MutableStateFlow<List<PointHistoryDetailModel>> = MutableStateFlow(emptyList())
     val pointHistory: StateFlow<List<PointHistoryDetailModel>> = _pointHistory
@@ -41,14 +41,14 @@ class MyPointViewModel @Inject constructor(
 
                     is Resource.Error -> {
                         if (totalPoint.code == 400) {
-                            _myTotalPoint.value = 0
+                            _myTotalPoint.value = "0 원"
                         } else {
                             Log.e("MyPointViewModel", "getMyTotalPoint: ${totalPoint.message}")
                         }
                     }
 
                     else -> {
-                        _myTotalPoint.value = 0
+                        _myTotalPoint.value = "0 원"
                     }
                 }
             }
