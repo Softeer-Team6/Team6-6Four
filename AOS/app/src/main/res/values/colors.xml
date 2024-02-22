@@ -19,6 +19,8 @@
     <color name="main_300">#7E8BFF</color>
     <color name="main_400">#4D5FFF</color>
 
+    <color name="red">#EB4848</color>
+
     <color name="success">#4D5FFF</color>
     <color name="error">#EB4848</color>
 

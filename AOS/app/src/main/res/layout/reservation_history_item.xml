@@ -46,7 +46,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/btn_reservation_state"
+            android:id="@+id/chip_reservation_state"
             android:layout_marginTop="14dp"
             android:layout_marginStart="8dp"
             android:paddingVertical="4dp"
