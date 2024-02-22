@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.softeer.team6four.data.remote.charger.model.BottomSheetChargerModel
 import com.softeer.team6four.databinding.ChargerItemBinding
 
-class BottomSheetListAdapter :
+class BottomSheetListAdapter(private val navigationCallback: (id : Long)  -> Unit) :
     ListAdapter<BottomSheetChargerModel, BottomSheetListAdapter.BottomSheetViewHolder>(diffUtil) {
     override fun onBindViewHolder(
         holder: BottomSheetViewHolder,
@@ -26,10 +26,13 @@ class BottomSheetListAdapter :
         )
     }
 
-    class BottomSheetViewHolder(private val binding: ChargerItemBinding) :
+    inner class BottomSheetViewHolder(private val binding: ChargerItemBinding) :
         ViewHolder(binding.root) {
         fun bind(chargerModel: BottomSheetChargerModel) {
             binding.model = chargerModel
+            binding.root.setOnClickListener {
+                navigationCallback(chargerModel.chargerId )
+            }
         }
     }
 
