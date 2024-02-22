@@ -11,17 +11,51 @@ import com.softeer.team6four.databinding.ApplyTimeTableRowBinding
 class ApplyTimeTable(context: Context, attributes: AttributeSet) :
     ConstraintLayout(context, attributes) {
     private val binding = ApplyTimeTableBinding.inflate(LayoutInflater.from(context))
-    private var reservationTimeList: List<Boolean> = emptyList()
 
     init {
         setTotalTimeText()
-        //Test Code
-        binding.secondRow.timeTableRowItemSixth.setBackgroundResource(R.drawable.background_apply_time_table_item_impossible)
-        binding.thirdRow.timeTableRowItemFirst.setBackgroundResource(R.drawable.background_apply_time_table_item_impossible)
         addView(binding.root)
     }
 
-    fun setList() {
+    fun setList(list: List<Boolean>) {
+        setTotalBackground(list)
+    }
+
+    private fun setTotalBackground(list: List<Boolean>) {
+        setRowBackground(binding.firstRow, list.subList(0, 6))
+        setRowBackground(binding.secondRow, list.subList(6, 12))
+        setRowBackground(binding.thirdRow, list.subList(12, 18))
+        setRowBackground(binding.fourthRow, list.subList(18, 24))
+    }
+
+    private fun setRowBackground(
+        applyTimeTableRowBinding: ApplyTimeTableRowBinding,
+        list: List<Boolean>
+    ) {
+        applyTimeTableRowBinding.timeTableRowItemFirst.setBackgroundResource(
+            if (!list[0]) R.drawable.background_apply_time_table_item_possible
+            else R.drawable.background_apply_time_table_item_impossible
+        )
+        applyTimeTableRowBinding.timeTableRowItemSecond.setBackgroundResource(
+            if (!list[1]) R.drawable.background_apply_time_table_item_possible
+            else R.drawable.background_apply_time_table_item_impossible
+        )
+        applyTimeTableRowBinding.timeTableRowItemThird.setBackgroundResource(
+            if (!list[2]) R.drawable.background_apply_time_table_item_possible
+            else R.drawable.background_apply_time_table_item_impossible
+        )
+        applyTimeTableRowBinding.timeTableRowItemFourth.setBackgroundResource(
+            if (!list[3]) R.drawable.background_apply_time_table_item_possible
+            else R.drawable.background_apply_time_table_item_impossible
+        )
+        applyTimeTableRowBinding.timeTableRowItemFifth.setBackgroundResource(
+            if (!list[4]) R.drawable.background_apply_time_table_item_possible
+            else R.drawable.background_apply_time_table_item_impossible
+        )
+        applyTimeTableRowBinding.timeTableRowItemSixth.setBackgroundResource(
+            if (!list[5]) R.drawable.background_apply_time_table_item_possible
+            else R.drawable.background_apply_time_table_item_impossible
+        )
 
     }
 
