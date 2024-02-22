@@ -66,7 +66,9 @@ public class CarbobController {
 			@RequestParam @NotNull Double latitude,
 			@RequestParam @NotNull Double longitude
 		) {
-		return aroundCarbobSearchService.findAroundCarbobInfoSummaryList(latitude, longitude);
+		ListResponse<AroundCarbobListInfoSummary> aroundCarbobList = aroundCarbobSearchService.findAroundCarbobInfoSummaryList(
+			latitude, longitude);
+		return ResponseDto.map(HttpStatus.OK.value(), "반경 5KM 카밥 리스트가 반환되었습니다", aroundCarbobList);
 	}
 
 	@Auth
@@ -77,7 +79,10 @@ public class CarbobController {
 			@RequestParam @NotNull Double longitude,
 			@RequestParam(required = false, defaultValue = "SPEED") String sortType
 		) {
-		return aroundCarbobSearchService.findAroundCarbobInfoList(latitude, longitude, sortType);
+		ListResponse<AroundCarbobListInfo> aroundCarbobList = aroundCarbobSearchService.findAroundCarbobInfoList(
+			latitude, longitude, sortType);
+		return ResponseDto.map(HttpStatus.OK.value(), "반경 5KM 카밥 리스트(footer용)가 반환되었습니다",
+			aroundCarbobList);
 	}
 
 	@Auth
@@ -88,7 +93,9 @@ public class CarbobController {
 			@RequestParam @NotNull Double latitude,
 			@RequestParam @NotNull Double longitude
 		) {
-		return aroundCarbobSearchService.findSpecificCarbobDetailInfo(latitude, longitude, carbobId);
+		SpecificDetailCarbobInfo specificCarbob = aroundCarbobSearchService.findSpecificCarbobDetailInfo(latitude,
+			longitude, carbobId);
+		return ResponseDto.map(HttpStatus.OK.value(), "선택한 카밥 정보입니다", specificCarbob);
 	}
 
 	@Auth
