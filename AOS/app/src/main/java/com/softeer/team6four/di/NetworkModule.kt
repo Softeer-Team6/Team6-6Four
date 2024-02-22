@@ -4,6 +4,7 @@ import com.softeer.team6four.api.ChargerService
 import com.softeer.team6four.api.FcmService
 import com.softeer.team6four.api.GeoCodeService
 import com.softeer.team6four.api.PaymentService
+import com.softeer.team6four.api.ReservationService
 import com.softeer.team6four.api.UserService
 import dagger.Module
 import dagger.Provides
@@ -31,9 +32,15 @@ object NetworkModule {
     @Provides
     fun provideChargerService(): ChargerService {
         return ChargerService.create()
-    
+    }
     @Provides
-    fun providePaymentService() : PaymentService {
+    fun providePaymentService(): PaymentService {
         return PaymentService.create()
     }
+
+    @Provides
+    fun provideReservationService(): ReservationService {
+        return ReservationService.create()
+    }
+
 }
