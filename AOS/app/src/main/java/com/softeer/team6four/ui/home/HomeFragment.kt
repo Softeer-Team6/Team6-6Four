@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +14,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -25,14 +26,19 @@ import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
+import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.LocationOverlay
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import com.softeer.team6four.R
+import com.softeer.team6four.data.remote.charger.model.MapChargerModel
 import com.softeer.team6four.databinding.FragmentHomeBinding
+import com.softeer.team6four.databinding.HeaderNavigationDrawerBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(), OnMapReadyCallback {
@@ -42,7 +48,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     private val inputMethodManager by lazy {
         requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
     }
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val homeViewModel: HomeViewModel by activityViewModels()
 
     private var _binding: FragmentHomeBinding? = null
     private val binding
@@ -78,26 +84,13 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
-            btnMenu.setOnClickListener { drawerLayout.open() }
-            navigationView.setNavigationItemSelectedListener { menuItem ->
-                menuItem.setChecked(false)
-                drawerLayout.close()
-                when (menuItem.itemId) {
-                    R.id.my_charger_list_item -> findNavController().navigate(R.id.action_homeFragment_to_myChargerFragment)
-                    R.id.my_point_item -> findNavController().navigate(R.id.action_homeFragment_to_myPointFragment)
-                    R.id.my_reservation_item -> findNavController().navigate(R.id.action_homeFragment_to_myReservationFragment)
-                    R.id.register_charger_item -> findNavController().navigate(R.id.action_homeFragment_to_registerChargerFragment)
-                }
-                true
-            }
-            btnShowChargerList.setOnClickListener {
-                BottomSheetFragment().show(
-                    parentFragmentManager,
-                    "BottomSheet"
-                )
-            }
+            viewModel = homeViewModel
+            lifecycleOwner = viewLifecycleOwner
+            setBtnShowChargerList()
+            setNavigationDrawer()
             setSearchAction()
             sendFcmToken()
+            setNickname()
             mapView.getMapAsync(this@HomeFragment)
         }
     }
@@ -113,18 +106,24 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             locationSource = this@HomeFragment.locationSource
             locationTrackingMode = LocationTrackingMode.Follow
             viewLifecycleOwner.lifecycleScope.launch {
-                val searchMarker = createSearchMarker(locationOverlay.position)
-                setBtnCurrentLocation(this@with, searchMarker, locationOverlay)
-                setMapOnClickListener(this@with, searchMarker)
-
                 viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    homeViewModel.searchCoordinate.collect { latLng ->
+                    val searchMarker = createSearchMarker(locationOverlay.position)
+                    setBtnCurrentLocation(this@with, searchMarker, locationOverlay)
+                    setMapOnClickListener(searchMarker)
+                    homeViewModel.searchAddressLatLng.collect { latLng ->
                         if (latLng.latitude != 0.toDouble() && latLng.longitude != 0.toDouble()) {
                             naverMap.moveCamera(
                                 CameraUpdate.scrollTo(latLng)
                                     .animate(CameraAnimation.Linear)
                             )
                             searchMarker.position = latLng
+                            with(homeViewModel) {
+                                fetchMapChargerList()
+                                fetchBottomSheetChargerList()
+                                clearInfoWindows()
+                                updateSearchMarkerLatLng(latLng)
+                            }
+                            createChargerInfoWindowList()
                         }
                     }
                 }
@@ -132,13 +131,43 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    private fun setMapOnClickListener(naverMap: NaverMap, searchMarker: Marker) {
+    private fun setNavigationDrawer() {
+        with(binding) {
+            btnMenu.setOnClickListener { drawerLayout.open() }
+            navigationView.setNavigationItemSelectedListener { menuItem ->
+                menuItem.setChecked(false)
+                drawerLayout.close()
+                when (menuItem.itemId) {
+                    R.id.my_charger_list_item -> findNavController().navigate(R.id.action_homeFragment_to_myChargerFragment)
+                    R.id.my_point_item -> findNavController().navigate(R.id.action_homeFragment_to_myPointFragment)
+                    R.id.my_reservation_item -> findNavController().navigate(R.id.action_homeFragment_to_myReservationFragment)
+                    R.id.register_charger_item -> findNavController().navigate(R.id.action_homeFragment_to_registerChargerFragment)
+                }
+                true
+            }
+        }
+    }
+
+    private fun setMapOnClickListener(searchMarker: Marker) {
         naverMap.setOnMapClickListener { _, latLng ->
             searchMarker.position = latLng
             naverMap.moveCamera(
                 CameraUpdate.scrollTo(latLng)
                     .animate(CameraAnimation.Linear)
             )
+
+            homeViewModel.clearInfoWindows()
+            homeViewModel.updateSearchMarkerLatLng(latLng)
+
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    launch {
+                        homeViewModel.fetchMapChargerList()
+                        homeViewModel.fetchBottomSheetChargerList()
+                        createChargerInfoWindowList()
+                    }
+                }
+            }
         }
     }
 
@@ -147,6 +176,47 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             icon = OverlayImage.fromResource(R.drawable.icon_search_marker)
             position = latLng
             map = naverMap
+        }
+    }
+
+    private fun createChargerInfoWindow(mapChargerModel: MapChargerModel): InfoWindow {
+        return InfoWindow().apply {
+            position =
+                LatLng(
+                    mapChargerModel.latitude,
+                    mapChargerModel.longitude
+                )
+            tag = mapChargerModel.chargerId
+            adapter = object : InfoWindow.DefaultTextAdapter(requireContext()) {
+                override fun getText(p0: InfoWindow): CharSequence {
+                    return mapChargerModel.feePerHour
+                }
+            }
+            setOnClickListener { overlay ->
+                homeViewModel.updateSelectedCharger((tag as Int))
+                true
+            }
+        }
+    }
+
+    private suspend fun createChargerInfoWindowList() {
+        homeViewModel.mapChargerList.collect { list ->
+            val infoWindows = list.map { model ->
+                val infoWindow = withContext(Dispatchers.Default) { createChargerInfoWindow(model) }
+                infoWindow.map = naverMap
+                infoWindow
+            }
+
+            homeViewModel.updateInfoWindows(infoWindows)
+        }
+    }
+
+    private fun setBtnShowChargerList() {
+        binding.btnShowChargerList.setOnClickListener {
+            BottomSheetFragment().show(
+                parentFragmentManager,
+                "BottomSheet"
+            )
         }
     }
 
@@ -161,6 +231,11 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                     .animate(CameraAnimation.Linear)
             )
             searchMarker.position = locationOverlay.position
+
+            homeViewModel.fetchMapChargerList()
+            homeViewModel.fetchBottomSheetChargerList()
+            homeViewModel.clearInfoWindows()
+            homeViewModel.updateSearchMarkerLatLng(locationOverlay.position)
         }
     }
 
@@ -183,7 +258,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             etSearchLocation.setOnKeyListener { _, keyCode, event ->
                 when {
                     event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER -> {
-                        homeViewModel.getCoordinate(binding.etSearchLocation.text.toString())
+                        homeViewModel.getCoordinate()
                         inputMethodManager.hideSoftInputFromWindow(
                             binding.etSearchLocation.windowToken,
                             0
@@ -198,7 +273,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             searchbarLayout.setEndIconOnClickListener {
                 inputMethodManager.hideSoftInputFromWindow(binding.etSearchLocation.windowToken, 0)
                 binding.etSearchLocation.clearFocus()
-                homeViewModel.getCoordinate(binding.etSearchLocation.text.toString())
+                homeViewModel.getCoordinate()
             }
         }
     }
@@ -210,6 +285,18 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             }
             val token = task.result
             homeViewModel.sendFcmToken(token)
+        }
+    }
+
+    private fun setNickname() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.nickname.collect { nickname ->
+                    HeaderNavigationDrawerBinding.bind(
+                        binding.navigationView.getHeaderView(0)
+                    ).tvNickname.text = getString(R.string.drawer_nickname, nickname)
+                }
+            }
         }
     }
 

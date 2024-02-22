@@ -165,4 +165,5 @@
     <string name="reservation_approve">승인</string>
     <string name="reservation_reject">거절</string>
     <string name="empty_reservation_list">카밥 예약 내역이 없어요</string>
+    <string name="drawer_nickname">%1$s님</string>
 </resources>
