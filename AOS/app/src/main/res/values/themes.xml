@@ -39,4 +39,9 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">4dp</item>
     </style>
+
+    <style name="ThemeOverlay.App.Button" parent= "ThemeOverlay.Material3.Button">
+        <item name="android:color">@color/normal_btn_background_color</item>
+        <item name="android:textColor">@color/normal_btn_text_color</item>
+    </style>
 </resources>

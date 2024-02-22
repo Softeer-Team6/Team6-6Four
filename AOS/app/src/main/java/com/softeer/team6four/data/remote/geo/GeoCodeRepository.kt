@@ -1,4 +1,4 @@
-package com.softeer.team6four.data
+package com.softeer.team6four.data.remote.geo
 
 import com.naver.maps.geometry.LatLng
 import com.softeer.team6four.BuildConfig

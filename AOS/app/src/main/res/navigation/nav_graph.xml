@@ -52,7 +52,7 @@
         tools:layout="@layout/fragment_register_charger" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.softeer.team6four.ui.login.LoginFragment"
+        android:name="com.softeer.team6four.ui.user.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.softeer.team6four.ui.signup.SignUpFragment"
+        android:name="com.softeer.team6four.ui.user.signup.SignUpFragment"
         android:label="SignUpFragment"
         tools:layout="@layout/fragment_sign_up">
         <action

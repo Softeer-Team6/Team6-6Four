@@ -2,6 +2,7 @@ package com.softeer.team6four.ui.home
 
 import android.Manifest
 import android.content.Context.INPUT_METHOD_SERVICE
+import android.os.Build
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -17,6 +18,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.messaging.FirebaseMessaging
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraAnimation
 import com.naver.maps.map.CameraUpdate
@@ -55,13 +57,21 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
 
         setPermissionLauncher()
         requestLauncher.launch(
-            arrayOf(
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            )
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                arrayOf(
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.POST_NOTIFICATIONS
+                )
+            } else {
+                arrayOf(
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                )
+            }
+
         )
         locationSource = FusedLocationSource(this, LOCATION_REQUEST_CODE)
-
         return binding.root
     }
 
@@ -87,6 +97,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                 )
             }
             setSearchAction()
+            sendFcmToken()
             mapView.getMapAsync(this@HomeFragment)
         }
     }
@@ -161,6 +172,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                 ) {
                     //Test Code
                     Toast.makeText(requireContext(), "위치 권한 설정이 필요합니다", Toast.LENGTH_SHORT).show()
+                } else if (permissions[Manifest.permission.POST_NOTIFICATIONS] == false) {
+                    Toast.makeText(requireContext(), "알림 권한 설정이 필요합니다", Toast.LENGTH_SHORT).show()
                 }
             }
     }
@@ -187,6 +200,16 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                 binding.etSearchLocation.clearFocus()
                 homeViewModel.getCoordinate(binding.etSearchLocation.text.toString())
             }
+        }
+    }
+
+    private fun sendFcmToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                return@addOnCompleteListener
+            }
+            val token = task.result
+            homeViewModel.sendFcmToken(token)
         }
     }
 

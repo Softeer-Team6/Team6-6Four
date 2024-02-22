@@ -2,7 +2,7 @@ package com.softeer.team6four.domain.notification.application;
 
 import com.softeer.team6four.domain.notification.domain.FcmToken;
 import com.softeer.team6four.domain.notification.domain.FcmTokenRepository;
-import com.softeer.team6four.domain.notification.request.FcmTokenRequest;
+import com.softeer.team6four.domain.notification.application.request.FcmTokenRequest;
 import com.softeer.team6four.domain.user.application.UserSearchService;
 import com.softeer.team6four.domain.user.domain.User;
 import lombok.RequiredArgsConstructor;

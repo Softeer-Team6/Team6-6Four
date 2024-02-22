@@ -108,7 +108,8 @@ class PaymentPointServiceTest {
 	@DisplayName("내 포인트 등록 - 정상입력(양수)")
 	void 포인트_정상_입력_테스트() {
 		//given
-		ChargeRequest chargeRequest = ChargeRequest.builder().chargePoint(1000).build();
+		ChargeRequest chargeRequest = new ChargeRequest();
+		chargeRequest.setChargeRequest(1000);
 		when(userSearchService.findUserByUserId(user.getUserId())).thenReturn(user);
 
 		//when
@@ -122,8 +123,8 @@ class PaymentPointServiceTest {
 	@DisplayName("내 포인트 등록 - 비정상입력(음수)")
 	void 포인트_비정상_입력_테스트() {
 		//given
-		ChargeRequest chargeRequest = ChargeRequest.builder().chargePoint(-1000).build();
-
+		ChargeRequest chargeRequest = new ChargeRequest();
+		chargeRequest.setChargeRequest(-1000);
 		//when, then
 		assertThrows(InvalidChargePointException.class, () -> {
 			paymentPointService.registMyPoint(user.getUserId(), chargeRequest);
