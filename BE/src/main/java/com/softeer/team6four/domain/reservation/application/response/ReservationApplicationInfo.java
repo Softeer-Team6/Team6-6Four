@@ -18,6 +18,16 @@ public class ReservationApplicationInfo {
 	private @NotNull String rentalDate;
 	private @NotNull String rentalTime;
 
+	public ReservationApplicationInfo(Long reservationId, String carbobNickname, ReservationTime reservationTime,
+		String address, String guestNickname, Integer totalFee) {
+		this.reservationId = reservationId;
+		this.carbobNickname = carbobNickname;
+		this.reservationTime = reservationTime;
+		this.address = address;
+		this.guestNickname = guestNickname;
+		this.totalFee = totalFee;
+	}
+
 	public void convertReservationTimeToStr() {
 		String[] timeSplit = this.reservationTime.toString().split(" ");
 		this.rentalDate = timeSplit[0];

@@ -48,10 +48,49 @@ public class ReservationController {
 		(
 			@RequestParam ReservationStateSortType sortType,
 			@RequestParam(required = false) Long lastReservationId,
-			@PageableDefault(size = 8) Pageable pageable
+			@PageableDefault(size = 12) Pageable pageable
 		) {
 		Long userId = UserContextHolder.get();
-		return reservationSearchService.getMyReservationApplicationList(userId, sortType, lastReservationId, pageable);
+		SliceResponse<ReservationInfo> reservationInfoList = reservationSearchService.getMyReservationApplicationList(
+			userId, sortType, lastReservationId, pageable);
+		return ResponseDto.map(HttpStatus.OK.value(), "예약 내역 조회에 성공했습니다.", reservationInfoList);
+	}
+
+	@Auth
+	@PostMapping("/fulfillment")
+	public ResponseDto<ReservationFulfillResult> fulfillReservation
+		(
+			@RequestBody ReservationFulfillRequest reservationFulfillRequest
+		) {
+		Long userId = UserContextHolder.get();
+		ReservationFulfillResult reservationFulfillResult = reservationUpdateService.fulfillReservationAndPay(userId,
+			reservationFulfillRequest);
+		return ResponseDto.map(HttpStatus.OK.value(), "카밥 사용이 시작됩니다.", reservationFulfillResult);
+	}
+
+	@Auth
+	@GetMapping("/list/{carbobId}")
+	public ResponseDto<SliceResponse<ReservationApplicationInfo>> getReservationList
+		(
+			@PathVariable Long carbobId,
+			@RequestParam(required = false) Long lastReservationId,
+			@PageableDefault(size = 12) Pageable pageable
+		) {
+		SliceResponse<ReservationApplicationInfo> reservationApplicationInfoList = reservationSearchService.getReservationList(
+			carbobId, lastReservationId, pageable);
+
+		return ResponseDto.map(HttpStatus.OK.value(), "예약 신청 내역 조회에 성공했습니다.",
+			reservationApplicationInfoList);
+	}
+
+	@Auth
+	@GetMapping("/verification")
+	public ResponseDto<QrVerification> verifyReservation
+		(
+			@RequestHeader String cipher
+		) {
+		Long userId = UserContextHolder.get();
+		return reservationSearchService.verifyReservationByCipher(userId, cipher);
 	}
 
 	@Auth
@@ -63,27 +102,6 @@ public class ReservationController {
 		Long userId = UserContextHolder.get();
 		reservationCreateService.makeReservationToCarbobV1(userId, reservationApply);
 		return ResponseDto.map(HttpStatus.OK.value(), "예약 신청이 완료되었습니다.", null);
-	}
-
-	@Auth
-	@GetMapping("/list/{carbobId}")
-	public ResponseDto<SliceResponse<ReservationApplicationInfo>> getReservationList
-		(
-			@PathVariable Long carbobId,
-			@RequestParam(required = false) Long lastReservationId,
-			@PageableDefault(size = 8) Pageable pageable
-		) {
-		return reservationSearchService.getReservationList(carbobId, lastReservationId, pageable);
-	}
-
-	@Auth
-	@GetMapping("/verification")
-	public ResponseDto<QrVerification> verifyReservation
-		(
-			@RequestHeader String cipher
-		) {
-		Long userId = UserContextHolder.get();
-		return reservationSearchService.verifyReservationByCipher(userId, cipher);
 	}
 
 	@Auth
@@ -109,16 +127,6 @@ public class ReservationController {
 		DailyReservationInfo dailyReservationInfo = reservationSearchService.getDailyReservationStatus(carbobId, date);
 
 		return ResponseDto.map(HttpStatus.OK.value(), "선택한 일자의 카밥 예약 내역입니다", dailyReservationInfo);
-	}
-
-	@Auth
-	@PostMapping("/fulfillment")
-	public ResponseDto<ReservationFulfillResult> fulfillReservation
-		(
-			@RequestBody ReservationFulfillRequest reservationFulfillRequest
-		) {
-		Long userId = UserContextHolder.get();
-		return reservationUpdateService.fulfillReservationAndPay(userId, reservationFulfillRequest);
 	}
 
 }
