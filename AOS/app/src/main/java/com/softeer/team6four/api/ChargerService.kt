@@ -37,7 +37,7 @@ interface ChargerService {
     suspend fun getMapChargerListDto(
         @Header("Authorization") token : String,
         @Query("latitude") latitude: Double,
-        @Query("longitude") longitude: Double
+        @Query("longitude") longitude: Double,
     ): Response<MapChargerListDto>
 
     @GET("main/footer")
@@ -45,7 +45,7 @@ interface ChargerService {
         @Header("Authorization") token : String,
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
-        @Query("sortType") sortType: String?
+        @Query("sortType") sortType: String? = null
     ): Response<BottomSheetChargerListDto>
 
     @POST("registration")
