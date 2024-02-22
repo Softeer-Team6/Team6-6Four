@@ -24,4 +24,14 @@ public class ReservationApplicationInfo {
 		this.rentalTime = timeSplit[1];
 	}
 
+	public ReservationApplicationInfo(Long reservationId, String carbobNickname, ReservationTime reservationTime,
+		String address, String guestNickname, Integer totalFee) {
+		this.reservationId = reservationId;
+		this.carbobNickname = carbobNickname;
+		this.reservationTime = reservationTime;
+		this.address = address;
+		this.guestNickname = guestNickname;
+		this.totalFee = totalFee;
+	}
+
 }
