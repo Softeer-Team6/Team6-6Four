@@ -1,6 +1,5 @@
 package com.softeer.team6four.ui.home
 
-import android.icu.text.IDNA.Info
 import android.text.Editable
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -11,6 +10,7 @@ import com.softeer.team6four.data.Resource
 import com.softeer.team6four.data.local.UserPreferencesRepository
 import com.softeer.team6four.data.remote.charger.ChargerRepository
 import com.softeer.team6four.data.remote.charger.model.BottomSheetChargerModel
+import com.softeer.team6four.data.remote.charger.model.ChargerDetailModel
 import com.softeer.team6four.data.remote.charger.model.MapChargerModel
 import com.softeer.team6four.data.remote.fcm.FcmRepository
 import com.softeer.team6four.data.remote.geo.GeoCodeRepository
@@ -32,6 +32,10 @@ class HomeViewModel @Inject constructor(
 
     private var _nickname: MutableStateFlow<String> = MutableStateFlow("")
     val nickname = _nickname
+
+    private var _userLatLng: MutableStateFlow<LatLng> =
+        MutableStateFlow(LatLng(0.toDouble(), 0.toDouble()))
+    val userLatLng: StateFlow<LatLng> = _userLatLng
 
     private var _searchAddressLatLng = MutableStateFlow(LatLng(0.toDouble(), 0.toDouble()))
     val searchAddressLatLng: StateFlow<LatLng> = _searchAddressLatLng
@@ -175,7 +179,7 @@ class HomeViewModel @Inject constructor(
         _currentInfoWindows.value = infoWindows
     }
 
-    fun updateSelectedCharger(id: Int) {
+    fun updateSelectedCharger(id: Long) {
         _selectedChargerId.value = id
 
     }
