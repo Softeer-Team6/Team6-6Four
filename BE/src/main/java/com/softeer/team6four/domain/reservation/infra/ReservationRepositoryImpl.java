@@ -48,8 +48,7 @@ public class ReservationRepositoryImpl extends QuerydslRepositorySupport {
 				Projections.constructor(
 					ReservationInfo.class,
 					reservation.reservationId,
-					carbobImage.imageUrl.coalesce(
-						"https://project-s3-bucket-1.s3.ap-northeast-2.amazonaws.com/carbob.png"),
+					carbobImage.imageUrl,
 					reservation.stateType,
 					Projections.constructor(
 						ReservationTime.class,
@@ -171,17 +170,6 @@ public class ReservationRepositoryImpl extends QuerydslRepositorySupport {
 			return null;
 		}
 	}
-
-	//    private Slice<ReservationInfo> checkLastPage(Pageable pageable, List<ReservationInfo> results) {
-	//        boolean hasNext = false;
-	//
-	//        if (results.size() > pageable.getPageSize()) {
-	//            hasNext = true;
-	//            results.remove(pageable.getPageSize());
-	//        }
-	//
-	//        return new SliceImpl<>(results, pageable, hasNext);
-	//    }
 
 	private <T> Slice<T> checkLastPage(Pageable pageable, List<T> results) {
 		boolean hasNext = false;
