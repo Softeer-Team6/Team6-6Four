@@ -51,19 +51,19 @@ public class ReservationController {
 			@PageableDefault(size = 8) Pageable pageable
 		) {
 		Long userId = UserContextHolder.get();
-		return reservationSearchService.getMyReservationApplicationList(userId, sortType, lastReservationId, pageable);
+		SliceResponse<ReservationInfo> reservationInfoList = reservationSearchService.getMyReservationApplicationList(userId, sortType, lastReservationId, pageable);
+		return ResponseDto.map(HttpStatus.OK.value(), "예약 내역 조회에 성공했습니다.", reservationInfoList);
 	}
-
 	@Auth
-	@PostMapping("/apply")
-	public ResponseDto<Void> applyReservation
+	@PostMapping("/fulfillment")
+	public ResponseDto<ReservationFulfillResult> fulfillReservation
 		(
-			@RequestBody ReservationApply reservationApply
+			@RequestBody ReservationFulfillRequest reservationFulfillRequest
 		) {
 		Long userId = UserContextHolder.get();
-		reservationCreateService.makeReservationToCarbobV1(userId, reservationApply);
-		return ResponseDto.map(HttpStatus.OK.value(), "예약 신청이 완료되었습니다.", null);
+		return reservationUpdateService.fulfillReservationAndPay(userId, reservationFulfillRequest);
 	}
+
 
 	@Auth
 	@GetMapping("/list/{carbobId}")
@@ -84,6 +84,16 @@ public class ReservationController {
 		) {
 		Long userId = UserContextHolder.get();
 		return reservationSearchService.verifyReservationByCipher(userId, cipher);
+	}
+	@Auth
+	@PostMapping("/apply")
+	public ResponseDto<Void> applyReservation
+		(
+			@RequestBody ReservationApply reservationApply
+		) {
+		Long userId = UserContextHolder.get();
+		reservationCreateService.makeReservationToCarbobV1(userId, reservationApply);
+		return ResponseDto.map(HttpStatus.OK.value(), "예약 신청이 완료되었습니다.", null);
 	}
 
 	@Auth
@@ -109,16 +119,6 @@ public class ReservationController {
 		DailyReservationInfo dailyReservationInfo = reservationSearchService.getDailyReservationStatus(carbobId, date);
 
 		return ResponseDto.map(HttpStatus.OK.value(), "선택한 일자의 카밥 예약 내역입니다", dailyReservationInfo);
-	}
-
-	@Auth
-	@PostMapping("/fulfillment")
-	public ResponseDto<ReservationFulfillResult> fulfillReservation
-		(
-			@RequestBody ReservationFulfillRequest reservationFulfillRequest
-		) {
-		Long userId = UserContextHolder.get();
-		return reservationUpdateService.fulfillReservationAndPay(userId, reservationFulfillRequest);
 	}
 
 }

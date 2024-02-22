@@ -41,7 +41,7 @@ public class ReservationSearchService {
 	private final ReservationRepositoryImpl reservationRepositoryImpl;
 	private final DailyReservationRepositoryImpl dailyReservationRepositoryImpl;
 
-	public ResponseDto<SliceResponse<ReservationInfo>> getMyReservationApplicationList
+	public SliceResponse<ReservationInfo> getMyReservationApplicationList
 		(
 			Long userId,
 			ReservationStateSortType sortType,
@@ -51,7 +51,8 @@ public class ReservationSearchService {
 		Slice<ReservationInfo> reservationInfoList = reservationRepositoryImpl.findReservationInfoList(userId, sortType,
 			lastReservationId, pageable);
 		reservationInfoList.forEach(ReservationInfo::convertReservationTimeToStr);
-		return ResponseDto.map(HttpStatus.OK.value(), "예약 내역 조회에 성공했습니다.", SliceResponse.of(reservationInfoList));
+
+		return SliceResponse.of(reservationInfoList);
 	}
 
 	public ResponseDto<SliceResponse<ReservationApplicationInfo>> getReservationList
