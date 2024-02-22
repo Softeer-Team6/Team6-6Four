@@ -2,6 +2,7 @@ package com.softeer.team6four.data.remote.charger
 
 import com.softeer.team6four.data.Resource
 import com.softeer.team6four.data.remote.charger.model.BottomSheetChargerModel
+import com.softeer.team6four.data.remote.charger.model.ChargerDetailModel
 import com.softeer.team6four.data.remote.charger.model.MapChargerModel
 import com.softeer.team6four.data.remote.charger.source.ChargerDataSource
 import kotlinx.coroutines.flow.Flow
@@ -16,7 +17,12 @@ class ChargerRepository @Inject constructor(private val chargerDataSource: Charg
         longitude: Double,
         sortType: String? = null
     ): Flow<Resource<List<BottomSheetChargerModel>>> {
-        return chargerDataSource.fetchBottomSheetChargerModelList(token, latitude, longitude, sortType)
+        return chargerDataSource.fetchBottomSheetChargerModelList(
+            token,
+            latitude,
+            longitude,
+            sortType
+        )
     }
 
     fun fetchMapChargerModelList(
@@ -25,5 +31,14 @@ class ChargerRepository @Inject constructor(private val chargerDataSource: Charg
         longitude: Double,
     ): Flow<Resource<List<MapChargerModel>>> {
         return chargerDataSource.fetchMapChargerModelList(token, latitude, longitude)
+    }
+
+    fun fetchChargerDetail(
+        token: String,
+        chargerId: Long,
+        latitude: Double,
+        longitude: Double
+    ): Flow<Resource<ChargerDetailModel>> {
+        return chargerDataSource.fetchChargerDetail(token, chargerId, latitude, longitude)
     }
 }

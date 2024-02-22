@@ -3,6 +3,7 @@ package com.softeer.team6four.data.remote.charger.source
 import com.softeer.team6four.api.ChargerService
 import com.softeer.team6four.data.Resource
 import com.softeer.team6four.data.remote.charger.model.BottomSheetChargerModel
+import com.softeer.team6four.data.remote.charger.model.ChargerDetailModel
 import com.softeer.team6four.data.remote.charger.model.MapChargerModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -70,6 +71,45 @@ class ChargerDataSource @Inject constructor(private val chargerService: ChargerS
                     }))
                 } else emit(Resource.Error(message = "body is null"))
             } else emit(Resource.Error(response.code(), "fail to get bottom sheet charger list"))
+        } catch (e: Exception) {
+            emit(Resource.Error(message = e.message.toString()))
+        }
+    }
+
+    fun fetchChargerDetail(
+        token: String,
+        chargerId: Long,
+        latitude: Double,
+        longitude: Double
+    ): Flow<Resource<ChargerDetailModel>> = flow {
+        emit(Resource.Loading())
+        try {
+            val authorization = "Bearer $token"
+            val response =
+                chargerService.getChargerDetail(authorization, chargerId, latitude, longitude)
+            if (response.isSuccessful) {
+                val chargerDetailInfo = response.body()?.data
+                if (chargerDetailInfo != null) {
+                    emit(
+                        Resource.Success(
+                            ChargerDetailModel(
+                                address = chargerDetailInfo.address,
+                                chargerId = chargerDetailInfo.carbobId,
+                                chargerType = chargerDetailInfo.chargerType,
+                                description = chargerDetailInfo.description,
+                                distance = chargerDetailInfo.distance,
+                                feePerHour = chargerDetailInfo.feePerHour,
+                                imageUrl = chargerDetailInfo.imageUrl,
+                                installType = chargerDetailInfo.installType,
+                                nickname = chargerDetailInfo.nickname,
+                                speedType = chargerDetailInfo.speedType
+                            )
+                        )
+                    )
+                } else emit(Resource.Error(response.code(), "fail to get charger detail"))
+            } else {
+                emit(Resource.Error(message = "body is null"))
+            }
         } catch (e: Exception) {
             emit(Resource.Error(message = e.message.toString()))
         }
