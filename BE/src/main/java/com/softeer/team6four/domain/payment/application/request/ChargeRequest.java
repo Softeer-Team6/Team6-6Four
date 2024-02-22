@@ -5,8 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@Builder
+@NoArgsConstructor
 public class ChargeRequest {
 	private Integer chargePoint;
+
+	public void setChargeRequest(Integer chargePoint){
+		this.chargePoint = chargePoint;
+
+	}
 }
 
