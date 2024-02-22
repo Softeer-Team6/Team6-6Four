@@ -22,4 +22,16 @@ public class ReservationInfo {
 	public void convertReservationTimeToStr() {
 		this.reservationTimeStr = this.reservationTime.toString();
 	}
+
+	public ReservationInfo(Long reservationId, String carbobImageUrl, StateType stateType,
+		ReservationTime reservationTime,
+		Integer totalFee, String carbobNickname, String address) {
+		this.reservationId = reservationId;
+		this.carbobImageUrl = carbobImageUrl;
+		this.stateType = stateType;
+		this.reservationTime = reservationTime;
+		this.totalFee = totalFee;
+		this.carbobNickname = carbobNickname;
+		this.address = address;
+	}
 }
