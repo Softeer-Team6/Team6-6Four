@@ -1,38 +1,24 @@
 package com.softeer.team6four.domain.carbob.presentation;
 
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.google.firebase.database.annotations.NotNull;
 import com.softeer.team6four.domain.carbob.application.AroundCarbobSearchService;
 import com.softeer.team6four.domain.carbob.application.CarbobRegistrationService;
 import com.softeer.team6four.domain.carbob.application.CarbobSearchService;
 import com.softeer.team6four.domain.carbob.application.request.CarbobRegistration;
-import com.softeer.team6four.domain.carbob.application.response.AroundCarbobListInfo;
-import com.softeer.team6four.domain.carbob.application.response.AroundCarbobListInfoSummary;
-import com.softeer.team6four.domain.carbob.application.response.CarbobImgUrl;
-import com.softeer.team6four.domain.carbob.application.response.MyCarbobDetailInfo;
-import com.softeer.team6four.domain.carbob.application.response.MyCarbobSummary;
-import com.softeer.team6four.domain.carbob.application.response.SpecificDetailCarbobInfo;
+import com.softeer.team6four.domain.carbob.application.response.*;
 import com.softeer.team6four.global.annotation.Auth;
 import com.softeer.team6four.global.filter.UserContextHolder;
 import com.softeer.team6four.global.infrastructure.s3.S3Service;
 import com.softeer.team6four.global.response.ListResponse;
 import com.softeer.team6four.global.response.ResponseDto;
 import com.softeer.team6four.global.response.SliceResponse;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Slf4j
 @RestController
@@ -113,7 +99,8 @@ public class CarbobController {
 			@RequestBody CarbobRegistration carbobRegistration
 		) {
 		Long userId = UserContextHolder.get();
-		return carbobRegistrationService.registerCarbob(userId, carbobRegistration);
+		carbobRegistrationService.registerCarbob(userId, carbobRegistration);
+		return ResponseDto.map(HttpStatus.OK.value(), "카밥 등록에 성공했습니다.", null);
 	}
 
 	@Auth
