@@ -2,7 +2,6 @@ package com.softeer.team6four.api
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.softeer.team6four.BuildConfig
-import com.softeer.team6four.data.Resource
 import com.softeer.team6four.data.remote.reservation.dto.ChargerReservationListDto
 import com.softeer.team6four.data.remote.reservation.dto.DateReservationInfoDto
 import com.softeer.team6four.data.remote.reservation.dto.PaymentInfo
@@ -12,6 +11,7 @@ import com.softeer.team6four.data.remote.reservation.dto.ReservationRequestDto
 import com.softeer.team6four.data.remote.reservation.dto.VerificationDto
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.http.Field
 import retrofit2.http.GET
@@ -28,14 +28,14 @@ interface ReservationService {
         @Header("Authorization") token: String,
         @Path("carbobId") carbobId: Int,
         @Query("date") date: String?
-    ): Resource<DateReservationInfoDto>
+    ): Response<DateReservationInfoDto>
 
     @PATCH("check/{reservationId}")
     suspend fun updateReservationState(
         @Header("Authorization") token: String,
         @Path("reservationId") reservationId: Long,
         @Field("stateType") stateType: String
-    ): Resource<ReservationConfirmationDto>
+    ): Response<ReservationConfirmationDto>
 
     @POST("apply")
     suspend fun applyReservation(
@@ -43,32 +43,32 @@ interface ReservationService {
         @Field("carbobId") carbobId: Long,
         @Field("startDateTime") startDateTime : String,
         @Field("endDateTime") endDateTime : String
-    ): Resource<ReservationRequestDto>
+    ): Response<ReservationRequestDto>
 
     @GET("verification")
     suspend fun getVerification(
         @Header("Authorization") token: String,
         @Header("cipher") cipher: String
-    ): Resource<VerificationDto>
+    ): Response<VerificationDto>
 
     @POST("fulfillment")
     suspend fun fulfillVerification(
         @Header("Authorization") token: String,
         @Field("reservationId") reservationId: String
-    ): Resource<PaymentInfo>
+    ): Response<PaymentInfo>
 
     @GET("application/list")
     suspend fun getReservationHistory(
         @Header("Authorization") token: String,
         @Query("sortType") sortType: String,
         @Query("lastReservationId") lastReservationId: Int?
-    ): Resource<ReservationHistoryDto>
+    ): Response<ReservationHistoryDto>
 
     @GET("list/{carbobId}}")
     suspend fun getChargerReservation(
         @Header("Authorization") token: String,
         @Query("lastReservationId") lastReservationId: Int?
-    ): Resource<ChargerReservationListDto>
+    ): Response<ChargerReservationListDto>
 
     companion object {
         private const val BASE_URL = "${BuildConfig.BASE_URL}/v1/reservation/"
