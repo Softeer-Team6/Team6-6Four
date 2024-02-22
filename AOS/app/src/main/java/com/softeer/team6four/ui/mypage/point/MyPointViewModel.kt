@@ -10,6 +10,7 @@ import com.softeer.team6four.data.remote.payment.model.PointHistoryDetailModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -25,6 +26,9 @@ class MyPointViewModel @Inject constructor(
 
     private val _pointHistory: MutableStateFlow<List<PointHistoryDetailModel>> = MutableStateFlow(emptyList())
     val pointHistory: StateFlow<List<PointHistoryDetailModel>> = _pointHistory
+
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
     fun fetchMyTotalPoint() {
         viewModelScope.launch {
@@ -56,6 +60,10 @@ class MyPointViewModel @Inject constructor(
     }
 
     fun fetchPointHistory(lastPaymentId: Long? = null) {
+        if (_isLoading.value) return
+
+        _isLoading.value = true
+
         viewModelScope.launch {
             val accessToken = userPreferencesRepository.getAccessToken().first()
             val pointHistoryData = paymentRepository.getPointHistory(accessToken, lastPaymentId)
@@ -65,7 +73,12 @@ class MyPointViewModel @Inject constructor(
             }.collect { pointHistory ->
                 when (pointHistory) {
                     is Resource.Success -> {
-                        _pointHistory.value = pointHistory.data.content
+                        val newList = pointHistory.data.content.toMutableList()
+                        if (pointHistory.data.hasNext) {
+                            newList.add(PointHistoryDetailModel(" ", " ", 0, " ", " ", 0))
+                        }
+                        _pointHistory.value = newList
+                        _isLoading.value = false
                     }
 
                     is Resource.Error -> {
