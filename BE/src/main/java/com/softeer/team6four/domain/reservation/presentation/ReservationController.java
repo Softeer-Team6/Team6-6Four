@@ -48,7 +48,7 @@ public class ReservationController {
 		(
 			@RequestParam ReservationStateSortType sortType,
 			@RequestParam(required = false) Long lastReservationId,
-			@PageableDefault(size = 8) Pageable pageable
+			@PageableDefault(size = 12) Pageable pageable
 		) {
 		Long userId = UserContextHolder.get();
 		SliceResponse<ReservationInfo> reservationInfoList = reservationSearchService.getMyReservationApplicationList(userId, sortType, lastReservationId, pageable);
@@ -72,7 +72,7 @@ public class ReservationController {
 		(
 			@PathVariable Long carbobId,
 			@RequestParam(required = false) Long lastReservationId,
-			@PageableDefault(size = 8) Pageable pageable
+			@PageableDefault(size = 12) Pageable pageable
 		) {
 		SliceResponse<ReservationApplicationInfo>  reservationApplicationInfoList = reservationSearchService.getReservationList(carbobId, lastReservationId, pageable);
 

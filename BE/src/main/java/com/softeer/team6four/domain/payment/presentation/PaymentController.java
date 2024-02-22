@@ -42,7 +42,7 @@ public class PaymentController {
 	public ResponseDto<SliceResponse<MyPointSummary>> getMyPointList
 		(
 			@RequestParam(required = false) Long lastPaymentId,
-			@PageableDefault(size = 6) Pageable pageable
+			@PageableDefault(size = 12) Pageable pageable
 		) {
 		Long userId = UserContextHolder.get();
 		SliceResponse<MyPointSummary> myPointSummaryList = paymentPointService.getMyPointSummaryList(userId,

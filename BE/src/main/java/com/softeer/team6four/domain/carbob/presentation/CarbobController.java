@@ -37,7 +37,7 @@ public class CarbobController {
 			@RequestParam MyCarbobSortType sortType,
 			@RequestParam(required = false) Long lastCarbobId,
 			@RequestParam(required = false) Long lastReservationCount,
-			@PageableDefault(size = 6) Pageable pageable
+			@PageableDefault(size = 12) Pageable pageable
 		) {
 		Long userId = UserContextHolder.get();
 		SliceResponse<MyCarbobSummary> myCarbobList = carbobSearchService.findMyCarbobList(userId, sortType,
