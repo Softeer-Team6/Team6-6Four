@@ -74,7 +74,10 @@ public class ReservationController {
 			@RequestParam(required = false) Long lastReservationId,
 			@PageableDefault(size = 8) Pageable pageable
 		) {
-		return reservationSearchService.getReservationList(carbobId, lastReservationId, pageable);
+		SliceResponse<ReservationApplicationInfo>  reservationApplicationInfoList = reservationSearchService.getReservationList(carbobId, lastReservationId, pageable);
+
+		return ResponseDto.map(HttpStatus.OK.value(), "예약 신청 내역 조회에 성공했습니다.",
+			reservationApplicationInfoList);
 	}
 
 	@Auth

@@ -55,7 +55,7 @@ public class ReservationSearchService {
 		return SliceResponse.of(reservationInfoList);
 	}
 
-	public ResponseDto<SliceResponse<ReservationApplicationInfo>> getReservationList
+	public SliceResponse<ReservationApplicationInfo> getReservationList
 		(
 			Long carbobId,
 			Long lastReservationId,
@@ -65,8 +65,7 @@ public class ReservationSearchService {
 			.findReservationApplicationInfoList(carbobId, lastReservationId, pageable);
 		reservationApplicationInfoList.stream().forEach(ReservationApplicationInfo::convertReservationTimeToStr);
 
-		return ResponseDto.map(HttpStatus.OK.value(), "예약 신청 내역 조회에 성공했습니다.",
-			SliceResponse.of(reservationApplicationInfoList));
+		return SliceResponse.of(reservationApplicationInfoList);
 	}
 
 	public ResponseDto<QrVerification> verifyReservationByCipher(Long userId, String cipher) {
