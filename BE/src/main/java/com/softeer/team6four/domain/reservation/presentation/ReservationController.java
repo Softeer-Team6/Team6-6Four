@@ -51,9 +51,11 @@ public class ReservationController {
 			@PageableDefault(size = 12) Pageable pageable
 		) {
 		Long userId = UserContextHolder.get();
-		SliceResponse<ReservationInfo> reservationInfoList = reservationSearchService.getMyReservationApplicationList(userId, sortType, lastReservationId, pageable);
+		SliceResponse<ReservationInfo> reservationInfoList = reservationSearchService.getMyReservationApplicationList(
+			userId, sortType, lastReservationId, pageable);
 		return ResponseDto.map(HttpStatus.OK.value(), "예약 내역 조회에 성공했습니다.", reservationInfoList);
 	}
+
 	@Auth
 	@PostMapping("/fulfillment")
 	public ResponseDto<ReservationFulfillResult> fulfillReservation
@@ -61,10 +63,10 @@ public class ReservationController {
 			@RequestBody ReservationFulfillRequest reservationFulfillRequest
 		) {
 		Long userId = UserContextHolder.get();
-		ReservationFulfillResult reservationFulfillResult = reservationUpdateService.fulfillReservationAndPay(userId, reservationFulfillRequest);
+		ReservationFulfillResult reservationFulfillResult = reservationUpdateService.fulfillReservationAndPay(userId,
+			reservationFulfillRequest);
 		return ResponseDto.map(HttpStatus.OK.value(), "카밥 사용이 시작됩니다.", reservationFulfillResult);
 	}
-
 
 	@Auth
 	@GetMapping("/list/{carbobId}")
@@ -74,7 +76,8 @@ public class ReservationController {
 			@RequestParam(required = false) Long lastReservationId,
 			@PageableDefault(size = 12) Pageable pageable
 		) {
-		SliceResponse<ReservationApplicationInfo>  reservationApplicationInfoList = reservationSearchService.getReservationList(carbobId, lastReservationId, pageable);
+		SliceResponse<ReservationApplicationInfo> reservationApplicationInfoList = reservationSearchService.getReservationList(
+			carbobId, lastReservationId, pageable);
 
 		return ResponseDto.map(HttpStatus.OK.value(), "예약 신청 내역 조회에 성공했습니다.",
 			reservationApplicationInfoList);
@@ -89,6 +92,7 @@ public class ReservationController {
 		Long userId = UserContextHolder.get();
 		return reservationSearchService.verifyReservationByCipher(userId, cipher);
 	}
+
 	@Auth
 	@PostMapping("/apply")
 	public ResponseDto<Void> applyReservation
