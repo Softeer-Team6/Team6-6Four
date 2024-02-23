@@ -1,7 +1,25 @@
 package com.softeer.team6four.domain.carbob.application;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.softeer.team6four.domain.carbob.application.request.CarbobRegistration;
-import com.softeer.team6four.domain.carbob.domain.*;
+import com.softeer.team6four.domain.carbob.domain.Carbob;
+import com.softeer.team6four.domain.carbob.domain.CarbobImage;
+import com.softeer.team6four.domain.carbob.domain.CarbobImageRepository;
+import com.softeer.team6four.domain.carbob.domain.CarbobInfo;
+import com.softeer.team6four.domain.carbob.domain.CarbobLocation;
+import com.softeer.team6four.domain.carbob.domain.CarbobRepository;
+import com.softeer.team6four.domain.carbob.domain.CarbobSpec;
+import com.softeer.team6four.domain.carbob.domain.ChargerType;
+import com.softeer.team6four.domain.carbob.domain.InstallType;
+import com.softeer.team6four.domain.carbob.domain.LocationType;
+import com.softeer.team6four.domain.carbob.domain.SpeedType;
 import com.softeer.team6four.domain.carbob.infra.CarbobQrCreateEvent;
 import com.softeer.team6four.domain.reservation.application.ReservationMapper;
 import com.softeer.team6four.domain.reservation.domain.Reservation;
@@ -9,15 +27,9 @@ import com.softeer.team6four.domain.reservation.domain.ReservationLine;
 import com.softeer.team6four.domain.reservation.domain.ReservationRepository;
 import com.softeer.team6four.domain.user.application.UserSearchService;
 import com.softeer.team6four.domain.user.domain.User;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Slf4j
 @Service
