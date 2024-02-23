@@ -166,4 +166,6 @@
     <string name="reservation_reject">거절</string>
     <string name="empty_reservation_list">카밥 예약 내역이 없어요</string>
     <string name="drawer_nickname">%1$s님</string>
+    <string name="empty_own_charger_list">등록된 카밥이 없어요ㅠ</string>
+    <string name="empty_charger_reservation_list">들어온 예약이 없어요ㅠ</string>
 </resources>
