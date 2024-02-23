@@ -11,6 +11,6 @@ import lombok.Getter;
 public class ReservationCheckEvent {
 	private final User host;
 	private final User guest;
-	private final Carbob carbob;
+	private final String carbobNickname;
 	private final String stateType;
 }
