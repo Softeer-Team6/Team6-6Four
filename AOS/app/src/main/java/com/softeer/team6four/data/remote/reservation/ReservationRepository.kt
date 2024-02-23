@@ -2,6 +2,8 @@ package com.softeer.team6four.data.remote.reservation
 
 import android.util.Log
 import com.softeer.team6four.data.Resource
+import com.softeer.team6four.data.remote.reservation.model.ChargerReservationInfoModel
+import com.softeer.team6four.data.remote.reservation.model.ChargerReservationListModel
 import com.softeer.team6four.data.remote.reservation.model.ReservationInfoListModel
 import com.softeer.team6four.data.remote.reservation.model.ReservationInfoModel
 import com.softeer.team6four.data.remote.reservation.model.ReservationTimeModel
@@ -52,6 +54,64 @@ class ReservationRepository @Inject constructor(private val reservationDataSourc
                 }
             }
 
+        }
+    }
+
+    fun getCarbobReservationHistory(accessToken: String, carbobId: Int, lastReservationId: Int?)
+            : Flow<Resource<ChargerReservationListModel>> {
+        return reservationDataSource.getCarbobReservationHistory(accessToken, carbobId, lastReservationId).map { resource ->
+            when (resource) {
+                is Resource.Success -> {
+                    val chargerReservationHistory = resource.data
+                    val chargerReservationListModel = ChargerReservationListModel(
+                        chargerReservationHistory.content.map {
+                            ChargerReservationInfoModel(
+                                address = it.address,
+                                carbobNickname = it.carbobNickname,
+                                guestNickname = it.guestNickname,
+                                rentalDate = it.rentalDate,
+                                rentalTime = it.rentalTime,
+                                reservationId = it.reservationId,
+                                reservationTime = ReservationTimeModel(
+                                    it.reservationTime.endTime,
+                                    it.reservationTime.startTime
+                                ),
+                                totalFee = it.totalFee
+                            )
+                        },
+                        chargerReservationHistory.hasNext,
+                        chargerReservationHistory.size
+                    )
+                    Resource.Success(chargerReservationListModel)
+                }
+
+                is Resource.Error -> {
+                    Resource.Error(message = resource.message)
+                }
+
+                else -> {
+                    Resource.Loading()
+                }
+            }
+        }
+    }
+
+    fun updateReservationStatus(accessToken: String, reservationId: Int, status: String)
+            : Flow<Resource<Unit>> {
+        return reservationDataSource.updateReservationStatus(accessToken, reservationId, status).map { resource ->
+            when (resource) {
+                is Resource.Success -> {
+                    Resource.Success(Unit)
+                }
+
+                is Resource.Error -> {
+                    Resource.Error(message = resource.message)
+                }
+
+                else -> {
+                    Resource.Loading()
+                }
+            }
         }
     }
 }
