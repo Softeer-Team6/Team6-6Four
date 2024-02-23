@@ -1,12 +1,13 @@
 package com.softeer.team6four.domain.carbob.application.request;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import com.google.firebase.database.annotations.NotNull;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

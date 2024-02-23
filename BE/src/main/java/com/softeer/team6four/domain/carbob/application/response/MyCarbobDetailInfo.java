@@ -14,6 +14,7 @@ public class MyCarbobDetailInfo {
 
 	private final @NotNull String nickname;
 	private final @NotNull String imageUrl;
+	private final @NotNull String qrImageUrl;
 	private final @NotNull String address;
 	private final @NotNull String feePerHour;
 

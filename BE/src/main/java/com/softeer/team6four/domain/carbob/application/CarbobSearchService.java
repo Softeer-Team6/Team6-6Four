@@ -57,10 +57,11 @@ public class CarbobSearchService {
 		}
 
 		String carbobImageUrl = getCarbobImageUrl(carbobId);
+		String qrImageUrl = getQrImageUrl(carbobId);
 		SelfUseTime selfUseTime = reservationSearchService.getSelfUseTime(carbobId);
 		Long totalIncomeByTargetId = paymentSearchService.getTotalIncomeByTargetId(carbobId);
 
-		return CarbobMapper.mapMyCarbobDetailInfo(carbob, carbobImageUrl, selfUseTime,
+		return CarbobMapper.mapMyCarbobDetailInfo(carbob, carbobImageUrl, qrImageUrl, selfUseTime,
 			totalIncomeByTargetId);
 	}
 
@@ -71,5 +72,14 @@ public class CarbobSearchService {
 					.imageUrl("https://project-s3-bucket-1.s3.ap-northeast-2.amazonaws.com/carbob.png")
 					.build())
 			.getImageUrl();
+	}
+
+	private String getQrImageUrl(Long carbobId) {
+		return carbobRepository.findQrImageUrlByCarbobId(carbobId).orElseGet(() ->
+				Carbob.builder()
+					.qrImageUrl(
+						"https://project-s3-bucket-1.s3.ap-northeast-2.amazonaws.com/QR/037e122c-0dd4-4fcf-8c00-44a1656f8d15.png")
+					.build())
+			.getQrImageUrl();
 	}
 }
