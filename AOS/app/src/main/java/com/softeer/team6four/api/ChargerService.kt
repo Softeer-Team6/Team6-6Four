@@ -2,7 +2,6 @@ package com.softeer.team6four.api
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.softeer.team6four.BuildConfig
-import com.softeer.team6four.data.Resource
 import com.softeer.team6four.data.remote.charger.dto.BottomSheetChargerListDto
 import com.softeer.team6four.data.remote.charger.dto.ChargerDetailDto
 import com.softeer.team6four.data.remote.charger.dto.ChargerRegistrationInfo
@@ -71,7 +70,7 @@ interface ChargerService {
     @GET("detail/{carbobId}")
     suspend fun getMyChargerDetail(
         @Header("Authorization") token : String,
-        @Query("carbobId") carbobId: Int
+        @Path("carbobId") carbobId: Int
     ): Response<MyChargerDetailDto>
 
     companion object {

@@ -5,6 +5,7 @@ import com.softeer.team6four.BuildConfig
 import com.softeer.team6four.data.remote.reservation.dto.ChargerReservationListDto
 import com.softeer.team6four.data.remote.reservation.dto.DateReservationInfoDto
 import com.softeer.team6four.data.remote.reservation.dto.PaymentInfo
+import com.softeer.team6four.data.remote.reservation.dto.ReservationApplyProcess
 import com.softeer.team6four.data.remote.reservation.dto.ReservationConfirmationDto
 import com.softeer.team6four.data.remote.reservation.dto.ReservationHistoryDto
 import com.softeer.team6four.data.remote.reservation.dto.ReservationRequestDto
@@ -13,6 +14,7 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -33,8 +35,8 @@ interface ReservationService {
     @PATCH("check/{reservationId}")
     suspend fun updateReservationState(
         @Header("Authorization") token: String,
-        @Path("reservationId") reservationId: Long,
-        @Field("stateType") stateType: String
+        @Path("reservationId") reservationId: Int,
+        @Body stateType: ReservationApplyProcess
     ): Response<ReservationConfirmationDto>
 
     @POST("apply")
@@ -64,9 +66,10 @@ interface ReservationService {
         @Query("lastReservationId") lastReservationId: Int?
     ): Response<ReservationHistoryDto>
 
-    @GET("list/{carbobId}}")
+    @GET("list/{carbobId}")
     suspend fun getChargerReservation(
         @Header("Authorization") token: String,
+        @Path("carbobId") carbobId: Int,
         @Query("lastReservationId") lastReservationId: Int?
     ): Response<ChargerReservationListDto>
 
