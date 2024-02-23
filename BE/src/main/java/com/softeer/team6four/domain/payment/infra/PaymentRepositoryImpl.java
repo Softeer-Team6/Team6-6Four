@@ -34,19 +34,26 @@ public class PaymentRepositoryImpl extends QuerydslRepositorySupport {
 	public Slice<MyPointSummary> findMyPointSummaryList(Long userId, Long lastPaymentId, Pageable pageable) {
 		JPAQuery<MyPointSummary> query = queryFactory
 			.select(Projections.constructor(
-				MyPointSummary.class,
-				payment.paymentId,
-				payment.amount,
-				payment.createdDate,
-				payment.payType,
-				payment.targetId,
-				new CaseBuilder()
-					.when(payment.payType.eq(PayType.CHARGE))
-					.then("충전")
-					.otherwise(reservation.carbob.nickname)
-			))
+					MyPointSummary.class,
+					payment.paymentId,
+					payment.amount,
+					payment.createdDate,
+					payment.payType,
+					Expressions.cases()
+						.when(payment.payType.eq(PayType.CHARGE)).then(0L) // CHARGE일 땐, 예약정보 0
+						.otherwise(payment.targetId) // INCOME, USE일땐 예약ID
+						.as("targetId"),
+					Expressions.cases()
+						.when(payment.targetId.eq(0L)).then("충전") // CHARGE인 경우 "충전" 문자열 선택
+						.otherwise(
+							JPAExpressions.select(reservation.carbob.nickname)
+								.from(reservation)
+								.where(reservation.reservationId.eq(payment.targetId))
+								.limit(1)
+						)
+				)
+			)
 			.from(payment)
-			.leftJoin(reservation).on(reservation.reservationId.eq(payment.targetId))
 			.where(
 				payment.user.userId.eq(userId),
 				ltPaymentId(lastPaymentId)
