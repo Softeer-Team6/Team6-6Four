@@ -1,15 +1,12 @@
-package com.softeer.team6four.data.remote.reservation.dto
+package com.softeer.team6four.data.remote.reservation.model
 
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class ChargerReservationInfo(
+data class ChargerReservationInfoModel (
     val address: String,
     val carbobNickname: String,
     val guestNickname: String,
     val rentalDate: String,
     val rentalTime: String,
     val reservationId: Int,
-    val reservationTime: ReservationTime,
+    val reservationTime: ReservationTimeModel,
     val totalFee: Int
 )
