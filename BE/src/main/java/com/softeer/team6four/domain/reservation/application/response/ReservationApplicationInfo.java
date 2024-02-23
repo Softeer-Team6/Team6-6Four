@@ -5,7 +5,9 @@ import com.softeer.team6four.domain.reservation.application.ReservationTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Getter
 @AllArgsConstructor
 public class ReservationApplicationInfo {
@@ -29,9 +31,10 @@ public class ReservationApplicationInfo {
 	}
 
 	public void convertReservationTimeToStr() {
+		log.info(this.reservationTime.toString());
 		String[] timeSplit = this.reservationTime.toString().split(" ");
 		this.rentalDate = timeSplit[0];
-		this.rentalTime = timeSplit[1];
+		this.rentalTime = timeSplit[1]+"-"+timeSplit[3];
 	}
 
 }
