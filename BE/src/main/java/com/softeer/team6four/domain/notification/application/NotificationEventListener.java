@@ -48,7 +48,7 @@ public class NotificationEventListener {
 
 		StringBuilder message = new StringBuilder();
 		message.append(host.getNickname()).append(" 님이");
-		message.append("[ ").append(event.getCarbob().getNickname()).append(" ] 카밥에 요청하신 예약을 ");
+		message.append("[ ").append(event.getCarbobNickname()).append(" ] 카밥에 요청하신 예약을 ");
 		message.append("\"").append(event.getStateType()).append("\"").append("하였습니다.");
 
 		// Notification 생성 로직
