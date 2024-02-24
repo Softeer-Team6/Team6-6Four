@@ -31,7 +31,7 @@ object NetworkModule {
     @Provides
     fun provideChargerService(): ChargerService {
         return ChargerService.create()
-    
+    }
     @Provides
     fun providePaymentService() : PaymentService {
         return PaymentService.create()
