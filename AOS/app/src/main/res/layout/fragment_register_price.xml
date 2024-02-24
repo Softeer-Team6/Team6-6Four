@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.softeer.team6four.ui.mypage.register.RegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -97,6 +100,7 @@
                 android:id="@+id/et_per_kwh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:afterTextChanged="@{s -> viewModel.updatePrice(s)}"
                 android:hint="@string/input_price_hint"
                 android:inputType="number"
                 android:maxLines="1"
@@ -129,45 +133,31 @@
             android:textColor="@color/gray_500"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/per_hour_input_layout"
-            app:layout_constraintEnd_toStartOf="@id/per_hour_input_layout"
+            app:layout_constraintBottom_toBottomOf="@id/et_per_hour"
+            app:layout_constraintEnd_toStartOf="@id/et_per_hour"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="@id/start_guide_line"
-            app:layout_constraintTop_toTopOf="@id/per_hour_input_layout" />
+            app:layout_constraintTop_toTopOf="@id/et_per_hour" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/per_hour_input_layout"
+
+        <TextView
+            android:id="@+id/et_per_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
-            android:textColorHint="@color/gray_300"
-            app:boxBackgroundColor="@color/gray_050"
-            app:boxCornerRadiusBottomEnd="@dimen/radius_normal"
-            app:boxCornerRadiusBottomStart="@dimen/radius_normal"
-            app:boxCornerRadiusTopEnd="@dimen/radius_normal"
-            app:boxCornerRadiusTopStart="@dimen/radius_normal"
-            app:boxStrokeWidth="0dp"
-            app:hintAnimationEnabled="false"
-            app:hintEnabled="false"
+            android:background="@drawable/background_price_per_hour"
+            android:maxLines="1"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="8dp"
+            android:text="@{viewModel.getPricePerHour()}"
+            android:textAlignment="center"
+            android:textColor="@color/main_400"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/per_hour_won"
             app:layout_constraintStart_toEndOf="@id/tv_per_hour"
-            app:layout_constraintTop_toBottomOf="@+id/per_kwh_input_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_per_hour"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:hint="@string/input_price_hint"
-                android:inputType="number"
-                android:maxLines="1"
-                android:paddingVertical="8dp"
-                android:textAlignment="center"
-                android:textColor="@color/main_400"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@+id/per_kwh_input_layout" />
 
         <TextView
             android:id="@+id/per_hour_won"
@@ -178,10 +168,10 @@
             android:textColor="@color/gray_500"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/per_hour_input_layout"
+            app:layout_constraintBottom_toBottomOf="@id/et_per_hour"
             app:layout_constraintEnd_toEndOf="@id/end_guide_line"
-            app:layout_constraintStart_toEndOf="@id/per_hour_input_layout"
-            app:layout_constraintTop_toTopOf="@id/per_hour_input_layout" />
+            app:layout_constraintStart_toEndOf="@id/et_per_hour"
+            app:layout_constraintTop_toTopOf="@id/et_per_hour" />
 
 
         <Button
@@ -192,6 +182,7 @@
             android:background="@drawable/background_normal_radius_btn"
             android:paddingVertical="16dp"
             android:text="@string/next"
+            android:enabled="@{!viewModel.price.empty}"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
