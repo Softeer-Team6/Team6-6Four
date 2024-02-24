@@ -32,6 +32,7 @@ class ApplyConfirmDialogFragment(private val navigationCallback: () -> Unit) : D
                 String.format("%2d", applyViewModel.startTime.value),
                 String.format("%2d", applyViewModel.endTime.value)
             )
+            
         binding.btnApplyConfirmApply.setOnClickListener {
             applyViewModel.applyReservation()
             dismiss()

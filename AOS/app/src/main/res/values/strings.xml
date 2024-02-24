@@ -171,4 +171,5 @@
     <string name="price_format">%1$s원/kwh</string>
     <string name="empty_own_charger_list">등록된 카밥이 없어요ㅠ</string>
     <string name="empty_charger_reservation_list">들어온 예약이 없어요ㅠ</string>
+    <string name="apply_confirm_time">%1$s:00 - %2$s</string>
 </resources>
