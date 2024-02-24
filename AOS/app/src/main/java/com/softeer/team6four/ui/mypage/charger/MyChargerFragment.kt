@@ -5,13 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.softeer.team6four.R
 import com.softeer.team6four.databinding.FragmentMyChargerBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MyChargerFragment : Fragment() {
     private var _binding: FragmentMyChargerBinding? = null
+    private val myChargerViewModel: MyChargerViewModel by activityViewModels()
+    private val myChargerDetailViewModel: MyChargerDetailViewModel by activityViewModels()
+    private val myChargerReservationViewModel: MyChargerReservationViewModel by activityViewModels()
     private val binding
         get() = _binding!!
 
@@ -25,7 +31,12 @@ class MyChargerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        with(binding) {
+            viewModel = myChargerViewModel
+            lifecycleOwner = viewLifecycleOwner
+        }
+        myChargerReservationViewModel.updateChargerId(myChargerViewModel.chargerId.value)
+        myChargerDetailViewModel.updateChargerId(myChargerViewModel.chargerId.value)
         setOnChipStateChanged()
         setMoreButton()
         setBackButton()

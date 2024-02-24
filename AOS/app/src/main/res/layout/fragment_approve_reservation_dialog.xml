@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.softeer.team6four.ui.mypage.charger.ApproveReservationDialogViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

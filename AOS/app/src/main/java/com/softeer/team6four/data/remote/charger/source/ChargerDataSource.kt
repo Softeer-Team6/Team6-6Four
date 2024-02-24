@@ -1,7 +1,10 @@
 package com.softeer.team6four.data.remote.charger.source
 
+import android.util.Log
 import com.softeer.team6four.api.ChargerService
 import com.softeer.team6four.data.Resource
+import com.softeer.team6four.data.remote.charger.dto.MyChargerDetailInfo
+import com.softeer.team6four.data.remote.charger.dto.MyChargerList
 import com.softeer.team6four.data.remote.charger.model.BottomSheetChargerModel
 import com.softeer.team6four.data.remote.charger.model.MapChargerModel
 import kotlinx.coroutines.flow.Flow
@@ -70,6 +73,59 @@ class ChargerDataSource @Inject constructor(private val chargerService: ChargerS
                     }))
                 } else emit(Resource.Error(message = "body is null"))
             } else emit(Resource.Error(response.code(), "fail to get bottom sheet charger list"))
+        } catch (e: Exception) {
+            emit(Resource.Error(message = e.message.toString()))
+        }
+    }
+
+    fun fetchMyChargerList(
+        accessToken: String, sortType: String, lastCarbobId: Int?, lastReservationCount: Int?
+    ) : Flow<Resource<MyChargerList>> = flow {
+        emit(Resource.Loading())
+        val authorization = "Bearer $accessToken"
+        try {
+            val myChargerListResponse = chargerService.getMyChargerList(
+                token = authorization,
+                sortType = sortType,
+                lastCarbobId = lastCarbobId,
+                lastReservationCount = lastReservationCount
+            )
+            if (myChargerListResponse.isSuccessful) {
+                val myChargerListDto = myChargerListResponse.body()?.data
+                emit(
+                    Resource.Success(
+                        myChargerListDto ?: throw Exception("Response body is null")
+                    )
+                )
+            } else {
+                emit(Resource.Error(myChargerListResponse.code(), myChargerListResponse.message()))
+            }
+        } catch (e: Exception) {
+            emit(Resource.Error(message = e.message.toString()))
+        }
+    }
+
+    fun fetchChargerDetailInfo(
+        accessToken: String, carbobId: Int
+    ): Flow<Resource<MyChargerDetailInfo>> = flow {
+        emit(Resource.Loading())
+        val authorization = "Bearer $accessToken"
+        try {
+            val chargerDetailResponse = chargerService.getMyChargerDetail(
+                token = authorization,
+                carbobId = carbobId,
+            )
+            if (chargerDetailResponse.isSuccessful) {
+                val chargerDetailDto = chargerDetailResponse.body()?.data
+                Log.i("chargerDetailDto", "fetchChargerDetailInfo: $chargerDetailDto")
+                emit(
+                    Resource.Success(
+                        chargerDetailDto ?: throw Exception("Response body is null")
+                    )
+                )
+            } else {
+                emit(Resource.Error(chargerDetailResponse.code(), chargerDetailResponse.message()))
+            }
         } catch (e: Exception) {
             emit(Resource.Error(message = e.message.toString()))
         }
