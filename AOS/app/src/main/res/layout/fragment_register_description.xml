@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.softeer.team6four.ui.mypage.register.RegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -119,6 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top"
+                android:afterTextChanged="@{s -> viewModel.updateDescription(s)}"
                 android:hint="@string/description_input_hint"
                 android:lines="6" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -151,9 +154,10 @@
             android:layout_width="98dp"
             android:layout_height="92dp"
             android:layout_marginTop="16dp"
-            android:background="@color/gray_050"
             android:scaleType="center"
             android:src="@drawable/icon_plus"
+            android:background="@color/gray_050"
+            imageUrl="@{viewModel.imageUrl}"
             app:layout_constraintStart_toStartOf="@id/start_guide_line"
             app:layout_constraintTop_toBottomOf="@id/tv_charger_image_upload_title"
             app:shapeAppearance="@style/roundedImageViewStyle" />
@@ -165,6 +169,7 @@
             android:layout_marginBottom="14dp"
             android:background="@drawable/background_normal_radius_btn"
             android:paddingVertical="16dp"
+            android:enabled="@{!viewModel.description.empty}"
             android:text="@string/next"
             android:textSize="16sp"
             android:textStyle="bold"
