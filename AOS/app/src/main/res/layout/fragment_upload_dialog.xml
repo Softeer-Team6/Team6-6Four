@@ -41,7 +41,7 @@
             app:layout_constraintStart_toStartOf="@id/start_guide_line"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/sv_charger_info"
             android:layout_width="0dp"
             android:layout_height="450dp"
@@ -54,6 +54,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
                 >
                 <TextView
                     android:id="@+id/tv_charger_nickname"
@@ -307,7 +308,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_charger_upload_image_title"
                     app:shapeAppearance="@style/roundedImageViewStyle" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
         <Button
             android:id="@+id/btn_cancel"
