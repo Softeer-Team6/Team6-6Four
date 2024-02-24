@@ -29,7 +29,6 @@
             android:id="@+id/tv_my_charger_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="붕붕이 카밥1"
             android:textColor="@color/gray_700"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -52,7 +51,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
-            android:text="@string/charger_location_example"
             android:textColor="@color/gray_600"
             app:layout_constraintStart_toEndOf="@id/iv_my_charger_location_icon"
             app:layout_constraintTop_toBottomOf="@id/tv_my_charger_nickname" />
@@ -62,7 +60,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/charger_location_description"
-            android:src="@drawable/icon_reservation"
             app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_reservation"
             app:layout_constraintStart_toStartOf="@id/start_guide_line"
             app:layout_constraintTop_toTopOf="@id/tv_my_charger_reservation" />
@@ -73,7 +70,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
-            android:text="신규 예약 0건"
             app:layout_constraintStart_toEndOf="@id/iv_my_charger_reservation_icon"
             app:layout_constraintTop_toBottomOf="@id/tv_my_charger_location" />
 

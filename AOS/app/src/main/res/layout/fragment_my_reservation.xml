@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.softeer.team6four.ui.mypage.reservation.MyReservationViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_point_list_title"
+            android:id="@+id/tv_reservation_list_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -55,7 +58,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/reservation_wait"
-                android:checkable="true"
                 app:chipCornerRadius="100dp" />
 
             <com.google.android.material.chip.Chip
@@ -64,7 +66,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/reservation_approve"
-                android:checkable="true"
                 app:chipCornerRadius="100dp" />
 
             <com.google.android.material.chip.Chip
@@ -73,7 +74,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/reservation_reject"
-                android:checkable="true"
                 app:chipCornerRadius="100dp" />
         </com.google.android.material.chip.ChipGroup>
 
@@ -103,13 +103,15 @@
             app:layout_constraintTop_toBottomOf="@id/iv_empty_state" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_reservation_list"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="20dp"
-            android:visibility="visible"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/reservation_state_chip_group"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:listitem="@layout/reservation_history_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.softeer.team6four.ui.mypage.charger.MyChargerDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,7 +59,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="붕붕이 카밥1"
+                    android:text="@{viewModel.myChargerDetail.nickname}"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@id/start_guide_line"
@@ -89,7 +92,6 @@
                     android:id="@+id/tv_distance_from_my_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="내 위치에서 700m"
                     android:textColor="@color/gray_500"
                     app:layout_constraintStart_toStartOf="@id/start_guide_line"
                     app:layout_constraintTop_toBottomOf="@id/tv_charger_nickname" />
@@ -110,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="58dp"
-                    android:text="@string/charger_location_example"
+                    android:text="@{viewModel.myChargerDetail.address}"
                     android:textColor="@color/gray_600"
                     app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_location_title"
                     app:layout_constraintStart_toEndOf="@id/tv_my_charger_location_title"
@@ -132,7 +134,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="1540원/kwh"
+                    android:text="@{viewModel.myChargerDetail.feePerHour}"
                     android:textColor="@color/gray_600"
                     app:layout_constraintStart_toStartOf="@id/tv_my_charger_location"
                     app:layout_constraintTop_toBottomOf="@id/tv_my_charger_location" />
@@ -186,7 +188,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="@string/slow_speed"
+                    android:text="@{viewModel.myChargerDetail.chargerType}"
                     android:textColor="@color/gray_600"
                     app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_type_title"
                     app:layout_constraintStart_toEndOf="@id/tv_my_charger_type_title"
@@ -207,7 +209,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="@string/speed_7kwh"
                     android:textColor="@color/gray_600"
                     app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_speed_title"
                     app:layout_constraintStart_toEndOf="@id/tv_my_charger_speed_title"
@@ -229,7 +230,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="@string/outside"
+                    android:text="@{viewModel.myChargerDetail.installType}"
                     android:textColor="@color/gray_600"
                     app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_install_type_title"
                     app:layout_constraintStart_toEndOf="@id/tv_my_charger_install_type_title"
@@ -289,7 +290,7 @@
                         android:maxLines="5"
                         android:paddingHorizontal="10dp"
                         android:paddingVertical="5dp"
-                        android:text="제네시스 안돼용~ 스타벅스에서 우회전하세요!" />
+                        android:text="@{viewModel.myChargerDetail.description}" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.divider.MaterialDivider
@@ -352,7 +353,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="11:00"
                     android:textColor="@color/gray_500"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_start_time_title"
@@ -364,7 +364,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="13:00"
                     android:textColor="@color/gray_500"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/tv_my_charger_end_time_title"
@@ -399,7 +398,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="10,000원"
                     android:textColor="@color/gray_600"
                     app:layout_constraintStart_toStartOf="@id/start_guide_line"
                     app:layout_constraintTop_toBottomOf="@id/tv_my_charger_total_income_title" />

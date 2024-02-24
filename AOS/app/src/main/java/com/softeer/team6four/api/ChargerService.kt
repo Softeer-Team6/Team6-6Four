@@ -71,8 +71,8 @@ interface ChargerService {
 
     @GET("detail/{carbobId}")
     suspend fun getMyChargerDetail(
-        @Header("Authorization") token: String,
-        @Query("carbobId") carbobId: Int
+        @Header("Authorization") token : String,
+        @Path("carbobId") carbobId: Int
     ): Response<MyChargerDetailDto>
 
     companion object {
