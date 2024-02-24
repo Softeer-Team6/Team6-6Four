@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.softeer.team6four.ui.mypage.register.RegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -74,7 +77,9 @@
                 android:id="@+id/et_search_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
+                android:text="@{viewModel.addressText}"
+                android:afterTextChanged="@{s -> viewModel.updateAddressText(s)}"
+                android:maxLines="2"
                 android:paddingVertical="12dp"
                 android:textColor="@color/gray_500" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -117,6 +122,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_charger_current_location" />
 
         <com.naver.maps.map.MapView
+            android:id="@+id/map_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
@@ -132,6 +138,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="14dp"
+            android:enabled="@{viewModel.userLatLng != null}"
             android:background="@drawable/background_normal_radius_btn"
             android:paddingVertical="16dp"
             android:text="@string/next"

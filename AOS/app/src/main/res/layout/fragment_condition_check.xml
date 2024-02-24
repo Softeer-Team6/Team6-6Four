@@ -5,6 +5,11 @@
 
     <data>
 
+        <import type="androidx.core.content.ContextCompat" />
+
+        <variable
+            name="viewModel"
+            type="com.softeer.team6four.ui.mypage.register.RegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,29 +64,35 @@
             app:layout_constraintTop_toBottomOf="@id/tv_register_condition_check_title" />
 
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_first_condition_no"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:layout_marginEnd="6dp"
             android:background="@drawable/background_normal_radius_btn"
+            android:backgroundTint="@{viewModel.firstConditionFirstState ? @color/main_400 : @color/gray_050}"
+            android:onClick="@{() -> viewModel.setFirstConditionFirstState()}"
             android:paddingVertical="8dp"
             android:text="@string/first_condition_no"
+            android:textColor="@{viewModel.firstConditionFirstState ? @color/gray_000 : @color/gray_700}"
             app:layout_constraintEnd_toStartOf="@id/btn_first_condition_yes"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toStartOf="@id/start_guide_line"
             app:layout_constraintTop_toBottomOf="@id/tv_condition_check_first" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_first_condition_yes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:layout_marginEnd="6dp"
             android:background="@drawable/background_normal_radius_btn"
+            android:backgroundTint="@{viewModel.firstConditionSecondState ? @color/main_400: @color/gray_050}"
+            android:onClick="@{() -> viewModel.setFirstConditionSecondState()}"
             android:paddingVertical="8dp"
             android:text="@string/first_condition_yes"
+            android:textColor="@{viewModel.firstConditionSecondState ? @color/gray_000: @color/gray_700}"
             app:layout_constraintEnd_toEndOf="@id/end_guide_line"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@id/btn_first_condition_no"
@@ -123,27 +134,33 @@
             app:layout_constraintTop_toBottomOf="@id/iv_first_error_icon" />
 
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_second_condition_no"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:layout_marginEnd="6dp"
             android:background="@drawable/background_normal_radius_btn"
+            android:backgroundTint="@{viewModel.secondConditionFirstState ? @color/main_400 : @color/gray_050}"
             android:paddingVertical="8dp"
             android:text="@string/first_condition_no"
+            android:onClick="@{() -> viewModel.setSecondConditionFirstState()}"
+            android:textColor="@{viewModel.secondConditionFirstState ? @color/gray_000 : @color/gray_700}"
             app:layout_constraintEnd_toStartOf="@id/btn_second_condition_yes"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toStartOf="@id/start_guide_line"
             app:layout_constraintTop_toBottomOf="@id/tv_condition_check_second" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_second_condition_yes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:layout_marginEnd="6dp"
             android:background="@drawable/background_normal_radius_btn"
+            android:backgroundTint="@{viewModel.secondConditionSecondState ? @color/main_400 : @color/gray_050}"
+            android:textColor="@{viewModel.secondConditionSecondState ?  @color/gray_000 : @color/gray_700}"
+            android:onClick="@{() -> viewModel.setSecondConditionSecondState()}"
             android:paddingVertical="8dp"
             android:text="@string/first_condition_yes"
             app:layout_constraintEnd_toEndOf="@id/end_guide_line"
@@ -183,6 +200,7 @@
             android:layout_marginBottom="14dp"
             android:background="@drawable/background_normal_radius_btn"
             android:paddingVertical="16dp"
+            android:enabled="@{viewModel.firstConditionSecondState &amp;&amp; viewModel.secondConditionSecondState}"
             android:text="@string/next"
             android:textSize="16sp"
             android:textStyle="bold"

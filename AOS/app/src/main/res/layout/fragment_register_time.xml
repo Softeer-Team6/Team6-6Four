@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.softeer.team6four.ui.mypage.register.RegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -99,8 +102,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingVertical="19dp"
-                >
+                android:paddingVertical="19dp">
 
                 <TextView
                     android:id="@+id/tv_start_time"
@@ -108,8 +110,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/start_time"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@id/start_time_input_layout"
                     app:layout_constraintEnd_toEndOf="@id/start_time_input_layout"
+                    app:layout_constraintStart_toStartOf="@id/start_time_input_layout"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -136,32 +138,36 @@
                     app:boxStrokeWidth="0dp"
                     app:hintAnimationEnabled="false"
                     app:hintEnabled="false"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/tv_divider"
-                    app:layout_constraintTop_toBottomOf="@id/tv_start_time">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_start_time"
+                    app:suffixText=":00">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_start_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:afterTextChanged="@{s -> viewModel.updateStartTime(s)}"
                         android:hint="@string/register_time_hint"
                         android:inputType="time"
-                        android:textSize="14sp"
-                        android:paddingVertical="8dp" />
+                        android:maxLength="2"
+                        android:paddingVertical="8dp"
+                        android:textAlignment="center"
+                        android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/tv_divider"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="@string/register_time_divider"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@id/start_time_input_layout"
                     app:layout_constraintEnd_toStartOf="@id/end_time_input_layout"
-                    app:layout_constraintTop_toTopOf="@id/start_time_input_layout"
-                    android:layout_marginTop="8dp"
-                    />
+                    app:layout_constraintStart_toEndOf="@id/start_time_input_layout"
+                    app:layout_constraintTop_toTopOf="@id/start_time_input_layout" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/end_time_input_layout"
                     style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
@@ -176,19 +182,22 @@
                     app:boxStrokeWidth="0dp"
                     app:hintAnimationEnabled="false"
                     app:hintEnabled="false"
-
+                    app:suffixText=":00"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_start_time"
-                    app:layout_constraintStart_toEndOf="@id/tv_divider">
+                    app:layout_constraintStart_toEndOf="@id/tv_divider"
+                    app:layout_constraintTop_toBottomOf="@id/tv_start_time">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_end_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:afterTextChanged="@{s -> viewModel.updateEndTime(s)}"
                         android:hint="@string/register_time_hint"
                         android:inputType="time"
-                        android:textSize="14sp"
-                        android:paddingVertical="8dp" />
+                        android:maxLength="2"
+                        android:paddingVertical="8dp"
+                        android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>

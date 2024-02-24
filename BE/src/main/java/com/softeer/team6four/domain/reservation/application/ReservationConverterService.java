@@ -44,7 +44,7 @@ public class ReservationConverterService {
 		Carbob carbob = reservation.getCarbob();
 
 		eventPublisher.publishEvent(
-			new ReservationCheckEvent(host, guest, carbob, reservationCheck.getStateType().getValue()));
+			new ReservationCheckEvent(host, guest, carbob.getNickname(), reservationCheck.getStateType().getValue()));
 	}
 }
 

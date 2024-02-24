@@ -33,14 +33,14 @@ object NetworkModule {
     fun provideChargerService(): ChargerService {
         return ChargerService.create()
     }
+    
     @Provides
-    fun providePaymentService(): PaymentService {
+    fun providePaymentService() : PaymentService {
         return PaymentService.create()
     }
 
     @Provides
-    fun provideReservationService(): ReservationService {
+    fun provideReservationService() : ReservationService {
         return ReservationService.create()
     }
-
 }
