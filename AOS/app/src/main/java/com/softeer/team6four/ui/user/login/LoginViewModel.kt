@@ -92,4 +92,8 @@ class LoginViewModel @Inject constructor(
             Log.d("accessToken", accessToken.first())
         }
     }
+
+    fun initLoginResult() {
+        _loginSuccessState.value = false
+    }
 }
