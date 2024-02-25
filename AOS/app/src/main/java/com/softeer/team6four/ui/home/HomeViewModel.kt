@@ -188,6 +188,13 @@ class HomeViewModel @Inject constructor(
         _userLatLng.value = LatLng(latitude, longitude)
     }
 
+    fun logout() {
+        viewModelScope.launch {
+            userPreferencesRepository.allClear()
+            _nickname.value = ""
+        }
+    }
+
     fun updateSelectedCharger() {
         viewModelScope.launch {
             val token = userPreferencesRepository.getAccessToken().first()
