@@ -241,7 +241,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                             binding.etSearchLocation.windowToken,
                             0
                         )
-                        binding.etSearchLocation.clearFocus()
+                        etSearchLocation.clearFocus()
                         true
                     }
 
@@ -250,8 +250,24 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             }
             searchbarLayout.setEndIconOnClickListener {
                 inputMethodManager.hideSoftInputFromWindow(binding.etSearchLocation.windowToken, 0)
-                binding.etSearchLocation.clearFocus()
+                etSearchLocation.clearFocus()
                 homeViewModel.getCoordinate()
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.searchAddressLatLng.collect { latLng ->
+                    if (latLng.longitude != 0.toDouble() && latLng.latitude != 0.toDouble()) {
+                        searchMarker.position = latLng
+                        naverMap.moveCamera(
+                            CameraUpdate.scrollTo(latLng)
+                                .animate(CameraAnimation.Linear)
+                        )
+                        homeViewModel.updateSearchMarkerLatLng(latLng)
+                        homeViewModel.fetchMapChargerList()
+                        homeViewModel.fetchBottomSheetChargerList()
+                    }
+                }
             }
         }
     }
@@ -282,7 +298,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.nickname.collect { nickname ->
-                    if(nickname.isEmpty()) {
+                    if (nickname.isEmpty()) {
                         findNavController().popBackStack()
                     }
                 }

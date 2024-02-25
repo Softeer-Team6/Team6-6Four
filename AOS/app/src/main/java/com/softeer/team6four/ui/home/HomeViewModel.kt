@@ -58,7 +58,7 @@ class HomeViewModel @Inject constructor(
     val bottomSheetChargerList: StateFlow<List<BottomSheetChargerModel>> = _bottomSheetChargerList
 
     private var _selectedChargerId: MutableStateFlow<Long> = MutableStateFlow(0)
-    val selectedChargerId: StateFlow<Long> = _selectedChargerId
+    private val selectedChargerId: StateFlow<Long> = _selectedChargerId
 
     private var _selectedCharger: MutableStateFlow<ChargerDetailModel> = MutableStateFlow(
         ChargerDetailModel(
@@ -174,7 +174,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun clearInfoWindows() {
-        _currentInfoWindows.value.forEach { infoWindow ->
+        currentInfoWindows.value.forEach { infoWindow ->
             infoWindow.close()
             infoWindow.map = null
         }
@@ -190,7 +190,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun updateUserLatLng(latitude: Double, longitude: Double) {
-        _userLatLng.value = LatLng(latitude, longitude)
+        _userLatLng.value = LatLng(latitude, longitude).toLatLng()
     }
 
     fun logout() {
