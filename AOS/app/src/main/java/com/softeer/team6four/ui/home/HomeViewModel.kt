@@ -30,7 +30,7 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
     private var addressText: MutableStateFlow<String> = MutableStateFlow("")
 
-    private var _nickname: MutableStateFlow<String> = MutableStateFlow("")
+    private var _nickname: MutableStateFlow<String> = MutableStateFlow("닉네임")
     val nickname = _nickname
 
     private var _userLatLng: MutableStateFlow<LatLng> =
@@ -41,7 +41,7 @@ class HomeViewModel @Inject constructor(
     val searchAddressLatLng: StateFlow<LatLng> = _searchAddressLatLng
 
     private var _searchMarkerLatLng = MutableStateFlow(LatLng(0.toDouble(), 0.toDouble()))
-    private val searchMarkerLatLng: StateFlow<LatLng> = _searchMarkerLatLng
+    val searchMarkerLatLng: StateFlow<LatLng> = _searchMarkerLatLng
 
     private var _mapChargerList: MutableStateFlow<List<MapChargerModel>> = MutableStateFlow(
         emptyList()
@@ -94,6 +94,7 @@ class HomeViewModel @Inject constructor(
             geoCodeRepository.getCoordinateResult(addressText.value).collect { latLngResult ->
                 latLngResult.onSuccess { latLng ->
                     _searchAddressLatLng.value = latLng
+                    updateSearchMarkerLatLng(latLng)
                 }
             }
         }
@@ -117,7 +118,11 @@ class HomeViewModel @Inject constructor(
 
     private fun updateNickname() {
         viewModelScope.launch {
-            _nickname.value = userPreferencesRepository.getNickname().first()
+            userPreferencesRepository.getNickname().collect { nickname ->
+                if (nickname != "") {
+                    _nickname.value = nickname
+                }
+            }
         }
     }
 
@@ -134,7 +139,6 @@ class HomeViewModel @Inject constructor(
 
                     is Resource.Success -> {
                         _mapChargerList.value = resource.data
-                        Log.d("fetchMapChargerList", mapChargerList.value.toString())
                     }
 
                     else -> {}
@@ -172,6 +176,7 @@ class HomeViewModel @Inject constructor(
     fun clearInfoWindows() {
         _currentInfoWindows.value.forEach { infoWindow ->
             infoWindow.close()
+            infoWindow.map = null
         }
     }
 
@@ -181,7 +186,7 @@ class HomeViewModel @Inject constructor(
 
     fun updateSelectedCharger(id: Long) {
         _selectedChargerId.value = id
-
+        updateSelectedCharger()
     }
 
     fun updateUserLatLng(latitude: Double, longitude: Double) {

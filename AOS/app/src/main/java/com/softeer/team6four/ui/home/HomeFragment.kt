@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -45,6 +44,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     private lateinit var requestLauncher: ActivityResultLauncher<Array<String>>
     private lateinit var locationSource: FusedLocationSource
     private lateinit var naverMap: NaverMap
+    private val searchMarker = Marker().apply {
+        icon = OverlayImage.fromResource(R.drawable.icon_search_marker)
+    }
     private val inputMethodManager by lazy {
         requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
     }
@@ -86,13 +88,14 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         with(binding) {
             viewModel = homeViewModel
             lifecycleOwner = viewLifecycleOwner
-            setBtnShowChargerList()
-            setNavigationDrawer()
-            setSearchAction()
-            sendFcmToken()
-            setNickname()
             mapView.getMapAsync(this@HomeFragment)
         }
+        setBtnShowChargerList()
+        setNavigationDrawer()
+        setSearchAction()
+        sendFcmToken()
+        setNickname()
+        setLogout()
     }
 
     override fun onDestroy() {
@@ -108,27 +111,12 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             addOnLocationChangeListener { location ->
                 homeViewModel.updateUserLatLng(location.latitude, location.longitude)
             }
+            createSearchMarker(locationOverlay.position)
+            setMapOnClickListener()
+            setBtnCurrentLocation(locationOverlay)
             viewLifecycleOwner.lifecycleScope.launch {
                 viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    val searchMarker = createSearchMarker(locationOverlay.position)
-                    setBtnCurrentLocation(this@with, searchMarker, locationOverlay)
-                    setMapOnClickListener(searchMarker)
-                    homeViewModel.searchAddressLatLng.collect { latLng ->
-                        if (latLng.latitude != 0.toDouble() && latLng.longitude != 0.toDouble()) {
-                            naverMap.moveCamera(
-                                CameraUpdate.scrollTo(latLng)
-                                    .animate(CameraAnimation.Linear)
-                            )
-                            searchMarker.position = latLng
-                            with(homeViewModel) {
-                                fetchMapChargerList()
-                                fetchBottomSheetChargerList()
-                                clearInfoWindows()
-                                updateSearchMarkerLatLng(latLng)
-                            }
-                            createChargerInfoWindowList()
-                        }
-                    }
+                    createChargerInfoWindowList()
                 }
             }
         }
@@ -151,36 +139,24 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    private fun setMapOnClickListener(searchMarker: Marker) {
+    private fun setMapOnClickListener() {
         naverMap.setOnMapClickListener { _, latLng ->
             searchMarker.position = latLng
             naverMap.moveCamera(
                 CameraUpdate.scrollTo(latLng)
                     .animate(CameraAnimation.Linear)
             )
-
-            homeViewModel.clearInfoWindows()
             homeViewModel.updateSearchMarkerLatLng(latLng)
-
-            viewLifecycleOwner.lifecycleScope.launch {
-                viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    launch {
-                        homeViewModel.fetchMapChargerList()
-                        homeViewModel.fetchBottomSheetChargerList()
-                        createChargerInfoWindowList()
-                    }
-                }
-            }
+            homeViewModel.fetchMapChargerList()
+            homeViewModel.fetchBottomSheetChargerList()
         }
     }
 
-    private fun createSearchMarker(latLng: LatLng): Marker {
-        return Marker().apply {
-            icon = OverlayImage.fromResource(R.drawable.icon_search_marker)
-            position = latLng
-            map = naverMap
-        }
+    private fun createSearchMarker(latLng: LatLng) {
+        searchMarker.position = latLng
+        searchMarker.map = naverMap
     }
+
 
     private fun createChargerInfoWindow(mapChargerModel: MapChargerModel): InfoWindow {
         return InfoWindow().apply {
@@ -197,6 +173,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             }
             setOnClickListener { _ ->
                 homeViewModel.updateSelectedCharger((tag as Long))
+                findNavController().navigate(R.id.action_homeFragment_to_applyDetailFragment)
                 true
             }
         }
@@ -204,12 +181,12 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
 
     private suspend fun createChargerInfoWindowList() {
         homeViewModel.mapChargerList.collect { list ->
+            homeViewModel.clearInfoWindows()
             val infoWindows = list.map { model ->
                 val infoWindow = withContext(Dispatchers.Default) { createChargerInfoWindow(model) }
                 infoWindow.map = naverMap
                 infoWindow
             }
-
             homeViewModel.updateInfoWindows(infoWindows)
         }
     }
@@ -224,8 +201,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun setBtnCurrentLocation(
-        naverMap: NaverMap,
-        searchMarker: Marker,
         locationOverlay: LocationOverlay
     ) {
         binding.btnCurrentLocation.setOnClickListener {
@@ -234,6 +209,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                     .animate(CameraAnimation.Linear)
             )
             searchMarker.position = locationOverlay.position
+            homeViewModel.updateSearchMarkerLatLng(locationOverlay.position)
 
             homeViewModel.fetchMapChargerList()
             homeViewModel.fetchBottomSheetChargerList()
@@ -248,7 +224,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                 if (permissions[Manifest.permission.ACCESS_FINE_LOCATION] == false
                     && permissions[Manifest.permission.ACCESS_COARSE_LOCATION] == false
                 ) {
-                    //Test Code
                     Toast.makeText(requireContext(), "위치 권한 설정이 필요합니다", Toast.LENGTH_SHORT).show()
                 } else if (permissions[Manifest.permission.POST_NOTIFICATIONS] == false) {
                     Toast.makeText(requireContext(), "알림 권한 설정이 필요합니다", Toast.LENGTH_SHORT).show()
@@ -292,12 +267,24 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun setNickname() {
+        HeaderNavigationDrawerBinding.bind(
+            binding.navigationView.getHeaderView(0)
+        ).apply {
+            this.lifecycleOwner = viewLifecycleOwner
+            viewModel = homeViewModel
+        }
+    }
+
+    private fun setLogout() {
+        binding.tvLogout.setOnClickListener {
+            homeViewModel.logout()
+        }
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.nickname.collect { nickname ->
-                    HeaderNavigationDrawerBinding.bind(
-                        binding.navigationView.getHeaderView(0)
-                    ).tvNickname.text = getString(R.string.drawer_nickname, nickname)
+                    if(nickname.isEmpty()) {
+                        findNavController().popBackStack()
+                    }
                 }
             }
         }
