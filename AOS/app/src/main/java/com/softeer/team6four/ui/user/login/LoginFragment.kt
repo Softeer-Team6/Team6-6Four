@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
-    private val loginViewModel: LoginViewModel by activityViewModels()
+    private val loginViewModel: LoginViewModel by viewModels()
     private val binding
         get() = _binding!!
 
@@ -40,21 +40,13 @@ class LoginFragment : Fragment() {
             viewLifecycleOwner.lifecycleScope.launch {
                 viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                     loginViewModel.loginState.collect { isLogin ->
-                        if(isLogin) {
+                        if (isLogin) {
                             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                         }
                     }
                 }
             }
 
-            viewLifecycleOwner.lifecycleScope.launch {
-                viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    loginViewModel.loginSuccessState.collect { result ->
-                        if (result) findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-                        loginViewModel.initLoginResult()
-                    }
-                }
-            }
             tvSignup.setOnClickListener { findNavController().navigate(R.id.action_loginFragment_to_signUpFragment) }
         }
     }

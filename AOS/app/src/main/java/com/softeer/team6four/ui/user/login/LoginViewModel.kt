@@ -26,8 +26,6 @@ class LoginViewModel @Inject constructor(
     private val _password: MutableStateFlow<String> = MutableStateFlow("")
     val password: StateFlow<String> = _password
 
-    private val _loginSuccessState: MutableStateFlow<Boolean> = MutableStateFlow(false)
-    val loginSuccessState: StateFlow<Boolean> = _loginSuccessState
 
     private val _loginEmailFailState: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val loginEmailFailState: StateFlow<Boolean> = _loginEmailFailState
@@ -51,7 +49,7 @@ class LoginViewModel @Inject constructor(
             userRepository.requestLogin(email.value, password.value).collect { userLoginModel ->
                 when (userLoginModel) {
                     is Resource.Success -> {
-                        _loginSuccessState.value = true
+                        _loginState.value = true
                         _loginEmailFailState.value = false
                         _loginPasswordFailState.value = false
 
@@ -64,7 +62,7 @@ class LoginViewModel @Inject constructor(
 
                     is Resource.Error -> {
                         Log.e("LogIn error", userLoginModel.message)
-                        _loginSuccessState.value = false
+                        _loginState.value = false
                         if (userLoginModel.code == 404) {
                             _loginEmailFailState.value = true
                             _loginPasswordFailState.value = false
@@ -76,7 +74,7 @@ class LoginViewModel @Inject constructor(
                     }
 
                     else -> {
-                        _loginSuccessState.value = false
+                        _loginState.value = false
                         _loginEmailFailState.value = false
                         _loginPasswordFailState.value = false
                     }
@@ -88,12 +86,14 @@ class LoginViewModel @Inject constructor(
     fun updateLoginState() {
         viewModelScope.launch {
             val accessToken = userPreferencesRepository.getAccessToken()
-            _loginState.value = accessToken.first().isNotEmpty()
+            accessToken.collect { token ->
+                _loginState.value = token.isNotEmpty()
+            }
             Log.d("accessToken", accessToken.first())
         }
     }
 
     fun initLoginResult() {
-        _loginSuccessState.value = false
+        _loginState.value = false
     }
 }
