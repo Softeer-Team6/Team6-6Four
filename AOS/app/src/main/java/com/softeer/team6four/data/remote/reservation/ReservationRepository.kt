@@ -6,6 +6,7 @@ import com.softeer.team6four.data.remote.reservation.model.ChargerReservationInf
 import com.softeer.team6four.data.remote.reservation.model.ChargerReservationListModel
 import com.softeer.team6four.data.remote.reservation.model.ReservationInfoListModel
 import com.softeer.team6four.data.remote.reservation.model.ReservationInfoModel
+import com.softeer.team6four.data.remote.reservation.model.AvailableTimeTableModel
 import com.softeer.team6four.data.remote.reservation.model.ReservationTimeModel
 import com.softeer.team6four.data.remote.reservation.source.ReservationDataSource
 import kotlinx.coroutines.flow.Flow
@@ -114,4 +115,19 @@ class ReservationRepository @Inject constructor(private val reservationDataSourc
             }
         }
     }
+    fun fetchReservationTimeModel(
+        token: String,
+        chargerId: Long,
+        date: String
+    ): Flow<Resource<AvailableTimeTableModel>> {
+        return reservationDataSource.fetchAvailableTime(token, chargerId, date)
+    }
+
+    fun postApplyReservation(
+        token: String, chargerId: Long,
+        startTime: String, endTime: String
+    ): Flow<Resource<Unit>> {
+        return reservationDataSource.postApplyReservation(token, chargerId, startTime, endTime)
+    }
+
 }

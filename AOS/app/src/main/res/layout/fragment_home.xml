@@ -139,6 +139,7 @@
             app:menu="@menu/navigation_drawer">
 
             <TextView
+                android:id="@+id/tv_logout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"

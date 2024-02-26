@@ -7,6 +7,7 @@ import com.softeer.team6four.data.remote.charger.dto.ChargerRegistrationInfo
 import com.softeer.team6four.data.remote.charger.dto.MyChargerDetailInfo
 import com.softeer.team6four.data.remote.charger.dto.MyChargerList
 import com.softeer.team6four.data.remote.charger.model.BottomSheetChargerModel
+import com.softeer.team6four.data.remote.charger.model.ChargerDetailModel
 import com.softeer.team6four.data.remote.charger.model.MapChargerModel
 import com.softeer.team6four.data.remote.charger.model.RegistrationModel
 import kotlinx.coroutines.flow.Flow
@@ -23,7 +24,6 @@ import javax.inject.Singleton
 
 @Singleton
 class ChargerDataSource @Inject constructor(private val chargerService: ChargerService) {
-
     fun fetchMapChargerModelList(
         token: String,
         latitude: Double,
@@ -87,12 +87,14 @@ class ChargerDataSource @Inject constructor(private val chargerService: ChargerS
         }
     }
 
-    fun uploadImage(token: String, imageFile: File): Flow<Resource<String>> = flow {
+    fun uploadImage(token: String, imageFile: File?): Flow<Resource<String>> = flow {
         emit(Resource.Loading())
         try {
             val authorization = "Bearer $token"
-            val requestFile = imageFile.asRequestBody("image/*".toMediaTypeOrNull())
-            val body = MultipartBody.Part.createFormData("image", imageFile.name, requestFile)
+            val requestFile = imageFile?.asRequestBody("image/*".toMediaTypeOrNull())
+            val body = if (requestFile != null) {
+                MultipartBody.Part.createFormData("image", imageFile.name, requestFile)
+            } else null
 
             val response = chargerService.uploadImage(authorization, body)
             if (response.isSuccessful) {
@@ -102,9 +104,15 @@ class ChargerDataSource @Inject constructor(private val chargerService: ChargerS
                 }
             } else {
                 emit(Resource.Error(response.code(), "fail to upload image"))
+            }
+        } catch (e: Exception) {
+            emit(Resource.Error(message = e.message.toString()))
+        }
+    }
+
     fun fetchMyChargerList(
         accessToken: String, sortType: String, lastCarbobId: Int?, lastReservationCount: Int?
-    ) : Flow<Resource<MyChargerList>> = flow {
+    ): Flow<Resource<MyChargerList>> = flow {
         emit(Resource.Loading())
         val authorization = "Bearer $accessToken"
         try {
@@ -170,8 +178,8 @@ class ChargerDataSource @Inject constructor(private val chargerService: ChargerS
                 emit(Resource.Error(message = e.message.toString()))
             }
         }
-        
-     
+
+
     fun fetchChargerDetailInfo(
         accessToken: String, carbobId: Int
     ): Flow<Resource<MyChargerDetailInfo>> = flow {
@@ -197,5 +205,44 @@ class ChargerDataSource @Inject constructor(private val chargerService: ChargerS
             emit(Resource.Error(message = e.message.toString()))
         }
     }
-  }
+
+    fun fetchChargerDetail(
+        token: String,
+        chargerId: Long,
+        latitude: Double,
+        longitude: Double
+    ): Flow<Resource<ChargerDetailModel>> = flow {
+        emit(Resource.Loading())
+        try {
+            val authorization = "Bearer $token"
+            val response =
+                chargerService.getChargerDetail(authorization, chargerId, latitude, longitude)
+            if (response.isSuccessful) {
+                val chargerDetailInfo = response.body()?.data
+                if (chargerDetailInfo != null) {
+                    emit(
+                        Resource.Success(
+                            ChargerDetailModel(
+                                address = chargerDetailInfo.address,
+                                chargerId = chargerDetailInfo.carbobId,
+                                chargerType = chargerDetailInfo.chargerType,
+                                description = chargerDetailInfo.description,
+                                distance = chargerDetailInfo.distance,
+                                feePerHour = chargerDetailInfo.feePerHour,
+                                imageUrl = chargerDetailInfo.imageUrl,
+                                installType = chargerDetailInfo.installType,
+                                nickname = chargerDetailInfo.nickname,
+                                speedType = chargerDetailInfo.speedType
+                            )
+                        )
+                    )
+                } else emit(Resource.Error(response.code(), "fail to get charger detail"))
+            } else {
+                emit(Resource.Error(message = "body is null"))
+            }
+        } catch (e: Exception) {
+            emit(Resource.Error(message = e.message.toString()))
+        }
+    }
 }
+

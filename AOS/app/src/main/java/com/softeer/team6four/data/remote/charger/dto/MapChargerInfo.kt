@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MapChargerInfo(
-    val carbobId: Int,
+    val carbobId: Long,
     val feePerHour: String,
     val latitude: Double,
     val longitude: Double
