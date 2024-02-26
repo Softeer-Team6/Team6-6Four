@@ -35,13 +35,13 @@ class HomeViewModel @Inject constructor(
 
     private var _userLatLng: MutableStateFlow<LatLng> =
         MutableStateFlow(LatLng(0.toDouble(), 0.toDouble()))
-    val userLatLng: StateFlow<LatLng> = _userLatLng
+    private val userLatLng: StateFlow<LatLng> = _userLatLng
 
     private var _searchAddressLatLng = MutableStateFlow(LatLng(0.toDouble(), 0.toDouble()))
     val searchAddressLatLng: StateFlow<LatLng> = _searchAddressLatLng
 
     private var _searchMarkerLatLng = MutableStateFlow(LatLng(0.toDouble(), 0.toDouble()))
-    val searchMarkerLatLng: StateFlow<LatLng> = _searchMarkerLatLng
+    private val searchMarkerLatLng: StateFlow<LatLng> = _searchMarkerLatLng
 
     private var _mapChargerList: MutableStateFlow<List<MapChargerModel>> = MutableStateFlow(
         emptyList()
@@ -79,7 +79,7 @@ class HomeViewModel @Inject constructor(
     private var _currentInfoWindows: MutableStateFlow<List<InfoWindow>> = MutableStateFlow(
         emptyList()
     )
-    val currentInfoWindows: StateFlow<List<InfoWindow>> = _currentInfoWindows
+    private val currentInfoWindows: StateFlow<List<InfoWindow>> = _currentInfoWindows
 
     init {
         updateNickname()
