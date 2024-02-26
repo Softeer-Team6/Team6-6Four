@@ -25,6 +25,12 @@
         <action
             android:id="@+id/action_homeFragment_to_applyDetailFragment"
             app:destination="@id/applyDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_paymentFailFragment"
+            app:destination="@id/paymentFailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_paymentSuccessFragment"
+            app:destination="@id/paymentSuccessFragment" />
     </fragment>
     <fragment
         android:id="@+id/myChargerListFragment"
@@ -103,8 +109,18 @@
             android:id="@+id/action_applyCompleteFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/paymentFailFragment"
+        android:name="com.softeer.team6four.ui.payment.PaymentFailFragment"
+        android:label="PaymentFailFragment"
+        tools:layout="@layout/fragment_payment_fail" />
+    <fragment
+        android:id="@+id/paymentSuccessFragment"
+        android:name="com.softeer.team6four.ui.payment.PaymentSuccessFragment"
+        android:label="PaymentSuccessFragment"
+        tools:layout="@layout/fragment_payment_success" />
 
 
 </navigation>
