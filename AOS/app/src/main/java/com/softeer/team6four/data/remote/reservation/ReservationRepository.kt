@@ -2,11 +2,12 @@ package com.softeer.team6four.data.remote.reservation
 
 import android.util.Log
 import com.softeer.team6four.data.Resource
+import com.softeer.team6four.data.remote.reservation.model.AvailableTimeTableModel
 import com.softeer.team6four.data.remote.reservation.model.ChargerReservationInfoModel
 import com.softeer.team6four.data.remote.reservation.model.ChargerReservationListModel
+import com.softeer.team6four.data.remote.reservation.model.PaymentInfoModel
 import com.softeer.team6four.data.remote.reservation.model.ReservationInfoListModel
 import com.softeer.team6four.data.remote.reservation.model.ReservationInfoModel
-import com.softeer.team6four.data.remote.reservation.model.AvailableTimeTableModel
 import com.softeer.team6four.data.remote.reservation.model.ReservationTimeModel
 import com.softeer.team6four.data.remote.reservation.source.ReservationDataSource
 import kotlinx.coroutines.flow.Flow
@@ -19,7 +20,11 @@ class ReservationRepository @Inject constructor(private val reservationDataSourc
 
     fun getMyReservationHistory(accessToken: String, sortType: String, lastReservationId: Int?)
             : Flow<Resource<ReservationInfoListModel>> {
-        return reservationDataSource.getMyReservationHistory(accessToken, sortType, lastReservationId).map { resource ->
+        return reservationDataSource.getMyReservationHistory(
+            accessToken,
+            sortType,
+            lastReservationId
+        ).map { resource ->
             Log.i("sortType", "getMyReservationHistory: $sortType")
             when (resource) {
                 is Resource.Success -> {
@@ -60,7 +65,11 @@ class ReservationRepository @Inject constructor(private val reservationDataSourc
 
     fun getCarbobReservationHistory(accessToken: String, carbobId: Int, lastReservationId: Int?)
             : Flow<Resource<ChargerReservationListModel>> {
-        return reservationDataSource.getCarbobReservationHistory(accessToken, carbobId, lastReservationId).map { resource ->
+        return reservationDataSource.getCarbobReservationHistory(
+            accessToken,
+            carbobId,
+            lastReservationId
+        ).map { resource ->
             when (resource) {
                 is Resource.Success -> {
                     val chargerReservationHistory = resource.data
@@ -99,22 +108,24 @@ class ReservationRepository @Inject constructor(private val reservationDataSourc
 
     fun updateReservationStatus(accessToken: String, reservationId: Int, status: String)
             : Flow<Resource<Unit>> {
-        return reservationDataSource.updateReservationStatus(accessToken, reservationId, status).map { resource ->
-            when (resource) {
-                is Resource.Success -> {
-                    Resource.Success(Unit)
-                }
+        return reservationDataSource.updateReservationStatus(accessToken, reservationId, status)
+            .map { resource ->
+                when (resource) {
+                    is Resource.Success -> {
+                        Resource.Success(Unit)
+                    }
 
-                is Resource.Error -> {
-                    Resource.Error(message = resource.message)
-                }
+                    is Resource.Error -> {
+                        Resource.Error(message = resource.message)
+                    }
 
-                else -> {
-                    Resource.Loading()
+                    else -> {
+                        Resource.Loading()
+                    }
                 }
             }
-        }
     }
+
     fun fetchReservationTimeModel(
         token: String,
         chargerId: Long,
@@ -130,4 +141,11 @@ class ReservationRepository @Inject constructor(private val reservationDataSourc
         return reservationDataSource.postApplyReservation(token, chargerId, startTime, endTime)
     }
 
+    fun getReservationId(token: String, cipher: String): Flow<Resource<Long>> {
+        return reservationDataSource.getReservationId(token, cipher)
+    }
+
+    fun getPaymentInfoModel(token: String, reservationId: Long): Flow<Resource<PaymentInfoModel>> {
+        return reservationDataSource.getPaymentInfoModel(token, reservationId)
+    }
 }
