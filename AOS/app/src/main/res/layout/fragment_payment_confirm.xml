@@ -38,12 +38,12 @@
             android:text="@string/cancel"
             android:textColor="@color/gray_700"
             app:backgroundTint="@color/gray_050"
-            app:layout_constraintEnd_toStartOf="@id/btn_delete_dialog_delete"
+            app:layout_constraintEnd_toStartOf="@id/btn_delete_dialog_confirm"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_delete_dialog_title" />
 
         <Button
-            android:id="@+id/btn_delete_dialog_delete"
+            android:id="@+id/btn_delete_dialog_confirm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"

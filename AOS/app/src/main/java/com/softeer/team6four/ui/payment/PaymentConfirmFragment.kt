@@ -27,7 +27,7 @@ class PaymentConfirmFragment() : DialogFragment() {
         builder.setView(binding.root)
 
         binding.btnDeleteDialogCancel.setOnClickListener { dismiss() }
-        binding.btnDeleteDialogDelete.setOnClickListener {
+        binding.btnDeleteDialogConfirm.setOnClickListener {
             reservationViewModel.fetchPaymentInfoModel()
             dismiss()
         }
