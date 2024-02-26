@@ -19,6 +19,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.messaging.FirebaseMessaging
+import com.journeyapps.barcodescanner.ScanContract
+import com.journeyapps.barcodescanner.ScanOptions
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraAnimation
 import com.naver.maps.map.CameraUpdate
@@ -31,9 +33,12 @@ import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import com.softeer.team6four.R
+import com.softeer.team6four.data.Resource
 import com.softeer.team6four.data.remote.charger.model.MapChargerModel
 import com.softeer.team6four.databinding.FragmentHomeBinding
 import com.softeer.team6four.databinding.HeaderNavigationDrawerBinding
+import com.softeer.team6four.ui.payment.PaymentConfirmFragment
+import com.softeer.team6four.ui.payment.PaymentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -42,6 +47,7 @@ import kotlinx.coroutines.withContext
 @AndroidEntryPoint
 class HomeFragment : Fragment(), OnMapReadyCallback {
     private lateinit var requestLauncher: ActivityResultLauncher<Array<String>>
+    private lateinit var barcodeLauncher: ActivityResultLauncher<ScanOptions>
     private lateinit var locationSource: FusedLocationSource
     private lateinit var naverMap: NaverMap
     private val searchMarker = Marker().apply {
@@ -51,6 +57,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
     }
     private val homeViewModel: HomeViewModel by activityViewModels()
+    private val paymentViewModel: PaymentViewModel by activityViewModels()
 
     private var _binding: FragmentHomeBinding? = null
     private val binding
@@ -64,17 +71,20 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         setPermissionLauncher()
+        setBarcodeLauncher()
         requestLauncher.launch(
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 arrayOf(
                     Manifest.permission.ACCESS_COARSE_LOCATION,
                     Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.POST_NOTIFICATIONS
+                    Manifest.permission.POST_NOTIFICATIONS,
+                    Manifest.permission.CAMERA
                 )
             } else {
                 arrayOf(
                     Manifest.permission.ACCESS_COARSE_LOCATION,
                     Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.CAMERA
                 )
             }
 
@@ -96,6 +106,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         sendFcmToken()
         setNickname()
         setLogout()
+        setBtnQRScan()
     }
 
     override fun onDestroy() {
@@ -264,6 +275,18 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                     Toast.makeText(requireContext(), "알림 권한 설정이 필요합니다", Toast.LENGTH_SHORT).show()
                 }
             }
+
+    }
+
+    private fun setBarcodeLauncher() {
+        barcodeLauncher =
+            registerForActivityResult(ScanContract()) { result ->
+                if (result.contents != null) {
+                    paymentViewModel.updateCipher(result.contents)
+                    paymentViewModel.updateReservationId()
+                    PaymentConfirmFragment().show(parentFragmentManager, PaymentConfirmFragment.TAG)
+                }
+            }
     }
 
     private fun setSearchAction() {
@@ -284,7 +307,10 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                 }
             }
             searchbarLayout.setEndIconOnClickListener {
-                inputMethodManager.hideSoftInputFromWindow(binding.etSearchLocation.windowToken, 0)
+                inputMethodManager.hideSoftInputFromWindow(
+                    binding.etSearchLocation.windowToken,
+                    0
+                )
                 etSearchLocation.clearFocus()
                 homeViewModel.getCoordinate()
             }
@@ -336,6 +362,27 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                     if (nickname.isEmpty()) {
                         findNavController().popBackStack()
                     }
+                }
+            }
+        }
+    }
+
+    private fun setBtnQRScan() {
+        binding.btnCamera.setOnClickListener {
+            val options = ScanOptions()
+            options.setPrompt("QR 스캔해주세요")
+            options.setOrientationLocked(false)
+            barcodeLauncher.launch(options)
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                paymentViewModel.paymentInfoModelState.collect { resource ->
+                    if (resource is Resource.Success) {
+                        findNavController().navigate(R.id.action_homeFragment_to_paymentSuccessFragment)
+                    } else if (resource is Resource.Error) {
+                        findNavController().navigate(R.id.action_homeFragment_to_paymentFailFragment)
+                    }
+                    paymentViewModel.updatePaymentInfoModel()
                 }
             }
         }
