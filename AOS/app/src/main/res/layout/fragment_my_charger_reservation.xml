@@ -6,6 +6,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.softeer.team6four.ui.mypage.charger.MyChargerReservationViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,15 +16,41 @@
         android:layout_height="match_parent"
         tools:context=".ui.mypage.charger.MyChargerReservationFragment">
 
+        <ImageView
+            android:id="@+id/iv_empty_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="180dp"
+            android:src="@drawable/register_charger_onboarding_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_empty_point_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/empty_charger_reservation_list"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@id/iv_empty_state"
+            app:layout_constraintStart_toStartOf="@id/iv_empty_state"
+            app:layout_constraintTop_toBottomOf="@id/iv_empty_state" />
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_charger_reservation"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/my_charger_reservation_item"/>
+            tools:listitem="@layout/my_charger_reservation_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,5 @@
 package com.softeer.team6four.ui.home
 
-import android.icu.text.IDNA.Info
 import android.text.Editable
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -11,6 +10,7 @@ import com.softeer.team6four.data.Resource
 import com.softeer.team6four.data.local.UserPreferencesRepository
 import com.softeer.team6four.data.remote.charger.ChargerRepository
 import com.softeer.team6four.data.remote.charger.model.BottomSheetChargerModel
+import com.softeer.team6four.data.remote.charger.model.ChargerDetailModel
 import com.softeer.team6four.data.remote.charger.model.MapChargerModel
 import com.softeer.team6four.data.remote.fcm.FcmRepository
 import com.softeer.team6four.data.remote.geo.GeoCodeRepository
@@ -30,14 +30,18 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
     private var addressText: MutableStateFlow<String> = MutableStateFlow("")
 
-    private var _nickname: MutableStateFlow<String> = MutableStateFlow("")
+    private var _nickname: MutableStateFlow<String> = MutableStateFlow("닉네임")
     val nickname = _nickname
+
+    private var _userLatLng: MutableStateFlow<LatLng> =
+        MutableStateFlow(LatLng(0.toDouble(), 0.toDouble()))
+    val userLatLng: StateFlow<LatLng> = _userLatLng
 
     private var _searchAddressLatLng = MutableStateFlow(LatLng(0.toDouble(), 0.toDouble()))
     val searchAddressLatLng: StateFlow<LatLng> = _searchAddressLatLng
 
     private var _searchMarkerLatLng = MutableStateFlow(LatLng(0.toDouble(), 0.toDouble()))
-    private val searchMarkerLatLng: StateFlow<LatLng> = _searchMarkerLatLng
+    val searchMarkerLatLng: StateFlow<LatLng> = _searchMarkerLatLng
 
     private var _mapChargerList: MutableStateFlow<List<MapChargerModel>> = MutableStateFlow(
         emptyList()
@@ -53,8 +57,24 @@ class HomeViewModel @Inject constructor(
         )
     val bottomSheetChargerList: StateFlow<List<BottomSheetChargerModel>> = _bottomSheetChargerList
 
-    private var _selectedChargerId: MutableStateFlow<Int> = MutableStateFlow(0)
-    val selectedChargerId: StateFlow<Int> = _selectedChargerId
+    private var _selectedChargerId: MutableStateFlow<Long> = MutableStateFlow(0)
+    private val selectedChargerId: StateFlow<Long> = _selectedChargerId
+
+    private var _selectedCharger: MutableStateFlow<ChargerDetailModel> = MutableStateFlow(
+        ChargerDetailModel(
+            address = "",
+            chargerId = 0,
+            chargerType = "",
+            description = "",
+            distance = 0.0,
+            feePerHour = "",
+            imageUrl = "",
+            installType = "",
+            nickname = "",
+            speedType = ""
+        )
+    )
+    val selectedCharger: StateFlow<ChargerDetailModel> = _selectedCharger
 
     private var _currentInfoWindows: MutableStateFlow<List<InfoWindow>> = MutableStateFlow(
         emptyList()
@@ -74,6 +94,7 @@ class HomeViewModel @Inject constructor(
             geoCodeRepository.getCoordinateResult(addressText.value).collect { latLngResult ->
                 latLngResult.onSuccess { latLng ->
                     _searchAddressLatLng.value = latLng
+                    updateSearchMarkerLatLng(latLng)
                 }
             }
         }
@@ -97,7 +118,11 @@ class HomeViewModel @Inject constructor(
 
     private fun updateNickname() {
         viewModelScope.launch {
-            _nickname.value = userPreferencesRepository.getNickname().first()
+            userPreferencesRepository.getNickname().collect { nickname ->
+                if (nickname != "") {
+                    _nickname.value = nickname
+                }
+            }
         }
     }
 
@@ -114,7 +139,6 @@ class HomeViewModel @Inject constructor(
 
                     is Resource.Success -> {
                         _mapChargerList.value = resource.data
-                        Log.d("fetchMapChargerList", mapChargerList.value.toString())
                     }
 
                     else -> {}
@@ -150,8 +174,9 @@ class HomeViewModel @Inject constructor(
     }
 
     fun clearInfoWindows() {
-        _currentInfoWindows.value.forEach { infoWindow ->
+        currentInfoWindows.value.forEach { infoWindow ->
             infoWindow.close()
+            infoWindow.map = null
         }
     }
 
@@ -159,8 +184,37 @@ class HomeViewModel @Inject constructor(
         _currentInfoWindows.value = infoWindows
     }
 
-    fun updateSelectedCharger(id: Int) {
+    fun updateSelectedCharger(id: Long) {
         _selectedChargerId.value = id
+        updateSelectedCharger()
+    }
 
+    fun updateUserLatLng(latitude: Double, longitude: Double) {
+        _userLatLng.value = LatLng(latitude, longitude).toLatLng()
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            userPreferencesRepository.allClear()
+            _nickname.value = ""
+        }
+    }
+
+    fun updateSelectedCharger() {
+        viewModelScope.launch {
+            val token = userPreferencesRepository.getAccessToken().first()
+            chargerRepository.fetchChargerDetail(
+                token,
+                selectedChargerId.value,
+                userLatLng.value.latitude,
+                userLatLng.value.longitude
+            ).collect { resource ->
+                if (resource is Resource.Success) {
+                    _selectedCharger.value = resource.data
+                } else if (resource is Resource.Error) {
+                    Log.e("selectedChargerError", resource.message)
+                }
+            }
+        }
     }
 }

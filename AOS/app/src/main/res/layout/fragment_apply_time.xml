@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.softeer.team6four.ui.apply.ApplyViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -57,6 +60,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/gray_000"
             android:contentDescription="@string/previous_date_icon_description"
+            android:onClick="@{() -> viewModel.decreaseSelectedDate()}"
             android:padding="0dp"
             android:src="@drawable/icon_arrow_back"
             app:layout_constraintBottom_toBottomOf="@id/tv_selected_date"
@@ -74,7 +78,8 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/ib_next_date"
             app:layout_constraintStart_toEndOf="@id/ib_previous_date"
-            app:layout_constraintTop_toBottomOf="@id/tv_apply_time_title" />
+            app:layout_constraintTop_toBottomOf="@id/tv_apply_time_title"
+            app:setDateText="@{viewModel.selectedDate}" />
 
         <ImageButton
             android:id="@+id/ib_next_date"
@@ -82,6 +87,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/gray_000"
             android:contentDescription="@string/previous_date_icon_description"
+            android:onClick="@{() -> viewModel.increaseSelectedDate()}"
             android:padding="0dp"
             android:src="@drawable/icon_arrow_right"
             app:layout_constraintBottom_toBottomOf="@id/tv_selected_date"
@@ -94,23 +100,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            app:layout_constraintTop_toBottomOf="@id/tv_selected_date"
-            app:layout_constraintStart_toStartOf="@id/start_guide_line"
             app:layout_constraintEnd_toEndOf="@id/end_guide_line"
-            />
+            app:layout_constraintStart_toStartOf="@id/start_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/tv_selected_date"
+            app:setTimeList="@{viewModel.reservationTime}" />
 
         <TextView
             android:id="@+id/tv_apply_time_body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:text="@string/apply_time_body"
             android:textColor="@color/main_400"
-            android:layout_marginTop="40dp"
-            app:layout_constraintTop_toBottomOf="@id/apply_time_table"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:textSize="16sp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/apply_time_table" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_register_input_time"
@@ -128,8 +134,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingVertical="19dp"
-                >
+                android:paddingVertical="19dp">
 
                 <TextView
                     android:id="@+id/tv_start_time"
@@ -137,8 +142,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/start_time"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@id/start_time_input_layout"
                     app:layout_constraintEnd_toEndOf="@id/start_time_input_layout"
+                    app:layout_constraintStart_toStartOf="@id/start_time_input_layout"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -165,32 +170,36 @@
                     app:boxStrokeWidth="0dp"
                     app:hintAnimationEnabled="false"
                     app:hintEnabled="false"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/tv_divider"
-                    app:layout_constraintTop_toBottomOf="@id/tv_start_time">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_start_time"
+                    app:suffixText=":00">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_start_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="@string/register_time_hint"
-                        android:inputType="time"
-                        android:textSize="14sp"
-                        android:paddingVertical="8dp" />
+                        android:inputType="datetime"
+                        android:maxLength="2"
+                        android:afterTextChanged="@{time -> viewModel.updateStartTime(time)}"
+                        android:paddingVertical="8dp"
+                        android:textAlignment="center"
+                        android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/tv_divider"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="@string/register_time_divider"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@id/start_time_input_layout"
                     app:layout_constraintEnd_toStartOf="@id/end_time_input_layout"
-                    app:layout_constraintTop_toTopOf="@id/start_time_input_layout"
-                    android:layout_marginTop="8dp"
-                    />
+                    app:layout_constraintStart_toEndOf="@id/start_time_input_layout"
+                    app:layout_constraintTop_toTopOf="@id/start_time_input_layout" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/end_time_input_layout"
                     style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
@@ -205,19 +214,22 @@
                     app:boxStrokeWidth="0dp"
                     app:hintAnimationEnabled="false"
                     app:hintEnabled="false"
-
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_divider"
                     app:layout_constraintTop_toBottomOf="@id/tv_start_time"
-                    app:layout_constraintStart_toEndOf="@id/tv_divider">
+                    app:suffixText=":00">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_end_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="@string/register_time_hint"
-                        android:inputType="time"
-                        android:textSize="14sp"
-                        android:paddingVertical="8dp" />
+                        android:inputType="datetime"
+                        android:maxLength="2"
+                        android:afterTextChanged="@{time -> viewModel.updateEndTime(time)}"
+                        android:paddingVertical="8dp"
+                        android:textAlignment="center"
+                        android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -226,15 +238,15 @@
             android:id="@+id/btn_apply_reservation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
             android:background="@drawable/background_normal_radius_btn"
             android:paddingVertical="16dp"
             android:text="@string/apply_reservation"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
-            app:layout_constraintStart_toStartOf="@id/start_guide_line"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom = "14dp" />
+            app:layout_constraintEnd_toEndOf="@id/end_guide_line"
+            app:layout_constraintStart_toStartOf="@id/start_guide_line" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

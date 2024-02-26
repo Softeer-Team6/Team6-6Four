@@ -166,4 +166,10 @@
     <string name="reservation_reject">거절</string>
     <string name="empty_reservation_list">카밥 예약 내역이 없어요</string>
     <string name="drawer_nickname">%1$s님</string>
+    <string name="alert_dialog_title">이미지 업로드를 위해 권한 설정이 필요합니다.</string>
+    <string name="time_string_format">%1$s:00</string>
+    <string name="price_format">%1$s원/kwh</string>
+    <string name="empty_own_charger_list">등록된 카밥이 없어요ㅠ</string>
+    <string name="empty_charger_reservation_list">들어온 예약이 없어요ㅠ</string>
+    <string name="apply_confirm_time">%1$s:00 - %2$s</string>
 </resources>

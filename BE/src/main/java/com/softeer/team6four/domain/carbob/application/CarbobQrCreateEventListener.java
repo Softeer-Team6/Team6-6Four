@@ -17,6 +17,8 @@ import com.softeer.team6four.global.util.QrGeneratorUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.UUID;
+
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -32,7 +34,7 @@ public class CarbobQrCreateEventListener {
 		Carbob newCarbob = event.getCarbob();
 
 		// carbob id 로 암호화
-		String encryptedCarbobId = cipherUtils.encrypt(String.valueOf(newCarbob.getCarbobId()));
+		String encryptedCarbobId = cipherUtils.encrypt(UUID.randomUUID().toString() + ":" + newCarbob.getCarbobId());
 
 		// qr 만들고
 		byte[] generatedQRCodeByteArray = QrGeneratorUtils.generateQRCodeByteArray(encryptedCarbobId);

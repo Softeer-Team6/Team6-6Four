@@ -1,8 +1,11 @@
 package com.softeer.team6four.data.remote.charger.dto
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class ChargerDetailInfo(
     val address: String,
-    val carbobId: Int,
+    val carbobId: Long,
     val chargerType: String,
     val description: String,
     val distance: Double,

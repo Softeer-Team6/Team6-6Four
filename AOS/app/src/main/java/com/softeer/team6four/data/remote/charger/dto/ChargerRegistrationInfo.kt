@@ -1,11 +1,12 @@
 package com.softeer.team6four.data.remote.charger.dto
 
-import retrofit2.http.Field
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class ChargerRegistrationInfo(
     val carbobNickname: String,
     val description: String,
-    val feePer1kWh: Int,
+    val feePer1kwh: Int,
     val address: String,
     val latitude: Double,
     val longitude: Double,
@@ -13,6 +14,7 @@ data class ChargerRegistrationInfo(
     val chargeType: String,
     val speedType: String,
     val installType: String,
-    val startTime: Int,
-    val endTime: Int
+    val startDateTime: String,
+    val endDateTime: String,
+    val carbobImgUrl: String
 )

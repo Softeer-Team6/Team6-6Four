@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class BottomSheetChargerInfo(
     val address: String,
-    val carbobId: Int,
+    val carbobId: Long,
     val feePerHour: String,
     val nickname: String,
     val speedType: String
