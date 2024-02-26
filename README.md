@@ -61,7 +61,7 @@
 <img width="889" alt="image" src="https://github.com/softeerbootcamp-3rd/Team6-6Four/assets/44975402/9ff1bedd-7148-40db-885d-32db6a396772">
 
 ### ERD
-<img width="889" alt="image" src="https://github.com/softeerbootcamp-3rd/Team6-6Four/assets/102938120/2e081e0d-1a82-4c0b-9888-07d1a7948627">
+<img width="889" alt="image" src="https://github.com/softeerbootcamp-3rd/Team6-6Four/assets/44975402/bfc083c5-ee29-446c-baaa-46a9edf65dfe">
 
 
 ## 🧐 지식 공유
