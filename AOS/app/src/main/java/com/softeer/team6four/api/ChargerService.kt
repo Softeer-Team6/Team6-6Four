@@ -58,7 +58,7 @@ interface ChargerService {
     @POST("image")
     suspend fun uploadImage(
         @Header("Authorization") token: String,
-        @Part image: MultipartBody.Part
+        @Part image: MultipartBody.Part?
     ): Response<UploadImageDto>
 
     @GET("my")

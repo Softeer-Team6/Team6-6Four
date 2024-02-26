@@ -87,12 +87,14 @@ class ChargerDataSource @Inject constructor(private val chargerService: ChargerS
         }
     }
 
-    fun uploadImage(token: String, imageFile: File): Flow<Resource<String>> = flow {
+    fun uploadImage(token: String, imageFile: File?): Flow<Resource<String>> = flow {
         emit(Resource.Loading())
         try {
             val authorization = "Bearer $token"
-            val requestFile = imageFile.asRequestBody("image/*".toMediaTypeOrNull())
-            val body = MultipartBody.Part.createFormData("image", imageFile.name, requestFile)
+            val requestFile = imageFile?.asRequestBody("image/*".toMediaTypeOrNull())
+            val body = if (requestFile != null) {
+                MultipartBody.Part.createFormData("image", imageFile.name, requestFile)
+            } else null
 
             val response = chargerService.uploadImage(authorization, body)
             if (response.isSuccessful) {
@@ -203,6 +205,7 @@ class ChargerDataSource @Inject constructor(private val chargerService: ChargerS
             emit(Resource.Error(message = e.message.toString()))
         }
     }
+
     fun fetchChargerDetail(
         token: String,
         chargerId: Long,

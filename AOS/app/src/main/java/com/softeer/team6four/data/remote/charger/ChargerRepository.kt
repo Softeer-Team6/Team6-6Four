@@ -44,6 +44,9 @@ class ChargerRepository @Inject constructor(private val chargerDataSource: Charg
         token: String,
         imageUrl: String
     ): Flow<Resource<String>> {
+        if (imageUrl == "") {
+            return chargerDataSource.uploadImage(token, null)
+        }
         val imageFile = File(imageUrl)
         if (imageFile.isFile) Log.d("imagefile", "isFile")
         return chargerDataSource.uploadImage(token, imageFile)
