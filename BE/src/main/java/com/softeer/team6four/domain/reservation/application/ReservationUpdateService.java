@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import com.softeer.team6four.global.infrastructure.sqs.IotDeviceOnMessage;
+import com.softeer.team6four.global.infrastructure.sqs.SQSSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,6 +35,7 @@ public class ReservationUpdateService {
 
 	private final ReservationRepository reservationRepository;
 	private final PaymentRepository paymentRepository;
+	private final SQSSender sqsSender;
 
 	@Transactional
 	public ReservationFulfillResult fulfillReservationAndPay(Long userId,
@@ -55,7 +58,7 @@ public class ReservationUpdateService {
 
 		updateCarbobUseResult(reservation);
 
-		// TODO : 라즈베리파이 소켓 통신 연동 필요
+		sqsSender.sendMessage(new IotDeviceOnMessage(carbob.getCarbobId(), 120).toString());
 
 		return reservationFulfillResult;
 	}
