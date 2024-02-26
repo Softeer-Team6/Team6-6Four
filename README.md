@@ -81,7 +81,7 @@
 <br>
 
 ## 🧑‍💻 팀원 소개
-| [[AOS] 김성우](https://github.com/kimseongwooo)                | [[AOS,BE] 유승민](https://github.com/99winnmin)                                                | [[BE] 송예린](https://github.com/yeriinnn)                         | [[BE] 이대산](https://github.com/DSL2e)                         | 
+| [[Android] 김성우](https://github.com/kimseongwooo)                | [[Android,BE] 유승민](https://github.com/99winnmin)                                                | [[BE] 송예린](https://github.com/yeriinnn)                         | [[BE] 이대산](https://github.com/DSL2e)                         | 
 |---------------------------------------------------------|-------------------------------------------------------------|-----------------------------------------------------------|---------------------------------------------------------|
 | <img src="https://github.com/softeerbootcamp-3rd/Team6-6Four/assets/102938120/ce7f1859-7418-4981-99bf-451c03c0d946" width="150"> | <img src="https://github.com/softeerbootcamp-3rd/Team6-6Four/assets/102938120/9ede35f5-a1c4-4024-b1ef-4f46d0391bd4" width="150"> | <img src="https://github.com/softeerbootcamp-3rd/Team6-6Four/assets/102938120/f1ad17a6-733b-4857-b8a2-9646958fef45" width="150"> | <img src="https://github.com/softeerbootcamp-3rd/Team6-6Four/assets/102938120/5c8dfa4b-5d2f-49ce-bb39-6c88d5667ff1" width="150"> |
 <br>
