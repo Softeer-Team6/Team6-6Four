@@ -20,7 +20,7 @@ android {
 
     defaultConfig {
         applicationId = "com.softeer.team6four"
-        minSdk = 21
+        minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -66,6 +66,7 @@ android {
 }
 
 dependencies {
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
     implementation("androidx.datastore:datastore-preferences:1.0.0")
     implementation("com.google.android.gms:play-services-location:21.1.0")
     implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
