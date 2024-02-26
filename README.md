@@ -72,11 +72,20 @@
 
 #### 💥 [BE]
 <br>
-
+ <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [송예린] Spring Security 없이 회원가입/로그인을 구현하라고? </a></li>
+ <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [송예린] FCM을 이용해 Push 알림 구현 ! </a></li>
+ <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [송예린] 어 왔어? 충전 시작해보자 (feat.AWS SQS + IoT Device)  </a></li>
+ <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [유승민] 카밥에 N명이 동시에 예약을 시도한다면? - 1편 </a></li>
+ <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [유승민] 카밥에 N명이 동시에 예약을 시도한다면? - 2편 </a></li>
+ <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [유승민] QR 만드는데 굳이 암호화를 해야하나요? </a></li>
+ <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [유승민] API 가 안되는데요? </a></li>
+<li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [이대산] 하나의 쿼리 vs 여러 개의 쿼리 어떤 것이 좋을까? </a></li>
+<li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [이대산] 공간 인덱스로 조회속도 40배 개선하기  </a></li>
 
 #### 💥 [AOS]
 <br>
-
+ <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [김성우] StateFlow 진짜 왜 사용하는 걸까, 어떻게 잘 사용해야 할까? </a></li>
+ <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [김성우] 무한 스크롤 어떻게 구현할 수 있을까? (feat. Paging 라이브러리)  </a></li>
 
 <br>
 
