@@ -35,8 +35,10 @@ dependencies {
     implementation 'io.sentry:sentry-spring-boot-starter-jakarta:7.3.0'
     implementation 'io.sentry:sentry-logback:7.3.0'
 
-    //s3
+    // aws
     implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+    implementation platform("io.awspring.cloud:spring-cloud-aws-dependencies:3.0.1")
+    implementation 'io.awspring.cloud:spring-cloud-aws-starter-sqs'
 
     // redisson
     implementation 'org.redisson:redisson-spring-boot-starter:3.18.0'
