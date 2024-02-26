@@ -5,10 +5,11 @@ import com.softeer.team6four.BuildConfig
 import com.softeer.team6four.data.remote.reservation.dto.ApplyInfoDto
 import com.softeer.team6four.data.remote.reservation.dto.ChargerReservationListDto
 import com.softeer.team6four.data.remote.reservation.dto.DateReservationInfoDto
-import com.softeer.team6four.data.remote.reservation.dto.PaymentInfo
+import com.softeer.team6four.data.remote.reservation.dto.FulfillmentDto
 import com.softeer.team6four.data.remote.reservation.dto.ReservationApplyProcess
 import com.softeer.team6four.data.remote.reservation.dto.ReservationConfirmationDto
 import com.softeer.team6four.data.remote.reservation.dto.ReservationHistoryDto
+import com.softeer.team6four.data.remote.reservation.dto.ReservationIdDto
 import com.softeer.team6four.data.remote.reservation.dto.ReservationRequestDto
 import com.softeer.team6four.data.remote.reservation.dto.VerificationDto
 import kotlinx.serialization.json.Json
@@ -16,7 +17,6 @@ import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.http.Body
-import retrofit2.http.Field
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.PATCH
@@ -53,10 +53,10 @@ interface ReservationService {
     ): Response<VerificationDto>
 
     @POST("fulfillment")
-    suspend fun fulfillVerification(
+    suspend fun getPaymentInfo(
         @Header("Authorization") token: String,
-        @Field("reservationId") reservationId: String
-    ): Response<PaymentInfo>
+        @Body reservationId: ReservationIdDto
+    ): Response<FulfillmentDto>
 
     @GET("application/list")
     suspend fun getReservationHistory(
