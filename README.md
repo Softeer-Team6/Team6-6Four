@@ -58,7 +58,7 @@
 ## 🏢 프로젝트 구조
 
 ### 시스템 아키텍처
-<img width="889" alt="image" src="https://github.com/softeerbootcamp-3rd/Team6-6Four/assets/44975402/9ff1bedd-7148-40db-885d-32db6a396772">
+<img width="7128" alt="image" src="https://github.com/softeerbootcamp-3rd/Team6-6Four/assets/44975402/43635bd7-f7b1-43bb-a86a-af8a4d356e6a">
 
 ### ERD
 <img width="889" alt="image" src="https://github.com/softeerbootcamp-3rd/Team6-6Four/assets/44975402/bfc083c5-ee29-446c-baaa-46a9edf65dfe">
