@@ -55,7 +55,8 @@
  ### [시스템 아키텍처]
 
 </div>
-<img width="4000" alt="image" src="https://github.com/softeerbootcamp-3rd/Team6-6Four/assets/44975402/43635bd7-f7b1-43bb-a86a-af8a4d356e6a">
+
+![image](https://github.com/softeerbootcamp-3rd/Team6-6Four/assets/102938120/0860679a-c225-4534-99c8-b5a4c7a2fafa)
 
 <div align="center">
  
