@@ -40,6 +40,7 @@
  <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [유승민] 카밥에 N명이 동시에 예약을 시도한다면? - 2편 </a></li>
  <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [유승민] QR 만드는데 굳이 암호화를 해야하나요? </a></li>
  <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [유승민] API 가 안되는데요? </a></li>
+ <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [이대산] JPA 내부동작방식 </a></li>
 <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [이대산] 하나의 쿼리 vs 여러 개의 쿼리 어떤 것이 좋을까? </a></li>
 <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [이대산] 공간 인덱스로 조회속도 40배 개선하기  </a></li>
 
