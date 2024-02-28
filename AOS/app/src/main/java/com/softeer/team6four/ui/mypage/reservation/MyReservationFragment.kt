@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.softeer.team6four.R
@@ -38,6 +39,10 @@ class MyReservationFragment : Fragment() {
             viewModel = myReservationViewModel
             lifecycleOwner = viewLifecycleOwner
 
+            ibBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
+
             var count = 0;
 
             val adapter = ReservationHistoryAdapter()
@@ -54,13 +59,17 @@ class MyReservationFragment : Fragment() {
 
                     val lastVisibleItemPosition =
                         (recyclerView.layoutManager as LinearLayoutManager?)!!.findLastCompletelyVisibleItemPosition()
-                    val itemTotalCount = recyclerView.adapter!!.itemCount-1
+                    val itemTotalCount = recyclerView.adapter!!.itemCount - 1
 
                     if (!binding.rvReservationList.canScrollVertically(1)
                         && lastVisibleItemPosition == itemTotalCount
-                        && !myReservationViewModel.isLoading.value) {
+                        && !myReservationViewModel.isLoading.value
+                    ) {
                         count++
-                        myReservationViewModel.fetchMyReservationHistory(sortType, adapter.getLastReservationHistoryId())
+                        myReservationViewModel.fetchMyReservationHistory(
+                            sortType,
+                            adapter.getLastReservationHistoryId()
+                        )
                     }
                 }
             })
@@ -76,19 +85,24 @@ class MyReservationFragment : Fragment() {
                 adapter.clearReservationHistoryList()
                 myReservationViewModel.fetchMyReservationHistory(sortType)
 
-                binding.rvReservationList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                binding.rvReservationList.addOnScrollListener(object :
+                    RecyclerView.OnScrollListener() {
                     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                         super.onScrolled(recyclerView, dx, dy)
 
                         val lastVisibleItemPosition =
                             (recyclerView.layoutManager as LinearLayoutManager?)!!.findLastCompletelyVisibleItemPosition()
-                        val itemTotalCount = recyclerView.adapter!!.itemCount-1
+                        val itemTotalCount = recyclerView.adapter!!.itemCount - 1
 
                         if (!binding.rvReservationList.canScrollVertically(1)
                             && lastVisibleItemPosition == itemTotalCount
-                            && !myReservationViewModel.isLoading.value) {
+                            && !myReservationViewModel.isLoading.value
+                        ) {
                             count++
-                            myReservationViewModel.fetchMyReservationHistory(sortType, adapter.getLastReservationHistoryId())
+                            myReservationViewModel.fetchMyReservationHistory(
+                                sortType,
+                                adapter.getLastReservationHistoryId()
+                            )
                         }
                     }
                 })
