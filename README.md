@@ -33,22 +33,22 @@
 > 세미나에서 서로의 직무를 이해하는 시간을 가져요
 
 ## 🔖 [BE]
- <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [송예린] Spring Security 없이 회원가입/로그인을 구현하라고? </a></li>
- <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [송예린] FCM을 이용해 Push 알림 구현 ! </a></li>
- <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [송예린] 어 왔어? 충전 시작해보자 (feat.AWS SQS + IoT Device)  </a></li>
- <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [유승민] 카밥에 N명이 동시에 예약을 시도한다면? - 1편 </a></li>
- <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [유승민] 카밥에 N명이 동시에 예약을 시도한다면? - 2편 </a></li>
- <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [유승민] QR 만드는데 굳이 암호화를 해야하나요? </a></li>
- <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [유승민] API 가 안되는데요? </a></li>
- <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [이대산] JPA 내부동작방식 </a></li>
-<li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [이대산] 하나의 쿼리 vs 여러 개의 쿼리 어떤 것이 좋을까? </a></li>
-<li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [이대산] 공간 인덱스로 조회속도 40배 개선하기  </a></li>
+ <li><a href="https://6four.notion.site/Spring-Security-77fd73e50a124b02af3cda83228c49ec?pvs=4"> [송예린] Spring Security 없이 회원가입/로그인을 구현하라고? </a></li>
+ <li><a href="https://6four.notion.site/FCM-Push-172cdead2e9b470087a96512e2831c75?pvs=4"> [송예린] FCM을 이용해 Push 알림 구현 ! </a></li>
+ <li><a href="https://6four.notion.site/bce37b1fca424b0e916c492b05373d5d?pvs=4"> [송예린] 어 왔어? 충전 시작해보자 (feat.AWS SQS + IoT Device)  </a></li>
+ <li><a href="https://6four.notion.site/N-1-fc23191ba77f46c58f2c09bd19e312ee?pvs=4"> [유승민] 카밥에 N명이 동시에 예약을 시도한다면? - 1편 </a></li>
+ <li><a href="https://6four.notion.site/N-2-84a80dd9a07f4b19ab1141bf0e33f30e?pvs=4"> [유승민] 카밥에 N명이 동시에 예약을 시도한다면? - 2편 </a></li>
+ <li><a href="https://6four.notion.site/QR-fc607f8090ac44ffa36ee83a767f4732?pvs=4"> [유승민] QR 만드는데 굳이 암호화를 해야하나요? </a></li>
+ <li><a href="https://6four.notion.site/API-b3e4261fa6eb492e95e05c6b332959e2?pvs=4"> [유승민] API 가 안되는데요? </a></li>
+ <li><a href="https://6four.notion.site/JPA-7380a9d221364d3b96fbc93409d8b14f?pvs=4"> [이대산] JPA 내부동작방식 </a></li>
+<li><a href="https://6four.notion.site/vs-36bd7e4606ca44518731c57a0d6e11ed?pvs=4"> [이대산] 하나의 쿼리 vs 여러 개의 쿼리 어떤 것이 좋을까? </a></li>
+<li><a href="https://6four.notion.site/40-41b797379bd34cb6aa6f5159dcaba54c?pvs=4"> [이대산] 공간 인덱스로 조회속도 40배 개선하기  </a></li>
 
 ## 🔖 [Android]
- <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [김성우] LiveData & Flow & StateFlow </a></li>
- <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [김성우] Jetpack Navigation </a></li>
- <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [김성우] StateFlow 진짜 왜 사용하는 걸까, 어떻게 잘 사용해야 할까? </a></li>
- <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [김성우] 무한 스크롤 어떻게 구현할 수 있을까? (feat. Paging 라이브러리)  </a></li>
+ <li><a href="https://6four.notion.site/LiveData-Flow-StateFlow-659b728dbbf3484891e1bfcd937ea06c?pvs=4"> [김성우] LiveData & Flow & StateFlow </a></li>
+ <li><a href="https://6four.notion.site/Jetpack-Navigation-f38b46c0d3d54875bd6b0d65f460e08a?pvs=4"> [김성우] Jetpack Navigation </a></li>
+ <li><a href="https://6four.notion.site/StateFlow-73ddc3f44bc749f687d5efff6f3e04cf?pvs=4"> [김성우] StateFlow 진짜 왜 사용하는 걸까, 어떻게 잘 사용해야 할까? </a></li>
+ <li><a href="https://6four.notion.site/Paging-a8bbf77b48cf426ab355111afba30550?pvs=4"> [김성우] 무한 스크롤 어떻게 구현할 수 있을까? (feat. Paging 라이브러리)  </a></li>
 <br>
 
 ## 💭 6Four의 프로젝트 구조
