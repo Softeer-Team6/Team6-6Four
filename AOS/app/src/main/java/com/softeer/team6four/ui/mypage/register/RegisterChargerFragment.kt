@@ -1,10 +1,10 @@
 package com.softeer.team6four.ui.mypage.register
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.softeer.team6four.R
@@ -28,7 +28,11 @@ class RegisterChargerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             ibBack.setOnClickListener {
-                childFragmentManager.popBackStack()
+                if(registerFragContainer.getFragment<NavHostFragment>().findNavController()
+                    .currentDestination?.id == R.id.registerOnboardingFragment) {
+                    findNavController().popBackStack()
+                }
+                else childFragmentManager.popBackStack()
             }
             ibCancel.setOnClickListener {
                 findNavController().popBackStack()
