@@ -23,7 +23,7 @@ class ReservationHistoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
             if (detailModel.stateType == "WAIT") {
                 binding.chipReservationState.text = "대기중"
                 binding.chipReservationState.chipBackgroundColor = ColorStateList.valueOf(
-                    ContextCompat.getColor(binding.root.context, R.color.gray_500))
+                    ContextCompat.getColor(binding.root.context, R.color.gray_050))
                 binding.chipReservationState.setTextColor(ColorStateList.valueOf(
                     ContextCompat.getColor(binding.root.context, R.color.gray_800)))
             } else if (detailModel.stateType == "APPROVE") {
@@ -35,7 +35,7 @@ class ReservationHistoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
             } else if (detailModel.stateType == "USED") {
                 binding.chipReservationState.text = "사용완료"
                 binding.chipReservationState.chipBackgroundColor = ColorStateList.valueOf(
-                    ContextCompat.getColor(binding.root.context, R.color.gray_500))
+                    ContextCompat.getColor(binding.root.context, R.color.gray_050))
                 binding.chipReservationState.setTextColor(ColorStateList.valueOf(
                     ContextCompat.getColor(binding.root.context, R.color.gray_800)))
             } else if (detailModel.stateType == "REJECT") {
