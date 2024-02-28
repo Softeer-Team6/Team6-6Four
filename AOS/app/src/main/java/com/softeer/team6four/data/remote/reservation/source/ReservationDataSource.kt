@@ -104,7 +104,7 @@ class ReservationDataSource @Inject constructor(private val reservationService: 
     ): Flow<Resource<AvailableTimeTableModel>> = flow {
         emit(Resource.Loading())
         try {
-            val authorization = "bearer $token"
+            val authorization = "Bearer $token"
             val response = reservationService.getDateReservationInfo(authorization, chargerId, date)
             if (response.isSuccessful) {
                 val timeTableDto = response.body()?.data
