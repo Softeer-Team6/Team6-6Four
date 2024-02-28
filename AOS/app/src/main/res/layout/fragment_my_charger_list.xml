@@ -81,6 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="180dp"
+            android:visibility="invisible"
             android:src="@drawable/register_charger_onboarding_img"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -95,6 +96,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:textAlignment="center"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@id/iv_empty_state"
             app:layout_constraintStart_toStartOf="@id/iv_empty_state"
             app:layout_constraintTop_toBottomOf="@id/iv_empty_state" />
@@ -105,6 +107,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="4dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
