@@ -10,24 +10,35 @@ import com.softeer.team6four.data.remote.charger.model.MyChargerSimpleInfoModel
 import com.softeer.team6four.databinding.MyChargerItemBinding
 import com.softeer.team6four.databinding.ProgressBarItemBinding
 
-class MyChargerListAdapter(private val navigationCallback: (idAndNickname : Pair<Int, String>)  -> Unit)
-    : RecyclerView.Adapter<RecyclerView.ViewHolder>()
-{
+class MyChargerListAdapter(private val navigationCallback: (idAndNickname: Pair<Int, String>) -> Unit) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val VIEW_TYPE_ITEM = 0
     private val VIEW_TYPE_LOADING = 1
     private val myChargerList = ArrayList<MyChargerSimpleInfoModel>()
 
-    inner class MyChargerViewHolder(private val binding: MyChargerItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MyChargerViewHolder(private val binding: MyChargerItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(detailModel: MyChargerSimpleInfoModel) {
             binding.tvMyChargerNickname.text = detailModel.nickname
             binding.tvMyChargerLocation.text = detailModel.address
-            binding.tvMyChargerReservation.text = "신규 예약 " + detailModel.reservationCount.toString() + "건"
+            binding.tvMyChargerReservation.text =
+                "신규 예약 " + detailModel.reservationCount.toString() + "건"
             if (detailModel.reservationCount == 0) {
                 binding.ivMyChargerReservationIcon.setBackgroundResource(R.drawable.icon_reservation)
-                binding.tvMyChargerReservation.setTextColor(ContextCompat.getColor(binding.root.context, R.color.gray_500))
+                binding.tvMyChargerReservation.setTextColor(
+                    ContextCompat.getColor(
+                        binding.root.context,
+                        R.color.gray_500
+                    )
+                )
             } else {
                 binding.ivMyChargerReservationIcon.setBackgroundResource(R.drawable.icon_reservation2)
-                binding.tvMyChargerReservation.setTextColor(ContextCompat.getColor(binding.root.context, R.color.main_400))
+                binding.tvMyChargerReservation.setTextColor(
+                    ContextCompat.getColor(
+                        binding.root.context,
+                        R.color.main_400
+                    )
+                )
             }
             binding.ivMyChargerImage.load(detailModel.imageUrl)
 
@@ -37,13 +48,13 @@ class MyChargerListAdapter(private val navigationCallback: (idAndNickname : Pair
         }
     }
 
-    inner class LoadingViewHolder(private val binding: ProgressBarItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class LoadingViewHolder(private val binding: ProgressBarItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (myChargerList[position].carbobId)
-        {
+        return when (myChargerList[position].carbobId) {
             0 -> VIEW_TYPE_LOADING
             else -> VIEW_TYPE_ITEM
         }
@@ -56,6 +67,7 @@ class MyChargerListAdapter(private val navigationCallback: (idAndNickname : Pair
                 val binding = MyChargerItemBinding.inflate(layoutInflater, parent, false)
                 MyChargerViewHolder(binding)
             }
+
             else -> {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = ProgressBarItemBinding.inflate(layoutInflater, parent, false)
@@ -67,8 +79,6 @@ class MyChargerListAdapter(private val navigationCallback: (idAndNickname : Pair
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is MyChargerViewHolder) {
             holder.bind(myChargerList[position])
-        } else {
-
         }
     }
 
@@ -90,7 +100,10 @@ class MyChargerListAdapter(private val navigationCallback: (idAndNickname : Pair
     }
 
     fun getLastChargerIdAndReservationCount(): Pair<Int?, Int?> {
-        return Pair(myChargerList.lastOrNull()?.carbobId, myChargerList.lastOrNull()?.reservationCount)
+        return Pair(
+            myChargerList.lastOrNull()?.carbobId,
+            myChargerList.lastOrNull()?.reservationCount
+        )
     }
 
     fun clearMyChargerList() {

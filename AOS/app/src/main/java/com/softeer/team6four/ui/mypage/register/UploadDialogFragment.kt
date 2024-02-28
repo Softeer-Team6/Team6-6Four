@@ -28,7 +28,6 @@ class UploadDialogFragment(private val navigationCallback: () -> Unit) : DialogF
                 )
             )
         builder.setView(binding.root)
-
         with(binding) {
             btnUpload.setOnClickListener {
                 registerViewModel.registerCharger()

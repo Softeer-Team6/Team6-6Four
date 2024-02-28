@@ -1,4 +1,4 @@
-package com.softeer.team6four.data.remote.fcm
+package com.softeer.team6four.data
 
 import com.softeer.team6four.data.Resource
 import com.softeer.team6four.data.remote.fcm.source.FcmDataSource

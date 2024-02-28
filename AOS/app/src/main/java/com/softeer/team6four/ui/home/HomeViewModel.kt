@@ -7,13 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.overlay.InfoWindow
 import com.softeer.team6four.data.Resource
-import com.softeer.team6four.data.local.UserPreferencesRepository
-import com.softeer.team6four.data.remote.charger.ChargerRepository
+import com.softeer.team6four.data.UserPreferencesRepository
+import com.softeer.team6four.data.ChargerRepository
 import com.softeer.team6four.data.remote.charger.model.BottomSheetChargerModel
 import com.softeer.team6four.data.remote.charger.model.ChargerDetailModel
 import com.softeer.team6four.data.remote.charger.model.MapChargerModel
-import com.softeer.team6four.data.remote.fcm.FcmRepository
-import com.softeer.team6four.data.remote.geo.GeoCodeRepository
+import com.softeer.team6four.data.FcmRepository
+import com.softeer.team6four.data.GeoCodeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

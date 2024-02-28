@@ -4,10 +4,9 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.softeer.team6four.data.Resource
-import com.softeer.team6four.data.local.UserPreferencesRepository
-import com.softeer.team6four.data.remote.reservation.ReservationRepository
+import com.softeer.team6four.data.UserPreferencesRepository
+import com.softeer.team6four.data.ReservationRepository
 import com.softeer.team6four.data.remote.reservation.model.ChargerReservationInfoModel
-import com.softeer.team6four.data.remote.reservation.model.AvailableTimeTableModel
 import com.softeer.team6four.data.remote.reservation.model.ReservationTimeModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

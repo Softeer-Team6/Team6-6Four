@@ -113,8 +113,8 @@ class ChargerDataSource @Inject constructor(private val chargerService: ChargerS
     fun fetchMyChargerList(
         accessToken: String, sortType: String, lastCarbobId: Int?, lastReservationCount: Int?
     ): Flow<Resource<MyChargerList>> = flow {
-        emit(Resource.Loading())
         val authorization = "Bearer $accessToken"
+        emit(Resource.Loading())
         try {
             val myChargerListResponse = chargerService.getMyChargerList(
                 token = authorization,

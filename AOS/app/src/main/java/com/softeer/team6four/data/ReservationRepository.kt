@@ -1,7 +1,6 @@
-package com.softeer.team6four.data.remote.reservation
+package com.softeer.team6four.data
 
 import android.util.Log
-import com.softeer.team6four.data.Resource
 import com.softeer.team6four.data.remote.reservation.model.AvailableTimeTableModel
 import com.softeer.team6four.data.remote.reservation.model.ChargerReservationInfoModel
 import com.softeer.team6four.data.remote.reservation.model.ChargerReservationListModel

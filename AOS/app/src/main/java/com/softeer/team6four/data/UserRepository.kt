@@ -1,4 +1,4 @@
-package com.softeer.team6four.data.remote.user
+package com.softeer.team6four.data
 
 import com.softeer.team6four.data.Resource
 import com.softeer.team6four.data.remote.user.dto.SignUpInfo

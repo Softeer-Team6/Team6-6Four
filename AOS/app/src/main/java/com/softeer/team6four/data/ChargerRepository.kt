@@ -1,7 +1,6 @@
-package com.softeer.team6four.data.remote.charger
+package com.softeer.team6four.data
 
 import android.util.Log
-import com.softeer.team6four.data.Resource
 import com.softeer.team6four.data.remote.charger.model.BottomSheetChargerModel
 import com.softeer.team6four.data.remote.charger.model.ChargerDetailModel
 import com.softeer.team6four.data.remote.charger.model.MapChargerModel

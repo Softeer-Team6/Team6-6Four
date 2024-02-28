@@ -4,13 +4,12 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.softeer.team6four.data.Resource
-import com.softeer.team6four.data.local.UserPreferencesRepository
-import com.softeer.team6four.data.remote.charger.ChargerRepository
-import com.softeer.team6four.data.remote.charger.model.MyChargerSimpleInfoModel
+import com.softeer.team6four.data.UserPreferencesRepository
+import com.softeer.team6four.data.ChargerRepository
+import com.softeer.team6four.data.remote.charger.model.MyChargerListModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -21,11 +20,15 @@ class MyChargerListViewModel @Inject constructor(
     private val userPreferencesRepository: UserPreferencesRepository,
     private val chargerRepository: ChargerRepository
 ) : ViewModel() {
-    private val _myChargerList: MutableStateFlow<List<MyChargerSimpleInfoModel>> = MutableStateFlow(emptyList())
-    val myChargerList: StateFlow<List<MyChargerSimpleInfoModel>> = _myChargerList
 
-    private val _isLoading = MutableStateFlow(false)
-    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
+    private var _myChargerList: MutableStateFlow<Resource<MyChargerListModel>> = MutableStateFlow(
+        Resource.Success(
+            MyChargerListModel(
+                emptyList(), false, 0
+            )
+        )
+    )
+    val myChargerList: StateFlow<Resource<MyChargerListModel>> = _myChargerList
 
     private val _filterText: MutableStateFlow<String> = MutableStateFlow("등록순")
     val filterText: StateFlow<String> = _filterText
@@ -33,6 +36,11 @@ class MyChargerListViewModel @Inject constructor(
     private val _filterState: MutableStateFlow<String> = MutableStateFlow("LATEST")
     val filterState: StateFlow<String> = _filterState
 
+    private val _finishState : MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val finishState : StateFlow<Boolean> = _finishState
+
+    private val _refreshState: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val refreshState : StateFlow<Boolean> = _refreshState
     fun updateFilterState() {
         if (_filterState.value == "LATEST") {
             _filterText.value = "예약 많은 순"
@@ -43,15 +51,22 @@ class MyChargerListViewModel @Inject constructor(
         }
     }
 
-    fun fetchMyChargerList(sortType: String, lastChargerId: Int? = null, lastReservationId: Int? = null) {
-        if (_isLoading.value) return
+    fun updateFinishState(state : Boolean) {
+        _finishState.value = state
+    }
 
-        _isLoading.value = true
-
+    fun updateRefreshState(state : Boolean) {
+        _refreshState.value = state
+    }
+    fun fetchMyChargerList(
+        sortType: String,
+        lastChargerId: Int? = null,
+        lastReservationId: Int? = null
+    ) {
         viewModelScope.launch {
             val accessToken = userPreferencesRepository.getAccessToken().first()
             val myChargerListData = chargerRepository.fetchMyChargerList(
-                accessToken =  accessToken,
+                accessToken = accessToken,
                 sortType = sortType,
                 lastChargerId = lastChargerId,
                 lastReservationId = lastReservationId
@@ -60,33 +75,7 @@ class MyChargerListViewModel @Inject constructor(
             myChargerListData.catch {
                 Log.e("fetchMyChargerList", "getMyChargerList: $this")
             }.collect { resource ->
-                when (resource) {
-                    is Resource.Success -> {
-                        val newList = resource.data.content.toMutableList()
-                        if (resource.data.hasNext) {
-                            newList.add(
-                                MyChargerSimpleInfoModel(
-                                    carbobId = 0,
-                                    address = " ",
-                                    imageUrl = " ",
-                                    nickname = " ",
-                                    reservationCount = 0
-                                )
-                            )
-                        }
-                        _myChargerList.value = newList
-                        _isLoading.value = false
-                    }
-
-                    is Resource.Error -> {
-                        Log.e("fetchMyChargerList", "getMyChargerList: ${resource.message}")
-                    }
-
-                    else -> {
-                        Log.e("fetchMyChargerList", "getMyChargerList: $resource")
-                    }
-                }
-
+                _myChargerList.value = resource
             }
         }
     }

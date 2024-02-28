@@ -1,4 +1,4 @@
-package com.softeer.team6four.data.local
+package com.softeer.team6four.data
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

@@ -1,6 +1,5 @@
-package com.softeer.team6four.data.remote.payment
+package com.softeer.team6four.data
 
-import com.softeer.team6four.data.Resource
 import com.softeer.team6four.data.remote.payment.model.MyTotalPointModel
 import com.softeer.team6four.data.remote.payment.model.PointHistoryDetailModel
 import com.softeer.team6four.data.remote.payment.model.PointHistoryModel
