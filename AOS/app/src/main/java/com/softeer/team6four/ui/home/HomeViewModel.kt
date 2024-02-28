@@ -93,6 +93,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             geoCodeRepository.getCoordinateResult(addressText.value).collect { latLngResult ->
                 latLngResult.onSuccess { latLng ->
+                    _searchAddressLatLng.value = LatLng(0.0, 0.0)
                     _searchAddressLatLng.value = latLng
                     updateSearchMarkerLatLng(latLng)
                 }
