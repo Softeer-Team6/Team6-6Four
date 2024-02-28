@@ -74,6 +74,27 @@
 
 </div>
 
+## 💭 6Four의 시연영상
+
+### 1) 회원가입 
+https://github.com/softeerbootcamp-3rd/Team6-6Four/assets/102938120/2bc7f272-373d-44f3-91e9-b2e58c216db4 
+
+### 2) 로그인
+https://github.com/softeerbootcamp-3rd/Team6-6Four/assets/102938120/b31e6325-6347-413c-98d3-55120dc8d35f
+
+### 3) 카밥 등록
+https://github.com/softeerbootcamp-3rd/Team6-6Four/assets/102938120/892bd1b7-44a4-46d7-9922-1c54e0b84342
+
+### 4) 주소 검색
+https://github.com/softeerbootcamp-3rd/Team6-6Four/assets/102938120/d3a9ce71-4d9f-4ae2-923d-908bc68d5f44
+
+### 5) 카밥 상세정보 조회
+https://github.com/softeerbootcamp-3rd/Team6-6Four/assets/102938120/615cf912-eb74-436b-8938-5c6622a7ea55
+
+### 6) 포인트 내역 조회
+https://github.com/softeerbootcamp-3rd/Team6-6Four/assets/102938120/f1444b3e-54ad-4fe6-9f7c-85cd71794b8b
+
+<br>
 
 ## 💭 6Four의 기술 스택
 
@@ -85,7 +106,7 @@
 <img src="https://img.shields.io/badge/ec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white">
 <img src="https://img.shields.io/badge/s3-569A31?style=for-the-badge&logo=amazons3&logoColor=white">
 <img src="https://img.shields.io/badge/code deploy-00AA12?style=for-the-badge&lo&logoColor=white">
-<img src="https://img.shields.io/badge/github actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white">
+<img src="https://img.shields.io/badge/git actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white">
 <img src="https://img.shields.io/badge/sentry-362D59?style=for-the-badge&logo=sentry&logoColor=white">
 </div>
 
