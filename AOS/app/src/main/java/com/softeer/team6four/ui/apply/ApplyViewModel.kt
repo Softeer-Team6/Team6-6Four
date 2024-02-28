@@ -95,8 +95,10 @@ class ApplyViewModel @Inject constructor(
             val timeDate =
                 SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(selectedDate.value)
 
-            val convertedStartTime = "${timeDate}T${String.format("%02d", startTime.value)}:00:00.000000"
-            val convertedEndTime = "${timeDate}T${String.format("%02d", endTime.value)}:00:00.000000"
+            val convertedStartTime =
+                "${timeDate}T${String.format("%02d", startTime.value)}:00:00.000000"
+            val convertedEndTime =
+                "${timeDate}T${String.format("%02d", endTime.value)}:00:00.000000"
 
             Log.d("convertedStartTime", convertedStartTime)
             reservationRepository.postApplyReservation(
