@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class PointChargeDto(
-    val data: Unit,
+    val data: Unit?,
     val message: String,
     val statusCode: Int,
     val timestamp: String
