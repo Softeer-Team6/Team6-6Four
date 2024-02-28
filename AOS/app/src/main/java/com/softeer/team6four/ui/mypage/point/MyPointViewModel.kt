@@ -6,11 +6,10 @@ import androidx.lifecycle.viewModelScope
 import com.softeer.team6four.data.Resource
 import com.softeer.team6four.data.local.UserPreferencesRepository
 import com.softeer.team6four.data.remote.payment.PaymentRepository
-import com.softeer.team6four.data.remote.payment.model.PointHistoryDetailModel
+import com.softeer.team6four.data.remote.payment.model.PointHistoryModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -24,12 +23,22 @@ class MyPointViewModel @Inject constructor(
     private val _myTotalPoint: MutableStateFlow<String> = MutableStateFlow("0")
     val myTotalPoint: StateFlow<String> = _myTotalPoint
 
-    private val _pointHistory: MutableStateFlow<List<PointHistoryDetailModel>> = MutableStateFlow(emptyList())
-    val pointHistory: StateFlow<List<PointHistoryDetailModel>> = _pointHistory
+    private val _pointHistory: MutableStateFlow<Resource<PointHistoryModel>> =
+        MutableStateFlow(Resource.Success(PointHistoryModel(emptyList(), true, 0)))
+    val pointHistory: StateFlow<Resource<PointHistoryModel>> = _pointHistory
 
-    private val _isLoading = MutableStateFlow(false)
-    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
+    private val _isFinish : MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val isFinish : StateFlow<Boolean> = _isFinish
 
+    private val _refreshState : MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val refreshState : StateFlow<Boolean> = _refreshState
+    fun updateIsFinishState(state: Boolean) {
+        _isFinish.value = state
+    }
+
+    fun updateRefreshState(state: Boolean) {
+        _refreshState.value = state
+    }
     fun fetchMyTotalPoint() {
         viewModelScope.launch {
             val accessToken = userPreferencesRepository.getAccessToken().first()
@@ -60,10 +69,6 @@ class MyPointViewModel @Inject constructor(
     }
 
     fun fetchPointHistory(lastPaymentId: Long? = null) {
-        if (_isLoading.value) return
-
-        _isLoading.value = true
-
         viewModelScope.launch {
             val accessToken = userPreferencesRepository.getAccessToken().first()
             val pointHistoryData = paymentRepository.getPointHistory(accessToken, lastPaymentId)
@@ -71,24 +76,7 @@ class MyPointViewModel @Inject constructor(
             pointHistoryData.catch {
                 Log.e("MyPointViewModel", "getPointHistory: $this")
             }.collect { pointHistory ->
-                when (pointHistory) {
-                    is Resource.Success -> {
-                        val newList = pointHistory.data.content.toMutableList()
-                        if (pointHistory.data.hasNext) {
-                            newList.add(PointHistoryDetailModel(" ", " ", 0, " ", " ", 0))
-                        }
-                        _pointHistory.value = newList
-                        _isLoading.value = false
-                    }
-
-                    is Resource.Error -> {
-                        Log.e("MyPointViewModel", "getPointHistory: ${pointHistory.message}")
-                    }
-
-                    else -> {
-                        Log.e("MyPointViewModel", "getPointHistory: $pointHistory")
-                    }
-                }
+                _pointHistory.value = pointHistory
             }
         }
     }
