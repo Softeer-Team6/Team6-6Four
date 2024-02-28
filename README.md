@@ -45,7 +45,8 @@
 <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [이대산] 공간 인덱스로 조회속도 40배 개선하기  </a></li>
 
 ## 🔖 [Android]
- <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [김성우] LiveData & Flow & StateFlow & Jetpack Navigation </a></li>
+ <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [김성우] LiveData & Flow & StateFlow </a></li>
+ <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [김성우] Jetpack Navigation </a></li>
  <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [김성우] StateFlow 진짜 왜 사용하는 걸까, 어떻게 잘 사용해야 할까? </a></li>
  <li><a href="https://github.com/softeerbootcamp-3rd/Team6-6Four/wiki"> [김성우] 무한 스크롤 어떻게 구현할 수 있을까? (feat. Paging 라이브러리)  </a></li>
 <br>
