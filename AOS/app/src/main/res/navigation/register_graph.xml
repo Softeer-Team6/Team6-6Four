@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_register_onboarding">
         <action
             android:id="@+id/action_registerOnboardingFragment_to_conditionCheckFragment"
-            app:destination="@id/conditionCheckFragment" />
+            app:destination="@id/conditionCheckFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/conditionCheckFragment"
@@ -21,7 +25,9 @@
         tools:layout="@layout/fragment_condition_check">
         <action
             android:id="@+id/action_conditionCheckFragment_to_registerLocationFragment"
-            app:destination="@id/registerLocationFragment" />
+            app:destination="@id/registerLocationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/registerLocationFragment"
@@ -30,7 +36,9 @@
         tools:layout="@layout/fragment_register_location" >
         <action
             android:id="@+id/action_registerLocationFragment_to_registerDetailFragment"
-            app:destination="@id/registerDetailFragment" />
+            app:destination="@id/registerDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/registerDetailFragment"
@@ -39,7 +47,9 @@
         tools:layout="@layout/fragment_register_detail">
         <action
             android:id="@+id/action_registerDetailFragment_to_registerPriceFragment"
-            app:destination="@id/registerPriceFragment" />
+            app:destination="@id/registerPriceFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/registerPriceFragment"
@@ -48,7 +58,9 @@
         tools:layout="@layout/fragment_register_price">
         <action
             android:id="@+id/action_registerPriceFragment_to_registerDescriptionFragment"
-            app:destination="@id/registerDescriptionFragment" />
+            app:destination="@id/registerDescriptionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/registerDescriptionFragment"
@@ -57,7 +69,9 @@
         tools:layout="@layout/fragment_register_description">
         <action
             android:id="@+id/action_registerDescriptionFragment_to_registerTimeFragment"
-            app:destination="@id/registerTimeFragment" />
+            app:destination="@id/registerTimeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/registerTimeFragment"
@@ -66,7 +80,9 @@
         tools:layout="@layout/fragment_register_time">
         <action
             android:id="@+id/action_registerTimeFragment_to_registerCompleteFragment"
-            app:destination="@id/registerCompleteFragment" />
+            app:destination="@id/registerCompleteFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/registerCompleteFragment"
