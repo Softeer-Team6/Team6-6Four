@@ -12,7 +12,11 @@
         >
         <action
             android:id="@+id/action_registerEmailPasswordFragment_to_registerNicknameFragment"
-            app:destination="@id/registerNicknameFragment" />
+            app:destination="@id/registerNicknameFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/registerNicknameFragment"
