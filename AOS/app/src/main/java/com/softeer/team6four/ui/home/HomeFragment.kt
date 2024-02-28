@@ -37,6 +37,7 @@ import com.softeer.team6four.data.Resource
 import com.softeer.team6four.data.remote.charger.model.MapChargerModel
 import com.softeer.team6four.databinding.FragmentHomeBinding
 import com.softeer.team6four.databinding.HeaderNavigationDrawerBinding
+import com.softeer.team6four.ui.apply.ApplyViewModel
 import com.softeer.team6four.ui.payment.PaymentConfirmFragment
 import com.softeer.team6four.ui.payment.PaymentViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -57,6 +58,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
     }
     private val homeViewModel: HomeViewModel by activityViewModels()
+    private val applyViewModel : ApplyViewModel by activityViewModels()
     private val paymentViewModel: PaymentViewModel by activityViewModels()
 
     private var _binding: FragmentHomeBinding? = null
@@ -219,6 +221,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             }
             setOnClickListener { _ ->
                 homeViewModel.updateSelectedCharger((tag as Long))
+                applyViewModel.updateSelectedChargerId((tag as Long))
                 findNavController().navigate(R.id.action_homeFragment_to_applyDetailFragment)
                 true
             }
@@ -370,7 +373,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     private fun setBtnQRScan() {
         binding.btnCamera.setOnClickListener {
             val options = ScanOptions()
-            options.setPrompt("QR 스캔해주세요")
+            options.setPrompt("QR을 스캔해주세요")
             options.setOrientationLocked(false)
             barcodeLauncher.launch(options)
         }
